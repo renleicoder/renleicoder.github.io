@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  
+  <title>Android性能优化之Performance Tips | PleaseCallMeCoder</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="这篇文章主要是对官方文档中PerformanceTips（性能优化关键点）的翻译，欢迎拍砖。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android性能优化之Performance Tips">
+<meta property="og:url" content="http://yoursite.com/2016/04/26/Android性能优化之Performance Tips/index.html">
+<meta property="og:site_name" content="PleaseCallMeCoder">
+<meta property="og:description" content="这篇文章主要是对官方文档中PerformanceTips（性能优化关键点）的翻译，欢迎拍砖。">
+<meta property="og:image" content="http://i.imgur.com/uWNFnJF.jpg">
+<meta property="og:updated_time" content="2016-05-06T14:02:01.401Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android性能优化之Performance Tips">
+<meta name="twitter:description" content="这篇文章主要是对官方文档中PerformanceTips（性能优化关键点）的翻译，欢迎拍砖。">
+<meta name="twitter:image" content="http://i.imgur.com/uWNFnJF.jpg">
+  
+    <link rel="alternative" href="/atom.xml" title="PleaseCallMeCoder" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+      <link href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css" rel="stylesheet">
+  
+  
+  
+      <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+      <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+  
+  <script src="//cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.9/clipboard.min.js"></script>
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false,
+          fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+          scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.0.9/scrollreveal.min.js"
+      }
+  </script>
+
+  
+      <script>
+          yiliaConfig.rootUrl = "/";
+      </script>
+  
+
+  
+  
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">PleaseCallMeCoder</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">每个人都在成神的路上，只不过有的人在走，而有的人在跑。</p>
+        
+                
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>Menu</li>
+                        <li>Tags</li>
+                        
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:18231195685@sina.cn" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="http://weibo.com/2729748535" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/PleaseCallMeCoder" title="GitHub"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="http://blog.csdn.net/sdkfjksf?viewmode=list" title="CSDN"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/MAT/">MAT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TextView/">TextView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jcenter/">jcenter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/leakcanary/">leakcanary</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/内存优化/">内存优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/内存泄漏/">内存泄漏</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原生控件属性/">原生控件属性</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/官方文档/">官方文档</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/开源/">开源</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/性能优化/">性能优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自定义控件/">自定义控件</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">PleaseCallMeCoder</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">PleaseCallMeCoder</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">每个人都在成神的路上，只不过有的人在走，而有的人在跑。</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:18231195685@sina.cn" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="http://weibo.com/2729748535" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/PleaseCallMeCoder" title="GitHub"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="http://blog.csdn.net/sdkfjksf?viewmode=list" title="CSDN"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
+</nav>
+      <div class="body-wrap"><article id="post-Android性能优化之Performance Tips" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/04/26/Android性能优化之Performance Tips/" class="article-date">
+      <time datetime="2016-04-26T03:01:00.000Z" itemprop="datePublished">2016-04-26</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Android性能优化之Performance Tips
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/性能优化/">性能优化</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/官方文档/">官方文档</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/性能优化/">性能优化</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>这篇文章主要是对官方文档中PerformanceTips（性能优化关键点）的翻译，欢迎拍砖。</p>
+<ul>
+<li><a id="more"></a>
+</li>
+</ul>
+<p><img src="http://i.imgur.com/uWNFnJF.jpg" alt=""></p>
+<p>如果你真的愿意去努力，你人生最坏的结果，也不过是大器晚成。</p>
+<blockquote>
+<p>原文链接：<a href="http://developer.android.com/training/articles/perf-tips.html#UseFinal" target="_blank" rel="external">http://developer.android.com/training/articles/perf-tips.html#UseFinal</a></p>
+</blockquote>
+<p>#概述</p>
+<p>这篇文档主要包含一些微小的最佳优化,当把这些组合起来的时候，可以提高App的整体性能，但它不太可能对性能造成戏剧性的影响。选择合适的算法和数据结构应该是你优先考虑的内容,但超出了本文的范围。这个文档更适合作为通用的编码技巧,通过这些技巧使我们的代码更高效。</p>
+<p><strong>编写高效代码有两个基本规则:</strong></p>
+<ul>
+<li><p><strong>不执行不必要的操作</strong></p>
+</li>
+<li><p><strong>不分配不必要的内存</strong></p>
+</li>
+</ul>
+<p>我们面临的最棘手的一个问题是我们的Android应用程序肯定会在多种类型的硬件上运行。不同版本的VM虚拟机运行在不同的处理器的运行速度显然是不同的。你甚至不能简单地说“设备X快/慢于设备Y大概F倍”，然后想当然的认为其在他设备上这个倍数也是成立的。但是,我们仅仅能从模拟器获得很少关于设备性能的信息，它与真机还是有很大不同的。还有,有或没有JIT（即时编译）的设备之间存在巨大差异:在有JIT的设备上完美运行的代码在没有JIT的设备上并不一定能顺畅运行。</p>
+<p>我们要尽量通过优化性能来确保我们的应用在各种各样的设备上都表现良好,确保代码在支持的不同版本上是有效的。</p>
+<p>#避免创建不必要的对象</p>
+<p>对象创建永远不会是免费的。虽然一个带有线程池的垃圾回收器（garbage collector）可以使分配临时对象的内存占用降低,但分配内存总是比不分配内存更昂贵的。</p>
+<p>当我们在我们的应用分配更多的对象时,将迫使一个周期性的垃圾回收,创建“打嗝”的用户体验，即卡顿。在Android 2.3中引入的并发垃圾收集器（GC）可以帮助我们,但不必要的工作能避免要尽量避免。</p>
+<p>因此,这样我们应该避免创建我们不需要的对象，以下是一些实例：</p>
+<ul>
+<li>如果你有一个方法返回一个字符串,你知道它的结果需要附加到StringBuffer上,改变你的实现方法使它可以直接添加,而不是创建一个短暂的临时对象。</li>
+<li>当要从一组输入数据中提取字符串时,试着返回一个原始数据的子字符串（substring）,而不是创建一个重复的对象。使用substring的方式，你将创建一个新的String对象，但它将与原数据共享内部char[]空间的。（如果你只使用原始输入的一小部分，无论怎么操作，你都会把它保持在内存中，这点需要权衡）</li>
+</ul>
+<p>一个更激进的想法是把一个多维数组分割成平行的一维数组:</p>
+<ul>
+<li>int类型的数组比Integer对象数组要好，由此可以知道两个平行的int数组比(int,int)二维数组效率更高。这同样适用于所有的原始数据类型。</li>
+<li>如果你需要实现一个容器存储(Foo,Bar)对象的，试着记住两个平行的Foo[]和Bar[]数组通常比单一阵列的自定义(Foo,Bar)对象要好。（但是有例外,比如当你设计一个API访问其他代码的时候。在这些情况下,通常可以牺牲小部分的性能达到良好的API设计。但在自己的内部代码,我们应该试着尽可能的提高效率。）</li>
+</ul>
+<p>一般来说,避免创建临时对象。更少的对象创建意味着更少的垃圾收集,这对用户体验有直接的影响。</p>
+<p>#选择Static而不是Virtual</p>
+<p>如果你不需要访问一个对象的字段,可以使用static修饰你的方法。调用将快15%~20%。这是一种很好的做法,因为通过static你还可以知道调用的方法不能改变对象的状态。</p>
+<p>#使用static final修饰常量</p>
+<p>像这样在一个类的顶部声明常量：</p>
+<pre><code>static int intVal = 42;
+static String strVal = &quot;Hello, world!&quot;;
+</code></pre><p>编译器生成一个类初始化方法,叫做&lt; clinit &gt;,当这个类第一次被使用时执行。这个函数将42存入intVal，还从class文件的常量表中提取了strVal的引用。当之后使用intVal或strVal的时候，他们会直接被查询到。</p>
+<p>我们可以用final关键字来优化：</p>
+<pre><code>static final int intVal = 42;
+static final String strVal = &quot;Hello, world!&quot;;
+</code></pre><p>这时再也不需要上面的方法了，因为final声明的常量进入了静态dex文件的域初始化部分。调用intVal的代码会直接使用42，调用strVal的代码也会使用一个相对廉价的“string constant”指令，而不是查表。</p>
+<blockquote>
+<p>Notes：这个优化方法只对原始类型和String类型有效，而不是任意引用类型。不过，在必要时使用static final是个很好的习惯。</p>
+</blockquote>
+<p>#避免内部的Getters/Setters</p>
+<p>像C++等native language，通常使用getters(i = getCount())而不是直接访问变量(i = mCount)。这是编写C++的一种优秀习惯，而且通常也被其他面向对象的语言所采用，例如C#与Java，因为编译器通常会做inline访问，而且你需要限制或者调试变量，你可以在任何时候在getter/setter里面添加代码。</p>
+<p>然而，在Android上，这不是一个好的写法。虚函数的调用比起直接访问变量要耗费更多。在面向对象编程中，将getter和setting暴露给公用接口是合理的，但在类内部应该仅仅使用域直接访问。</p>
+<p>在没有JIT(Just In Time Compiler)时，直接访问变量的速度是调用getter的3倍。有JIT时，直接访问变量的速度是通过getter访问的7倍。</p>
+<p>请注意，如果你使用<a href="http://developer.android.com/tools/help/proguard.html" target="_blank" rel="external">ProGuard</a>，你可以获得同样的效果，因为ProGuard可以为你内联访问.</p>
+<p>#使用for-each循环</p>
+<p>增强的For循环（也被称为 for-each 循环）可以被用在实现了 Iterable 接口的 collections 以及数组上。使用collection的时候，Iterator会被分配，用于for-each调用hasNext()和next()方法。使用ArrayList时，手写的计数式for循环会快3倍（不管有没有JIT），但是对于其他collection，增强的for-each循环写法会和迭代器写法的效率一样。</p>
+<p>请比较下面三种循环的方法：</p>
+<pre><code>static class Foo {
+    int mSplat;
+}
+
+Foo[] mArray = ...
+
+public void zero() {
+    int sum = 0;
+    for (int i = 0; i &lt; mArray.length; ++i) {
+        sum += mArray[i].mSplat;
+    }
+}
+
+public void one() {
+    int sum = 0;
+    Foo[] localArray = mArray;
+    int len = localArray.length;
+
+    for (int i = 0; i &lt; len; ++i) {
+        sum += localArray[i].mSplat;
+    }
+}
+
+public void two() {
+    int sum = 0;
+    for (Foo a : mArray) {
+        sum += a.mSplat;
+    }
+}
+</code></pre><ul>
+<li>zero()是最慢的，因为JIT没有办法对它进行优化。</li>
+<li>one()稍微快些。</li>
+<li>two() 在没有做JIT时是最快的，可是如果经过JIT之后，与方法one()是差不多一样快的。它使用了增强的循环方法for-each。</li>
+</ul>
+<p>所以请尽量使用for-each的方法，但是对于ArrayList，请使用方法one()。</p>
+<blockquote>
+<p>Tips：你还可以参考 Josh Bloch 的 《Effective Java》这本书的第46条</p>
+</blockquote>
+<p>#使用package代替private以便私有内部类高效访问外部类成员</p>
+<p>参考下面一段代码</p>
+<pre><code>public class Foo {
+    private class Inner {
+        void stuff() {
+            Foo.this.doStuff(Foo.this.mValue);
+        }
+    }
+
+    private int mValue;
+
+    public void run() {
+        Inner in = new Inner();
+        mValue = 27;
+        in.stuff();
+    }
+
+    private void doStuff(int value) {
+        System.out.println(&quot;Value is &quot; + value);
+    }
+}
+</code></pre><p>这里重要的是，我们定义了一个私有的内部类（Foo$Inner），它直接访问了外部类中的私有方法以及私有成员对象。这是合法的，这段代码也会如同预期一样打印出”Value is 27”。</p>
+<p>问题是，VM(虚拟机)因为Foo和Foo$Inner是不同的类，会认为在Foo$Inner中直接访问Foo类的私有成员是不合法的。即使Java语言允许内部类访问外部类的私有成员。为了去除这种差异，编译器会产生一些仿造函数：</p>
+<pre><code>/*package*/ static int Foo.access$100(Foo foo) {
+    return foo.mValue;
+}
+/*package*/ static void Foo.access$200(Foo foo, int value) {
+    foo.doStuff(value);
+}
+</code></pre><p>每当内部类需要访问外部类中的mValue成员或需要调用doStuff()函数时，它都会调用这些静态方法。这意味着，上面的代码可以归结为，通过accessor函数来访问成员变量。早些时候我们说过，通过accessor会比直接访问域要慢。所以，这是一个特定语言用法造成性能降低的例子。</p>
+<p>如果你正在性能热区（hotspot:高频率、重复执行的代码段）使用像这样的代码，你可以把内部类需要访问的域和方法声明为包级访问，而不是私有访问权限。不幸的是，这意味着在相同包中的其他类也可以直接访问这些域，所以在公开的API中你不能这样做。</p>
+<p>#避免使用浮点类型</p>
+<p>Android系统中float类型的数据存取速度是int类型的一半，尽量优先采用int类型。</p>
+<p>就速度而言，现代硬件上，float 和 double 的速度是一样的。空间而言，double 是两倍float的大小。在空间不是问题的情况下，你应该使用 double 。</p>
+<p>同样，对于整型，有些处理器实现了硬件几倍的乘法，但是没有除法。这时，整型的除法和取余是在软件内部实现的，这在你使用哈希表或大量计算操作时要考虑到。</p>
+<p>#了解并使用库函数</p>
+<p>除了那些常见的让你多使用自带库函数的理由以外，记得系统函数有时可以替代第三方库，并且还有汇编级别的优化，他们通常比带有JIT的Java编译出来的代码更高效。典型的例子是：Android API 中的 <a href="http://developer.android.com/reference/java/lang/String.html#indexOf%28int%29" target="_blank" rel="external">String.indexOf()</a>，Dalvik出于内联性能考虑将其替换。同样 <a href="http://developer.android.com/reference/java/lang/System.html#arraycopy%28java.lang.Object,%20int,%20java.lang.Object,%20int,%20int%29" target="_blank" rel="external">System.arraycopy()</a>函数也被替换，这样的性能在Nexus One测试，比手写的for循环并使用JIT还快9倍。</p>
+<blockquote>
+<p>Tips：参见 Josh Bloch 的 《Effective Java》这本书的第47条</p>
+</blockquote>
+<p>#小心使用底层方法</p>
+<p>结合<a href="http://developer.android.com/tools/sdk/ndk/index.html" target="_blank" rel="external">Android NDK</a>使用native代码开发，并不总是比Java直接开发的效率更好的。Java转native代码是有代价的，而且JIT不能在这种情况下做优化。如果你在native代码中分配资源（比如native堆上的内存，文件描述符等等），这会对收集这些资源造成巨大的困难。你同时也需要为各种架构重新编译代码（而不是依赖JIT）。你甚至对已同样架构的设备都需要编译多个版本：为G1的ARM架构编译的版本不能完全使用Nexus One上ARM架构的优势，反之亦然。</p>
+<p>Native 代码是在你已经有本地代码，想把它移植到Android平台时有优势，而不是为了优化已有的Android Java代码使用。</p>
+<p>如果你要使用JNI,请学习<a href="http://developer.android.com/training/articles/perf-jni.html" target="_blank" rel="external">JNI Tips</a></p>
+<blockquote>
+<p>Tips：参见 Josh Bloch 的 《Effective Java》这本书的第54条</p>
+</blockquote>
+<p>#性能谬见</p>
+<p>在没有JIT的设备上，使用一种确切的数据类型确实要比抽象的数据类型速度要更有效率（例如，调用HashMap map要比调用Map map效率更高）。有误传效率要高一倍，实际上只是6%左右。而且，在JIT之后，他们直接并没有大多差异。</p>
+<p>在没有JIT的设备上，读取缓存域比直接读取实际数据大概快20%。有JIT时，域读取和本地读取基本无差。所以优化并不值得除非你觉得能让你的代码更易读（这对 final, static, static final 域同样适用）。</p>
+<p>#关于测量</p>
+<p>在优化之前，你应该确定你遇到了性能问题。你应该确保你能够准确测量出现在的性能，否则你也不会知道优化是否真的有效。</p>
+<p>本章节中所有的技巧都需要Benchmark（基准测试）的支持。Benchmark可以在 <a href="https://code.google.com/archive/p/dalvik/source#svn%2Ftrunk%2Fbenchmarks" target="_blank" rel="external">code.google.com “dalvik” project</a> 中找到。</p>
+<p>Benchmark是基于Java版本的 <a href="https://github.com/google/caliper" target="_blank" rel="external">Caliper</a> microbenchmarking框架开发的。Microbenchmarking很难做准确，所以Caliper帮你完成这部分工作，甚至还帮你测了你没想到需要测量的部分（因为，VM帮你管理了代码优化，你很难知道这部分优化有多大效果）。我们强烈推荐使用Caliper来做你的基准微测工作。</p>
+<p>我们也可以用<a href="http://developer.android.com/tools/debugging/debugging-tracing.html" target="_blank" rel="external">Traceview</a> 来测量，但是测量的数据是没有经过JIT优化的，所以实际的效果应该是要比测量的数据稍微好些。</p>
+<p>关于如何测量与调试，还可以参考下面两篇文章：</p>
+<ul>
+<li><a href="http://developer.android.com/tools/debugging/debugging-tracing.html" target="_blank" rel="external">http://developer.android.com/tools/debugging/debugging-tracing.html</a></li>
+<li><a href="http://developer.android.com/tools/debugging/systrace.html" target="_blank" rel="external">http://developer.android.com/tools/debugging/systrace.html</a></li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>Title:</span><a href="/2016/04/26/Android性能优化之Performance Tips/">Android性能优化之Performance Tips</a></p>
+        <p><span>Author:</span><a href="/" title="Back to Homepage">PleaseCallMeCoder</a></p>
+        <p><span>Created:</span>2016-04-26, 11:01:00</p>
+        <p><span>Updated:</span>2016-05-06, 22:02:01</p>
+        <p>
+            <span>Full URL:</span><a class="post-url" href="/2016/04/26/Android性能优化之Performance Tips/" title="Android性能优化之Performance Tips">http://yoursite.com/2016/04/26/Android性能优化之Performance Tips/</a>
+            <span class="copy-path" data-clipboard-text="From http://yoursite.com/2016/04/26/Android性能优化之Performance Tips/　　By PleaseCallMeCoder" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>License:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"CC BY-NC-SA 4.0"</a> Keep Link &amp; Author if Distribute.
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2016/04/29/Andorid自定义圆形渐变色进度条的从实现到开源/">
+                    Andorid自定义圆形渐变色进度条的从实现到开源
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/04/19/Android性能优化之被忽视的Memory Leaks/">
+                    Android性能优化之被忽视的Memory Leaks
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="Hide"  title="Show or Hide Table of Contents">
+<script>
+    var valueHide = "Hide";
+    var valueShow = "Show";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"Android性能优化之Performance Tips　| PleaseCallMeCoder　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="2016/04/26/Android性能优化之Performance Tips/" data-title="Android性能优化之Performance Tips" data-url="http://yoursite.com/2016/04/26/Android性能优化之Performance Tips/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"renleicoder"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+    <!-- 多说公共JS代码 end -->
+</div>
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2016/04/29/Andorid自定义圆形渐变色进度条的从实现到开源/" title="Pre: Andorid自定义圆形渐变色进度条的从实现到开源">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/04/19/Android性能优化之被忽视的Memory Leaks/" title="Next: Android性能优化之被忽视的Memory Leaks">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/05/04/TextView实战之你真的懂我么？/">TextView实战之你真的懂我么？</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/29/Andorid自定义圆形渐变色进度条的从实现到开源/">Andorid自定义圆形渐变色进度条的从实现到开源</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/26/Android性能优化之Performance Tips/">Android性能优化之Performance Tips</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/19/Android性能优化之被忽视的Memory Leaks/">Android性能优化之被忽视的Memory Leaks</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016 PleaseCallMeCoder
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="A fast, simple &amp; powerful blog framework">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="Another simple and elegant theme for Hexo">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >Site Visitors: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">Page Hits: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.1.22/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="Back to Top"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" title="Comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="Go to Bottom"><i class="fa fa-arrow-down"></i></a>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
