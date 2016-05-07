@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  
+  <title>Material Design实战 | PleaseCallMeCoder</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="MaterialDesign实战。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Material Design实战">
+<meta property="og:url" content="http://yoursite.com/2016/03/29/Material Design实战/index.html">
+<meta property="og:site_name" content="PleaseCallMeCoder">
+<meta property="og:description" content="MaterialDesign实战。">
+<meta property="og:image" content="http://img.blog.csdn.net/20160331170922504">
+<meta property="og:image" content="http://img.blog.csdn.net/20160331175022457">
+<meta property="og:image" content="http://img.blog.csdn.net/20160331175142895">
+<meta property="og:updated_time" content="2016-05-07T04:46:53.221Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Material Design实战">
+<meta name="twitter:description" content="MaterialDesign实战。">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20160331170922504">
+  
+    <link rel="alternative" href="/atom.xml" title="PleaseCallMeCoder" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+      <link href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css" rel="stylesheet">
+  
+  
+  
+      <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+      <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+  
+  <script src="//cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.9/clipboard.min.js"></script>
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false,
+          fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+          scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.0.9/scrollreveal.min.js"
+      }
+  </script>
+
+  
+      <script>
+          yiliaConfig.rootUrl = "/";
+      </script>
+  
+
+  
+  
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">PleaseCallMeCoder</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">每个人都在成神的路上，只不过有的人在走，而有的人在跑。</p>
+        
+                
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:18231195685@sina.cn" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="http://weibo.com/2729748535" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/PleaseCallMeCoder" title="GitHub"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="http://blog.csdn.net/sdkfjksf?viewmode=list" title="CSDN"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AndroidStudio1-5/">AndroidStudio1.5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/App设计模式/">App设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bitmap/">Bitmap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BitmapRegionDecoder/">BitmapRegionDecoder</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CPU和GPU/">CPU和GPU</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Camera/">Camera</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JNI/">JNI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MAT/">MAT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MaterialDesign/">MaterialDesign</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NDK/">NDK</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Overdraw/">Overdraw</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RecyclerView/">RecyclerView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TextView/">TextView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Toolbar/">Toolbar</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/View/">View</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ViewGroup/">ViewGroup</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hierarchyviewer/">hierarchyviewer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/include/">include</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jcenter/">jcenter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/leakcanary/">leakcanary</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lint/">lint</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/merge/">merge</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/paint/">paint</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/surfaceview/">surfaceview</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/viewstub/">viewstub</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/代码片段/">代码片段</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/内存优化/">内存优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/内存泄漏/">内存泄漏</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原生控件属性/">原生控件属性</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/可扩展/">可扩展</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/可维护/">可维护</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大图加载/">大图加载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/官方demo/">官方demo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/官方文档/">官方文档</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/布局优化/">布局优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/开源/">开源</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/性能优化/">性能优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/性能优化关键点/">性能优化关键点</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/性能优化工具/">性能优化工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/性能优化概述/">性能优化概述</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/架构/">架构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/渲染优化/">渲染优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/相机/">相机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/组合控件/">组合控件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/绘制/">绘制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自定义动画/">自定义动画</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自定义控件/">自定义控件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/重写/">重写</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">PleaseCallMeCoder</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">PleaseCallMeCoder</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">每个人都在成神的路上，只不过有的人在走，而有的人在跑。</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:18231195685@sina.cn" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="http://weibo.com/2729748535" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/PleaseCallMeCoder" title="GitHub"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="http://blog.csdn.net/sdkfjksf?viewmode=list" title="CSDN"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-Material Design实战" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/29/Material Design实战/" class="article-date">
+      <time datetime="2016-03-29T10:24:00.000Z" itemprop="datePublished">2016-03-29</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Material Design实战
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/MaterialDesign/">MaterialDesign</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MaterialDesign/">MaterialDesign</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RecyclerView/">RecyclerView</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Toolbar/">Toolbar</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>MaterialDesign实战。</p>
+<ul>
+<li><a id="more"></a>
+</li>
+</ul>
+<p>记得最早接触MaterialDesign还是在去年我刚自学android的时候，当时迫切的想尝试一下这种新的设计语言，但由于一些原因搁浅到现在。趁这个机会写个小demo，感受一下这种设计语言的魅力。先来看下效果：</p>
+<p><img src="http://img.blog.csdn.net/20160331170922504" alt="这里写图片描述"></p>
+<p>这个demo主要实现了：Material design的设计风格，Toolbar制作顶栏，RecyclerView制作列表。</p>
+<p>主要用到的知识点：</p>
+<p><strong>1.Material design基本知识；</strong></p>
+<p><strong>2.Toolbar的用法；</strong></p>
+<p><strong>3.RecyclerView的基本用法；</strong></p>
+<p>然后说下具体的实现思路。</p>
+<p>##Material design</p>
+<p>###什么是Material design？<br>We challenged ourselves to create a visual language for our users that synthesizes the classic principles of good design with the innovation and possibility of technology and science. This is material design. This spec is a living document that will be updated as we continue to develop the tenets and specifics of material design.</p>
+<p>从官方介绍里我们了解到，这是一门崭新的视觉设计语言。它除了遵循经典设计定则，还汲取了最新的科技，秉承了创新的设计理念。这就是材料化设计(Material Design)。</p>
+<p>###Material design的核心<br>Material design的核心思想，就是把物理世界的体验带进屏幕。去掉现实中的杂质和随机性，保留其最原始纯净的形态、空间关系、变化与过渡，配合虚拟世界的灵活特性，还原最贴近真实的体验，达到简洁与直观的效果。</p>
+<p>##创建使用Material design的应用</p>
+<p>###官方文档中的步骤<br>1.The material theme（使用materialdesign主题）<br>2.Widgets for cards and lists（使用列表和卡片组件）<br>3.Custom shadows and view clipping（定义shadows和clipping视图）<br>4.Vector drawables（矢量drawables）<br>5.Custom animations（自定义动画）</p>
+<p>###本demo的实现过程</p>
+<p>####使用materialdesign主题</p>
+<p>Material主题被定义在：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@android:style/Theme.Material (暗色版本)</span><br><span class="line">@android:style/Theme.Material.Light (亮色版本)</span><br><span class="line">@android:style/Theme.Material.Light.DarkActionBar</span><br></pre></td></tr></table></figure>
+<p>为了使我们的应用可以兼容低版本，可以使用<strong>兼容主题</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Theme.AppCompat</span><br><span class="line">Theme.AppCompat.Light</span><br><span class="line">Theme.AppCompat.Light.DarkActionBar</span><br></pre></td></tr></table></figure>
+<p><strong>关于主题，我们可以自定义调色板，反馈动画和 Activity 切换动画。同时XML layout 中的元素可以定义 android:theme 属性， 用于引用主题资源。这个属性修改了自己和子元素的主题，通过这个我们可以修改局部主题颜色。</strong></p>
+<p>这里是我用的主题，是Pink色系。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- inherit from the material theme --&gt;</span><br><span class="line">&lt;style name=&quot;MyTheme&quot; parent=&quot;Theme.AppCompat.Light.NoActionBar&quot;&gt;</span><br><span class="line">    &lt;!-- Main theme colors --&gt;</span><br><span class="line">    &lt;!--   your app branding color for the app bar --&gt;</span><br><span class="line">    &lt;item name=&quot;android:colorPrimary&quot;&gt;@color/myColorPrimary&lt;/item&gt;</span><br><span class="line">    &lt;!--   darker variant for the status bar and contextual app bars --&gt;</span><br><span class="line">    &lt;item name=&quot;android:colorPrimaryDark&quot;&gt;@color/myColorPrimaryDark&lt;/item&gt;</span><br><span class="line">    &lt;!--   theme UI controls like checkboxes and text fields --&gt;</span><br><span class="line">    &lt;item name=&quot;android:colorAccent&quot;&gt;@color/myColorAccent&lt;/item&gt;</span><br><span class="line">    &lt;!--  textcolor  --&gt;</span><br><span class="line">    &lt;item name=&quot;android:textColor&quot;&gt;@color/myColorText&lt;/item&gt;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+<p>AndroidStudio还提供了可视化操作的工具，用来设置这些颜色。</p>
+<p><img src="http://img.blog.csdn.net/20160331175022457" alt="这里写图片描述"></p>
+<p>工具界面如下图，可以点击特定属性选择符合自己品牌的颜色。</p>
+<p><img src="http://img.blog.csdn.net/20160331175142895" alt="这里写图片描述"></p>
+<p>####使用Toolbar<br><strong>5.0以后使用了Toolbar这个控件来替换以前的ActionBar。并且提供了supprot library用于向下兼容。使用方法与ActionBar基本类似。</strong></p>
+<p>隐藏ActionBar使用ToolBar有两种方法：</p>
+<p>1.继承主题：Theme.AppCompat.Light.NoActionBar</p>
+<p>2.在主题中使用以下属性：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;item name=&quot;windowActionBar&quot;&gt;false&lt;/item&gt;</span><br><span class="line">&lt;item name=&quot;android:windowNoTitle&quot;&gt;true&lt;/item&gt;</span><br></pre></td></tr></table></figure>
+<p>为了兼容低版本，我们使用support v7 里的 toolbar。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;android.support.v7.widget.Toolbar</span><br><span class="line">	android:id=&quot;@+id/toolbar&quot;</span><br><span class="line">	android:layout_width=&quot;match_parent&quot;</span><br><span class="line">	android:layout_height=&quot;55dp&quot;</span><br><span class="line">	android:background=&quot;@color/myColorPrimary&quot;</span><br><span class="line">	android:elevation=&quot;3dp&quot;</span><br><span class="line">	android:navigationIcon=&quot;@mipmap/menu&quot;</span><br><span class="line">	android:title=&quot;@string/app_name&quot;</span><br><span class="line">	app:titleTextColor=&quot;@color/myColorText&quot;&gt;&lt;/android.support.v7.widget.Toolbar&gt;</span><br></pre></td></tr></table></figure>
+<p>然后是一些基本的设置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">     * 初始化toolbar</span><br><span class="line">     */</span><br><span class="line">    private void initToolBar() &#123;</span><br><span class="line">        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);</span><br><span class="line">        // App Logo</span><br><span class="line">//        toolbar.setLogo(R.mipmap.logo);</span><br><span class="line">        // Title</span><br><span class="line">//        toolbar.setTitle(&quot;WaKaKa&quot;);</span><br><span class="line">        // Sub Title</span><br><span class="line">//        toolbar.setSubtitle(&quot;Sub title&quot;);</span><br><span class="line">        toolbar.setOverflowIcon(getResources().getDrawable(R.mipmap.more));</span><br><span class="line">        setSupportActionBar(toolbar);</span><br><span class="line"></span><br><span class="line">        //导航按钮</span><br><span class="line">        toolbar.setNavigationIcon(R.mipmap.menu);</span><br><span class="line">        toolbar.setNavigationOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onClick(View v) &#123;</span><br><span class="line">                Toast.makeText(MainActivity.this, &quot;Click navigation&quot;, Toast.LENGTH_SHORT).show();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public boolean onMenuItemClick(MenuItem item) &#123;</span><br><span class="line">                String msg = &quot;&quot;;</span><br><span class="line">                switch (item.getItemId()) &#123;</span><br><span class="line">                    case R.id.action_delete:</span><br><span class="line">                        msg += &quot;Click delete&quot;;</span><br><span class="line">                        break;</span><br><span class="line">                    case R.id.action_favorite:</span><br><span class="line">                        msg += &quot;Click favorite&quot;;</span><br><span class="line">                        break;</span><br><span class="line">                    case R.id.action_settings:</span><br><span class="line">                        msg += &quot;Click settings&quot;;</span><br><span class="line">                        break;</span><br><span class="line">                &#125;</span><br><span class="line">                if (!msg.equals(&quot;&quot;)) &#123;</span><br><span class="line">                    Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();</span><br><span class="line">                &#125;</span><br><span class="line">                return true;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p><strong>要注意的是setNavigationIcon需要放在 setSupportActionBar之后才会生效。</strong></p>
+<p>这个demo中的图标大部分是从谷歌官方制作的icon中下载的。</p>
+<p>####使用RecycleView<br> RecycleView组件是一个更高级和伸缩性更强的 ListView。这个组件是一个显示大量数据的容器，通过维护有限量的View，来达到滚动时的高效。当你的数据会在运行过程中根据用户行为或网络事件动态改变时，使用RecyclerView是一个不错的选择。</p>
+<p>RecyclerView 通过以下方式简化显示流程，并操作大量数据：</p>
+<p>1.使用 Layout manager 来定位元素</p>
+<p>2.为常用操作定义默认动画，比如添加或移除元素</p>
+<p>你也可以为 RecyclerView 自定义 Layout manager 和动画。</p>
+<p><strong>要使用 RecyclerView 组件，你需要定义一个 adapter 和 layout manager。</strong>创建 adapter，要继承 RecyclerView.Adapter 类。Layout manager把元素视图放在 RecyclerView，并决定什么时候重用不可见的元素视图。要重用（或回收）视图时，layout manager 会让 adapter 用另外的元素内容替换视图内的内容。回收 View 这个方法能提高性能，因为它避免了创建不必要的view对象，或执行昂贵的 findViewById() 查找。RecyclerView 提供三种内建的 layout manager:LinearLayoutManager 用于显示横向或纵向的滚动列表；GridLayoutManager 用于显示方格元素；StaggeredGridLayoutManager 在 staggered 方格中显示元素。创建一个自定义的 layout manager，要继承于 RecyclerView.LayoutManager 类。</p>
+<p>在xml文件中使用RecyclerView之后，初始化：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">private void initRecyclerView() &#123;</span><br><span class="line">        mRecyclerView = (RecyclerView) findViewById(R.id.recycleview);</span><br><span class="line"></span><br><span class="line">        // use this setting to improve performance if you know that changes</span><br><span class="line">        // in content do not change the layout size of the RecyclerView</span><br><span class="line">        mRecyclerView.setHasFixedSize(true);</span><br><span class="line"></span><br><span class="line">        // use a linear layout manager</span><br><span class="line">        mLayoutManager = new LinearLayoutManager(this);</span><br><span class="line">        mRecyclerView.setLayoutManager(mLayoutManager);</span><br><span class="line"></span><br><span class="line">        //set divider</span><br><span class="line">        mRecyclerView.addItemDecoration(new MyItemDecoration(MainActivity.this));</span><br><span class="line"></span><br><span class="line">        // specify an adapter (see also next example)</span><br><span class="line">        String[] myDataset = &#123;&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;&#125;;</span><br><span class="line">        mAdapter = new MyAdapter(myDataset);</span><br><span class="line">        mRecyclerView.setAdapter(mAdapter);</span><br><span class="line"></span><br><span class="line">        mAdapter.setOnItemClickListener(new MyAdapter.OnItemClickListener() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onItemClick(View view, int position) &#123;</span><br><span class="line">                Toast.makeText(MainActivity.this, position + &quot;&quot;, Toast.LENGTH_SHORT).show();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>适配器的代码和使用listview大同小异：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">public class MyAdapter extends RecyclerView.Adapter&lt;MyAdapter.ViewHolder&gt; &#123;</span><br><span class="line"></span><br><span class="line">    private String[] mDataset;</span><br><span class="line"></span><br><span class="line">    private OnItemClickListener listener;</span><br><span class="line"></span><br><span class="line">    // Provide a reference to the views for each data item</span><br><span class="line">    // Complex data items may need more than one view per item, and</span><br><span class="line">    // you provide access to all the views for a data item in a view holder</span><br><span class="line">    public class ViewHolder extends RecyclerView.ViewHolder &#123;</span><br><span class="line">        // each data item is just a string in this case</span><br><span class="line">        public TextView mTitle;</span><br><span class="line">        public RelativeLayout root;</span><br><span class="line"></span><br><span class="line">        public ViewHolder(View v) &#123;</span><br><span class="line">            super(v);</span><br><span class="line">            mTitle = (TextView) v.findViewById(R.id.item_title);</span><br><span class="line">            root = (RelativeLayout) v.findViewById(R.id.item_rl);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // Provide a suitable constructor (depends on the kind of dataset)</span><br><span class="line">    public MyAdapter(String[] myDataset) &#123;</span><br><span class="line">        mDataset = myDataset;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // Create new views (invoked by the layout manager)</span><br><span class="line">    @Override</span><br><span class="line">    public MyAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) &#123;</span><br><span class="line">        // create a new view</span><br><span class="line">        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.my_item_view, parent, false);</span><br><span class="line">        // set the view&apos;s size, margins, paddings and layout parameters</span><br><span class="line">        ViewHolder vh = new ViewHolder(v);</span><br><span class="line">        return vh;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // Replace the contents of a view (invoked by the layout manager)</span><br><span class="line">    @Override</span><br><span class="line">    public void onBindViewHolder(ViewHolder holder, final int position) &#123;</span><br><span class="line">        // - get element from your dataset at this position</span><br><span class="line">        // - replace the contents of the view with that element</span><br><span class="line">        holder.mTitle.setText(mDataset[position]);</span><br><span class="line"></span><br><span class="line">        if(listener != null)&#123;</span><br><span class="line">            holder.root.setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">                @Override</span><br><span class="line">                public void onClick(View v) &#123;</span><br><span class="line">                    listener.onItemClick(v,position);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // Return the size of your dataset (invoked by the layout manager)</span><br><span class="line">    @Override</span><br><span class="line">    public int getItemCount() &#123;</span><br><span class="line">        return mDataset.length;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public interface OnItemClickListener &#123;</span><br><span class="line">        void onItemClick(View view, int position);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setOnItemClickListener(OnItemClickListener listener) &#123;</span><br><span class="line">        this.listener = listener;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里的两个比较大的问题是：</p>
+<p>1.RecyclerView的分割线要自己定义。</p>
+<p>2.RecyclerView Item的点击事件和长按事件都要自己定义。</p>
+<p><strong>对于第一个问题我们需要去继承RecyclerView.ItemDecoration类，在里边绘制分割线。</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 绘制item分割线</span><br><span class="line"> */</span><br><span class="line">public class MyItemDecoration extends RecyclerView.ItemDecoration &#123;</span><br><span class="line"></span><br><span class="line">    private static final int[] ATTRS = new int[]&#123;android.R.attr.listDivider&#125;;</span><br><span class="line">    private Drawable mDivider;</span><br><span class="line"></span><br><span class="line">    public MyItemDecoration(Context context) &#123;</span><br><span class="line">        final TypedArray array = context.obtainStyledAttributes(ATTRS);</span><br><span class="line">        mDivider = array.getDrawable(0);</span><br><span class="line">        array.recycle();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) &#123;</span><br><span class="line">        drawHorizontal(c,parent);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 水平线</span><br><span class="line">    public void drawHorizontal(Canvas c, RecyclerView parent) &#123;</span><br><span class="line"></span><br><span class="line">        final int childCount = parent.getChildCount();</span><br><span class="line"></span><br><span class="line">        // 在每一个子控件的底部画线</span><br><span class="line">        for (int i = 0; i &lt; childCount; i++) &#123;</span><br><span class="line">            final View child = parent.getChildAt(i);</span><br><span class="line"></span><br><span class="line">            final int left = child.getLeft() + child.getPaddingLeft();</span><br><span class="line">            final int right = child.getWidth() + child.getLeft() - child.getPaddingRight();</span><br><span class="line">            final int top = child.getBottom() - mDivider.getIntrinsicHeight() - child.getPaddingBottom();</span><br><span class="line">            final int bottom = top + mDivider.getIntrinsicHeight();</span><br><span class="line">            mDivider.setBounds(left, top, right, bottom);</span><br><span class="line">            mDivider.draw(c);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void getItemOffsets(Rect outRect, int itemPosition, RecyclerView parent) &#123;</span><br><span class="line">        outRect.set(0, 0, 0, mDivider.getIntrinsicHeight());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>对于第二个问题，我们可以写一个回调方法，来设置点击事件，长按事件类似。</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public interface OnItemClickListener &#123;</span><br><span class="line">  void onItemClick(View view, int position);</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> public void setOnItemClickListener(OnItemClickListener listener) &#123;</span><br><span class="line">     this.listener = listener;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p>在onBindViewHolder中使用接口对象处理点击事件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">if(listener != null)&#123;</span><br><span class="line"> holder.root.setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">       @Override</span><br><span class="line">       public void onClick(View v) &#123;</span><br><span class="line">           listener.onItemClick(v,position);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后在activity中进行设置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mAdapter.setOnItemClickListener(new MyAdapter.OnItemClickListener() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onItemClick(View view, int position) &#123;</span><br><span class="line">                Toast.makeText(MainActivity.this, position + &quot;&quot;, Toast.LENGTH_SHORT).show();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br></pre></td></tr></table></figure>
+<p>到这里基本就完成了，这个demo可以在低版本中运行，但是5.0的新特性是不会显示的。<a href="http://download.csdn.net/detail/sdkfjksf/9478304" target="_blank" rel="external">源码戳这里</a></p>
+<p>参考链接：<br>Material icon <a href="https://design.google.com/icons/" target="_blank" rel="external">https://design.google.com/icons/</a><br>MaterialDesign官方介绍：<a href="https://www.google.com/design/spec/material-design/introduction.html" target="_blank" rel="external">https://www.google.com/design/spec/material-design/introduction.html</a><br>Training：<a href="http://developer.android.com/training/material/index.html" target="_blank" rel="external">http://developer.android.com/training/material/index.html</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/03/29/Material Design实战/">Material Design实战</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">PleaseCallMeCoder</a></p>
+        <p><span>发布时间:</span>2016-03-29, 18:24:00</p>
+        <p><span>最后更新:</span>2016-05-07, 12:46:53</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/03/29/Material Design实战/" title="Material Design实战">http://yoursite.com/2016/03/29/Material Design实战/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2016/03/29/Material Design实战/　　作者: PleaseCallMeCoder" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2016/04/05/Androd自定义控件（四）自定义类继承viewgroup/">
+                    Androd自定义控件（四）自定义类继承viewgroup
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/03/28/Android性能优化之渲染优化的8个点/">
+                    Android性能优化之渲染优化的8个点
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"Material Design实战　| PleaseCallMeCoder　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="2016/03/29/Material Design实战/" data-title="Material Design实战" data-url="http://yoursite.com/2016/03/29/Material Design实战/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"renleicoder"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+    <!-- 多说公共JS代码 end -->
+</div>
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2016/04/05/Androd自定义控件（四）自定义类继承viewgroup/" title="上一篇: Androd自定义控件（四）自定义类继承viewgroup">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/03/28/Android性能优化之渲染优化的8个点/" title="下一篇: Android性能优化之渲染优化的8个点">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/05/04/TextView实战之你真的懂我么？/">TextView实战之你真的懂我么？</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/29/Andorid自定义圆形渐变色进度条的从实现到开源/">Andorid自定义圆形渐变色进度条的从实现到开源</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/26/Android性能优化之Performance Tips/">Android性能优化之Performance Tips</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/19/Android性能优化之被忽视的Memory Leaks/">Android性能优化之被忽视的Memory Leaks</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/12/Androd自定义控件（五）打造自己的Camera/">Androd自定义控件（五）打造自己的Camera</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/09/这些Tips让你的App更容易维护/">这些Tips让你的App更容易维护</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/05/Androd自定义控件（四）自定义类继承viewgroup/">Androd自定义控件（四）自定义类继承viewgroup</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/29/Material Design实战/">Material Design实战</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/28/Android性能优化之渲染优化的8个点/">Android性能优化之渲染优化的8个点</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/22/Android性能优化之工具篇/">Android性能优化之工具篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/20/AndrodUI优化之布局优化/">AndrodUI优化之布局优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/18/Android加载长图那些事/">Android加载长图那些事</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/14/Androd自定义控件（三）飞翔的小火箭/">Androd自定义控件（三）飞翔的小火箭</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/09/那些年大家都在谈论的Android性能优化/">那些年大家都在谈论的Android性能优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/08/自定义view你需要知道的/">自定义view你需要知道的</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/06/Androd自定义控件（二）自定义类继承view/">Androd自定义控件（二）自定义类继承view</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/03/Android Studio1.5中NDK开发/">Android Studio1.5中NDK开发</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/29/N个非常有用的Android程序片段（持续更新）/">N个非常有用的Android程序片段（持续更新）</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016 PleaseCallMeCoder
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >本站到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.1.22/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

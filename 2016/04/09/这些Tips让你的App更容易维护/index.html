@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  
+  <title>这些Tips让你的App更容易维护 | PleaseCallMeCoder</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="提高App的可维护性和可扩展性。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="这些Tips让你的App更容易维护">
+<meta property="og:url" content="http://yoursite.com/2016/04/09/这些Tips让你的App更容易维护/index.html">
+<meta property="og:site_name" content="PleaseCallMeCoder">
+<meta property="og:description" content="提高App的可维护性和可扩展性。">
+<meta property="og:image" content="http://img.blog.csdn.net/20160411160341894">
+<meta property="og:image" content="http://img.blog.csdn.net/20160411161338329">
+<meta property="og:updated_time" content="2016-05-07T04:52:15.406Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="这些Tips让你的App更容易维护">
+<meta name="twitter:description" content="提高App的可维护性和可扩展性。">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20160411160341894">
+  
+    <link rel="alternative" href="/atom.xml" title="PleaseCallMeCoder" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+      <link href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css" rel="stylesheet">
+  
+  
+  
+      <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+      <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+  
+  <script src="//cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.9/clipboard.min.js"></script>
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false,
+          fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+          scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.0.9/scrollreveal.min.js"
+      }
+  </script>
+
+  
+      <script>
+          yiliaConfig.rootUrl = "/";
+      </script>
+  
+
+  
+  
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">PleaseCallMeCoder</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">每个人都在成神的路上，只不过有的人在走，而有的人在跑。</p>
+        
+                
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:18231195685@sina.cn" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="http://weibo.com/2729748535" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/PleaseCallMeCoder" title="GitHub"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="http://blog.csdn.net/sdkfjksf?viewmode=list" title="CSDN"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AndroidStudio1-5/">AndroidStudio1.5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/App设计模式/">App设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bitmap/">Bitmap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BitmapRegionDecoder/">BitmapRegionDecoder</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CPU和GPU/">CPU和GPU</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Camera/">Camera</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JNI/">JNI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MAT/">MAT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MaterialDesign/">MaterialDesign</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NDK/">NDK</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Overdraw/">Overdraw</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RecyclerView/">RecyclerView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TextView/">TextView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Toolbar/">Toolbar</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/View/">View</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ViewGroup/">ViewGroup</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hierarchyviewer/">hierarchyviewer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/include/">include</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jcenter/">jcenter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/leakcanary/">leakcanary</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lint/">lint</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/merge/">merge</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/paint/">paint</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/surfaceview/">surfaceview</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/viewstub/">viewstub</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/代码片段/">代码片段</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/内存优化/">内存优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/内存泄漏/">内存泄漏</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原生控件属性/">原生控件属性</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/可扩展/">可扩展</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/可维护/">可维护</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大图加载/">大图加载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/官方demo/">官方demo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/官方文档/">官方文档</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/布局优化/">布局优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/开源/">开源</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/性能优化/">性能优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/性能优化关键点/">性能优化关键点</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/性能优化工具/">性能优化工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/性能优化概述/">性能优化概述</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/架构/">架构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/渲染优化/">渲染优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/相机/">相机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/组合控件/">组合控件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/绘制/">绘制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自定义动画/">自定义动画</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自定义控件/">自定义控件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/重写/">重写</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">PleaseCallMeCoder</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">PleaseCallMeCoder</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">每个人都在成神的路上，只不过有的人在走，而有的人在跑。</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:18231195685@sina.cn" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="http://weibo.com/2729748535" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/PleaseCallMeCoder" title="GitHub"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="http://blog.csdn.net/sdkfjksf?viewmode=list" title="CSDN"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-这些Tips让你的App更容易维护" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/04/09/这些Tips让你的App更容易维护/" class="article-date">
+      <time datetime="2016-04-09T09:34:00.000Z" itemprop="datePublished">2016-04-09</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      这些Tips让你的App更容易维护
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/性能优化/">性能优化</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/App设计模式/">App设计模式</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/可扩展/">可扩展</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/可维护/">可维护</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/架构/">架构</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>提高App的可维护性和可扩展性。</p>
+<ul>
+<li><a id="more"></a>
+##前言<br>在开始正文之前容我先描述几个场景，可能你也遇到过或者将要遇到，也可能你已经完美的解决了这些问题。现在我把它们拿出来跟大家讨论。<br>###场景一<br>同事A离职，他负责的是报表模块，同事B是一个刚毕业的大学生。某天产品经理说报表模块需要改动，交给B来负责。同事A走的时候没有交接，没写文档，需要B从头理清然后修改。然后B在看的过程中发现，A的代码命名既有拼音又有英文，还有一些毫无关联的命名。如下：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var ischange  =&apos;false&apos;;  //查询条件是否改变</span><br><span class="line">var ssssss=[];           //保存上一次结果的笛卡尔积</span><br><span class="line">var mapaddWei = new Array();//保存小分类的值</span><br></pre></td></tr></table></figure>
+<p>并且A的一个方法包含100行到1000多行代码不等。致使B花了大概一周多的时间才把A的代码完全看懂。</p>
+<p>###场景二<br>A所在公司的App1.0版本已经上线。连续进行了4次小更新后的某天，产品经理又要求A去修改主页面，包括UI和部分逻辑的变动。改完之后又过了不久，产品经理提出要增加一个商城模块。这时候A发现，项目越来越臃肿，代码越改越乱，越改越烂，甚至自己写的类都忘记了放在哪个包下。</p>
+<p>之后用户反馈说Android5.0系统注册闪退。A和同事通过查找发现问题出在网络框架上，他们所用的网络框架不支持5.0及以上系统。但是由于在最开始设计这款App的时候没有再网络框架的上层封装一层自己的接口，导致所有用到网络请求的地方都需要修改。</p>
+<hr>
+<p>通过这两个场景我们可以发现，一个App的可维护性和可扩展性在开发中是尤为重要的，本文所讲述的这些Tips概括的说明了如何去构建一个可维护可扩展的App。</p>
+<p>##包结构<br>对于包结构来说，个人觉得简单明了就好，保证让人一目了然，方便查找。大概有两种分法：按主题分和按功能分。</p>
+<p>按主题分，如下图所示</p>
+<p><img src="http://img.blog.csdn.net/20160411160341894" alt="这里写图片描述"></p>
+<p>按模块分，如下图</p>
+<p><img src="http://img.blog.csdn.net/20160411161338329" alt="这里写图片描述"></p>
+<p>相比较来说，第二种的优势在于如果我们要增加模块的话，我们只需新增一个包，其他包的内容基本不需要动。而且当我们修改固定模块的时候也更方便查找我们要修改的内容。</p>
+<p>##代码风格<br>代码风格对代码的可读性影响很多，基本上java入门篇必谈。一段很难看懂的代码维护起来无疑成本会变高很多。</p>
+<p>###命名规范<br>Android中的变量和方法的命名要能正确的体现出他们的含义，符合驼峰命名法，尽量不要用缩写。还有一些习惯性的写法如常量写成public static final 然后名字全用大写等等。</p>
+<p>###排版<br>同类变量放在一组声明，不同组之间用空白行隔开。不同代码块之间尽量也要留一个空白行。</p>
+<p>###注释<br>为关键代码添加注释。如果你的代码命名合理的话，那么大部分代码还是不用添加注释的。</p>
+<p>##代码层次和单一职责原则<br>不要试图让一个司机去做厨子的事。</p>
+<p>把一段业务逻辑细分为几个子逻辑，每个子逻辑只关注自己的工作，让职责变的单一。</p>
+<p>举个栗子。皇帝说“朕今天中午想吃满汉全席”。这时候太监就会去通知御膳房。御膳房总管会分配采购人员去准备材料，然后吩咐御厨去给皇上做满汉全席。这样整个业务逻辑就比较清晰了，同时太监做了太监的事，御厨做了御厨的事，各司其职。</p>
+<p>##面向接口编程<br>在一个面向对象的系统中，系统的各种功能是由许许多多的不同对象协作完成的。在这种情况下，各个对象内部是如何实现自己的,对系统设计人员来讲就不那么重要了；而各个对象之间的协作关系则成为系统设计的关键。小到不同类之间的通信，大到各模块之间的交互，在系统设计之初都是要着重考虑的，这也是系统设计的主要工作内容。面向接口编程就是指按照这种思想来编程。</p>
+<p>拿第二个场景来说，我们自己封装一个网络操作接口，这个接口规定了他的实现类可以实现post请求。然后我们去调用接口的post方法。这样无论我们用xutils还是volley或者okhttp去实现post方法，修改起来对替他部分都不会有影响。</p>
+<p>##面向扩展编程</p>
+<p>其实这个点能不能把握好，更多的是看个人经验。如果考虑到某个模块的逻辑到后面会做一些改动，那我们在最开始设计的时候就可以为这个模块留出来更改的余地，这样就能更好的去扩展我们的应用，同时减少因为扩展带来的工作量。</p>
+<p>##设计模式</p>
+<p>设计模式包含两部分，一部分是App的设计模式，另一部分是App内模块的设计模式。良好并且适度的设计模式会给我们App的扩展和维护节约很大成本。</p>
+<p>###App的设计模式<br>Android中App的设计模式包括早期的MVC模式和最近比较流行的MVP和MVVM模式。</p>
+<p>MVC模式大家肯定已经很熟悉了，这里就不多说了。对于MVP模式，我和同事在上一个版本的App中做了一些尝试。</p>
+<p>MVP无疑是有好多有点的：1、Model与View完全分离，它们通过接口进行交互，便于维护和测试。2、可以更高效地使用Model，因为所有对Model的操作都在Presenter内部。3、我们可以将一个Presener用于多个视图，只需要在Presenter中为不同的View定义View Interface即可，具体的View实现自己的View Interface，即可使用Presenter中的Model操作等。</p>
+<p>但是它会带来额外的代码复杂度及学习成本。对于一个小的开发团队来说，可能效果并不会像想象中的那么明显。</p>
+<p>###App内模块的设计模式<br>常见的设计模式有很多，比如工厂模式，单利模式，适配器模式，观察者模式等等，由于本篇博客只是系统的讨论，就不对细节做过多说明了，大家可以研究一下《大话设计模式》和《HeadFrist设计模式》等等。</p>
+<hr>
+<p><strong>写本篇博客权当抛砖引玉了，感兴趣的朋友大家可以一起讨论。</strong></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/04/09/这些Tips让你的App更容易维护/">这些Tips让你的App更容易维护</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">PleaseCallMeCoder</a></p>
+        <p><span>发布时间:</span>2016-04-09, 17:34:00</p>
+        <p><span>最后更新:</span>2016-05-07, 12:52:15</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/04/09/这些Tips让你的App更容易维护/" title="这些Tips让你的App更容易维护">http://yoursite.com/2016/04/09/这些Tips让你的App更容易维护/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2016/04/09/这些Tips让你的App更容易维护/　　作者: PleaseCallMeCoder" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2016/04/12/Androd自定义控件（五）打造自己的Camera/">
+                    Androd自定义控件（五）打造自己的Camera
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/04/05/Androd自定义控件（四）自定义类继承viewgroup/">
+                    Androd自定义控件（四）自定义类继承viewgroup
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"这些Tips让你的App更容易维护　| PleaseCallMeCoder　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="2016/04/09/这些Tips让你的App更容易维护/" data-title="这些Tips让你的App更容易维护" data-url="http://yoursite.com/2016/04/09/这些Tips让你的App更容易维护/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"renleicoder"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+    <!-- 多说公共JS代码 end -->
+</div>
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2016/04/12/Androd自定义控件（五）打造自己的Camera/" title="上一篇: Androd自定义控件（五）打造自己的Camera">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/04/05/Androd自定义控件（四）自定义类继承viewgroup/" title="下一篇: Androd自定义控件（四）自定义类继承viewgroup">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/05/04/TextView实战之你真的懂我么？/">TextView实战之你真的懂我么？</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/29/Andorid自定义圆形渐变色进度条的从实现到开源/">Andorid自定义圆形渐变色进度条的从实现到开源</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/26/Android性能优化之Performance Tips/">Android性能优化之Performance Tips</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/19/Android性能优化之被忽视的Memory Leaks/">Android性能优化之被忽视的Memory Leaks</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/12/Androd自定义控件（五）打造自己的Camera/">Androd自定义控件（五）打造自己的Camera</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/09/这些Tips让你的App更容易维护/">这些Tips让你的App更容易维护</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/05/Androd自定义控件（四）自定义类继承viewgroup/">Androd自定义控件（四）自定义类继承viewgroup</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/29/Material Design实战/">Material Design实战</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/28/Android性能优化之渲染优化的8个点/">Android性能优化之渲染优化的8个点</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/22/Android性能优化之工具篇/">Android性能优化之工具篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/20/AndrodUI优化之布局优化/">AndrodUI优化之布局优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/18/Android加载长图那些事/">Android加载长图那些事</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/14/Androd自定义控件（三）飞翔的小火箭/">Androd自定义控件（三）飞翔的小火箭</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/09/那些年大家都在谈论的Android性能优化/">那些年大家都在谈论的Android性能优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/08/自定义view你需要知道的/">自定义view你需要知道的</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/06/Androd自定义控件（二）自定义类继承view/">Androd自定义控件（二）自定义类继承view</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/03/Android Studio1.5中NDK开发/">Android Studio1.5中NDK开发</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/29/N个非常有用的Android程序片段（持续更新）/">N个非常有用的Android程序片段（持续更新）</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016 PleaseCallMeCoder
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >本站到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.1.22/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
