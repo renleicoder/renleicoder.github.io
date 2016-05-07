@@ -3,20 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Android加载长图那些事 | PleaseCallMeCoder</title>
+  <title>Androd自定义控件（一）概述 | PleaseCallMeCoder</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Android加载大图。">
+  <meta name="description" content="这篇博客的主要内容是： 1.什么是控件，以及自定义控件。 2.自定义控件的种类。 3.view的工作原理。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android加载长图那些事">
-<meta property="og:url" content="http://yoursite.com/2016/03/18/Android加载长图那些事/index.html">
+<meta property="og:title" content="Androd自定义控件（一）概述">
+<meta property="og:url" content="http://yoursite.com/2016/02/28/Androd自定义控件（一）概述/index.html">
 <meta property="og:site_name" content="PleaseCallMeCoder">
-<meta property="og:description" content="Android加载大图。">
-<meta property="og:image" content="http://img.blog.csdn.net/20160318151945160">
-<meta property="og:updated_time" content="2016-05-07T04:35:20.627Z">
+<meta property="og:description" content="这篇博客的主要内容是： 1.什么是控件，以及自定义控件。 2.自定义控件的种类。 3.view的工作原理。">
+<meta property="og:updated_time" content="2016-05-07T05:00:15.303Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android加载长图那些事">
-<meta name="twitter:description" content="Android加载大图。">
-<meta name="twitter:image" content="http://img.blog.csdn.net/20160318151945160">
+<meta name="twitter:title" content="Androd自定义控件（一）概述">
+<meta name="twitter:description" content="这篇博客的主要内容是： 1.什么是控件，以及自定义控件。 2.自定义控件的种类。 3.view的工作原理。">
   
     <link rel="alternative" href="/atom.xml" title="PleaseCallMeCoder" type="application/atom+xml">
   
@@ -207,11 +205,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-Android加载长图那些事" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Androd自定义控件（一）概述" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/03/18/Android加载长图那些事/" class="article-date">
-      <time datetime="2016-03-18T06:52:00.000Z" itemprop="datePublished">2016-03-18</time>
+      <a href="/2016/02/28/Androd自定义控件（一）概述/" class="article-date">
+      <time datetime="2016-02-28T14:35:00.000Z" itemprop="datePublished">2016-02-28</time>
 </a>
     </div>
   
@@ -224,7 +222,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Android加载长图那些事
+      Androd自定义控件（一）概述
     </h1>
   
 
@@ -233,13 +231,13 @@
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/Bitmap/">Bitmap</a>
+    <a class="article-category-link" href="/categories/自定义控件/">自定义控件</a>
     </div>
 
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Bitmap/">Bitmap</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BitmapRegionDecoder/">BitmapRegionDecoder</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/大图加载/">大图加载</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/View的工作原理/">View的工作原理</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/自定义控件/">自定义控件</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -249,22 +247,17 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>Android加载大图。</p>
+        <p>这篇博客的主要内容是： 1.什么是控件，以及自定义控件。 2.自定义控件的种类。 3.view的工作原理。</p>
 <ul>
 <li><a id="more"></a>
-首先我们来创建两个角色，大神A和菜鸟B。<br>B：“A神，快来帮我看个问题，太奇怪了。为难死宝宝了0.0”<br>A：“怎么了，说来听听”<br>B：“是这样的，我的一个页面需要加载一张背景图。图的高度和屏幕高度相同，但是宽度是屏幕宽度的5倍，然后我把它放到一个HorizontalScrollView中，想通过可滑动来展示全这张图片。结果屏幕白茫茫一片，什么都不显示，也没报错，我都哭了。”<br>A：“先别急，你觉得可能是哪方面问题呢”<br>B：“<strong>我觉得可能是两方面的问题：1.图片质量太大；2.图片太长</strong>”<br>A：“那你有没有试着弄清楚到底是哪里的问题呢？”<br>B：“试了，我又试着<strong>加载了一张长宽都小于手机尺寸的5M大小的图（长图2.5M），结果可以完全显示。</strong>，然后又去找了一些关于加载长图的资料，但还是没弄明白。”<br>A：“嗯，你的思路大概是对的。是这样的，<strong>在Android中，解析图片时，当图片高度或宽度超过阀值时，会解析失败。</strong>你可以去看一下<strong>BitmapRegionDecoder</strong>，说不定会有什么发现哦。”<br>接下来，是B同学的整理。<br>###场景<br>对于图片加载有一种这样的情况，就是单个图片非常巨大，并且还不允许压缩。比如显示：世界地图、微博长图等。首先不压缩，按照原图尺寸加载，那么屏幕肯定是不够大的，并且考虑到内存的情况，不可能一次性整图加载到内存中，所以肯定是局部加载。这就需要用到Api提供的这个类：BitmapRegionDecoder。<br>###BitmapRegionDecoder<br>我们来看一下官方的介绍：</li>
+这篇博客的主要内容是：<br>1.什么是控件，以及自定义控件。<br>2.自定义控件的种类。<br>3.view的工作原理。<br>#What?什么是自定义控件<br>##1.什么是view<br>在Android的官方文档中是这样描述的：这个类表示了用户界面的基本构建模块。一个View占用了屏幕上的一个矩形区域并且负责界面绘制和事件处理。View是用来构建用户界面组件（Button，Textfields等等）的基类。ViewGroup子类是各种布局的基类，它是个包含其他View（或其他ViewGroups）和定义这些View布局参数的容器。</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">BitmapRegionDecoder can be used to decode a rectangle region from an image. BitmapRegionDecoder is particularly useful when an original image is large and you only need parts of the image.</span><br><span class="line"></span><br><span class="line">To create a BitmapRegionDecoder, call newInstance(...). Given a BitmapRegionDecoder, users can call decodeRegion() repeatedly to get a decoded Bitmap of the specified region.</span><br></pre></td></tr></table></figure>
-<p><strong>BitmapRegionDecoder主要用于显示图片的某一块矩形区域，如果你需要显示某个图片的指定区域，或者你需要显示一张非常大的图片，那么这个类非常合适。我们可以调用newInstance(…)方法来获得一个BitmapRegionDecoder对象，然后调用decodeRegion()方法就可以获得指定位置的图片了。</strong><br>接下来看一个简单的例子</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">package oracleen.decoder;</span><br><span class="line"></span><br><span class="line">import android.app.Activity;</span><br><span class="line">import android.graphics.Bitmap;</span><br><span class="line">import android.graphics.BitmapFactory;</span><br><span class="line">import android.graphics.BitmapRegionDecoder;</span><br><span class="line">import android.graphics.Rect;</span><br><span class="line">import android.os.Bundle;</span><br><span class="line">import android.widget.ImageView;</span><br><span class="line"></span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.io.InputStream;</span><br><span class="line"></span><br><span class="line">public class MainActivity extends Activity &#123;</span><br><span class="line"></span><br><span class="line">    private ImageView decoder;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line"></span><br><span class="line">        decoder = (ImageView) findViewById(R.id.decoder);</span><br><span class="line"></span><br><span class="line">        try &#123;</span><br><span class="line">            InputStream inputStreamF = getAssets().open(&quot;datu.png&quot;);</span><br><span class="line"></span><br><span class="line">            //获得图片的宽、高</span><br><span class="line">            BitmapFactory.Options tmpOptions = new BitmapFactory.Options();</span><br><span class="line">            tmpOptions.inJustDecodeBounds = true;</span><br><span class="line">            BitmapFactory.decodeStream(inputStreamF, null, tmpOptions);</span><br><span class="line">            int width = tmpOptions.outWidth;</span><br><span class="line">            int height = tmpOptions.outHeight;</span><br><span class="line"></span><br><span class="line">            InputStream inputStreamS = getAssets().open(&quot;datu.png&quot;);</span><br><span class="line">            //设置显示图片的中心区域</span><br><span class="line">            BitmapRegionDecoder bitmapRegionDecoder = BitmapRegionDecoder.newInstance(inputStreamS, false);</span><br><span class="line">            BitmapFactory.Options options = new BitmapFactory.Options();</span><br><span class="line">            options.inPreferredConfig = Bitmap.Config.RGB_565;</span><br><span class="line">            Bitmap bitmap = bitmapRegionDecoder.decodeRegion(new Rect(0, 0, width / 2, height), options);</span><br><span class="line">            decoder.setImageBitmap(bitmap);</span><br><span class="line"></span><br><span class="line">        &#125; catch (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这里我们截取了一个高度等于大图高度，长度等于大图长度一般的图片。</p>
-<p>这里注意一下，有时候会抛</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Throws</span><br><span class="line">IOException if the image format is not supported or can not be decoded.</span><br></pre></td></tr></table></figure>
-<p>这个异常，这里需要重新初始化一下我们的输入流，保证它是初始的可读状态。</p>
-<p><img src="http://img.blog.csdn.net/20160318151945160" alt="这里写图片描述"></p>
-<p>###小B的总结<br>对于小B的问题有两种解决办法：<br>1.把原始的长图切成5张小图，分别设置给5个ImageView，这样每个imageview加载的图都不会超出阈值。<br>但是问题是整张图会全部加载出来，可能会出现OOM。<br>2.重写HorizontalScrollView，根据左右滑动的距离用BitmapRegionDecoder去分区域显示。<br>3.自定义view，在view内部用BitmapRegionDecoder去分区域显示。然后对外提供一个设置图片资源的方法。</p>
-<p>参考链接：<br><a href="http://blog.csdn.net/lmj623565791/article/details/49300989" target="_blank" rel="external">http://blog.csdn.net/lmj623565791/article/details/49300989</a></p>
-<p><a href="http://developer.android.com/reference/android/graphics/BitmapRegionDecoder.html#newInstance%28java.io.InputStream,%20boolean%29" target="_blank" rel="external">http://developer.android.com/reference/android/graphics/BitmapRegionDecoder.html#newInstance%28java.io.InputStream,%20boolean%29</a></p>
+<p>其实说白了，View是Android最基本的UI组件，表示屏幕上的一个矩形区域。</p>
+<p>##2.什么是自定义view<br>Android开发中难免用到Android标准控件库中没有的，或者不完全符合我们需求的控件，这时候就需要我们根据自己的需求来定义满足我们要求的控件，即自定义控件。</p>
+<p>#How?怎样去自定义一个控件。</p>
+<p>##1.自定义控件的种类<br>个人认为自定义view其实可以分为4种：<br>1.系统控件重新组合+动画（非必须）<br>2.自定义类继承view或者已有的控件类+动画（非必须）<br>3.自定义类继承viewgroup或者已有的容器类+动画（非必须）<br>4.自定义类继承surfaceview+动画（非必须）<br>其中第一种比较简单，这里就不过多叙述了。<br>第2,3种的步骤大概是类似的，即测量（onmeasere），布局（onlayout），绘制（ondraw）。他们的共同点是：都需要进行测量操作。不同点是：viewgroup主要是控制子view的摆放，所以必须实现onlayout。而view没有子view，所以不需要onlayout方法，但必须实现ondraw。这里还需要说明的一点是自定义viewgroup一般不需要实现onmeasure，我们可以让我们的自定义view继承自已有的viewgroup帮我们实现onmeasure。<br>第四种多为相机，播放器以及一些需要频繁刷新的view（粒子效果等等）。</p>
+<p>##2.view的工作原理<br>View定义了绘图的基本操，由三个函数完成：measure()、layout()、draw()，其内部又分别包含了onMeasure()、onLayout()、onDraw()三个子方法。具体操作如下：<br>1、measure操作<br>measure操作主要用于计算视图的大小，即视图的宽度和长度。在view中定义为final类型，要求子类不能修改。measure()函数中又会调用下面的函数：<br>（1）onMeasure()，视图大小的将在这里最终确定，也就是说measure只是对onMeasure的一个包装，子类可以覆写onMeasure()方法实现自己的计算视图大小的方式，并通过setMeasuredDimension(width, height)保存计算结果。<br>2、layout操作<br>layout操作用于设置视图在屏幕中显示的位置。在view中定义为final类型，要求子类不能修改。layout()函数中有两个基本操作：<br>（1）setFrame（l,t,r,b），l,t,r,b即子视图在父视图中的具体位置，该函数用于将这些参数保存起来；<br>（2）onLayout()，在View中这个函数什么都不会做，提供该函数主要是为viewGroup类型布局子视图用的；<br>3、draw操作<br>draw操作利用前两部得到的参数，将视图显示在屏幕上，到这里也就完成了整个的视图绘制工作。子类也不应该修改该方法，因为其内部定义了绘图的基本操作：<br>（1）绘制背景；<br>（2）如果要视图显示渐变框，这里会做一些准备工作；<br>（3）绘制视图本身，即调用onDraw()函数。在view中onDraw()是个空函数，也就是说具体的视图都要覆写该函数来实现自己的显示（比如TextView在这里实现了绘制文字的过程）。而对于ViewGroup则不需要实现该函数，因为作为容器是“没有内容“的，其包含了多个子view，而子View已经实现了自己的绘制方法，因此只需要告诉子view绘制自己就可以了，也就是下面的dispatchDraw()方法;<br>（4）绘制子视图，即dispatchDraw()函数。在view中这是个空函数，具体的视图不需要实现该方法，它是专门为容器类准备的，也就是容器类必须实现该方法；<br>（5）如果需要（应用程序调用了setVerticalFadingEdge或者setHorizontalFadingEdge），开始绘制渐变框；<br>（6）绘制滚动条；<br>ViewGroup中的扩展操作：<br>首先Viewgroup是一个抽象类。<br>1、对子视图的measure过程<br>（1）measureChildren()，内部使用一个for循环对子视图进行遍历，分别调用子视图的measure()方法；<br>（2）measureChild()，为指定的子视图measure，会被 measureChildren调用；<br>（3）measureChildWithMargins()，为指定子视图考虑了margin和padding的measure；<br>以上三个方法是ViewGroup提供的3个对子view进行测量的参考方法，设计者需要在实际中首先覆写onMeasure()，之后再对子view进行遍历measure，这时候就可以使用以上三个方法，当然也可以自定义方法进行遍历。<br>2、对子视图的layout过程<br>在ViewGroup中onLayout()被定义为abstract类型，也就是具体的容器必须实现此方法来安排子视图的布局位置，实现中主要考虑的是视图的大小及视图间的相对位置关系，如gravity、layout_gravity。<br>3、对子视图的draw过程<br>（1）dispatchDraw()，该方法用于对子视图进行遍历然后分别让子视图分别draw，方法内部会首先处理布局动画（也就是说布局动画是在这里处理的），如果有布局动画则会为每个子视图产生一个绘制时间，之后再有一个for循环对子视图进行遍历，来调用子视图的draw方法（实际为下边的drawChild()）；<br>（2）drawChild()，该方法用于具体调用子视图的draw方法，内部首先会处理视图动画（也就是说视图动画是在这里处理的），之后调用子视图的draw()。<br>从以上分析可以看出View树的绘制是一个递归的过程，从ViewGroup一直向下遍历，直到所有的子view都完成绘制。</p>
+<p><strong>这篇博客主要是对view以及自定义view的概述，接下来我会结合我在项目中用到的实例来跟大家分享四种自定义view的特点及操作方式。</strong></p>
 
       
     </div>
@@ -273,13 +266,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2016/03/18/Android加载长图那些事/">Android加载长图那些事</a></p>
+        <p><span>本文标题:</span><a href="/2016/02/28/Androd自定义控件（一）概述/">Androd自定义控件（一）概述</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">PleaseCallMeCoder</a></p>
-        <p><span>发布时间:</span>2016-03-18, 14:52:00</p>
-        <p><span>最后更新:</span>2016-05-07, 12:35:20</p>
+        <p><span>发布时间:</span>2016-02-28, 22:35:00</p>
+        <p><span>最后更新:</span>2016-05-07, 13:00:15</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2016/03/18/Android加载长图那些事/" title="Android加载长图那些事">http://yoursite.com/2016/03/18/Android加载长图那些事/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2016/03/18/Android加载长图那些事/　　作者: PleaseCallMeCoder" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2016/02/28/Androd自定义控件（一）概述/" title="Androd自定义控件（一）概述">http://yoursite.com/2016/02/28/Androd自定义控件（一）概述/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2016/02/28/Androd自定义控件（一）概述/　　作者: PleaseCallMeCoder" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -292,17 +285,11 @@
     <nav id="article-nav">
         
             <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2016/03/20/AndrodUI优化之布局优化/">
-                    AndrodUI优化之布局优化
+                <a href="/2016/02/29/N个非常有用的Android程序片段（持续更新）/">
+                    N个非常有用的Android程序片段（持续更新）
                 </a>
             </div>
         
-        
-            <div id="article-nav-older" class="article-nav-title">
-                <a href="/2016/03/14/Androd自定义控件（三）飞翔的小火箭/">
-                    Androd自定义控件（三）飞翔的小火箭
-                </a>
-            </div>
         
     </nav>
 
@@ -368,7 +355,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"Android加载长图那些事　| PleaseCallMeCoder　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"Androd自定义控件（一）概述　| PleaseCallMeCoder　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -384,7 +371,7 @@
     
       <div class="duoshuo" id="comments">
     <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="2016/03/18/Android加载长图那些事/" data-title="Android加载长图那些事" data-url="http://yoursite.com/2016/03/18/Android加载长图那些事/"></div>
+    <div class="ds-thread" data-thread-key="2016/02/28/Androd自定义控件（一）概述/" data-title="Androd自定义控件（一）概述" data-url="http://yoursite.com/2016/02/28/Androd自定义控件（一）概述/"></div>
     <!-- 多说评论框 end -->
     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
     <script type="text/javascript">
@@ -408,7 +395,7 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2016/03/20/AndrodUI优化之布局优化/" title="上一篇: AndrodUI优化之布局优化">
+            <a href="/2016/02/29/N个非常有用的Android程序片段（持续更新）/" title="上一篇: N个非常有用的Android程序片段（持续更新）">
                 <i class="fa fa-angle-left"></i>
             </a>
         
@@ -416,9 +403,7 @@
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2016/03/14/Androd自定义控件（三）飞翔的小火箭/" title="下一篇: Androd自定义控件（三）飞翔的小火箭">
-                <i class="fa fa-angle-right"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
     </div>
 
