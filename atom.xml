@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-05-06T13:51:49.686Z</updated>
+  <updated>2016-05-17T02:03:25.704Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,89 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>方法论-成为大神路上的捷径</title>
+    <link href="http://yoursite.com/2016/05/17/%E6%96%B9%E6%B3%95%E8%AE%BA-%E6%88%90%E4%B8%BA%E5%A4%A7%E7%A5%9E%E8%B7%AF%E4%B8%8A%E7%9A%84%E6%8D%B7%E5%BE%84/"/>
+    <id>http://yoursite.com/2016/05/17/方法论-成为大神路上的捷径/</id>
+    <published>2016-05-17T01:21:00.000Z</published>
+    <updated>2016-05-17T02:03:25.704Z</updated>
+    
+    <content type="html">&lt;p&gt;跟大家分享一下成为大神路上的捷径，与诸君共勉。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&quot;http://i.imgur.com/PxCfAEr.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;每个人都在成为大神的路上，只不过有的人在走，而有的人在跑。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;#写在前面的话&lt;/p&gt;
+&lt;p&gt;在开始正文之前我先跟大家分享一个我身边的例子。我有两个朋友，A和B。B从高一开始打dota，A从高二开始，到高中毕业的时候，A已经是一个2100分的大神级别的人物，而B只有1200分而已。为什么A打的时间比B短，而水平却比B高呢？是天赋？是智商？似乎都不是。&lt;/p&gt;
+&lt;p&gt;我对两个人还是比较了解的，虽然同样是打dota，但是A和B之间有着很大差别的。A除了像B一样打dota之外，会看一些成名已久的大神的教学视频，会看自己打dota的录像然后反思，会逛贴吧学习一些新的打法以及连招，会不断练习自己做得不好的地方。然后A成了大神，而B依然是一只菜鸟。&lt;/p&gt;
+&lt;p&gt;其实成为大神的路上，真的有一些捷径，不论是打dota、销售，还是开发。&lt;/p&gt;
+&lt;p&gt;#自我定位以及目标&lt;/p&gt;
+&lt;p&gt;“我是蒙奇·D·路飞，要成为海贼王的男人。”草帽同学的这句话既霸气又充满哲理。假如现在的你是一个小菜鸟，但你想要成为宇宙无敌超级工程师，那么你需要一个目标：我是要成为超级工程师的男人（妹子）。当你从心底有了这个目标之后，你的每天都会有一种充实感，虽然哥现在很菜，但过一阵子哥可就是大神了。强大先从精神开始。&lt;/p&gt;
+&lt;p&gt;#经验与成就&lt;/p&gt;
+&lt;p&gt;为什么有的人工作5年，仍然不是专家，而有的人只用2年时间，表现足够卓越？&lt;/p&gt;
+&lt;p&gt;心理学家 Ericsson 的研究发现：&lt;strong&gt;决定伟大水平和一般水平的关键因素，既不是天赋，也不是经验，而是[刻意练习]的程度。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;我坚信重复是通向精通的必由之路。任何一种技能（包括码代码），只要经过连续不断地磨练和改进，最终效果都将变得异常惊人。&lt;/p&gt;
+&lt;p&gt;之前也和朋友讨论过一个问题，近几年培训的人越来越多，就业压力相对来说越来越大，很多人会出现恐慌的情绪。但如果你真的足够优秀，那么这种问题其实都不是问题。&lt;/p&gt;
+&lt;p&gt;#学好英语&lt;/p&gt;
+&lt;p&gt;根据HOPL编程语言在线数据库的统计，全球有8500种以上的编程语言，大概2400种起源于美国，600种是在英国发展起来的，160种是来自加拿大的，75种是在澳大利亚发展起来的。换句话说，世界上三分之一以上的编程语言是在以英语为母语的国家发展起来的。&lt;/p&gt;
+&lt;p&gt;就Android开发者来说，&lt;strong&gt;通读官方文档和training都是很有必要的&lt;/strong&gt;。so，好好学习英语吧。&lt;/p&gt;
+&lt;p&gt;#找到成就感&lt;/p&gt;
+&lt;p&gt;我实习的时候，我的经理告诉我，&lt;strong&gt;如果你从你的工作中找不到成就感，那么你可以考虑转行了。&lt;/strong&gt;对于码代码，在你眼里无论这是一份工作、事业或者志业，都可以赋予其意义。有了意义就会有成就感，它会成为一种精神力量和内在动力，与工作形成一个良好的循环。譬如写博客，如果没有成就感，或许小哥我早放弃了。&lt;/p&gt;
+&lt;p&gt;#点满技能点&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;如果你不知道该学点什么，去招聘网站翻翻简历吧。&lt;/strong&gt;在你所在的领域里，总会有你不熟悉的技能，找到它，干掉它。&lt;strong&gt;如果你的技能点是满的，那就发散思维，学习一些进阶技能和相关的其他方面的技能点&lt;/strong&gt;，其实开发远比想象的要复杂。&lt;/p&gt;
+&lt;p&gt;#好的身体是革命的本钱&lt;/p&gt;
+&lt;p&gt;长时间坐在电脑前会伤害你的身体，如果不能减少工作时间，那就尽量保持正确的坐姿，如果有条件的话，换个站立办公桌也是不错的选择。选择一个适合自己的锻炼方案，相信我，当你老了，你会庆幸自己能坚持锻炼。&lt;/p&gt;
+&lt;p&gt;#拖延症、计划和时间管理&lt;/p&gt;
+&lt;p&gt;拖延症是指自我调节失败，在能够预料后果有害的情况下，仍然把计划要做的事情往后推迟的一种行为。这是一种普遍现象，博主上大学的时候写论文，每次都是在最后一天的最后一两个小时搞完，论文质量简直惨不忍睹。&lt;/p&gt;
+&lt;p&gt;我们的人性啊！&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;合理的计划可以有效的解决拖延症的问题&lt;/strong&gt;，每周给自己一个计划，坚持完成，想不成为大神都难。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;学会管理自己的时间，让效率飞起来。&lt;/strong&gt;关于这方面大家可以看下《暗时间》和番茄工作法。&lt;/p&gt;
+&lt;p&gt;#知其然与其所以然&lt;/p&gt;
+&lt;p&gt;这点很重要，这点很重要，这点很重要，重要的话要说三遍。&lt;/p&gt;
+&lt;p&gt;对于这点最深的感触是实习的时候经理提的一点要求：&lt;strong&gt;做任何事，先要想明白，再能给别人讲明白，然后再去执行。&lt;/strong&gt;所以那会我们在做开发之前先要跟他汇报，给他讲明白，然后才能开发。优点也很明显，这样下来bug比之前少很多。&lt;/p&gt;
+&lt;p&gt;在这顺便&lt;strong&gt;建议一下大家写博客，做完东西整理思路总结一下，然后分享给大家，加深理解的同时还能获得成就感，一举多得。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;#我是这样解决问题的&lt;/p&gt;
+&lt;p&gt;首先&lt;strong&gt;遇到问题不要怕，要知道这个世界上那么多前辈，你所遇到的大部分问题，之前肯定有人遇到过并且已经解决，要学会使用google。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;其次，这里有一条准则与大家共勉：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code&gt;WHAT，WHEN，WHY，HOW。
+
+它是什么？它在什么场景下发生？它为什么会是这样，有没有其他原因？它是怎么做到的？
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;如果你觉得自己处理信息的能力又比较弱，不妨这样试试。做任何事情之前，有意识的让自己来一遍what, when, why, how。&lt;/p&gt;
+&lt;p&gt;时间久了，你会发现逻辑变得严谨，不会钻牛角尖了，工作变得轻松，debug也不头痛了。&lt;/p&gt;
+&lt;p&gt;#与时消息、与时谐行、与时俱进&lt;/p&gt;
+&lt;p&gt;每天抽出半个小时左右的时间阅读一些领域内的博客, 理解目前的技术发展方向, 与时代同步, 让技术历久弥新。这里分享下我每天必看的&lt;a href=&quot;https://github.com/PleaseCallMeCoder/Topia/blob/master/treasure/recommend.md&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;博客或者网站&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;#代码评审（code review）&lt;/p&gt;
+&lt;p&gt;大多数程序员都有一个错觉：手头上的项目永远是最烂的。如果你也是这么认为，那么尝试去改变它吧。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;代码评审（code review）是一个用来提高程序员的极好的方法。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;#开源项目&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;阅读流行的开源项目，是学习编写可维护代码和软件开发流程的好方法。&lt;/strong&gt;比如最近流行的google出品的&lt;a href=&quot;https://github.com/googlesamples/android-architecture&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;MVP模式demo&lt;/a&gt;，&lt;a href=&quot;https://github.com/greenrobot/EventBus&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;EventBus&lt;/a&gt;,&lt;a href=&quot;https://github.com/square/picasso&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Picasso&lt;/a&gt;等等。&lt;/p&gt;
+&lt;p&gt;#结语&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;做一个行动派。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;世界上最遥远的距离是在想到和做到之间。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;如果只是看清了一些事情而不去改变它，那又有什么意义呢？&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;关注博主是一种态度，评论博主是一种欣赏！！&lt;/p&gt;
+&lt;p&gt;最后，欢迎大家关注我的微信公众号：CoderTopia。&lt;/p&gt;
+&lt;center&gt;&lt;img style=&quot;width:150px; height:150px&quot; src=&quot;http://img.blog.csdn.net/20160422143030784&quot;&gt;&lt;/center&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;跟大家分享一下成为大神路上的捷径，与诸君共勉。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+    
+    </summary>
+    
+      <category term="学习方法" scheme="http://yoursite.com/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
+    
+    
+      <category term="方法论，Android，学习方法" scheme="http://yoursite.com/tags/%E6%96%B9%E6%B3%95%E8%AE%BA%EF%BC%8CAndroid%EF%BC%8C%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
+    
+  </entry>
   
   <entry>
     <title>TextView实战之你真的懂我么？</title>
