@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-06-01T07:12:51.189Z</updated>
+  <updated>2016-06-14T02:32:33.696Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,245 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Andorid网络操作和优化相关</title>
+    <link href="http://yoursite.com/2016/06/12/Android%E7%BD%91%E7%BB%9C%E6%93%8D%E4%BD%9C%E5%92%8C%E4%BC%98%E5%8C%96%E7%9B%B8%E5%85%B3/"/>
+    <id>http://yoursite.com/2016/06/12/Android网络操作和优化相关/</id>
+    <published>2016-06-12T04:43:00.000Z</published>
+    <updated>2016-06-14T02:32:33.696Z</updated>
+    
+    <content type="html">&lt;p&gt;Andorid自定义圆形渐变色进度条的从实现到开源的全过程。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&quot;http://i.imgur.com/CKaD46w.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;人性的弱点在于习惯于学习精确的东西而不善于总体的把握。&lt;/p&gt;
+&lt;p&gt;#写在前面的话&lt;/p&gt;
+&lt;p&gt;Android程序最重要的模块就是网络部分，如何从网络上下载数据，如何将处理过的数据上传至网络，往往是android程序的关键环节。前几天偶一朋友遇到这么一个问题：如何使用volley实现文件上传。最后问题解决了，小伙伴不禁有些飘飘然，大有一番天下之事皆逃不过我的魔掌的感觉。这时候coder君问了他几个问题，大家可以一起思考下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;TCP/IP协议、SOCKET、HTTP协议、HTTPS协议都是做什么的，他们之间有关系吗&lt;/li&gt;
+&lt;li&gt;你是如何管理网络使用情况的&lt;/li&gt;
+&lt;li&gt;常用的HTTP Client有哪些，该如何选择&lt;/li&gt;
+&lt;li&gt;假如你需要修改的你网络请求框架，你要动多少代码&lt;/li&gt;
+&lt;li&gt;你是怎么进行网络优化的&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;小伙伴支支吾吾，其实他熟悉的只是Android中网络相关的那些点中的一小部分，不免有些盲人摸象的感觉，你呢？&lt;/p&gt;
+&lt;p&gt;#网络通信机制&lt;/p&gt;
+&lt;p&gt;网络由下往上分为：物理层、数据链路层、网络层、传输层、会话层、表示层和应用层。&lt;/p&gt;
+&lt;p&gt;IP协议对应于网络层，TCP协议对应于传输层，而HTTP协议对应于应用层，三者从本质上来说没有可比性，socket则是对TCP/IP协议的封装和应用。也可以说，TPC/IP协议是传输层协议，主要解决数据如何在网络中传输，而HTTP是应用层协议，主要解决如何包装数据。&lt;/p&gt;
+&lt;p&gt;##TCP/IP协议&lt;/p&gt;
+&lt;p&gt;网络编程的目的就是直接或间接地通过网络协议与其他计算机进行通讯。&lt;/p&gt;
+&lt;p&gt;网络编程中有两个主要的问题，一个是如何准确的定位网络上一台或多台主机；另一个就是找到主机后如何可靠高效的进行数据传输。目前使用最广泛的因特网协议是TCP/IP协议。&lt;/p&gt;
+&lt;p&gt;在TCP/IP协议中IP层主要负责网络主机的定位，数据传输的路由，由IP地址可以唯一地确定Internet上的一台主机。而TCP层则提供面向应用的可靠的或非可靠的数据传输机制，这是网络编程的主要对象，一般不需要关心IP层是如何处理数据的。&lt;/p&gt;
+&lt;p&gt;##Socket&lt;/p&gt;
+&lt;p&gt;我们知道两个进程如果需要进行通讯最基本的一个前提能能够唯一的标示一个进程，在本地进程通讯中我们可以使用PID来唯一标示一个进程，但PID只在本地唯一，网络中的两个进程PID冲突几率很大，这时候我们需要另辟它径了，我们知道IP层的ip地址可以唯一标示主机，而TCP层协议和端口号可以唯一标示主机的一个进程，这样我们可以利用ip地址＋协议＋端口号唯一标示网络中的一个进程。&lt;/p&gt;
+&lt;p&gt;能够唯一标示网络中的进程后，它们就可以利用socket进行通信了，什么是socket呢？我们经常把socket翻译为套接字，socket是在应用层和传输层之间的一个抽象层，它把TCP/IP层复杂的操作抽象为几个简单的接口供应用层调用已实现进程在网络中通信。&lt;/p&gt;
+&lt;p&gt;Socket跟TCP/IP协议没有必然的联系。Socket编程接口在设计的时候，就希望也能适应其他的网络协议。所以说，Socket的出现只是使得程序员更方便地使用TCP/IP协议栈而已，是对TCP/IP协议的抽象，&lt;/p&gt;
+&lt;p&gt;##Http协议&lt;/p&gt;
+&lt;p&gt;HTTP协议即超文本传送协议(Hypertext Transfer Protocol )，是Web联网的基础，也是手机联网常用的协议之一，HTTP协议是建立在TCP协议之上的一种应用。&lt;/p&gt;
+&lt;p&gt;HTTP连接最显著的特点是客户端发送的每次请求都需要服务器回送响应，在请求结束后，会主动释放连接。从建立连接到关闭连接的过程称为“一次连接”。&lt;/p&gt;
+&lt;p&gt;HTTP提供了封装或者显示数据的具体形式。Socket提供了网络通信的能力。&lt;/p&gt;
+&lt;p&gt;##Https协议&lt;/p&gt;
+&lt;p&gt;HTTPS（全称：Hypertext Transfer Protocol over Secure Socket Layer），是以安全为目标的HTTP通道，简单讲是HTTP的安全版。即HTTP下加入SSL层，HTTPS的安全基础是SSL，因此加密的详细内容就需要SSL。 它是一个URI scheme（抽象标识符体系），句法类同http:体系。用于安全的HTTP数据传输。https:URL表明它使用了HTTP，但HTTPS存在不同于HTTP的默认端口及一个加密/身份验证层（在HTTP与TCP之间）。被广泛用于万维网上安全敏感的通讯，例如交易支付方面。&lt;/p&gt;
+&lt;p&gt;#Android网络权限&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;uses-permission android:name=&amp;quot;android.permission.INTERNET&amp;quot; /&amp;gt;&amp;lt;-- 允许应用程序打开网络套接字 --&amp;gt;
+&amp;lt;uses-permission android:name=&amp;quot;android.permission.ACCESS_NETWORK_STATE&amp;quot; /&amp;gt;&amp;lt;-- 允许应用程序访问网络连接信息 --&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;#选择一个HTTP Client&lt;/p&gt;
+&lt;p&gt;大多数连接网络的 Android app 会使用 HTTP 来发送与接收数据。Android 提供了三种 HTTP client：HttpURLConnection、Apache HttpClient和okhttp。二者均支持 HTTPS、流媒体上传和下载、可配置的超时、IPv6 与连接池（connection pooling）。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Java.net包中的HttpURLConnection类 &lt;/p&gt;
+&lt;p&gt;  HttpUrlConnection是JDK里提供的联网API，我们知道Android SDK是基于Java的，所以当然优先考虑HttpUrlConnection这种最原始最基本的API，其实大多数开源的联网框架基本上也是基于JDK的HttpUrlConnection进行的封装罢了&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;HttpClient&lt;/p&gt;
+&lt;p&gt;  HttpClient是开源组织Apache提供的Java请求网络框架，其最早是为了方便Java服务器开发而诞生的，是对JDK中的HttpUrlConnection各API进行了封装和简化，提高了性能并且降低了调用API的繁琐，Android因此也引进了这个联网框架，我们再不需要导入任何jar或者类库就可以直接使用，值得注意的是Android官方已经宣布不建议使用HttpClient了，我们再开发的时候尽量少用吧，但是用了也无妨！&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;okhttp&lt;/p&gt;
+&lt;p&gt;  http是现在主流应用使用的网络请求方式, 用来交换数据和内容, 有效的使用HTTP可以使你的APP变的更快和减少流量的使用。&lt;/p&gt;
+&lt;p&gt;  OkHttp是一个很棒HTTP客户端:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;支持SPDY,可以合并多个到同一个主机的请求&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;- 使用连接池技术减少请求的延迟(如果SPDY是可用的话)
+
+
+- 使用GZIP压缩减少传输的数据量
+
+
+- 缓存响应避免重复的网络请求
+
+当你的网络出现拥挤的时候,就是OKHttp大显身手的时候,它可以避免常见的网络问题,如果你的服务是部署在不同的IP上面的,如果第一个连接失败,OkHTtp会尝试其他的连接。这对现在IPv4+IPv6中常见的把服务冗余部署在不同的数据中心上也是很有必要的。OkHttp将使用现在TLS特性(SNI ALPN)来初始化新的连接，如果握手失败,将切换到TLS 1.0。
+
+使用OkHttp很容易,同时支持异步阻塞请求和回调.
+
+如果你使用OkHttp ,你不用重写你的代码,   okhttp-urlconnection模块实现了 java.net.HttpURLConnection 中的API,  okhttp-apache模块实现了HttpClient中的API
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;#如何管理网络的使用情况&lt;/p&gt;
+&lt;p&gt;如果我们的程序需要执行大量网络操作，那么应该提供用户设置选项，来允许用户控制程序的数据偏好。例如，同步数据的频率，是否只在连接到 WiFi 才进行下载与上传操作，是否在漫游时使用套餐数据流量等等。这样用户才不大可能在快到达流量上限时，禁止我们的程序获取后台数据，因为他们可以精确控制我们的 app 使用多少数据流量。&lt;/p&gt;
+&lt;p&gt;##检查网络连接&lt;/p&gt;
+&lt;p&gt;在执行网络操作之前，检查设备当前连接的网络连接信息是个好习惯。这样可以防止我们的程序在无意间连接使用了非意向的网络频道。如果网络连接不可用，那么我们的应用应该优雅地做出响应。为了检测网络连接，我们需要使用到下面两个类：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;ConnectivityManager：它会回答关于网络连接的查询结果，并在网络连接改变时通知应用程序。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;NetworkInfo：描述一个给定类型（移动网络或 Wi-Fi等）的网络接口状态。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;下面这个方法可以找到的第一个已连接的网络接口，如果返回null，则表示没有已连接的网络接口(意味着网络连接不可用)：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;public boolean isOnline() {
+    ConnectivityManager connMgr = (ConnectivityManager)getSystemServic(Context.CONNECTIVITY_SERVICE);
+    NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+    return (networkInfo != null &amp;amp;&amp;amp; networkInfo.isConnected());
+} 
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;##管理网络的使用情况&lt;/p&gt;
+&lt;p&gt;我们可以实现一个偏好设置的选项，使用户能直接设置程序对网络资源的使用情况。例如:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;可以允许用户仅在连接到 Wi-Fi 时上传视频。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;可以根据诸如网络可用，时间间隔等条件来选择是否做同步的操作。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;##检测网络连接变化&lt;/p&gt;
+&lt;p&gt;要检测网络连接的变化需要用到BroadcastReceiver 的子类：NetworkReceiver。当设备网络连接改变时，NetworkReceiver 会监听到 CONNECTIVITY_ACTION，这时需要判断当前网络连接类型并相应的设置好 wifiConnected 与 mobileConnected。&lt;/p&gt;
+&lt;p&gt;这里需要注意的是在使用BroadcastReceiver的时候，不必要的声明注册会浪费系统资源。最好在 onCreate()中注册 BroadcastReceiver NetworkReceiver，在 onDestroy()中销毁它。这样做会比在 manifest 里面声明 &lt;receiver&gt; 更轻巧。&lt;/receiver&gt;&lt;/p&gt;
+&lt;p&gt;#在一个单独的线程中执行网络操作&lt;/p&gt;
+&lt;p&gt;网络操作会遇到不可预期的延迟。为了避免造成不好的用户体验，确保总是在 UI 线程之外单独的线程中执行网络操作。关于Android中的线程和进程可以参考&lt;a href=&quot;http://blog.csdn.net/sdkfjksf/article/details/51556041&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;这里&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;#封装网络请求&lt;/p&gt;
+&lt;p&gt;有了Http Client，我们需要考虑的是如何优雅的使用这些Http Client进行网络请求。这时候我们可以对Http Clent进行封装来满足我们的需求。封装的基本要点如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;支持自定义请求的Header&lt;/li&gt;
+&lt;li&gt;支持Http的基本请求方法：GET、POST、PUT、DELETE等&lt;/li&gt;
+&lt;li&gt;支持文件上传和下载&lt;/li&gt;
+&lt;li&gt;可以加载图片&lt;/li&gt;
+&lt;li&gt;支持多任务网络请求操作&lt;/li&gt;
+&lt;li&gt;支持缓存&lt;/li&gt;
+&lt;li&gt;支持请求回调&lt;/li&gt;
+&lt;li&gt;支持session的保持&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;具体可以参考&lt;a href=&quot;http://a.codekk.com/detail/Android/grumoon/Volley%20%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Volley源码分析&lt;/a&gt;、&lt;a href=&quot;http://www.jianshu.com/p/45cb536be2f4&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Retrofit分析&lt;/a&gt;等，看看这些成名已久的框架是如何封装的。&lt;/p&gt;
+&lt;p&gt;#网络请求框架&lt;/p&gt;
+&lt;p&gt;以下是曾经很火或者现在很多的网络请求框架：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Android Async HTTP&lt;/li&gt;
+&lt;li&gt;AndroidAsync&lt;/li&gt;
+&lt;li&gt;Volley&lt;/li&gt;
+&lt;li&gt;Retrofit&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;AsyncHttp是一个较高层的封装，底层使用的是HttpClient。&lt;/p&gt;
+&lt;p&gt;Volley是Google推出的Android异步网络请求框架和图片加载框架。底层网络请求可以使用不同的网络库来处理，比如OkHttp，HttpClient。&lt;/p&gt;
+&lt;p&gt;Retrofit是一个封装比较好的，相对更面向开发者的rest请求库，它的底层网络请求也可以使用不同的网络库来处理。&lt;/p&gt;
+&lt;p&gt;#网络请求框架再封装&lt;/p&gt;
+&lt;p&gt;我在&lt;a href=&quot;http://blog.csdn.net/sdkfjksf/article/details/51106335&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;这些Tips让你的App更容易维护 &lt;/a&gt;简单提到过面向接口编程，这对于网络框架再封装很实用。&lt;/p&gt;
+&lt;p&gt;我们可以定义一套我们自己的网络请求接口，接口规定我们需要有什么能力的框架。调用的话我们可以直接调用接口方法就好了，这样不管我们换什么网络框架，只要这个框架有网络请求的能力就行。举个例子，定义接口如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;public interface ISender {
+
+    void send(METHOD method, String url, SenderCallback callback);
+
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;我们写一个类实现这个接口：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;public class BaseSender implements ISender {
+    @Override
+    public synchronized void sender(METHOD method, final String url, final SenderCallback callback) {
+        //volley,retrofit,balabala,用任意网络请求框架实现。
+
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;然后是我们的SendCallback&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;public interface SendCallback {
+
+    //请求成功回调
+    void onSucceeed(String t);
+
+    //请求失败回调
+    void onError(String errorMsg);
+
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;最后是我们的调用：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;private ISender mHttp;
+
+public void getWeahter(String tag) {
+
+    //调用接口里定义好的方法
+    mHttp.sender();
+
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这里传入我们需要的参数就好了。&lt;/p&gt;
+&lt;p&gt;#数据解析&lt;/p&gt;
+&lt;p&gt;以下是比较流行的网络数据解析的库：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Gson&lt;/li&gt;
+&lt;li&gt;Jackson&lt;/li&gt;
+&lt;li&gt;FastJson&lt;/li&gt;
+&lt;li&gt;HtmlPaser&lt;/li&gt;
+&lt;li&gt;Jsoup&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;网络数据解析比较基础，这里就不过多描述了。&lt;/p&gt;
+&lt;p&gt;#移动端网络优化&lt;br&gt;对于手机程序，网络操作相对来说是比较耗电的行为。优化网络操作能够显著节约电量的消耗。一个网络请求可以简单分为&lt;strong&gt;连接服务器&lt;/strong&gt;和&lt;strong&gt;获取数据&lt;/strong&gt;两个部分。其中连接服务器前还包括 DNS 解析的过程；获取数据后可能会对数据进行缓存。那么我们如果要进行网络优化需要从这两个关键点入手。&lt;/p&gt;
+&lt;p&gt;以下是具体可以优化的点：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;不用域名，用IP直连&lt;/p&gt;
+&lt;p&gt;  省去 DNS 解析过程，DNS 全名 Domain Name System，解析意指根据域名得到其对应的IP地址。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;服务器合理部署&lt;/p&gt;
+&lt;p&gt;  服务器多运营商多地部署，一般至少含三大运营商、南中北三地部署。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;根据当前的网络环境选择当下最佳的策略&lt;/p&gt;
+&lt;p&gt;  主要的实施步骤有两步：第1是检测收集当前的网络环境信息，第2是根据当前收集到的信息进行网络请求行为的调整。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;预取&lt;/p&gt;
+&lt;p&gt;  我们需要预先判断用户在此次操作之后，后续零散的请求是否很有可能会马上被触发，可以把后面几分钟有可能会使用到的零散请求都一次集中执行完毕。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;连接复用&lt;/p&gt;
+&lt;p&gt;  节省连接建立时间，如开启 keep-alive。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;用捆绑批量访问的方式来减少访问的频率&lt;/p&gt;
+&lt;p&gt;  预先判定那些可能马上就会使用到的网络资源，捆绑一起集中进行网络请求。这点我们可以考虑按照提前预期后续1-2分钟的数据作为基准。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;分优先级、延迟部分请求&lt;/p&gt;
+&lt;p&gt; 首先我们需要区分哪些网络请求是需要及时返回结果的，哪些是可以延迟执行的。我们可以有针对性的把请求行为捆绑起来，延迟到某个时刻统一发起请求。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;对传输的数据进行压缩&lt;/p&gt;
+&lt;p&gt;  网络传输数据量的大小主要由两部分组成：图片与序列化的数据，那么我们需要做的就是减少这两部分的数据传输大小。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;多连接&lt;/p&gt;
+&lt;p&gt;  对于较大文件，如大图片、文件下载可考虑多连接。 需要控制请求的最大并发量，毕竟移动端网络受限。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;避免不必要的同步操作&lt;/p&gt;
+&lt;p&gt;  应用程序的一个基础功能是能够保持确保界面上呈现的信息是即时最新的，例如呈现最新的新闻，天气，信息流等等信息。但是，过于频繁的促使手机客户端应用去同步最新的服务器数据会对性能产生很大的负面影响，不仅仅使得CPU不停的在工作，内存，网络流量，电量等等都会持续的被消耗，所以在进行网络请求操作的时候一定要避免多度同步操作。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;做好网络数据的缓存&lt;/p&gt;
+&lt;p&gt;  从手机的缓存中直接读取数据肯定比从网络上获取数据要更加的便捷高效，特别是对于那些会被频繁访问到的数据，需要把这些数据缓存到设备上，以便更加快速的进行访问。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;#结语&lt;/p&gt;
+&lt;p&gt;关注博主是一种态度，评论博主是一种欣赏！！&lt;/p&gt;
+&lt;p&gt;最后，欢迎大家关注我的微信公众号：CoderTopia。&lt;/p&gt;
+&lt;center&gt;&lt;img style=&quot;width:150px; height:150px&quot; src=&quot;http://img.blog.csdn.net/20160422143030784&quot;&gt;&lt;/center&gt;
+
+
+&lt;p&gt;参考链接：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.trinea.cn/android/mobile-performance-optimization/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.trinea.cn/android/mobile-performance-optimization/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://hukai.me/android-performance-patterns-season-4/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://hukai.me/android-performance-patterns-season-4/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://hukai.me/android-performance-patterns-season-2/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://hukai.me/android-performance-patterns-season-2/&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Andorid自定义圆形渐变色进度条的从实现到开源的全过程。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+    
+    </summary>
+    
+      <category term="性能优化" scheme="http://yoursite.com/categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
+    
+    
+      <category term="Andorid中的网络操作" scheme="http://yoursite.com/tags/Andorid%E4%B8%AD%E7%9A%84%E7%BD%91%E7%BB%9C%E6%93%8D%E4%BD%9C/"/>
+    
+      <category term="移动端网络优化" scheme="http://yoursite.com/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E7%BD%91%E7%BB%9C%E4%BC%98%E5%8C%96/"/>
+    
+  </entry>
   
   <entry>
     <title>Andorid中的进程和线程</title>
@@ -2065,68 +2304,6 @@ Android性能优化似乎是一个老生常谈的问题，但我似乎只是一�
       <category term="JNI" scheme="http://yoursite.com/tags/JNI/"/>
     
       <category term="AndroidStudio1.5" scheme="http://yoursite.com/tags/AndroidStudio1-5/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>N个非常有用的Android程序片段（持续更新）</title>
-    <link href="http://yoursite.com/2016/02/29/N%E4%B8%AA%E9%9D%9E%E5%B8%B8%E6%9C%89%E7%94%A8%E7%9A%84Android%E7%A8%8B%E5%BA%8F%E7%89%87%E6%AE%B5%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/"/>
-    <id>http://yoursite.com/2016/02/29/N个非常有用的Android程序片段（持续更新）/</id>
-    <published>2016-02-29T14:05:00.000Z</published>
-    <updated>2016-05-07T04:48:19.468Z</updated>
-    
-    <content type="html">&lt;p&gt;Android常用代码片段汇总。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-###1.判断网络是否已经连接&lt;/li&gt;
-&lt;/ul&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;// check all network connect, WIFI or mobile&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;public static boolean isNetworkAvailable(final Context context) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    boolean hasWifoCon = false;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    boolean hasMobileCon = false;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    ConnectivityManager cm = (ConnectivityManager) context.getSystemService(context.CONNECTIVITY_SERVICE);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    NetworkInfo[] netInfos = cm.getAllNetworkInfo();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    for (NetworkInfo net : netInfos) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        String type = net.getTypeName();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        if (type.equalsIgnoreCase(&amp;quot;WIFI&amp;quot;)) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            LevelLogUtils.getInstance().i(tag, &amp;quot;get Wifi connection&amp;quot;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            if (net.isConnected()) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                hasWifoCon = true;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        if (type.equalsIgnoreCase(&amp;quot;MOBILE&amp;quot;)) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            LevelLogUtils.getInstance().i(tag, &amp;quot;get Mobile connection&amp;quot;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            if (net.isConnected()) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                hasMobileCon = true;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    return hasWifoCon || hasMobileCon;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;###2.Android的Px与Dp转化工具类&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;public class DensityUtils &amp;#123;  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    public static int Dp2Px(Context context, float dp) &amp;#123;   &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        final float scale = context.getResources().getDisplayMetrics().density;   &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        return (int) (dp * scale + 0.5f);   &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;   &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    public static int Px2Dp(Context context, float px) &amp;#123;   &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        final float scale = context.getResources().getDisplayMetrics().density;   &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        return (int) (px / scale + 0.5f);   &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;   &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;###3.Android获得WIFI IP地址或者手机网络IP&lt;br&gt;有的时候我们需要获得WIFI的IP地址获得手机网络的IP地址，这是一个工具类，专门解决这个问题，这里需要两个权限： &lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;uses-permission android:name=&amp;quot;android.permission.ACCESS_WIFI_STATE&amp;quot; &amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;lt;/uses-permission&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;lt;uses-permission android:name=&amp;quot;android.permission.INTERNET&amp;quot; &amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;lt;/uses-permission&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;第一个权限是获得WIFI的IP地址需要使用的，第二个权限是获得移动网络的IP需要使用的，代码如下： &lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;34&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;public class GetIPAddressUtil &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    public static String getWifiIP(Context context) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        String ip = null;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        WifiManager wifiManager = (WifiManager) context&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                .getSystemService(Context.WIFI_SERVICE);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        if (wifiManager.isWifiEnabled()) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            WifiInfo wifiInfo = wifiManager.getConnectionInfo();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            int i = wifiInfo.getIpAddress();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            ip = (i &amp;amp; 0xFF) + &amp;quot;.&amp;quot; + ((i &amp;gt;&amp;gt; 8) &amp;amp; 0xFF) + &amp;quot;.&amp;quot; + ((i &amp;gt;&amp;gt; 16) &amp;amp; 0xFF)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    + &amp;quot;.&amp;quot; + (i &amp;gt;&amp;gt; 24 &amp;amp; 0xFF);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        return ip;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    public static String getMobileIP() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        try &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            for (Enumeration&amp;lt;NetworkInterface&amp;gt; en = NetworkInterface&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    .getNetworkInterfaces(); en.hasMoreElements();) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                NetworkInterface intf = en.nextElement();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                for (Enumeration&amp;lt;InetAddress&amp;gt; enumIpAddr = intf&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                        .getInetAddresses(); enumIpAddr.hasMoreElements();) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    InetAddress inetAddress = enumIpAddr.nextElement();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    if (!inetAddress.isLoopbackAddress()) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                        return inetAddress.getHostAddress().toString();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125; catch (SocketException ex) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            Log.e(&amp;quot;哎呀，出错了...&amp;quot;, ex.toString());&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        return null;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;###4.唤醒屏幕并解锁 &lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;public static void wakeUpAndUnlock(Context context)&amp;#123;  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        KeyguardManager km= (KeyguardManager) context.getSystemService(Context.KEYGUARD_SERVICE);  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        KeyguardManager.KeyguardLock kl = km.newKeyguardLock(&amp;quot;unLock&amp;quot;);  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        //解锁  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        kl.disableKeyguard();  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        //获取电源管理器对象  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        PowerManager pm=(PowerManager) context.getSystemService(Context.POWER_SERVICE);  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        //获取PowerManager.WakeLock对象,后面的参数|表示同时传入两个值,最后的是LogCat里用的Tag  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        PowerManager.WakeLock wl = pm.newWakeLock(PowerManager.ACQUIRE_CAUSES_WAKEUP | PowerManager.SCREEN_DIM_WAKE_LOCK,&amp;quot;bright&amp;quot;);  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        //点亮屏幕  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        wl.acquire();  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        //释放  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        wl.release();  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;需要添加权限 &lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;uses-permission android:name=&amp;quot;android.permission.WAKE_LOCK&amp;quot; /&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;uses-permission android:name=&amp;quot;android.permission.DISABLE_KEYGUARD&amp;quot; /&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;###5.判断当前App处于前台还是后台状态 &lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;public static boolean isApplicationBackground(final Context context) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        ActivityManager am = (ActivityManager) context&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                .getSystemService(Context.ACTIVITY_SERVICE);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        @SuppressWarnings(&amp;quot;deprecation&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        List&amp;lt;ActivityManager.RunningTaskInfo&amp;gt; tasks = am.getRunningTasks(1);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        if (!tasks.isEmpty()) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            ComponentName topActivity = tasks.get(0).topActivity;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            if (!topActivity.getPackageName().equals(context.getPackageName())) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                return true;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        return false;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;需要添加权限&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;uses-permission&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     android:name=&amp;quot;android.permission.GET_TASKS&amp;quot; /&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;###6.安装APK &lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;public static void installApk(Context context, File file) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    Intent intent = new Intent();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    intent.setAction(&amp;quot;android.intent.action.VIEW&amp;quot;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    intent.addCategory(&amp;quot;android.intent.category.DEFAULT&amp;quot;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    intent.setType(&amp;quot;application/vnd.android.package-archive&amp;quot;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    intent.setDataAndType(Uri.fromFile(file),&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;quot;application/vnd.android.package-archive&amp;quot;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    context.startActivity(intent);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;###7.获取当前设备宽高，单位px &lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;@SuppressWarnings(&amp;quot;deprecation&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;public static int getDeviceWidth(Context context) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    WindowManager manager = (WindowManager) context&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            .getSystemService(Context.WINDOW_SERVICE);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    return manager.getDefaultDisplay().getWidth();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;@SuppressWarnings(&amp;quot;deprecation&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;public static int getDeviceHeight(Context context) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    WindowManager manager = (WindowManager) context&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            .getSystemService(Context.WINDOW_SERVICE);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    return manager.getDefaultDisplay().getHeight();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;###8.获取当前设备的MAC地址 &lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;public static String getMacAddress(Context context) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    String macAddress;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    WifiManager wifi = (WifiManager) context&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            .getSystemService(Context.WIFI_SERVICE);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    WifiInfo info = wifi.getConnectionInfo();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    macAddress = info.getMacAddress();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    if (null == macAddress) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        return &amp;quot;&amp;quot;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    macAddress = macAddress.replace(&amp;quot;:&amp;quot;, &amp;quot;&amp;quot;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    return macAddress;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;###9.获取当前程序的版本号 &lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;public static String getAppVersion(Context context) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    String version = &amp;quot;0&amp;quot;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    try &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        version = context.getPackageManager().getPackageInfo(&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                context.getPackageName(), 0).versionName;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125; catch (PackageManager.NameNotFoundException e) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        e.printStackTrace();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    return version;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;###10.返回移动网络运营商的名字&lt;br&gt;(例：中国联通、中国移动、中国电信) 仅当用户已在网络注册时有效, CDMA 可能会无效) &lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;public static String getNetworkOperatorName(Context context) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        TelephonyManager telephonyManager = (TelephonyManager) context&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                .getSystemService(Context.TELEPHONY_SERVICE);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        return telephonyManager.getNetworkOperatorName();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;###11.手机号码正则 &lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;public static final String REG_PHONE_CHINA = &amp;quot;^((13[0-9])|(15[^4,\\D])|(18[0,5-9]))\\d&amp;#123;8&amp;#125;$&amp;quot;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;###12.邮箱正则 &lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;public static final String REG_EMAIL = &amp;quot;\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*&amp;quot;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;###13.通过资源文件名获取资源id&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;public static int getResource(Context c, String imageName) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        return c.getResources().getIdentifier(imageName, &amp;quot;mipmap&amp;quot;, c.getPackageName());&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;###14.获取方法执行时间&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;long startTime=System.currentTimeMillis();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;//执行方法&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;long endTime=System.currentTimeMillis();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;float excTime=(float)(endTime-startTime)/1000;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;System.out.println(&amp;quot;执行时间：&amp;quot;+excTime+&amp;quot;s&amp;quot;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Android常用代码片段汇总。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-    
-    </summary>
-    
-      <category term="代码片段" scheme="http://yoursite.com/categories/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/"/>
-    
-    
-      <category term="代码片段" scheme="http://yoursite.com/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/"/>
     
   </entry>
   
