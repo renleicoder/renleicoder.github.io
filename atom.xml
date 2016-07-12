@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-06-14T02:36:13.506Z</updated>
+  <updated>2016-07-12T08:41:20.524Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,112 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>分享一个基于MVP+Retrofit+RxJava+MaterialDesign的App</title>
+    <link href="http://yoursite.com/2016/07/12/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E5%9F%BA%E4%BA%8EMVP+Retrofit+RxJava+MaterialDesign%E7%9A%84App/"/>
+    <id>http://yoursite.com/2016/07/12/分享一个基于MVP+Retrofit+RxJava+MaterialDesign的App/</id>
+    <published>2016-07-12T07:59:00.000Z</published>
+    <updated>2016-07-12T08:41:20.524Z</updated>
+    
+    <content type="html">&lt;p&gt;最近一直在忙项目的事，所以很久不写博客了。抽时间整理了下最近的收藏的一些文章，感觉新的知识点还是挺多的，于是乎自己抽时间写了一个简单的App。这个App基于MVP+Retrofit+RxJava+MaterialDesign，分享给大家。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&quot;http://i.imgur.com/JgQm7Ac.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;2016已经荒废了一半，还有一半可以继续浪费。&lt;/p&gt;
+&lt;p&gt;源码我已经上传到github上了，欢迎fork和star&lt;br&gt;&lt;a href=&quot;https://github.com/PleaseCallMeCoder/PrettyGirls&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/PleaseCallMeCoder/PrettyGirls&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;#我想说的&lt;/p&gt;
+&lt;p&gt;最近一直在忙项目的事，所以很久不写博客了。抽时间整理了下最近的收藏的一些文章，感觉新的知识点还是挺多的，于是乎自己抽时间写了一个简单的App。为什么说它简单呢？因为这个app只有四个页面而已。有人说了，这么简单你还写？答曰：麻雀虽小，五脏俱全。这个App基本包含了开发一个项目用到的所有元素。写这个app的目的如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;将rxjava、retrofit、mvp、materialdesign等知识点做一个简单的整合&lt;/li&gt;
+&lt;li&gt;封装一个通用baselibrary，方便以后构建项目，而且可以不断完善这个library&lt;/li&gt;
+&lt;li&gt;不断优化，不断重构，因为模块少所以重构起来比较方便&lt;/li&gt;
+&lt;li&gt;抛砖引玉，三人行必有我师，希望大家多多指教&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;#你想知道的&lt;/p&gt;
+&lt;p&gt;说完了我想说的，说说大家可能想知道的。&lt;/p&gt;
+&lt;p&gt;一个项目的完整流程如下：&lt;strong&gt;痛点–&amp;gt;分析–&amp;gt;原型–&amp;gt;UI/UE–&amp;gt;设计–&amp;gt;架构–&amp;gt;测试–&amp;gt;构建–&amp;gt;QA–&amp;gt;运营–&amp;gt;迭代&lt;/strong&gt;。这里我们重点关注架构，并不是因为架构最重要，而是因为本文的重点是这个App的整体架构。&lt;/p&gt;
+&lt;p&gt;##项目结构&lt;/p&gt;
+&lt;p&gt;这里我用了&lt;strong&gt;MVP模式配合多模块Activty+多Fragment&lt;/strong&gt;的思路。对于MVP和Fragment的有点这里我就不过多介绍了。我简单说下我的实现思路。&lt;/p&gt;
+&lt;p&gt;###封装一个baselibrary&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;我们可以利用以往项目经验分模块分类别封装出一些父类，完成公共操作，后续开发只需要继承这些父类就可以完成大部分操作，节省开发成本。&lt;/strong&gt;这里我封装了：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;包括普通activity和支持右滑退出当前页面的activity父类（退出方式类似qq）&lt;/li&gt;
+&lt;li&gt;activity管理栈&lt;/li&gt;
+&lt;li&gt;fragment的基类&lt;/li&gt;
+&lt;li&gt;adapter的基类&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这个library基本已经满足了这个App的开发。但是没有最好只有更好，这个baselibrary我会不断完善和优化，以满足更复杂的需求。&lt;/p&gt;
+&lt;p&gt;###分包&lt;/p&gt;
+&lt;p&gt;这里我采用的是&lt;strong&gt;按模块来划分包&lt;/strong&gt;。包括以下几部分：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;app&lt;/p&gt;
+&lt;p&gt;  包括全局异常处理，系统常量，和app的基本配置等。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;模块包&lt;/p&gt;
+&lt;p&gt;  每个模块包含一个契约接口，本模块的一个activity和多个fragment，presenter的实现类等，当然如果模块比较复杂还可以再继续分&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;data&lt;/p&gt;
+&lt;p&gt;  提供app的本地或者远程数据，数据模型等&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;util&lt;/p&gt;
+&lt;p&gt;  工具类&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;widget&lt;/p&gt;
+&lt;p&gt;  自定义控件&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;##依赖库&lt;/p&gt;
+&lt;p&gt;至于依赖库的选择个人认为因人而异，我使用的库如下：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://jakewharton.github.io/butterknife/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;butterknife&lt;/a&gt;————View注解库和配套插件&lt;a href=&quot;https://github.com/avast/android-butterknife-zelezny&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;android-butterknife-zelezny&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/square/retrofit&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;retrofit&lt;/a&gt;+&lt;a href=&quot;https://github.com/square/okhttp&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;okhttp&lt;/a&gt;————网络请求相关&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/google/gson&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;gson&lt;/a&gt;————google推荐的json数据解析库&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/bumptech/glide&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;glide&lt;/a&gt;————google推荐的Android图片加载库&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/ReactiveX/RxAndroid&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;RxAndroid&lt;/a&gt;+&lt;a href=&quot;https://github.com/ReactiveX/RxJava/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;RxJava&lt;/a&gt;——Rx函数响应式编程&lt;a href=&quot;https://mcxiaoke.gitbooks.io/rxdocs/content/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;中文文档&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;compile ‘com.android.support:design:23.0.1’————谷歌Material Design控件库&lt;/p&gt;
+&lt;p&gt;#关于App&lt;/p&gt;
+&lt;p&gt;app截图&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://i.imgur.com/T9U8g5b.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://i.imgur.com/ivGy3ga.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://i.imgur.com/HI3PipV.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/PleaseCallMeCoder/PrettyGirls&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;github&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://pre.im/A7n1&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;下载&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;#鸣谢&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://gank.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;代码家-干货集中营&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/oxoooo/mr-mantou-android&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;OXO&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;所有开源的人&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;#结语&lt;/p&gt;
+&lt;p&gt;关注博主是一种态度，评论博主是一种欣赏！！&lt;/p&gt;
+&lt;p&gt;最后，欢迎大家关注我的微信公众号：CoderTopia。&lt;/p&gt;
+&lt;center&gt;&lt;img style=&quot;width:150px; height:150px&quot; src=&quot;http://img.blog.csdn.net/20160422143030784&quot;&gt;&lt;/center&gt;
+
+
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近一直在忙项目的事，所以很久不写博客了。抽时间整理了下最近的收藏的一些文章，感觉新的知识点还是挺多的，于是乎自己抽时间写了一个简单的App。这个App基于MVP+Retrofit+RxJava+MaterialDesign，分享给大家。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+    
+    </summary>
+    
+      <category term="APP" scheme="http://yoursite.com/categories/APP/"/>
+    
+    
+      <category term="MaterialDesign" scheme="http://yoursite.com/tags/MaterialDesign/"/>
+    
+      <category term="APP" scheme="http://yoursite.com/tags/APP/"/>
+    
+      <category term="MVP" scheme="http://yoursite.com/tags/MVP/"/>
+    
+      <category term="Retrofit" scheme="http://yoursite.com/tags/Retrofit/"/>
+    
+      <category term="RxJava" scheme="http://yoursite.com/tags/RxJava/"/>
+    
+  </entry>
   
   <entry>
     <title>Andorid网络操作和优化相关</title>
@@ -2227,83 +2333,6 @@ Android性能优化似乎是一个老生常谈的问题，但我似乎只是一�
       <category term="绘制" scheme="http://yoursite.com/tags/%E7%BB%98%E5%88%B6/"/>
     
       <category term="paint" scheme="http://yoursite.com/tags/paint/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Android Studio1.5中NDK开发</title>
-    <link href="http://yoursite.com/2016/03/03/Android%20Studio1.5%E4%B8%ADNDK%E5%BC%80%E5%8F%91/"/>
-    <id>http://yoursite.com/2016/03/03/Android Studio1.5中NDK开发/</id>
-    <published>2016-03-03T08:08:00.000Z</published>
-    <updated>2016-05-07T04:33:12.290Z</updated>
-    
-    <content type="html">&lt;p&gt;Android中NDK的配置和使用。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;strong&gt;从Android Studio1.3以后，在Android 环境开发JNI程序搭建开发环境变得相对简单。这里就来介绍一下基于Android Studio如何进行jni开发。在介绍之前，先跟大家说一下JNI和NDK都是什么，方便大家理解。&lt;/strong&gt;&lt;br&gt;###NDK和JNI的关系&lt;br&gt;JNI是java语言提供的Java和C/C++相互沟通的机制，Java可以通过JNI调用本地的C/C++代码，本地的C/C++的代码也可以 调用java代码。JNI 是本地编程接口，Java和C/C++互相通过的接口。Java通过C/C++使用本地的代码的一个关键性原因在于C/C++代码的高效性。&lt;pre&gt;&lt;code&gt;NDK是一系列工具的集合。它提供了一系列的工具，帮助开发者快速开发C（或C++）的动态库，并能自动将so和java应用一起打包成apk。这 些工具对开发者的帮助是巨大的。它集成了交叉编译器，并提供了相应的mk文件隔离CPU、平台、ABI等差异，开发人员只需要简单修改mk文件（指出“哪 些文件需要编译”、“编译特性要求”等），就可以创建出so。它可以自动地将so和Java应用一起打包，极大地减轻了开发人员的打包工作。
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;然后跟大家说一下环境的搭建&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;###环境说明:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;IDE:Android Studio 1.5&lt;/li&gt;
-&lt;li&gt;JDK: 1.7.0_67&lt;/li&gt;
-&lt;li&gt;Gradle:2.8&lt;/li&gt;
-&lt;li&gt;SDK with Build Tools at least version 23.0.2&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;使用Android-Studio内置的SDK管理器下载NDK。&quot;&gt;&lt;a href=&quot;#使用Android-Studio内置的SDK管理器下载NDK。&quot; class=&quot;headerlink&quot; title=&quot;使用Android Studio内置的SDK管理器下载NDK。&quot;&gt;&lt;/a&gt;使用Android Studio内置的SDK管理器下载NDK。&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://img.blog.csdn.net/20160303162830512&quot; alt=&quot;这里写图片描述&quot;&gt;&lt;/p&gt;
-&lt;p&gt;###对NDK进行关联&lt;br&gt;&lt;img src=&quot;http://img.blog.csdn.net/20160303165009836&quot; alt=&quot;这里写图片描述&quot;&gt;&lt;br&gt;&lt;img src=&quot;http://img.blog.csdn.net/20160303164947236&quot; alt=&quot;这里写图片描述&quot;&gt;&lt;/p&gt;
-&lt;p&gt;这里也可以去修改工程下的local.properties&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;## This file is automatically generated by Android Studio.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;# Do not modify this file -- YOUR CHANGES WILL BE ERASED!&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;# This file must *NOT* be checked into Version Control Systems,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;# as it contains information specific to your local configuration.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;# Location of the SDK. This is only used by Gradle.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;# For customization when using a Version Control System, please read the&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;# header note.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#Thu Mar 03 11:29:37 CST 2016&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;ndk.dir=C\:\\software\\sdk\\ndk-bundle&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;sdk.dir=C\:\\software\\sdk&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;###设置gradle&lt;br&gt;设置好NDK之后，开始设置gradle，设置gradle主要需要设置三个地方，设置好之后就可以直接编写和编译JNI代码了，不需要像以前一样编写Makefile，相当方便。但是设置gradle也是需要比较小心的，由于当前NDK还处于Experimental 阶段，更新不断，经常会爆出各种奇怪的错误，因此也要特别留心。好了废话不多说，下面来介绍设置gradle的三个主要步骤。&lt;/p&gt;
-&lt;p&gt;首先设置TopLevel gradle，也就是Project gradle，这里比较简单。&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;// Top-level build file where you can add configuration options common to all sub-projects/modules.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;buildscript &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    repositories &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        jcenter()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    dependencies &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;//        classpath &amp;apos;com.android.tools.build:gradle:1.5.0&amp;apos;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        classpath &amp;apos;com.android.tools.build:gradle-experimental:0.4.0&amp;apos;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        // NOTE: Do not place your application dependencies here; they belong&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        // in the individual module build.gradle files&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;allprojects &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    repositories &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        jcenter()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;task clean(type: Delete) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    delete rootProject.buildDir&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;还要多提一句的是，这里设置的是gradle-experimental:0.4.0，后面对应设置gradle wrapper的时候要对应gradle2.8-all 版本，这里先说到这里。&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;#Wed Oct 21 11:34:03 PDT 2015&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;distributionBase=GRADLE_USER_HOME&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;distributionPath=wrapper/dists&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;zipStoreBase=GRADLE_USER_HOME&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;zipStorePath=wrapper/dists&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;distributionUrl=https\://services.gradle.org/distributions/gradle-2.8-all.zip&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;接着设置 Module gradle，这一步是比较麻烦的。由于我们在创建工程的时候自动生成的这个gradle文件内容比较多，而且如果要使用NDK的话这个gradle变化比较大，这里直接贴出需要使用NDK的gradle，然后来进行说明。&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;35&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;36&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;37&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;38&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;39&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;40&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;41&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;42&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;43&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;44&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;45&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;46&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;47&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;48&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;49&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;50&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;51&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;52&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;53&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;54&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;55&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;56&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;apply plugin: &amp;apos;com.android.model.application&amp;apos;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;model &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    android &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        compileSdkVersion = 23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        buildToolsVersion = &amp;quot;23.0.2&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        defaultConfig.with &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            applicationId = &amp;quot;com.oracleen.rl.easyar&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            minSdkVersion.apiLevel = 15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            targetSdkVersion.apiLevel = 23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            versionCode = 1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            versionName = &amp;quot;1.0&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    android.ndk &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        moduleName = &amp;quot;HelloARVideoNative&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        cppFlags.add(&amp;quot;-I$&amp;#123;file(&amp;quot;../../package/include&amp;quot;)&amp;#125;&amp;quot;.toString())&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        cppFlags.add(&amp;quot;-DANDROID&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        cppFlags.add(&amp;quot;-fexceptions&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        cppFlags.add(&amp;quot;-frtti&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        stl = &amp;quot;gnustl_static&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        ldLibs.add(&amp;quot;log&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        ldLibs.add(&amp;quot;GLESv2&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    android.buildTypes &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        release &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            minifyEnabled = false&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            proguardFiles.add(file(&amp;quot;proguard-rules.pro&amp;quot;))&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    android.productFlavors &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        create(&amp;quot;arm&amp;quot;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            ndk.with &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                abiFilters.add(&amp;quot;armeabi-v7a&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    android.sources &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        main &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            jni &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                dependencies &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    library file(&amp;quot;../../package/Android/libs/armeabi-v7a/libEasyAR.so&amp;quot;) abi &amp;quot;armeabi-v7a&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;dependencies &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    //    compile fileTree(dir: &amp;apos;libs&amp;apos;, include: [&amp;apos;*.jar&amp;apos;])&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    testCompile &amp;apos;junit:junit:4.12&amp;apos;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    compile &amp;apos;com.android.support:appcompat-v7:23.0.1&amp;apos;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    compile fileTree(dir: &amp;apos;../../package/Android/libs&amp;apos;, include: [&amp;apos;*.jar&amp;apos;])&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;和自动生成的gradle相比，首先是 apply plugin: ‘com.android.application’ 变成了 apply plugin: ‘com.android.model.application’。下面的配置也需要包装在model{}中。&lt;/p&gt;
-&lt;p&gt;这个gradle的配置有几点需要注意的：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;所有值的设置都要写成 xxx = yyyy的形式，比如： applicationId = “com.oracleen.rl.easyar” ，否则会报这种错误：&lt;strong&gt;Error:Cause: org.gradle.api.internal.ExtensibleDynamicObject&lt;/strong&gt;， 当出现此类错误，检查是否都用了 “=”的方式。&lt;/li&gt;
-&lt;li&gt;buildTypes 需要从android{} 中取出来，写成android.buildTypes{}的形式，否则会出现这种错误：&lt;strong&gt;Error:Unable to load class ‘org.gradle.nativeplatform.internal.DefaultBuildType_Decorated’&lt;/strong&gt;.  内容也需要改为上边文件中的格式，否则会报这种错误：&lt;strong&gt;Error:No signature of method: org.gradle.model.ModelMap.minifyEnabled() is applicable for argument types: (java.lang.Boolean) values: [false]&lt;/strong&gt;  &lt;/li&gt;
-&lt;li&gt;defaultConfig{} 需要写成defaultConfig.with{} 的形式，否则会报这种错误：&lt;strong&gt;Error:Cause: com.android.build.gradle.managed.AndroidConfig_Impl&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;在defaultConfig.with{} 中 需要写成上边格式，也就是比自动生成的多 .apiLevel ，否则会报这种错误：&lt;strong&gt;Unable to load class com.android.build.gradle.managed.ProductFlavor_Impl&lt;/strong&gt;　&lt;/li&gt;
-&lt;li&gt;最后一点，在gradleWrapper中使用的是2.5，则android.ndk {} 中类似cppFlags 的添加使用 += 的方式，否则需要使用 .add的方式&lt;/li&gt;
-&lt;li&gt;引用的其他model构建方式也要包装在model{}当中。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;strong&gt;NDK开发主要有两中情况：一种是使用已经编译好的.so动态库；一种是使用c/c++源代码开发。我会分别介绍。&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;###编译c/c++源代码开发&lt;br&gt;这里我们起一个名字是“HelloARVideoNative”的JNI库，androidstudio会把我们编写的c/c++代码编译成这个名字的.so文件。&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;android.ndk &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        moduleName = &amp;quot;HelloARVideoNative&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        stl = &amp;quot;gnustl_static&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        ldLibs.add(&amp;quot;log&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        ldLibs.add(&amp;quot;GLESv2&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;然后我们在我们需要使用c/c++方法的类中引用库，并且声明本地接口。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://img.blog.csdn.net/20160303175518780&quot; alt=&quot;这里写图片描述&quot;&gt;&lt;/p&gt;
-&lt;p&gt;然后就可以去c/c++文件中去实现我们的方法了。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://img.blog.csdn.net/20160303175655450&quot; alt=&quot;这里写图片描述&quot;&gt;&lt;/p&gt;
-&lt;p&gt;###使用已经编译好的.so动态库&lt;br&gt;在app下的gradle中做如下配置&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;android.sources &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;       main &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;           jni &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;               dependencies &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                   library file(&amp;quot;../../package/Android/libs/armeabi-v7a/libEasyAR.so&amp;quot;) abi &amp;quot;armeabi-v7a&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;               &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;           &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;       &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;指向我们的so库文件位置，然后在需要引用的地方&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;static &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        System.loadLibrary(&amp;quot;EasyAR&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;然后我们就可以使用so库中的方法了。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://img.blog.csdn.net/20160303181554629&quot; alt=&quot;这里写图片描述&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;最后，附上相关的资源.其实在android的官网已经提供了很完善的教程了.还有github上也托管了sample代码.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Experimental Plugin User Guide: &lt;a href=&quot;http://tools.android.com/tech-docs/new-build-system/gradle-experimental&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://tools.android.com/tech-docs/new-build-system/gradle-experimental&lt;/a&gt;&lt;br&gt;github sample:  &lt;a href=&quot;https://github.com/googlesamples/android-ndk&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/googlesamples/android-ndk&lt;/a&gt;&lt;br&gt;官方ndk视频教程: &lt;a href=&quot;https://youtu.be/okLKfxfbz40&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://youtu.be/okLKfxfbz40&lt;/a&gt; (需要翻墙)&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Android中NDK的配置和使用。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-    
-    </summary>
-    
-      <category term="NDK" scheme="http://yoursite.com/categories/NDK/"/>
-    
-    
-      <category term="NDK" scheme="http://yoursite.com/tags/NDK/"/>
-    
-      <category term="JNI" scheme="http://yoursite.com/tags/JNI/"/>
-    
-      <category term="AndroidStudio1.5" scheme="http://yoursite.com/tags/AndroidStudio1-5/"/>
     
   </entry>
   
