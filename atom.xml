@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-09-06T06:14:09.650Z</updated>
+  <updated>2016-09-06T06:14:42.105Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,216 +17,49 @@
   
   <entry>
     <title>由面试想到的</title>
-    <link href="http://yoursite.com/2016/09/02/Andorid%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9C%86%E5%BD%A2%E6%B8%90%E5%8F%98%E8%89%B2%E8%BF%9B%E5%BA%A6%E6%9D%A1%E7%9A%84%E4%BB%8E%E5%AE%9E%E7%8E%B0%E5%88%B0%E5%BC%80%E6%BA%90/"/>
-    <id>http://yoursite.com/2016/09/02/Andorid自定义圆形渐变色进度条的从实现到开源/</id>
+    <link href="http://yoursite.com/2016/09/02/%E7%94%B1%E9%9D%A2%E8%AF%95%E6%83%B3%E5%88%B0%E7%9A%84/"/>
+    <id>http://yoursite.com/2016/09/02/由面试想到的/</id>
     <published>2016-09-02T06:54:00.000Z</published>
-    <updated>2016-09-06T06:14:09.650Z</updated>
+    <updated>2016-09-06T06:14:42.105Z</updated>
     
     <content type="html">&lt;p&gt;由面试想到的。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&quot;http://i.imgur.com/5tRNY53.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;信自己也是一种信仰&lt;/strong&gt;。&lt;/p&gt;
-&lt;p&gt;#写在前面的话&lt;/p&gt;
-&lt;p&gt;3月初我在自定义控件概述中挖下的几个坑，前一段时间已经基本填完了，自定义控件的几种实现方式也分别写了demo来进行说明。今天我们来聊一聊如何把&lt;strong&gt;自己封装一个圆形渐变色进度条控件开源到github，并且上传到jcenter方便别人远程依赖&lt;/strong&gt;。先看下效果图：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://i.imgur.com/N0ckzIs.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;#连接github并提交新项目&lt;/p&gt;
-&lt;p&gt;前提条件：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;安装Git客户端（&lt;a href=&quot;https://git-scm.com/downloads/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;下载地址&lt;/a&gt;）&lt;/li&gt;
-&lt;li&gt;有&lt;a href=&quot;https://github.com&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;GitHub&lt;/a&gt;账号 &lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;创建新项目并提交到Github：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;在AndroidStudio中新建一个项目&lt;/li&gt;
-&lt;li&gt;配置Git:Settings -&amp;gt; Version Control -&amp;gt; Git ,设置git目录,点击Test测试,如果成功会有Success提示&lt;br&gt;&lt;img src=&quot;http://i.imgur.com/Wv6s1jw.png&quot; alt=&quot;&quot;&gt;&lt;/li&gt;
-&lt;li&gt;关联自己的Github账号：Settring -&amp;gt; VersionControl -&amp;gt;GitHub,设置自己的github账号,密码,点击Test测试,如果成功会有Success提示&lt;br&gt;&lt;img src=&quot;http://i.imgur.com/7ZGSmgQ.png&quot; alt=&quot;&quot;&gt;&lt;/li&gt;
-&lt;li&gt;分享项目:VCS -&amp;gt; Import into Version Control -&amp;gt; Share Project on GitHub, 点击之后开始设置 repository name(如果你有设置过MasterPassword 会弹出对话框让填入密码)&lt;br&gt;&lt;img src=&quot;http://i.imgur.com/kg5inwD.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;点击Share之后, 你就可以在GitHub上看到新的仓库，同时在AndroidStudio中CVS下也可以看到版本控制Git，这样就已经设置成功。&lt;/li&gt;
-&lt;li&gt;如果你想解除关联,只需要Settrings -&amp;gt; Version Control删掉关联就可以了。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;#完成circlebar代码&lt;br&gt;接下来我们来实现我们的圆形渐变色进度条，需要的技能：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://i.imgur.com/s5MsBzS.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;尚未功成名就，如何衣锦还乡。&lt;/p&gt;
+&lt;p&gt;首先说下为什么有这个话题呢，因为博主前一段时间在找工作，也算有些小心得。不过今天的重点不是那些面试题们，而是由面试想到的一些东西想跟大家分享一下，个人认为这些甚至比面试题和面试技巧要来的重要。因为这些Tips会使我们跑的更快，走的更远。当然，不分享面试题似乎又有些耍流氓的嫌疑，所以想看面试题的童鞋&lt;a href=&quot;https://github.com/PleaseCallMeCoder/Topia/tree/master/startInterview&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;戳这里&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;这里插播一下最近的行情，最近不管大道还是小道消息都透露出一个意思：行情不太好。博主是去年毕业的，非211，985的普通本科生一枚。大家应该也都知道毕业一年这个点是很尴尬的，略微有点高不成低不就的意思。那么如果你的经验不多，又没有其他闪光点的话，可能面试通知会非常的是少。那怎么让面试机会多起来呢，这个没啥捷径，努力让自己变得更牛逼吧。关于这点推荐看下任玉刚大大的：&lt;a href=&quot;http://blog.csdn.net/singwhatiwanna/article/details/19174597&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt; 树立个人品牌：让名企hr们主动来找你 &lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;下面我来分享一些我从面试想到的点，这些点不分先后，但都是个人感触比较深的。&lt;/p&gt;
+&lt;p&gt;#我们应该会什么&lt;/p&gt;
+&lt;p&gt;不止是面试，以下这些点和我们的工作也是密切相关的，研究透了一劳永逸。&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Canvas绘图基础&lt;/li&gt;
-&lt;li&gt;Shader绘制渐变色&lt;/li&gt;
-&lt;li&gt;绘制进度条的原理&lt;/li&gt;
+&lt;li&gt;Java从基础到高深&lt;/li&gt;
+&lt;li&gt;Android从基础到高深&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;数据结构和算法&lt;/p&gt;
+&lt;p&gt;  关于算法我想多说几句，可能大家（包括我）会觉得这个东西有卵用，用的又不多。确实是这样的，这里给大家举个不太恰当的例子，国家为什么会征兵，和平时期又不打仗？但是不打仗我们就不征兵了么，养兵千日，用在一时。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;设计模式&lt;/li&gt;
+&lt;li&gt;Android源码&lt;/li&gt;
+&lt;li&gt;框架源码&lt;/li&gt;
+&lt;li&gt;架构&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;##Canvas绘图基础&lt;/p&gt;
-&lt;p&gt;关于Canvas绘图，网上的教程很多，这里大概的说一下都有哪些点需要了解：&lt;/p&gt;
+&lt;p&gt;这些点面试基本都会问道，具体问题就看面试官喜好和侧重点了。同时我们也不是为了面试而学习的，这些都会了我们的“天花板”才会更高。&lt;/p&gt;
+&lt;p&gt;#把面试当作一种检验&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;哪怕你不打算跳槽，隔一年左右也该整理下简历。&lt;/strong&gt;通过整理我们才能更好的把握我们在过去的一段时间是在往前跑、原地踏步还是往后退，以及我们之后该怎样做。&lt;strong&gt;隔一年左右出去面面试也是很有必要的&lt;/strong&gt;，通过面试我们可以清醒的认识到自己和自己想要的高端职位之间的距离还有多远，以及我们哪些方面还有不足。&lt;/p&gt;
+&lt;p&gt;#提高核心竞争力&lt;/p&gt;
+&lt;p&gt;说直白点就是我们身上有哪些点是高于这个经验段的平均的水平的，这样的点越多，我们的价值就越大。不要说我这人学东西比较快，我分析问题解决问题的能力比较强，这些套路说出来没什么杀伤力，看不到摸不着，谁知道是真是假。比如如果你有一年经验，跟其他一年经验的人一样，开源小能手一枚，细节不会比别人处理的好，同一个点也并不比别人研究的深，那人家为什么选你呢。所以&lt;strong&gt;尽量让自己有一门甚至更多拿得出手的东西&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;#我们应该如何去学习&lt;/p&gt;
+&lt;p&gt;关于如何学习一些知识点，大家可以尝试下下面的方式：&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Canvas坐标系与绘图坐标系。&lt;/li&gt;
-&lt;li&gt;drawARGB：Canvas中的drawARGB可以用来对整个Canvas以某种统一的颜色整体绘制，四个参数分别是Alpha、Red、Green、Blue，取值都是0-255。&lt;/li&gt;
-&lt;li&gt;drawText：Canvas中用drawText方法绘制文字。&lt;/li&gt;
-&lt;li&gt;drawPoint：Canvas中用drawPoint方法绘制点。&lt;/li&gt;
-&lt;li&gt;drawLine：Canvas通过drawLine方法绘制一条线段，通过drawLines方法绘制多段线。&lt;/li&gt;
-&lt;li&gt;drawRect：Canvas通过drawRect方法绘制矩形。&lt;/li&gt;
-&lt;li&gt;drawCircle：Canvas中用drawCircle方法绘制圆形。&lt;/li&gt;
-&lt;li&gt;drawOval：Canvas中提供了drawOval方法绘制椭圆。&lt;/li&gt;
-&lt;li&gt;drawArc：Canvas中提供了drawArc方法用于绘制弧，这里的弧指两种：弧面和弧线，弧面即用弧围成的填充面，弧线即为弧面的轮廓线。&lt;/li&gt;
-&lt;li&gt;drawPath：Canvas通过drawPath方法可以绘制Path。那Path是什么呢？Path致以过来是路径的意思，在Android中，Path是一种线条的组合图形，其可以由直线、二次曲线、三次曲线、椭圆的弧等组成。Path既可以画线条，也可以画填充面。&lt;/li&gt;
-&lt;li&gt;drawBitmap：Canvas中提供了drawBitmap方法用于绘制Bitmap。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;这个东西是什么，它有什么优点，我们怎样去使用它&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;这个东西是如何实现的，为什么它会有上述的优点，我们可不可以把这种实现方式应用到其他的场景&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;我们有没有更好的实现方式&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;##Paint和Shader&lt;/p&gt;
-&lt;p&gt;###Paint&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;画笔Paint控制着所绘制的图形的具体外观，Paint默认的字体大小为12px，在绘制文本时我们往往要考虑密度density设置合适的字体大小。画笔的默认颜色为黑色，默认的style为FILL，默认的cap为BUTT，默认的线宽为0.&lt;/li&gt;
-&lt;li&gt;在画面状的图形时，如果Paint的style是FILL，那么绘制的就是填充面；如果是STROKE，那么绘制的就是轮廓线。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;###Shader&lt;/p&gt;
-&lt;p&gt;androd 提供了Shader类专门用来渲染图像以及一些几何图形。Shader下面包括几个直接子类，分别是BitmapShader、 ComposeShader、LinearGradient、RadialGradient、SweepGradient。BitmapShader主要用来渲染图像，LinearGradient 用来进行梯度渲染，RadialGradient 用来进行环形渲染，SweepGradient 用来进行梯度渲染，ComposeShader则是一个 混合渲染，可以和其它几个子类组合起来使用。&lt;/p&gt;
-&lt;p&gt;Shader类的使用，都需要先构建Shader对象，然后通过Paint的setShader方法设置渲染对象，然后设置渲染对象，然后再绘制时使用这个Paint对象即可。&lt;/p&gt;
-&lt;p&gt;##绘制进度条&lt;/p&gt;
-&lt;p&gt;talk is cheap，show you my code。下面说一下绘制圆形渐变进度条的过程。&lt;/p&gt;
-&lt;p&gt;首先先跟大家说下原理，我们的主要绘制过程其实非常简单，&lt;strong&gt;调用drawArc方法绘制圆弧&lt;/strong&gt;。&lt;/p&gt;
-&lt;p&gt;先来说下drawArc方法。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;/**
-  * 绘制弧
-  * drawArc (RectF oval, float startAngle, float sweepAngle, boolean useCenter, Paint paint)
-  * oval是RecF类型的对象，其定义了椭圆的形状
-  * startAngle指的是绘制的起始角度，钟表的3点位置对应着0度，如果传入的startAngle小于0或者大于等于360，那么用startAngle对360进行取模后作为起始绘制角度。
-  * sweepAngle指的是从startAngle开始沿着钟表的顺时针方向旋转扫过的角度。如果sweepAngle大于等于360，那么会绘制完整的椭圆环。如果sweepAngle小于0，那么会用sweepAngle对360进行取模后作为扫过的角度。
-  * useCenter是个boolean值，如果为true，表示在绘制完环之后，用椭圆的中心点连接环上的起点和终点以闭合环；如果值为false，表示在绘制完环之后，环的起点和终点直接连接，不经过椭圆的中心点。
-  */    
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;里边需要传一个定义好的矩形&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;/**
-  *RectF rectF = new RectF(100, 100, 300, 300);
-  * 这四个参数分别代表的意思是：left   top   right   bottom  左 上 右 下
-  * left ： 矩形左边的X坐标
-  * top:    矩形顶部的Y坐标
-  * right :  矩形右边的X坐标
-  * bottom： 矩形底部的Y坐标
-  * 其实就是矩形的左上角和右下角的坐标值
-  */
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;接下来我们来看一个小例子，自定义view，在ondraw中调用如下方法：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;//绘制矩形框和圆弧
-private void drawArc(Canvas canvas) {
-
-    canvas.drawARGB(255, 56, 197, 186);
-
-    RectF rectF = new RectF(100, 100, 300, 300);
-
-    paint.setStrokeWidth(1 * density);//设置线宽
-    paint.setColor(0xFF6BB7ED);//设置颜色
-    paint.setStyle(Paint.Style.FILL);//默认设置画笔为填充模式
-
-    //绘制椭圆
-    paint.setStyle(Paint.Style.STROKE);//设置画笔为线条模式
-    canvas.drawArc(rectF, 0, 359, false, paint);
-
-    paint.setStrokeWidth(1 * density);//设置线宽
-    paint.setColor(0xff8bc5ba);//设置颜色
-    paint.setStyle(Paint.Style.STROKE);//默认设置画笔为填充模式
-
-    canvas.drawRect(rectF, paint);
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;效果如下图：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://i.imgur.com/VJ0oCyl.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;我们看到当我们以同一个矩形rectF为基准画了一个圆弧和矩形，圆弧正好为矩形的内切圆。这时候我们增大圆弧的线宽为21*density。效果如下图：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://i.imgur.com/MoYmQXp.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;可以看到圆弧以矩形为基准宽度向矩形外和矩形内各增大了10*density。&lt;/p&gt;
-&lt;p&gt;这时候我们以rectF为基准再多画一个圆弧。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt; paint.setStrokeWidth(11 * density);//设置线宽
-paint.setColor(0xFF303f9f);//设置颜色
-paint.setStyle(Paint.Style.FILL);//默认设置画笔为填充模式
-paint.setStrokeCap(Paint.Cap.ROUND);
-
-paint.setStyle(Paint.Style.STROKE);//设置画笔为线条模式
-canvas.drawArc(rectF, 0, 270, false, paint);
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;效果如下：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://i.imgur.com/0jJRZy2.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;perfect！可以看到我们要的效果基本已经出来了。&lt;/p&gt;
-&lt;p&gt;然后说一下具体的一些细节。&lt;/p&gt;
-&lt;p&gt;onmeasure，我们在里边去设置控件的大小为正方形：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@Override
-protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-
-    int height = getDefaultSize(getSuggestedMinimumHeight(), heightMeasureSpec);
-    int width = getDefaultSize(getSuggestedMinimumWidth(), widthMeasureSpec);
-    int min = Math.min(width, height);// 获取View最短边的长度
-    setMeasuredDimension(min, min);// 强制改View为以最短边为长度的正方形
-
-    circleStrokeWidth = Textscale(35, min);// 圆环的宽度
-    pressExtraStrokeWidth = Textscale(2, min);// 圆环离矩形的距离
-    /**
-     * 这四个参数分别代表的意思是：left   top   right   bottom  左 上 右 下
-     * left ： 矩形左边的X坐标
-     * top:    矩形顶部的Y坐标
-     * right :  矩形右边的X坐标
-     * bottom： 矩形底部的Y坐标
-     * 其实就是矩形的左上角和右下角的坐标值
-     */
-    mColorWheelRectangle.set(circleStrokeWidth + pressExtraStrokeWidth,
-            circleStrokeWidth + pressExtraStrokeWidth, min
-                    - circleStrokeWidth - pressExtraStrokeWidth, min
-                    - circleStrokeWidth - pressExtraStrokeWidth);// 设置圆环内圆的外接正方形
-    mColorWheelPaint.setStrokeWidth(circleStrokeWidth - 5);
-    mColorWheelPaintCentre.setStrokeWidth(circleStrokeWidth + 5);
-    mDefaultWheelPaint.setStrokeWidth(circleStrokeWidth - Textscale(2, min));
-    mDefaultWheelPaint.setShadowLayer(Textscale(10, min), 0, 0, Color.rgb(127, 127, 127));// 设置阴影
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;定义了一个setShaderColor方法来设置渐变色，这里我们用梯度渐变。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;/**
- * 设置渐变色
- *
- * @param shaderColor
- */
-public void setShaderColor(int[] shaderColor) {
-    this.mColors = shaderColor;
-    Shader newShader = new SweepGradient(0, 0, mColors, null);
-    mColorWheelPaint.setShader(newShader);
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;最后继承Animation类自定义一个动画效果，即根据进度计算角度，来慢慢绘制我们的进度条。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;/**
- * 进度条动画
- *
- * @author Administrator
- */
-public class BarAnimation extends Animation {
-    public BarAnimation() {
-
-    }
-
-    /**
-     * 每次系统调用这个方法时， 改变mSweepAnglePer，mPercent，stepnumbernow的值，
-     * 然后调用postInvalidate()不停的绘制view。
-     */
-    @Override
-    protected void applyTransformation(float interpolatedTime,
-                                       Transformation t) {
-        super.applyTransformation(interpolatedTime, t);
-        if (interpolatedTime &amp;lt; 1.0f) {
-            mPercent = Float.parseFloat(fnum.format(interpolatedTime
-                    * stepnumber * 100f / stepnumbermax));// 将浮点值四舍五入保留一位小数
-            mSweepAnglePer = interpolatedTime * stepnumber * 360
-                    / stepnumbermax;
-            stepnumbernow = (int) (interpolatedTime * stepnumber);
-        } else {
-            mPercent = Float.parseFloat(fnum.format(stepnumber * 100f
-                    / stepnumbermax));// 将浮点值四舍五入保留一位小数
-            mSweepAnglePer = stepnumber * 360 / stepnumbermax;
-            stepnumbernow = stepnumber;
-        }
-        postInvalidate();
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;好了，到这里我们的自定义圆形渐变色进度条就完全搞定了。&lt;/p&gt;
-&lt;p&gt;#上传到jcenter&lt;/p&gt;
-&lt;p&gt;上传到jcenter，我用的是bintray-release这个插件。这里可以参考这篇：&lt;a href=&quot;http://blog.csdn.net/lmj623565791/article/details/51148825&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://blog.csdn.net/lmj623565791/article/details/51148825&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;步骤如下：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;注册bintray.com账号，&lt;a href=&quot;https://bintray.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;注册地址&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;引入bintray-release，在需要上传的module里面填写相关publish的信息&lt;/li&gt;
-&lt;li&gt;调用上传的命令&lt;/li&gt;
-&lt;li&gt;Add to Jcenter提交审核&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;strong&gt;需要注意的是，这里我遇到了一个问题，在这里跟大家分享一下，即当我上传的moudle中带有中文注释，编码为utf-8的时候，上传会抛出异常，然后上传失败。从网上也没有找到太好的解决办法，最后我把中文中是全部删掉才上传成功。如果你有好的解决办法，请告诉我0.0&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;#结语&lt;/p&gt;
-&lt;p&gt;代码我已经上传到了github，github中有说明文档，欢迎Star、Fork。链接：&lt;a href=&quot;https://github.com/PleaseCallMeCoder/CircleProgressBar&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/PleaseCallMeCoder/CircleProgressBar&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;最后，欢迎大家关注我的微信公众号：CoderTopia。&lt;/p&gt;
-&lt;center&gt;&lt;img style=&quot;width:150px; height:150px&quot; src=&quot;http://img.blog.csdn.net/20160422143030784&quot;&gt;&lt;/center&gt;
-
-&lt;p&gt;参考链接：&lt;br&gt;&lt;a href=&quot;http://www.androidchina.net/3919.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.androidchina.net/3919.html&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;http://blog.csdn.net/lmj623565791/article/details/51148825&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://blog.csdn.net/lmj623565791/article/details/51148825&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;比如Android中的Handler机制，我们最开始肯定是先了解它是为了解决什么问题：实现子线程与UI线程的通信。Handler的基本用法是怎样的。这是第一步。其实好多人可能只到了这一步就没有再继续往下研究了。&lt;/p&gt;
+&lt;p&gt;然后我们可以就可以去研究它的实现原理了，包括Handler、Message Queue、Looper。从而了解它是如何实现通信的。&lt;/p&gt;
+&lt;p&gt;接下来就是发散思维了，比如我们的网络请求中会有好多请求，我们可以不以像Message Queue那样去管理我们的请求队列，能的话要怎么实现。然后我们能不能想到更好的实现线程间通信的方式。&lt;strong&gt;善于思考总结的人成就总不会太差。&lt;/strong&gt;&lt;/p&gt;
 </content>
     
     <summary type="html">
@@ -1147,6 +980,237 @@ Html.ImageGetter imageGetter = new Html.ImageGetter() {
       <category term="TextView" scheme="http://yoursite.com/tags/TextView/"/>
     
       <category term="原生控件属性" scheme="http://yoursite.com/tags/%E5%8E%9F%E7%94%9F%E6%8E%A7%E4%BB%B6%E5%B1%9E%E6%80%A7/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Andorid自定义圆形渐变色进度条的从实现到开源</title>
+    <link href="http://yoursite.com/2016/04/29/Andorid%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9C%86%E5%BD%A2%E6%B8%90%E5%8F%98%E8%89%B2%E8%BF%9B%E5%BA%A6%E6%9D%A1%E7%9A%84%E4%BB%8E%E5%AE%9E%E7%8E%B0%E5%88%B0%E5%BC%80%E6%BA%90/"/>
+    <id>http://yoursite.com/2016/04/29/Andorid自定义圆形渐变色进度条的从实现到开源/</id>
+    <published>2016-04-29T06:31:00.000Z</published>
+    <updated>2016-09-06T06:23:52.522Z</updated>
+    
+    <content type="html">&lt;p&gt;Andorid自定义圆形渐变色进度条的从实现到开源的全过程。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&quot;http://i.imgur.com/5tRNY53.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;信自己也是一种信仰&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;#写在前面的话&lt;/p&gt;
+&lt;p&gt;3月初我在自定义控件概述中挖下的几个坑，前一段时间已经基本填完了，自定义控件的几种实现方式也分别写了demo来进行说明。今天我们来聊一聊如何把&lt;strong&gt;自己封装一个圆形渐变色进度条控件开源到github，并且上传到jcenter方便别人远程依赖&lt;/strong&gt;。先看下效果图：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://i.imgur.com/N0ckzIs.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;#连接github并提交新项目&lt;/p&gt;
+&lt;p&gt;前提条件：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;安装Git客户端（&lt;a href=&quot;https://git-scm.com/downloads/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;下载地址&lt;/a&gt;）&lt;/li&gt;
+&lt;li&gt;有&lt;a href=&quot;https://github.com&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;GitHub&lt;/a&gt;账号 &lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;创建新项目并提交到Github：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;在AndroidStudio中新建一个项目&lt;/li&gt;
+&lt;li&gt;配置Git:Settings -&amp;gt; Version Control -&amp;gt; Git ,设置git目录,点击Test测试,如果成功会有Success提示&lt;br&gt;&lt;img src=&quot;http://i.imgur.com/Wv6s1jw.png&quot; alt=&quot;&quot;&gt;&lt;/li&gt;
+&lt;li&gt;关联自己的Github账号：Settring -&amp;gt; VersionControl -&amp;gt;GitHub,设置自己的github账号,密码,点击Test测试,如果成功会有Success提示&lt;br&gt;&lt;img src=&quot;http://i.imgur.com/7ZGSmgQ.png&quot; alt=&quot;&quot;&gt;&lt;/li&gt;
+&lt;li&gt;分享项目:VCS -&amp;gt; Import into Version Control -&amp;gt; Share Project on GitHub, 点击之后开始设置 repository name(如果你有设置过MasterPassword 会弹出对话框让填入密码)&lt;br&gt;&lt;img src=&quot;http://i.imgur.com/kg5inwD.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;点击Share之后, 你就可以在GitHub上看到新的仓库，同时在AndroidStudio中CVS下也可以看到版本控制Git，这样就已经设置成功。&lt;/li&gt;
+&lt;li&gt;如果你想解除关联,只需要Settrings -&amp;gt; Version Control删掉关联就可以了。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;#完成circlebar代码&lt;br&gt;接下来我们来实现我们的圆形渐变色进度条，需要的技能：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Canvas绘图基础&lt;/li&gt;
+&lt;li&gt;Shader绘制渐变色&lt;/li&gt;
+&lt;li&gt;绘制进度条的原理&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;##Canvas绘图基础&lt;/p&gt;
+&lt;p&gt;关于Canvas绘图，网上的教程很多，这里大概的说一下都有哪些点需要了解：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Canvas坐标系与绘图坐标系。&lt;/li&gt;
+&lt;li&gt;drawARGB：Canvas中的drawARGB可以用来对整个Canvas以某种统一的颜色整体绘制，四个参数分别是Alpha、Red、Green、Blue，取值都是0-255。&lt;/li&gt;
+&lt;li&gt;drawText：Canvas中用drawText方法绘制文字。&lt;/li&gt;
+&lt;li&gt;drawPoint：Canvas中用drawPoint方法绘制点。&lt;/li&gt;
+&lt;li&gt;drawLine：Canvas通过drawLine方法绘制一条线段，通过drawLines方法绘制多段线。&lt;/li&gt;
+&lt;li&gt;drawRect：Canvas通过drawRect方法绘制矩形。&lt;/li&gt;
+&lt;li&gt;drawCircle：Canvas中用drawCircle方法绘制圆形。&lt;/li&gt;
+&lt;li&gt;drawOval：Canvas中提供了drawOval方法绘制椭圆。&lt;/li&gt;
+&lt;li&gt;drawArc：Canvas中提供了drawArc方法用于绘制弧，这里的弧指两种：弧面和弧线，弧面即用弧围成的填充面，弧线即为弧面的轮廓线。&lt;/li&gt;
+&lt;li&gt;drawPath：Canvas通过drawPath方法可以绘制Path。那Path是什么呢？Path致以过来是路径的意思，在Android中，Path是一种线条的组合图形，其可以由直线、二次曲线、三次曲线、椭圆的弧等组成。Path既可以画线条，也可以画填充面。&lt;/li&gt;
+&lt;li&gt;drawBitmap：Canvas中提供了drawBitmap方法用于绘制Bitmap。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;##Paint和Shader&lt;/p&gt;
+&lt;p&gt;###Paint&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;画笔Paint控制着所绘制的图形的具体外观，Paint默认的字体大小为12px，在绘制文本时我们往往要考虑密度density设置合适的字体大小。画笔的默认颜色为黑色，默认的style为FILL，默认的cap为BUTT，默认的线宽为0.&lt;/li&gt;
+&lt;li&gt;在画面状的图形时，如果Paint的style是FILL，那么绘制的就是填充面；如果是STROKE，那么绘制的就是轮廓线。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;###Shader&lt;/p&gt;
+&lt;p&gt;androd 提供了Shader类专门用来渲染图像以及一些几何图形。Shader下面包括几个直接子类，分别是BitmapShader、 ComposeShader、LinearGradient、RadialGradient、SweepGradient。BitmapShader主要用来渲染图像，LinearGradient 用来进行梯度渲染，RadialGradient 用来进行环形渲染，SweepGradient 用来进行梯度渲染，ComposeShader则是一个 混合渲染，可以和其它几个子类组合起来使用。&lt;/p&gt;
+&lt;p&gt;Shader类的使用，都需要先构建Shader对象，然后通过Paint的setShader方法设置渲染对象，然后设置渲染对象，然后再绘制时使用这个Paint对象即可。&lt;/p&gt;
+&lt;p&gt;##绘制进度条&lt;/p&gt;
+&lt;p&gt;talk is cheap，show you my code。下面说一下绘制圆形渐变进度条的过程。&lt;/p&gt;
+&lt;p&gt;首先先跟大家说下原理，我们的主要绘制过程其实非常简单，&lt;strong&gt;调用drawArc方法绘制圆弧&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;先来说下drawArc方法。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;/**
+  * 绘制弧
+  * drawArc (RectF oval, float startAngle, float sweepAngle, boolean useCenter, Paint paint)
+  * oval是RecF类型的对象，其定义了椭圆的形状
+  * startAngle指的是绘制的起始角度，钟表的3点位置对应着0度，如果传入的startAngle小于0或者大于等于360，那么用startAngle对360进行取模后作为起始绘制角度。
+  * sweepAngle指的是从startAngle开始沿着钟表的顺时针方向旋转扫过的角度。如果sweepAngle大于等于360，那么会绘制完整的椭圆环。如果sweepAngle小于0，那么会用sweepAngle对360进行取模后作为扫过的角度。
+  * useCenter是个boolean值，如果为true，表示在绘制完环之后，用椭圆的中心点连接环上的起点和终点以闭合环；如果值为false，表示在绘制完环之后，环的起点和终点直接连接，不经过椭圆的中心点。
+  */    
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;里边需要传一个定义好的矩形&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;/**
+  *RectF rectF = new RectF(100, 100, 300, 300);
+  * 这四个参数分别代表的意思是：left   top   right   bottom  左 上 右 下
+  * left ： 矩形左边的X坐标
+  * top:    矩形顶部的Y坐标
+  * right :  矩形右边的X坐标
+  * bottom： 矩形底部的Y坐标
+  * 其实就是矩形的左上角和右下角的坐标值
+  */
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;接下来我们来看一个小例子，自定义view，在ondraw中调用如下方法：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;//绘制矩形框和圆弧
+private void drawArc(Canvas canvas) {
+
+    canvas.drawARGB(255, 56, 197, 186);
+
+    RectF rectF = new RectF(100, 100, 300, 300);
+
+    paint.setStrokeWidth(1 * density);//设置线宽
+    paint.setColor(0xFF6BB7ED);//设置颜色
+    paint.setStyle(Paint.Style.FILL);//默认设置画笔为填充模式
+
+    //绘制椭圆
+    paint.setStyle(Paint.Style.STROKE);//设置画笔为线条模式
+    canvas.drawArc(rectF, 0, 359, false, paint);
+
+    paint.setStrokeWidth(1 * density);//设置线宽
+    paint.setColor(0xff8bc5ba);//设置颜色
+    paint.setStyle(Paint.Style.STROKE);//默认设置画笔为填充模式
+
+    canvas.drawRect(rectF, paint);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;效果如下图：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://i.imgur.com/VJ0oCyl.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;我们看到当我们以同一个矩形rectF为基准画了一个圆弧和矩形，圆弧正好为矩形的内切圆。这时候我们增大圆弧的线宽为21*density。效果如下图：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://i.imgur.com/MoYmQXp.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;可以看到圆弧以矩形为基准宽度向矩形外和矩形内各增大了10*density。&lt;/p&gt;
+&lt;p&gt;这时候我们以rectF为基准再多画一个圆弧。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt; paint.setStrokeWidth(11 * density);//设置线宽
+paint.setColor(0xFF303f9f);//设置颜色
+paint.setStyle(Paint.Style.FILL);//默认设置画笔为填充模式
+paint.setStrokeCap(Paint.Cap.ROUND);
+
+paint.setStyle(Paint.Style.STROKE);//设置画笔为线条模式
+canvas.drawArc(rectF, 0, 270, false, paint);
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;效果如下：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://i.imgur.com/0jJRZy2.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;perfect！可以看到我们要的效果基本已经出来了。&lt;/p&gt;
+&lt;p&gt;然后说一下具体的一些细节。&lt;/p&gt;
+&lt;p&gt;onmeasure，我们在里边去设置控件的大小为正方形：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@Override
+protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+
+    int height = getDefaultSize(getSuggestedMinimumHeight(), heightMeasureSpec);
+    int width = getDefaultSize(getSuggestedMinimumWidth(), widthMeasureSpec);
+    int min = Math.min(width, height);// 获取View最短边的长度
+    setMeasuredDimension(min, min);// 强制改View为以最短边为长度的正方形
+
+    circleStrokeWidth = Textscale(35, min);// 圆环的宽度
+    pressExtraStrokeWidth = Textscale(2, min);// 圆环离矩形的距离
+    /**
+     * 这四个参数分别代表的意思是：left   top   right   bottom  左 上 右 下
+     * left ： 矩形左边的X坐标
+     * top:    矩形顶部的Y坐标
+     * right :  矩形右边的X坐标
+     * bottom： 矩形底部的Y坐标
+     * 其实就是矩形的左上角和右下角的坐标值
+     */
+    mColorWheelRectangle.set(circleStrokeWidth + pressExtraStrokeWidth,
+            circleStrokeWidth + pressExtraStrokeWidth, min
+                    - circleStrokeWidth - pressExtraStrokeWidth, min
+                    - circleStrokeWidth - pressExtraStrokeWidth);// 设置圆环内圆的外接正方形
+    mColorWheelPaint.setStrokeWidth(circleStrokeWidth - 5);
+    mColorWheelPaintCentre.setStrokeWidth(circleStrokeWidth + 5);
+    mDefaultWheelPaint.setStrokeWidth(circleStrokeWidth - Textscale(2, min));
+    mDefaultWheelPaint.setShadowLayer(Textscale(10, min), 0, 0, Color.rgb(127, 127, 127));// 设置阴影
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;定义了一个setShaderColor方法来设置渐变色，这里我们用梯度渐变。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;/**
+ * 设置渐变色
+ *
+ * @param shaderColor
+ */
+public void setShaderColor(int[] shaderColor) {
+    this.mColors = shaderColor;
+    Shader newShader = new SweepGradient(0, 0, mColors, null);
+    mColorWheelPaint.setShader(newShader);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;最后继承Animation类自定义一个动画效果，即根据进度计算角度，来慢慢绘制我们的进度条。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;/**
+ * 进度条动画
+ *
+ * @author Administrator
+ */
+public class BarAnimation extends Animation {
+    public BarAnimation() {
+
+    }
+
+    /**
+     * 每次系统调用这个方法时， 改变mSweepAnglePer，mPercent，stepnumbernow的值，
+     * 然后调用postInvalidate()不停的绘制view。
+     */
+    @Override
+    protected void applyTransformation(float interpolatedTime,
+                                       Transformation t) {
+        super.applyTransformation(interpolatedTime, t);
+        if (interpolatedTime &amp;lt; 1.0f) {
+            mPercent = Float.parseFloat(fnum.format(interpolatedTime
+                    * stepnumber * 100f / stepnumbermax));// 将浮点值四舍五入保留一位小数
+            mSweepAnglePer = interpolatedTime * stepnumber * 360
+                    / stepnumbermax;
+            stepnumbernow = (int) (interpolatedTime * stepnumber);
+        } else {
+            mPercent = Float.parseFloat(fnum.format(stepnumber * 100f
+                    / stepnumbermax));// 将浮点值四舍五入保留一位小数
+            mSweepAnglePer = stepnumber * 360 / stepnumbermax;
+            stepnumbernow = stepnumber;
+        }
+        postInvalidate();
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;好了，到这里我们的自定义圆形渐变色进度条就完全搞定了。&lt;/p&gt;
+&lt;p&gt;#上传到jcenter&lt;/p&gt;
+&lt;p&gt;上传到jcenter，我用的是bintray-release这个插件。这里可以参考这篇：&lt;a href=&quot;http://blog.csdn.net/lmj623565791/article/details/51148825&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://blog.csdn.net/lmj623565791/article/details/51148825&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;步骤如下：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;注册bintray.com账号，&lt;a href=&quot;https://bintray.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;注册地址&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;引入bintray-release，在需要上传的module里面填写相关publish的信息&lt;/li&gt;
+&lt;li&gt;调用上传的命令&lt;/li&gt;
+&lt;li&gt;Add to Jcenter提交审核&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;需要注意的是，这里我遇到了一个问题，在这里跟大家分享一下，即当我上传的moudle中带有中文注释，编码为utf-8的时候，上传会抛出异常，然后上传失败。从网上也没有找到太好的解决办法，最后我把中文中是全部删掉才上传成功。如果你有好的解决办法，请告诉我0.0&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;#结语&lt;/p&gt;
+&lt;p&gt;代码我已经上传到了github，github中有说明文档，欢迎Star、Fork。链接：&lt;a href=&quot;https://github.com/PleaseCallMeCoder/CircleProgressBar&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/PleaseCallMeCoder/CircleProgressBar&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;最后，欢迎大家关注我的微信公众号：CoderTopia。&lt;/p&gt;
+&lt;center&gt;&lt;img style=&quot;width:150px; height:150px&quot; src=&quot;http://img.blog.csdn.net/20160422143030784&quot;&gt;&lt;/center&gt;
+
+&lt;p&gt;参考链接：&lt;br&gt;&lt;a href=&quot;http://www.androidchina.net/3919.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.androidchina.net/3919.html&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;http://blog.csdn.net/lmj623565791/article/details/51148825&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://blog.csdn.net/lmj623565791/article/details/51148825&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Andorid自定义圆形渐变色进度条的从实现到开源的全过程。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+    
+    </summary>
+    
+      <category term="自定义控件" scheme="http://yoursite.com/categories/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A7%E4%BB%B6/"/>
+    
+    
+      <category term="自定义控件" scheme="http://yoursite.com/tags/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A7%E4%BB%B6/"/>
+    
+      <category term="原形渐变色进度条" scheme="http://yoursite.com/tags/%E5%8E%9F%E5%BD%A2%E6%B8%90%E5%8F%98%E8%89%B2%E8%BF%9B%E5%BA%A6%E6%9D%A1/"/>
     
   </entry>
   
@@ -2258,77 +2322,6 @@ Android性能优化似乎是一个老生常谈的问题，但我似乎只是一�
       <category term="官方文档" scheme="http://yoursite.com/tags/%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3/"/>
     
       <category term="重写" scheme="http://yoursite.com/tags/%E9%87%8D%E5%86%99/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Androd自定义控件（二）自定义类继承view</title>
-    <link href="http://yoursite.com/2016/03/06/Androd%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A7%E4%BB%B6%EF%BC%88%E4%BA%8C%EF%BC%89%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B1%BB%E7%BB%A7%E6%89%BFview/"/>
-    <id>http://yoursite.com/2016/03/06/Androd自定义控件（二）自定义类继承view/</id>
-    <published>2016-03-06T14:54:00.000Z</published>
-    <updated>2016-05-07T04:28:46.936Z</updated>
-    
-    <content type="html">&lt;p&gt;在自定义控件（一）中呢，大家已经对自定义控件有了一个基本的认识，今天就和大家分享一下如何自定义类继承view来实现我们的功能。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;在自定义控件（一）中呢，大家已经对自定义控件有了一个基本的认识，今天就和大家分享一下如何自定义类继承view来实现我们的功能。&lt;/p&gt;
-&lt;p&gt;###需求&lt;br&gt;&lt;img src=&quot;http://img.blog.csdn.net/20160306215538224&quot; alt=&quot;这里写图片描述&quot;&gt;&lt;br&gt;效果图如上图所示，要求如下：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;背景颜色从上到下由深变浅。&lt;/li&gt;
-&lt;li&gt;小黄点的数量从上到下由多到少。&lt;/li&gt;
-&lt;li&gt;小黄点的颜色大小随机。&lt;/li&gt;
-&lt;li&gt;该控件可分为5个等级，最佳为背景全白，没有小黄点。最严重为颜色最深，小黄点最多。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;hr&gt;
-&lt;p&gt; &lt;strong&gt;好，需求就是这个样子。看到这里呢，希望小伙伴们先不要着急往下看，可以设身处地的想一想，如果是自己做的话，要怎样实现。&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;###实现方案&lt;br&gt;接下来跟大家分享一下我的实现方案。看到这个需求我想到的方案有两个。&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;把每一颗牙齿作为一个单位，我们去控制单个牙齿的背景色和小黄点的数量。然后绘制出四颗牙齿，按顺序摆放。优点是可以比较精确的控制每颗牙齿的显示情况。缺点是每颗牙齿都要去绘制，需要自己去用画笔滑出牙齿的轮廓，背景和小黄点。&lt;/li&gt;
-&lt;li&gt;把四颗牙齿作为一个单位，分成上下两层。上层是一张中间透明，两边是白色的图片。下层是一个从上到下颜色由深到钱，小黄点由少到多的自定义view。通过绘制不同的背景层，显示我们要的效果。优点是只需要绘制背景即可实现我们要的功能，不需要去分别绘制每颗牙齿的轮廓。鉴于我们的需求，不需要精确到每颗牙齿，这里我们选择第二种实现方案。&lt;br&gt;###具体实现&lt;br&gt;我们先梳理一下第二种实现方式需要用到的知识点&lt;br&gt;#####1.自定义类继承view实现自定义控件的步骤。&lt;br&gt;#####2.如何去测量控件的大小。&lt;br&gt;#####3.画笔的使用。&lt;br&gt;好，接下来我们来按步骤实现这个控件。&lt;br&gt;####初始化&lt;/li&gt;
-&lt;/ol&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;35&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;36&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;37&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;/**&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     * 定义两种模式,平均和渐变&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     */&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    public enum MODE &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        AVERAGE, SHADE&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    public Chart(Context context) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        super(context);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        init();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    public Chart(Context context, AttributeSet attrs) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        super(context, attrs);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        init();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    public Chart(Context context, AttributeSet attrs, int defStyleAttr) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        super(context, attrs, defStyleAttr);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        init();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    private void init() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        mPaint = new Paint();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        mPaint.setAntiAlias(true);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        random = new Random();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        isNull = false;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        isBig = false;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        deltaX = 20;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        deltaY = 30;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        bgAlpha = 50;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        sizeY = 1;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        floatY = 10;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        de = 3;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        mode = MODE.AVERAGE;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;为了让小黄点从上到下由少到多的显示，我是这样实现的，随机生成一个0-20的初始Y轴坐标，然后绘制每列的小黄点。小黄点的间距是逐渐减小的，这样小黄点就会越来越密集。而X的坐标是一个初始值加上一个随机值，这样绘制出来的小黄点每两列间距也是随机的。显示效果会比较好看。&lt;br&gt;在初始化的方法里，我们初始化了一些x轴和y轴的初始数据。同时我定义了两种模式，一种是小黄点均匀分布，两一种是逐渐增多。&lt;/p&gt;
-&lt;p&gt;####测量&lt;br&gt;系统帮我们测量的高度和宽度都是MATCH_PARNET，当我们设置明确的宽度和高度时，系统帮我们测量的结果就是我们设置的结果，当我们设置为WRAP_CONTENT,或者MATCH_PARENT系统帮我们测量的结果就是MATCH_PARENT的长度。&lt;br&gt;所以，当设置了WRAP_CONTENT时，我们需要自己进行测量，即重写onMesure方法”：&lt;/p&gt;
-&lt;p&gt;重写之前先了解MeasureSpec的specMode,一共三种类型：&lt;/p&gt;
-&lt;p&gt;EXACTLY：一般是设置了明确的值或者是MATCH_PARENT&lt;/p&gt;
-&lt;p&gt;AT_MOST：表示子布局限制在一个最大值内，一般为WARP_CONTENT&lt;/p&gt;
-&lt;p&gt;UNSPECIFIED：表示子布局想要多大就多大，很少使用&lt;/p&gt;
-&lt;p&gt;下面是测量的方法&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;@Override&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        setMeasuredDimension(getMeasuredLength(widthMeasureSpec, true, this), getMeasuredLength(heightMeasureSpec, false, this));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    /**&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     * 根据布局模式计算宽高&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     *&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     * @param measureSpec&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     * @param isWidth&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     * @return&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     */&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    public static int getMeasuredLength(int measureSpec, boolean isWidth, View view) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        int result;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        int specMode = View.MeasureSpec.getMode(measureSpec);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        int specSize = View.MeasureSpec.getSize(measureSpec);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        if (specMode == View.MeasureSpec.EXACTLY) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            result = specSize;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125; else &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            if (isWidth) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                result = view.getPaddingLeft() + view.getPaddingRight();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125; else &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                result = view.getPaddingTop() + view.getPaddingBottom();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            if (specMode == View.MeasureSpec.AT_MOST) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                result = Math.min(result, specSize);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        return result;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;####绘制&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;35&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;36&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;37&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;38&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;39&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;40&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;41&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;42&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;43&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;44&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;45&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;46&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;47&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;48&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;49&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;50&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;51&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;52&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;53&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;54&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;55&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;56&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;57&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;58&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;59&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;60&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;61&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;62&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;63&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;64&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;65&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;66&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;67&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;68&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;69&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;70&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;71&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;72&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;73&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;74&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;@Override&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    protected void onDraw(Canvas canvas) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        //isNull为true,背景为纯白色,不显示牙菌斑&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        if (isNull) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            //填充背景颜色&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            mPaint.setColor(0xffffffff);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            canvas.drawRect(0, 0, getMeasuredWidth(), getMeasuredHeight(), mPaint);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125; else &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            //填充背景颜色&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            mPaint.setColor(0xffFEF8ED);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            //绘制点&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;//        int canvasWidth = canvas.getWidth();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            int canvasHeight = canvas.getHeight();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            LinearGradient lg = new LinearGradient(0, 0, 0, canvasHeight, 0x7ff1b351, 0xfff1b351, Shader.TileMode.MIRROR);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            mPaint.setShader(lg);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            mPaint.setAlpha(bgAlpha);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            canvas.drawRect(0, 0, getMeasuredWidth(), getMeasuredHeight(), mPaint);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            int x = 0;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            //绘制Cap为ROUND的点&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            mPaint.setStrokeCap(Paint.Cap.ROUND);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            switch (mode) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                case AVERAGE:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    for (int i = 0; i &amp;lt; 80; i++) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                        int startX = deltaX + random.nextInt(10);//x每次增加的距离&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                        int startY = 0 + random.nextInt(floatY);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                        x = x + startX;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                        int y = startY;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                        for (int j = 0; j &amp;lt; 80; j++) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                            int alpha = 70 + random.nextInt(100);//随机生成透明度的点&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                            int size = 5 + random.nextInt(5);//设置线宽，如果不设置线宽，无法绘制点&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                            mPaint.setStrokeWidth(size);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                            mPaint.setAlpha(alpha);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                            mPaint.setShader(null);//清空渐变色&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                            canvas.drawPoint(x, y + deltaY, mPaint);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                            y = y + deltaY;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    break;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                case SHADE:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    for (int i = 0; i &amp;lt; 80; i++) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                        int startX = deltaX + random.nextInt(10);//x每次增加的距离&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                        int startY = 0 + random.nextInt(floatY);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                        x = x + startX;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                        int deltay = deltaY;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                        int y = startY;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                        boolean isFirst = true;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;//                    Log.e(TAG, &amp;quot;&amp;quot; + startY);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                        for (int j = 0; j &amp;lt; 80; j++) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                            int alpha = 70 + random.nextInt(100);//随机生成透明度的点&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                            int size;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                            if (isBig) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                                size = (int) ((5 + random.nextInt(10)) * de / 3);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                            &amp;#125; else &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                                size = (int) ((3 + random.nextInt(7)) * de / 3);//设置线宽，如果不设置线宽，无法绘制点&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                            mPaint.setStrokeWidth(size);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                            mPaint.setAlpha(alpha);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                            if (deltay &amp;lt; 15) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                                deltay = 20;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                            if (isFirst) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                                canvas.drawPoint(x, y, mPaint);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                                isFirst = false;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                            &amp;#125; else &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                                canvas.drawPoint(x, y + deltay, mPaint);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                                y = y + deltay;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                            deltay -= sizeY;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    break;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;在这里，我们给先给画笔设置一个线性随机色，绘制背景。&lt;br&gt;然后设置设置画笔粗细为随机，透明度随机，来绘制小黄点。为了使小黄点在不同分辨率上显示出相同的效果，它的像素值我们来根据手机的分辨率去计算。&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;public int getDis(Activity activity) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		DisplayMetrics metric = new DisplayMetrics();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		activity.getWindowManager().getDefaultDisplay().getMetrics(metric);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		int width = metric.widthPixels; // 屏幕宽度（像素）&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		int height = metric.heightPixels; // 屏幕高度（像素）&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		float density = metric.density; // 屏幕密度（0.75 / 1.0 / 1.5 / 2.0）&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		int densityDpi = metric.densityDpi; // 屏幕密度DPI（120 / 160 / 240 / 320）&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		if (density &amp;lt; 1.0) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			return -1;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;#125; else if (density == 1.0) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			return 0;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;#125; else if (density == 1.5) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			return 1;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;#125; else &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			return 2;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;####引用&lt;br&gt;到这里这个控件基本上就写完了，然后我们需要给外部提供一个方法，去设置这个控件的不同状态。&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;35&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;36&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;37&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;38&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;39&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;40&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;41&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;/**&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     * 根据不同的时间,显示不同的背景(小图)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     *&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     * @param time&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     */&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    public void setChartLittele(int time, float de) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        this.de = de;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        if (time &amp;gt;= 400) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            setBg(true, 0, 0, 0, 0, 0, Chart.MODE.SHADE);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125; else if (time &amp;gt;= 320 &amp;amp;&amp;amp; time &amp;lt; 400) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            setBg(false, 26, 36, 1, 20, 10, Chart.MODE.SHADE);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125; else if (time &amp;gt;= 240 &amp;amp;&amp;amp; time &amp;lt; 320) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            setBg(false, 22, 32, 1, 20, 20, Chart.MODE.SHADE);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125; else if (time &amp;gt;= 160 &amp;amp;&amp;amp; time &amp;lt; 240) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            setBg(false, 18, 28, 1, 20, 30, Chart.MODE.SHADE);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125; else if (time &amp;gt;= 80 &amp;amp;&amp;amp; time &amp;lt; 160) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            setBg(false, 14, 24, 1, 20, 40, Chart.MODE.SHADE);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125; else if (time &amp;gt;= 0 &amp;amp;&amp;amp; time &amp;lt; 80) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            setBg(false, 10, 20, 1, 20, 50, Chart.MODE.SHADE);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;/**&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     * 设置背景牙菌斑的密集程度&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     *&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     * @param deltaX  x轴每次往后移动的距离(随机)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     * @param deltaY  y轴每次往下移动的距离&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     * @param sizeY   渐变模式y每次减少的距离&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     * @param floatY  Y轴开始的随机坐标&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     * @param bgAlpha 背景渐变色的透明度&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     * @param mode    模式&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     */&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    public void setBg(boolean isNull, int deltaX, int deltaY, int sizeY, int floatY, int bgAlpha, MODE mode) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        this.isNull = isNull;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        this.deltaX = deltaX;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        this.deltaY = deltaY;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        this.sizeY = sizeY;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        this.floatY = floatY;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        this.bgAlpha = bgAlpha;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        this.mode = mode;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        invalidate();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;看一下布局文件&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;LinearLayout xmlns:android=&amp;quot;http://schemas.android.com/apk/res/android&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    xmlns:tools=&amp;quot;http://schemas.android.com/tools&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    android:layout_width=&amp;quot;match_parent&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    android:layout_height=&amp;quot;match_parent&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    android:background=&amp;quot;#fff&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    android:gravity=&amp;quot;center&amp;quot; &amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;lt;FrameLayout&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        android:layout_width=&amp;quot;115dp&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        android:layout_height=&amp;quot;115dp&amp;quot; &amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;lt;com.oracleen.view.Chart&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            android:id=&amp;quot;@+id/chart&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            android:layout_width=&amp;quot;match_parent&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            android:layout_height=&amp;quot;match_parent&amp;quot; /&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;lt;ImageView&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            android:layout_width=&amp;quot;match_parent&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            android:layout_height=&amp;quot;match_parent&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            android:background=&amp;quot;@drawable/check_right_second&amp;quot; /&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;lt;/FrameLayout&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;/LinearLayout&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;这里我们用了一个framelayout，上层是一张镂空的图片，下层是我们绘制的背景。&lt;br&gt;然后在activity中设置背景的显示级别。&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;chart = (Chart) findViewById(R.id.chart);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;chart.setChartLittele(300, getDis(this));&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;OK，搞定。demo链接。&lt;br&gt;&lt;a href=&quot;http://download.csdn.net/detail/sdkfjksf/9454156&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;demo&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;下一章我会和大家分享一下组合view的实现，把今天实现的view和前景图片做成一个控件，添加一些属性，使用起来会更方便一些。&lt;/strong&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;在自定义控件（一）中呢，大家已经对自定义控件有了一个基本的认识，今天就和大家分享一下如何自定义类继承view来实现我们的功能。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-    
-    </summary>
-    
-      <category term="自定义控件" scheme="http://yoursite.com/categories/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A7%E4%BB%B6/"/>
-    
-    
-      <category term="自定义控件" scheme="http://yoursite.com/tags/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A7%E4%BB%B6/"/>
-    
-      <category term="View" scheme="http://yoursite.com/tags/View/"/>
-    
-      <category term="绘制" scheme="http://yoursite.com/tags/%E7%BB%98%E5%88%B6/"/>
-    
-      <category term="paint" scheme="http://yoursite.com/tags/paint/"/>
     
   </entry>
   

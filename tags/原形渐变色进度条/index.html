@@ -3,18 +3,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>那些年大家都在谈论的Android性能优化 | PleaseCallMeCoder</title>
+  <title>Tag: 原形渐变色进度条 | PleaseCallMeCoder</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Android性能优化概述。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="那些年大家都在谈论的Android性能优化">
-<meta property="og:url" content="http://yoursite.com/2016/03/09/那些年大家都在谈论的Android性能优化/index.html">
+  <meta name="description">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PleaseCallMeCoder">
+<meta property="og:url" content="http://yoursite.com/tags/原形渐变色进度条/index.html">
 <meta property="og:site_name" content="PleaseCallMeCoder">
-<meta property="og:description" content="Android性能优化概述。">
-<meta property="og:updated_time" content="2016-05-07T04:50:24.607Z">
+<meta property="og:description">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="那些年大家都在谈论的Android性能优化">
-<meta name="twitter:description" content="Android性能优化概述。">
+<meta name="twitter:title" content="PleaseCallMeCoder">
+<meta name="twitter:description">
   
     <link rel="alternative" href="/atom.xml" title="PleaseCallMeCoder" type="application/atom+xml">
   
@@ -44,9 +43,9 @@
           fancybox: true,
           animate: true,
           isHome: false,
-          isPost: true,
+          isPost: false,
           isArchive: false,
-          isTag: false,
+          isTag: true,
           isCategory: false,
           open_in_new: false,
           fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
@@ -209,218 +208,58 @@
     </div>
     <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
 </nav>
-      <div class="body-wrap"><article id="post-那些年大家都在谈论的Android性能优化" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap">
   
-    <div class="article-meta">
-      <a href="/2016/03/09/那些年大家都在谈论的Android性能优化/" class="article-date">
-      <time datetime="2016-03-09T14:07:00.000Z" itemprop="datePublished">2016-03-09</time>
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2016" class="archive-year">2016</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+          <div class="article-meta">
+              <a href="/2016/04/29/Andorid自定义圆形渐变色进度条的从实现到开源/" class="archive-article-date">
+      <time datetime="2016-04-29T06:31:00.000Z" itemprop="datePublished">04-29</time>
 </a>
-    </div>
+        </div>
+         
   
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      那些年大家都在谈论的Android性能优化
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2016/04/29/Andorid自定义圆形渐变色进度条的从实现到开源/">Andorid自定义圆形渐变色进度条的从实现到开源</a>
     </h1>
   
 
-      </header>
-      
-      <div class="article-info article-info-post">
-        
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/性能优化/">性能优化</a>
-    </div>
-
-
-        
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/性能优化关键点/">性能优化关键点</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/性能优化概述/">性能优化概述</a></li></ul>
-    </div>
-
-        <div class="clearfix"></div>
-      </div>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
+        <div class="article-info info-on-archive">
           
-        <p>Android性能优化概述。</p>
-<ul>
-<li><a id="more"></a>
-Android性能优化似乎是一个老生常谈的问题，但我似乎只是一个新生。我不能像老生那样告诉你N多的优化方法。从去年毕业一直到现在，大大小小的项目也写了三个了。第一个是实习的时候自己一个人搞的，服务器带客户端。然后后两个是毕业后来新公司和一个同事一起搞的，已经上线了，也都在更新维护。<br>那我也来谈谈如何进行优化？好像并不能。老板需要的是速成，优化有卵用，还不如在大更一个版本。但事实好像并不是这样的，用户铺天盖地的反馈都证明了这样做出来的app体验不好。写这篇博客我所想做的和我要说明的是，<strong>作为一个不是老生的新生，我们该怎么去在性能优化的道路上摸索前进。</strong><br>###WHAT?什么是性能问题？<br>在性能测试中存在两个概念：<br>####(1). 响应时间<br>指从用户操作开始到系统给用户以正确反馈的时间。一般包括逻辑处理时间 + 网络传输时间 + 展现时间。对于非网络类应用不包括网络传输时间。<br>展现时间即网页或 App 界面渲染时间。<br>响应时间是用户对性能最直接的感受。<br>####(2). TPS(Transaction Per Second)<br>TPS为每秒处理的事务数，是系统吞吐量的指标，在搜索系统中也用QPS(Query Per Second)衡量。TPS一般与响应时间反相关。<br>通常所说的性能问题就是指响应时间过长、系统吞吐量过低。<br>对后台开发来说，也常将高并发下内存泄漏归为性能问题。<br>对移动开发来说，性能问题还包括电量、内存使用这两类较特殊情况。<br>###HOW?怎样去进行性能优化？<br>明白了何为性能问题之后，就能明白性能优化实际就是优化系统的响应时间，提高TPS。优化响应时间，提高TPS。方式不外乎这三大类：<br>####(1) 降低执行时间<br>又包括几小类<br>#####a. 利用多线程并发或分布式提高 TPS<br>#####b. 缓存(包括对象缓存、IO 缓存、网络缓存等)<br>#####c. 数据结构和算法优化<br>#####d. 性能更优的底层接口调用，如 JNI 实现<br>#####e. 逻辑优化<br>#####f. 需求优化<br>####(2) 同步改异步，利用多线程提高TPS<br>####(3) 提前或延迟操作，错峰提高TPS<br>###WHERE?Android中的性能问题常出现在哪里？<br>####(1)UI中的性能问题<br>#####a.布局<br>#####b.绘制<br>####(2)内存中的性能问题<br>#####a.内存泄露<br>#####b.响应速度<br>#####c.listview<br>#####d.OOM<br>#####e.对象的内存占用过大以及不能重复利用<br>#####f.bitmap加载<br>####(3)关于电量的性能问题<br>####(4)关于网络的性能问题<br>###纳尼？<br>其实这些都是那些老生总结过的经验，虽然有些拿来主义，但是凭我现在的水平好像也总结不出花来。那要这篇博客何用？不急不急，这只是开胃菜而已。在以后的博客当中，我会就Android中经常出现性能问题，去一步一步提升我做过的项目的性能。<br><strong>其实每个人都在成为大神的路上，只不过有的人在走，而有的人在跑。不急不躁，脚踏实地，我们也可以————致不是老生的新生</strong></li>
-</ul>
-
-      
-    </div>
-    
-  </div>
-  
-    
-    <div class="copyright">
-        <p><span>Title:</span><a href="/2016/03/09/那些年大家都在谈论的Android性能优化/">那些年大家都在谈论的Android性能优化</a></p>
-        <p><span>Author:</span><a href="/" title="Back to Homepage">任磊</a></p>
-        <p><span>Created:</span>2016-03-09, 22:07:00</p>
-        <p><span>Updated:</span>2016-05-07, 12:50:24</p>
-        <p>
-            <span>Full URL:</span><a class="post-url" href="/2016/03/09/那些年大家都在谈论的Android性能优化/" title="那些年大家都在谈论的Android性能优化">http://yoursite.com/2016/03/09/那些年大家都在谈论的Android性能优化/</a>
-            <span class="copy-path" data-clipboard-text="From http://yoursite.com/2016/03/09/那些年大家都在谈论的Android性能优化/　　By 任磊" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
-            <script> var clipboard = new Clipboard('.copy-path'); </script>
-        </p>
-        <p>
-            <span>License:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"CC BY-NC-SA 4.0"</a> Keep Link &amp; Author if Distribute.
-        </p>
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/自定义控件/">自定义控件</a>
     </div>
 
 
+          
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/原形渐变色进度条/">原形渐变色进度条</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/自定义控件/">自定义控件</a></li></ul>
+    </div>
 
-    <nav id="article-nav">
-        
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2016/03/14/Androd自定义控件（三）飞翔的小火箭/">
-                    Androd自定义控件（三）飞翔的小火箭
-                </a>
-            </div>
-        
-        
-            <div id="article-nav-older" class="article-nav-title">
-                <a href="/2016/03/08/自定义view你需要知道的/">
-                    自定义view你需要知道的
-                </a>
-            </div>
-        
-    </nav>
-
-  
-</article>
-
-    <div id="toc" class="toc-article">
-    <strong class="toc-title">Contents</strong>
-    
-</div>
-<style>
-    .left-col .switch-btn {
-        display: none;
-    }
-    .left-col .switch-area {
-        display: none;
-    }
-</style>
-
-<input type="button" id="tocButton" value="Hide"  title="Show or Hide Table of Contents">
-<script>
-    var valueHide = "Hide";
-    var valueShow = "Show";
-
-    if ($(".left-col").is(":hidden")) {
-        $("#tocButton").attr("value", valueShow);
-    }
-
-    $("#tocButton").click(function() {
-        if ($("#toc").is(":hidden")) {
-            $("#tocButton").attr("value", valueHide);
-            $("#toc").slideDown(320);
-            $(".switch-btn, .switch-area").fadeOut(300);
-        }
-        else {
-            $("#tocButton").attr("value", valueShow);
-            $("#toc").slideUp(350);
-            $(".switch-btn, .switch-area").fadeIn(500);
-        }
-    })
-
-    if ($(".toc").length < 1) {
-        $("#toc, #tocButton").hide();
-        $(".switch-btn, .switch-area").show();
-    }
-</script>
-
-
-
-
-
-    
-<div class="share">
-    
-        <div class="bdsharebuttonbox">
-            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
-            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
-            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
-            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
-            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
-            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
-            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
         </div>
-        <script>
-            window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"那些年大家都在谈论的Android性能优化　| PleaseCallMeCoder　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
-        </script>
-    
-
-    
-</div>
-
-
-
-
-
-
-
-    
-      <div class="duoshuo" id="comments">
-    <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="2016/03/09/那些年大家都在谈论的Android性能优化/" data-title="那些年大家都在谈论的Android性能优化" data-url="http://yoursite.com/2016/03/09/那些年大家都在谈论的Android性能优化/"></div>
-    <!-- 多说评论框 end -->
-    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-    <script type="text/javascript">
-    var duoshuoQuery = {short_name:"renleicoder"};
-    (function() {
-        var ds = document.createElement('script');
-        ds.type = 'text/javascript';ds.async = true;
-        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-        ds.charset = 'UTF-8';
-        (document.getElementsByTagName('head')[0] 
-         || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-    </script>
-    <!-- 多说公共JS代码 end -->
-</div>
+        <div class="clearfix"></div>
+    </header>
+  </div>
+</article>
+  
+  
+    </div></section>
+  
 
     
 
-
-
-
-    <div class="scroll" id="post-nav-button">
-        
-            <a href="/2016/03/14/Androd自定义控件（三）飞翔的小火箭/" title="Pre: Androd自定义控件（三）飞翔的小火箭">
-                <i class="fa fa-angle-left"></i>
-            </a>
-        
-
-        <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
-
-        
-            <a href="/2016/03/08/自定义view你需要知道的/" title="Next: 自定义view你需要知道的">
-                <i class="fa fa-angle-right"></i>
-            </a>
-        
-    </div>
-
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/09/02/由面试想到的/">由面试想到的</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/12/分享一个基于MVP+Retrofit+RxJava+MaterialDesign的App/">分享一个基于MVP+Retrofit+RxJava+MaterialDesign的App</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/12/Android网络操作和优化相关/">Andorid网络操作和优化相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/01/Android中的进程和线程/">Andorid中的进程和线程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/17/方法论-成为大神路上的捷径/">方法论-成为大神路上的捷径</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/04/TextView实战之你真的懂我么？/">TextView实战之你真的懂我么？</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/29/Andorid自定义圆形渐变色进度条的从实现到开源/">Andorid自定义圆形渐变色进度条的从实现到开源</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/26/Android性能优化之Performance Tips/">Android性能优化之Performance Tips</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/19/Android性能优化之被忽视的Memory Leaks/">Android性能优化之被忽视的Memory Leaks</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/12/Androd自定义控件（五）打造自己的Camera/">Androd自定义控件（五）打造自己的Camera</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/09/这些Tips让你的App更容易维护/">这些Tips让你的App更容易维护</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/05/Androd自定义控件（四）自定义类继承viewgroup/">Androd自定义控件（四）自定义类继承viewgroup</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/29/Material Design实战/">Material Design实战</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/28/Android性能优化之渲染优化的8个点/">Android性能优化之渲染优化的8个点</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/22/Android性能优化之工具篇/">Android性能优化之工具篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/20/AndrodUI优化之布局优化/">AndrodUI优化之布局优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/18/Android加载长图那些事/">Android加载长图那些事</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/14/Androd自定义控件（三）飞翔的小火箭/">Androd自定义控件（三）飞翔的小火箭</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/09/那些年大家都在谈论的Android性能优化/">那些年大家都在谈论的Android性能优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/08/自定义view你需要知道的/">自定义view你需要知道的</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/06/Androd自定义控件（二）自定义类继承view/">Androd自定义控件（二）自定义类继承view</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/03/Android Studio1.5中NDK开发/">Android Studio1.5中NDK开发</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/29/N个非常有用的Android程序片段（持续更新）/">N个非常有用的Android程序片段（持续更新）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/28/Androd自定义控件（一）概述/">Androd自定义控件（一）概述</a></li></ul>
-
-
-
-
-    <script>
-        
-    </script>
 </div>
       <footer id="footer">
     <div class="outer">
