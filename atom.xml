@@ -595,7 +595,7 @@ private class DownloadImageTask extends AsyncTask&amp;lt;String, Void, Bitmap&am
     <link href="http://yoursite.com/2016/05/17/%E6%96%B9%E6%B3%95%E8%AE%BA-%E6%88%90%E4%B8%BA%E5%A4%A7%E7%A5%9E%E8%B7%AF%E4%B8%8A%E7%9A%84%E6%8D%B7%E5%BE%84/"/>
     <id>http://yoursite.com/2016/05/17/方法论-成为大神路上的捷径/</id>
     <published>2016-05-17T01:21:00.000Z</published>
-    <updated>2016-05-17T02:07:39.965Z</updated>
+    <updated>2016-09-06T06:28:40.936Z</updated>
     
     <content type="html">&lt;p&gt;跟大家分享一下成为大神路上的捷径，与诸君共勉。&lt;/p&gt;
 &lt;ul&gt;
@@ -666,7 +666,7 @@ private class DownloadImageTask extends AsyncTask&amp;lt;String, Void, Bitmap&am
     
     </summary>
     
-      <category term="学习方法" scheme="http://yoursite.com/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
+      <category term="方法论" scheme="http://yoursite.com/categories/%E6%96%B9%E6%B3%95%E8%AE%BA/"/>
     
     
       <category term="方法论" scheme="http://yoursite.com/tags/%E6%96%B9%E6%B3%95%E8%AE%BA/"/>
