@@ -514,11 +514,11 @@ public class AirCondition {
       <category term="Android源码与设计模式" scheme="http://yoursite.com/categories/Android%E6%BA%90%E7%A0%81%E4%B8%8E%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
     
+      <category term="外观模式" scheme="http://yoursite.com/tags/%E5%A4%96%E8%A7%82%E6%A8%A1%E5%BC%8F/"/>
+    
       <category term="设计模式" scheme="http://yoursite.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
       <category term="Android源码" scheme="http://yoursite.com/tags/Android%E6%BA%90%E7%A0%81/"/>
-    
-      <category term="外观模式" scheme="http://yoursite.com/tags/%E5%A4%96%E8%A7%82%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
@@ -1913,11 +1913,11 @@ public Iterator&amp;lt;E&amp;gt; iterator() {
       <category term="Android源码与设计模式" scheme="http://yoursite.com/categories/Android%E6%BA%90%E7%A0%81%E4%B8%8E%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
     
-      <category term="工厂方法模式" scheme="http://yoursite.com/tags/%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/"/>
-    
       <category term="设计模式" scheme="http://yoursite.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
       <category term="Android源码" scheme="http://yoursite.com/tags/Android%E6%BA%90%E7%A0%81/"/>
+    
+      <category term="工厂方法模式" scheme="http://yoursite.com/tags/%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
@@ -3331,7 +3331,7 @@ private class DownloadImageTask extends AsyncTask&amp;lt;String, Void, Bitmap&am
     <link href="http://yoursite.com/2016/05/04/TextView%E5%AE%9E%E6%88%98%E4%B9%8B%E4%BD%A0%E7%9C%9F%E7%9A%84%E6%87%82%E6%88%91%E4%B9%88%EF%BC%9F/"/>
     <id>http://yoursite.com/2016/05/04/TextView实战之你真的懂我么？/</id>
     <published>2016-05-04T10:40:00.000Z</published>
-    <updated>2016-05-06T13:51:49.686Z</updated>
+    <updated>2016-11-10T03:54:20.678Z</updated>
     
     <content type="html">&lt;p&gt;对于TextView,我想大家都已经熟的不能再熟了。但是它的用法我们真的熟么？为了避免总是一言不合就去翻官方文档，在这里我总结一下我也可能是你容易忽视的一些细节。&lt;/p&gt;
 &lt;ul&gt;
@@ -3555,7 +3555,7 @@ textview.setTypeface(mTypeFace);
 &amp;lt;dfn&amp;gt; //定义标签  dfn 是defining instance的缩写
 &amp;lt;div align=&amp;quot;...&amp;quot;&amp;gt;
 &amp;lt;em&amp;gt; //强调标签  em 是emphasis的缩写
-&amp;lt;font size=&amp;quot;...&amp;quot; color=&amp;quot;...&amp;quot; face=&amp;quot;...&amp;quot;&amp;gt;
+&amp;lt;font color=&amp;quot;...&amp;quot; face=&amp;quot;...&amp;quot;&amp;gt;//不支持size属性
 &amp;lt;h1&amp;gt;
 &amp;lt;h2&amp;gt;
 &amp;lt;h3&amp;gt;
