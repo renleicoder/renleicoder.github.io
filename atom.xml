@@ -514,11 +514,11 @@ public class AirCondition {
       <category term="Android源码与设计模式" scheme="http://yoursite.com/categories/Android%E6%BA%90%E7%A0%81%E4%B8%8E%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
     
-      <category term="外观模式" scheme="http://yoursite.com/tags/%E5%A4%96%E8%A7%82%E6%A8%A1%E5%BC%8F/"/>
-    
       <category term="设计模式" scheme="http://yoursite.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
       <category term="Android源码" scheme="http://yoursite.com/tags/Android%E6%BA%90%E7%A0%81/"/>
+    
+      <category term="外观模式" scheme="http://yoursite.com/tags/%E5%A4%96%E8%A7%82%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
@@ -1720,11 +1720,11 @@ public class DuckCook implements Command {
       <category term="Android源码与设计模式" scheme="http://yoursite.com/categories/Android%E6%BA%90%E7%A0%81%E4%B8%8E%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
     
+      <category term="命令模式" scheme="http://yoursite.com/tags/%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F/"/>
+    
       <category term="设计模式" scheme="http://yoursite.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
       <category term="Android源码" scheme="http://yoursite.com/tags/Android%E6%BA%90%E7%A0%81/"/>
-    
-      <category term="命令模式" scheme="http://yoursite.com/tags/%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
