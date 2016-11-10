@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  
+  <title>Android源码中的命令模式 | PleaseCallMeCoder</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Android源码中的命令模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android源码中的命令模式">
+<meta property="og:url" content="http://yoursite.com/2016/10/08/Android源码中的命令模式/index.html">
+<meta property="og:site_name" content="PleaseCallMeCoder">
+<meta property="og:description" content="Android源码中的命令模式">
+<meta property="og:image" content="http://i.imgur.com/hhM591V.png">
+<meta property="og:image" content="http://i.imgur.com/huFpx6h.png">
+<meta property="og:updated_time" content="2016-11-10T02:57:51.342Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android源码中的命令模式">
+<meta name="twitter:description" content="Android源码中的命令模式">
+<meta name="twitter:image" content="http://i.imgur.com/hhM591V.png">
+  
+    <link rel="alternative" href="/atom.xml" title="PleaseCallMeCoder" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+      <link href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css" rel="stylesheet">
+  
+  
+  
+      <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+      <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+  
+  <script src="//cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.9/clipboard.min.js"></script>
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false,
+          fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+          scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.0.9/scrollreveal.min.js"
+      }
+  </script>
+
+  
+      <script>
+          yiliaConfig.rootUrl = "/";
+      </script>
+  
+
+  
+  
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">任磊</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">每个人都在成神的路上，只不过有的人在走，而有的人在跑。</p>
+        
+                
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:18231195685@sina.cn" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="http://weibo.com/2729748535" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/PleaseCallMeCoder" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="http://blog.csdn.net/sdkfjksf?viewmode=list" title="CSDN"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/APP/">APP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ActivityThread/">ActivityThread</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Andorid中的网络操作/">Andorid中的网络操作</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Andorid中的进程和线程/">Andorid中的进程和线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AndroidStudio1-5/">AndroidStudio1.5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android源码/">Android源码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/App设计模式/">App设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AsyncTask/">AsyncTask</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bitmap/">Bitmap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BitmapRegionDecoder/">BitmapRegionDecoder</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CPU和GPU/">CPU和GPU</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Camera/">Camera</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Handler机制/">Handler机制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JNI/">JNI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MAT/">MAT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVP/">MVP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MaterialDesign/">MaterialDesign</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NDK/">NDK</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Overdraw/">Overdraw</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RecyclerView/">RecyclerView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Retrofit/">Retrofit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RxJava/">RxJava</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TextView/">TextView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Toolbar/">Toolbar</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/View/">View</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ViewGroup/">ViewGroup</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/View的工作原理/">View的工作原理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hierarchyviewer/">hierarchyviewer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/include/">include</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/leakcanary/">leakcanary</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lint/">lint</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/merge/">merge</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/paint/">paint</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/surfaceview/">surfaceview</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/viewstub/">viewstub</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/代码片段/">代码片段</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/内存优化/">内存优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/内存泄漏/">内存泄漏</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原形渐变色进度条/">原形渐变色进度条</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原生控件属性/">原生控件属性</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/可扩展/">可扩展</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/可维护/">可维护</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/命令模式/">命令模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/回调机制/">回调机制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/外观模式/">外观模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大图加载/">大图加载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习方法/">学习方法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/官方demo/">官方demo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/官方文档/">官方文档</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工厂方法模式/">工厂方法模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/布局优化/">布局优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/性能优化/">性能优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/性能优化关键点/">性能优化关键点</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/性能优化工具/">性能优化工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/性能优化概述/">性能优化概述</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/方法论/">方法论</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/架构/">架构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模板方法模式/">模板方法模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/消息机制/">消息机制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/渲染优化/">渲染优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/相机/">相机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/移动端网络优化/">移动端网络优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/组合控件/">组合控件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/绘制/">绘制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自定义动画/">自定义动画</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自定义控件/">自定义控件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/装饰者模式/">装饰者模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/观察者模式/">观察者模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/迭代器模式/">迭代器模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/适配器模式/">适配器模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/重写/">重写</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/静态工厂方法/">静态工厂方法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">任磊</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">任磊</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">每个人都在成神的路上，只不过有的人在走，而有的人在跑。</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:18231195685@sina.cn" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="http://weibo.com/2729748535" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/PleaseCallMeCoder" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="http://blog.csdn.net/sdkfjksf?viewmode=list" title="CSDN"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-Android源码中的命令模式" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/10/08/Android源码中的命令模式/" class="article-date">
+      <time datetime="2016-10-08T05:41:00.000Z" itemprop="datePublished">2016-10-08</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Android源码中的命令模式
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Android源码与设计模式/">Android源码与设计模式</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android源码/">Android源码</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/命令模式/">命令模式</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p> Android源码中的命令模式</p>
+<ul>
+<li><a id="more"></a>
+</li>
+</ul>
+<p>#写在前面</p>
+<p><a href="http://blog.csdn.net/sdkfjksf/article/details/52624483" target="_blank" rel="external">从装饰者模式到Context类族</a></p>
+<p><a href="http://blog.csdn.net/sdkfjksf/article/details/52640111" target="_blank" rel="external">当观察者模式和回调机制遇上Android源码</a></p>
+<p><a href="http://blog.csdn.net/sdkfjksf/article/details/52672059" target="_blank" rel="external">Android源码中的静态工厂方法</a></p>
+<p><a href="http://blog.csdn.net/sdkfjksf/article/details/52700648" target="_blank" rel="external">Android中的工厂方法模式</a></p>
+<p>前面跟大家分享了装饰者模式、观察者模式、静态工厂方法、工厂方法模式，今天跟大家分享下Android源码中的命令模式。</p>
+<p>#命令模式</p>
+<p>##定义</p>
+<p><strong>将一个请求封装成一个对象，从而使你可用不同的请求对客户进行参数化，对请求排队或记录请求日志，以及支持可撤销的操作。</strong></p>
+<p>##使用场景</p>
+<p><strong>对于大多数请求——响应模式的功能，比较适合使用命令模式。</strong></p>
+<ul>
+<li>系统需要将请求调用者和请求接收者解耦，使得调用者和接收者不直接交互。</li>
+<li>系统需要在不同的时间指定请求、将请求排队（<strong>如：线程池+工作队列</strong>）和执行请求。</li>
+<li>系统需要支持命令的撤销(Undo)操作和恢复(Redo)操作（<strong>比如系统挂掉之后重启做一些恢复操作，还有数据库的事务等</strong>）。</li>
+<li>系统需要将一组操作组合在一起，即支持宏命令。</li>
+</ul>
+<p>##结构</p>
+<p><img src="http://i.imgur.com/hhM591V.png" alt=""></p>
+<p>命令模式涉及到的角色：</p>
+<ul>
+<li><strong>客户角色（Client）</strong>：Client可以创建具体的命令对象，并且设置命令对象的接收者。Tips：不能把Clinet理解为我们平常说的客户端，这里的Client是一个组装命令对象和接受者对象的角色，或者你把它理解为一个装配者。</li>
+<li><strong>调用者角色（Invoker）</strong>：负责调用命令对象执行请求，通常会持有命令对象（可以持有多个命令对象）。Invoker是Client真正触发命令并要求命令执行相应操作的地方（使用命令对象的入口）。</li>
+<li><strong>命令角色（Command）</strong>：定义命令的接口，声明具体命令类需要执行的方法。这是一个抽象角色。</li>
+<li><strong>具体命令角色（ConcreteCommand）</strong>：命令接口的具体实现对象，通常会持有接收者，并调用接收者的功能来完成命令要执行的操作。</li>
+<li><strong>接收者角色（Receiver）</strong>：Receiver是真正执行命令的对象。任何类都可能成为一个接收者，只要它能够实现命令要求实现的相应功能。</li>
+</ul>
+<p>##实现</p>
+<p><strong>命令模式其实就是对命令进行封装，将命令请求者和命令执行者的责任分离开来实现松耦合。</strong> 这里我们通过一个餐厅点餐的实例来剖析一下命令模式：命令接收者Cook可以做各式各样的菜，根据Waiter送过来的订单来满足顾客的需求，具体命令实现类PigCook执行做烤乳猪命令，DuckCook执行烧花鸭命令等等，Client负责组装各个部分。</p>
+<p>命令角色</p>
+<pre><code>public interface Command {
+    public void execute();
+    public void undo();
+    public void redo();
+}
+</code></pre><p>命令接收者</p>
+<pre><code>public class Cook {
+
+    //烤乳猪的方法
+    public void cookPig(){
+
+    }
+
+    //烧花鸭的方法
+    public void cookDuck(){
+
+    }
+}
+</code></pre><p>具体命令角色</p>
+<pre><code>//做烤乳猪的命令
+public class PigCook implements Command {
+
+    private Cook mCook;
+
+    public PigCook(Cook cook) {
+        mCook = cook;
+    }
+
+    @Override
+    public void execute() {
+        mCook.cookPig();
+    }
+
+    @Override
+    public void undo() {
+
+    }
+
+    @Override
+    public void redo() {
+
+    }
+}
+//做烧花鸭的命令
+public class DuckCook implements Command {
+
+    private Cook mCook;
+
+    public DuckCook(Cook cook) {
+        mCook = cook;
+    }
+
+    @Override
+    public void execute() {
+        mCook.cookDuck();
+    }
+
+    @Override
+    public void undo() {
+
+    }
+
+    @Override
+    public void redo() {
+
+    }
+}
+</code></pre><p>调用者角色</p>
+<pre><code>public class Waiter {
+
+    private Command pig;
+    private Command duck;
+
+    public void setCommandPig(Command pig) {
+        this.pig = pig;
+    }
+    public void setCommandDuck(Command duck) {
+        this.duck = duck;
+    }
+
+    /**
+     * 执行正常命令，这里省略了undo和redo操作
+     */
+    public void invoke(int args) {
+        //可以根据具体情况选择执行某些命令
+        if(args == 0){
+            pig.execute();
+        }else if(args == 1){
+            duck.execute();
+        }
+    }
+}
+</code></pre><p>客户角色</p>
+<pre><code>public class Client {
+    /**
+     * 组装操作
+     */
+    public void assembleAction() {
+
+        //创建一个命令接收者
+        Cook mCook = new Cook();
+
+        //创建一个命令的具体实现对象，并指定命令接收者
+        Command pig = new PigCook(mCook);
+        Command duck = new DuckCook(mCook);
+
+        Waiter mWaiter = new Waiter();//创建一个命令调用者
+        //为调用者指定烤乳豬命令对象
+        mWaiter.setCommandPig(pig);
+        //为调用者指定烧花鸭命令对象
+        mWaiter.setCommandDuck(duck);
+
+        //发起调用烤乳猪命令请求
+        mWaiter.invoke(0);
+        //发起调用烧花鸭命令请求
+        mWaiter.invoke(1);
+    }
+}
+</code></pre><p><strong>可是，为什么要这么复杂咧，我只是想点个菜而已嘛，直接这么搞不就好了?</strong></p>
+<pre><code>public class Client {
+    /**
+     * 组装操作
+     */
+    public void assembleAction() {
+
+        //创建一个命令接收者
+        Cook mCook = new Cook();
+
+        //发起调用烤乳猪命令请求
+        mCook.cookPig();
+        //发起调用烧花鸭命令请求
+        mCook.cookDuck();
+    }
+}
+</code></pre><p>我们知道命令模式的一个优点是<strong>支持命令的撤销(Undo)操作和恢复(Redo)操作，</strong>如果我们像上边一样调用，我们要想做撤销是不是就不那么方便了呢。同时还可以考虑下命令模式的其他几个优点。</p>
+<p>##总结</p>
+<ul>
+<li><p>每一个命令都是一个操作：请求的一方发出请求，要求执行一个操作；接收的一方收到请求，并执行操作。</p>
+</li>
+<li><p>命令模式允许请求的一方和接收的一方独立开来，使得请求的一方不必知道接收请求的一方的接口，更不必知道请求是怎么被接收，以及操作是否被执行、何时被执行，以及是怎么被执行的。</p>
+</li>
+<li><p>命令模式使请求本身成为一个对象，这个对象和其他对象一样可以被存储和传递。</p>
+</li>
+<li><p>命令模式的关键在于引入了抽象命令接口，且发送者针对抽象命令接口编程，只有实现了抽象命令接口的具体命令才能与接收者相关联。</p>
+</li>
+</ul>
+<p>#Android源码中的命令模式</p>
+<p>对于Android源码来说，<strong>Android底层逻辑对事件的转发处理就用到了命令模式</strong>。Application Framework（应用程序框架层）中<strong>PackageManagerService</strong>类（包管理部分）也用到了命令模式。PackageManagerService是Android系统的Service之一，主要功能是实现对应用包的解析、管理、卸载等操作。我们来看下具体的结构。</p>
+<p><img src="http://i.imgur.com/huFpx6h.png" alt=""></p>
+<p><strong>HandlerParams是命令接口，即我们的Command角色。</strong></p>
+<pre><code>private abstract class HandlerParams {
+    private static final int MAX_RETRIES = 4;
+
+    /**
+     * Number of times startCopy() has been attempted and had a non-fatal
+     * error.
+     */
+    private int mRetries = 0;
+
+    /** User handle for the user requesting the information or installation. */
+    private final UserHandle mUser;
+    String traceMethod;
+    int traceCookie;
+
+    HandlerParams(UserHandle user) {
+        mUser = user;
+    }
+
+    UserHandle getUser() {
+        return mUser;
+    }
+
+    HandlerParams setTraceMethod(String traceMethod) {
+        this.traceMethod = traceMethod;
+        return this;
+    }
+
+    HandlerParams setTraceCookie(int traceCookie) {
+        this.traceCookie = traceCookie;
+        return this;
+    }
+
+    final boolean startCopy() {
+        boolean res;
+        try {
+            if (DEBUG_INSTALL) Slog.i(TAG, &quot;startCopy &quot; + mUser + &quot;: &quot; + this);
+
+            if (++mRetries &gt; MAX_RETRIES) {
+                Slog.w(TAG, &quot;Failed to invoke remote methods on default container service. Giving up&quot;);
+                mHandler.sendEmptyMessage(MCS_GIVE_UP);
+                handleServiceError();
+                return false;
+            } else {
+                handleStartCopy();
+                res = true;
+            }
+        } catch (RemoteException e) {
+            if (DEBUG_INSTALL) Slog.i(TAG, &quot;Posting install MCS_RECONNECT&quot;);
+            mHandler.sendEmptyMessage(MCS_RECONNECT);
+            res = false;
+        }
+        handleReturnCode();
+        return res;
+    }
+
+    final void serviceError() {
+        if (DEBUG_INSTALL) Slog.i(TAG, &quot;serviceError&quot;);
+        handleServiceError();
+        handleReturnCode();
+    }
+
+    abstract void handleStartCopy() throws RemoteException;
+    abstract void handleServiceError();
+    abstract void handleReturnCode();
+}
+</code></pre><p><strong>具体的包的安装、移动以及包大小的测量分别在3个具体子类InstallParams、MoveParams和MeasureParams中实现。</strong></p>
+<p><strong>而PackageHandler是Handler的子类，用来负责包相关消息的处理，不同的请求对应不同的命令对象，然后通过命令对象来执行具体操作。</strong></p>
+<p>#关于Receiver</p>
+<p>通过接触Android源码或者其他的一些源码，我们知道有些地方是没有命令接收者（Receiver）这个角色的，这是为什么呢？</p>
+<p><strong>个人认为，有的命令接收实现非常简，可以直接用少量的代码来实现，没有必要再增加类的数量。</strong></p>
+<p>参考链接：</p>
+<p><a href="https://github.com/simple-android-framework/android_design_patterns_analysis/tree/master/command/lijunhuayc" target="_blank" rel="external">https://github.com/simple-android-framework/android_design_patterns_analysis/tree/master/command/lijunhuayc</a></p>
+<p><a href="http://blog.csdn.net/wwh578867817/article/details/51533263" target="_blank" rel="external">http://blog.csdn.net/wwh578867817/article/details/51533263</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/10/08/Android源码中的命令模式/">Android源码中的命令模式</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">任磊</a></p>
+        <p><span>发布时间:</span>2016-10-08, 13:41:00</p>
+        <p><span>最后更新:</span>2016-11-10, 10:57:51</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/10/08/Android源码中的命令模式/" title="Android源码中的命令模式">http://yoursite.com/2016/10/08/Android源码中的命令模式/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2016/10/08/Android源码中的命令模式/　　作者: 任磊" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2016/10/13/Android源码中的适配器模式/">
+                    Android源码中的适配器模式
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/09/29/Android中的工厂方法模式/">
+                    Android中的工厂方法模式
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"Android源码中的命令模式　| PleaseCallMeCoder　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="2016/10/08/Android源码中的命令模式/" data-title="Android源码中的命令模式" data-url="http://yoursite.com/2016/10/08/Android源码中的命令模式/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"renleicoder"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+    <!-- 多说公共JS代码 end -->
+</div>
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2016/10/13/Android源码中的适配器模式/" title="上一篇: Android源码中的适配器模式">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/09/29/Android中的工厂方法模式/" title="下一篇: Android中的工厂方法模式">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/11/03/不只是迭代器模式/">不只是迭代器模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/19/Android源码中的模板方法模式/">Android源码中的模板方法模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/14/Android源码中的外观模式/">Android源码中的外观模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/13/Android Handler 消息机制（解惑篇）/">Android Handler 消息机制（解惑篇）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/13/Android源码中的适配器模式/">Android源码中的适配器模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/08/Android源码中的命令模式/">Android源码中的命令模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/29/Android中的工厂方法模式/">Android中的工厂方法模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/26/Android源码中的静态工厂方法/">Android源码中的静态工厂方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/23/当观察者模式和回调机制遇上Android源码/">当观察者模式和回调机制遇上Android源码</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/22/从装饰者模式到Context类簇/">从装饰者模式到Context类族</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/02/由面试想到的/">由面试想到的</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/12/分享一个基于MVP+Retrofit+RxJava+MaterialDesign的App/">分享一个基于MVP+Retrofit+RxJava+MaterialDesign的App</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/12/Android网络操作和优化相关/">Andorid网络操作和优化相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/01/Android中的进程和线程/">Andorid中的进程和线程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/17/方法论-成为大神路上的捷径/">方法论-成为大神路上的捷径</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/04/TextView实战之你真的懂我么？/">TextView实战之你真的懂我么？</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/29/Andorid自定义圆形渐变色进度条的从实现到开源/">Andorid自定义圆形渐变色进度条的从实现到开源</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/26/Android性能优化之Performance Tips/">Android性能优化之Performance Tips</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/19/Android性能优化之被忽视的Memory Leaks/">Android性能优化之被忽视的Memory Leaks</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/12/Androd自定义控件（五）打造自己的Camera/">Androd自定义控件（五）打造自己的Camera</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/09/这些Tips让你的App更容易维护/">这些Tips让你的App更容易维护</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/05/Androd自定义控件（四）自定义类继承viewgroup/">Androd自定义控件（四）自定义类继承viewgroup</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/29/Material Design实战/">Material Design实战</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/28/Android性能优化之渲染优化的8个点/">Android性能优化之渲染优化的8个点</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/22/Android性能优化之工具篇/">Android性能优化之工具篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/20/AndrodUI优化之布局优化/">AndrodUI优化之布局优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/18/Android加载长图那些事/">Android加载长图那些事</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/14/Androd自定义控件（三）飞翔的小火箭/">Androd自定义控件（三）飞翔的小火箭</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/09/那些年大家都在谈论的Android性能优化/">那些年大家都在谈论的Android性能优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/08/自定义view你需要知道的/">自定义view你需要知道的</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/06/Androd自定义控件（二）自定义类继承view/">Androd自定义控件（二）自定义类继承view</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/03/Android Studio1.5中NDK开发/">Android Studio1.5中NDK开发</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/29/N个非常有用的Android程序片段（持续更新）/">N个非常有用的Android程序片段（持续更新）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/28/Androd自定义控件（一）概述/">Androd自定义控件（一）概述</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016 任磊
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >本站到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.1.22/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

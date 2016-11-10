@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  
+  <title>Android源码中的适配器模式 | PleaseCallMeCoder</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Android源码中的适配器模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android源码中的适配器模式">
+<meta property="og:url" content="http://yoursite.com/2016/10/13/Android源码中的适配器模式/index.html">
+<meta property="og:site_name" content="PleaseCallMeCoder">
+<meta property="og:description" content="Android源码中的适配器模式">
+<meta property="og:image" content="http://i.imgur.com/z2CTtCi.png">
+<meta property="og:image" content="http://i.imgur.com/TNagOhd.png">
+<meta property="og:image" content="http://i.imgur.com/46Q3HYJ.png">
+<meta property="og:updated_time" content="2016-11-10T03:01:51.405Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android源码中的适配器模式">
+<meta name="twitter:description" content="Android源码中的适配器模式">
+<meta name="twitter:image" content="http://i.imgur.com/z2CTtCi.png">
+  
+    <link rel="alternative" href="/atom.xml" title="PleaseCallMeCoder" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+      <link href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css" rel="stylesheet">
+  
+  
+  
+      <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+      <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+  
+  <script src="//cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.9/clipboard.min.js"></script>
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false,
+          fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+          scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.0.9/scrollreveal.min.js"
+      }
+  </script>
+
+  
+      <script>
+          yiliaConfig.rootUrl = "/";
+      </script>
+  
+
+  
+  
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">任磊</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">每个人都在成神的路上，只不过有的人在走，而有的人在跑。</p>
+        
+                
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:18231195685@sina.cn" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="http://weibo.com/2729748535" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/PleaseCallMeCoder" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="http://blog.csdn.net/sdkfjksf?viewmode=list" title="CSDN"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/APP/">APP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ActivityThread/">ActivityThread</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Andorid中的网络操作/">Andorid中的网络操作</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Andorid中的进程和线程/">Andorid中的进程和线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AndroidStudio1-5/">AndroidStudio1.5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android源码/">Android源码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/App设计模式/">App设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AsyncTask/">AsyncTask</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bitmap/">Bitmap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BitmapRegionDecoder/">BitmapRegionDecoder</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CPU和GPU/">CPU和GPU</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Camera/">Camera</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Handler机制/">Handler机制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JNI/">JNI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MAT/">MAT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVP/">MVP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MaterialDesign/">MaterialDesign</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NDK/">NDK</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Overdraw/">Overdraw</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RecyclerView/">RecyclerView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Retrofit/">Retrofit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RxJava/">RxJava</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TextView/">TextView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Toolbar/">Toolbar</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/View/">View</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ViewGroup/">ViewGroup</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/View的工作原理/">View的工作原理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hierarchyviewer/">hierarchyviewer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/include/">include</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/leakcanary/">leakcanary</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lint/">lint</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/merge/">merge</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/paint/">paint</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/surfaceview/">surfaceview</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/viewstub/">viewstub</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/代码片段/">代码片段</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/内存优化/">内存优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/内存泄漏/">内存泄漏</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原形渐变色进度条/">原形渐变色进度条</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原生控件属性/">原生控件属性</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/可扩展/">可扩展</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/可维护/">可维护</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/命令模式/">命令模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/回调机制/">回调机制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/外观模式/">外观模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大图加载/">大图加载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习方法/">学习方法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/官方demo/">官方demo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/官方文档/">官方文档</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工厂方法模式/">工厂方法模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/布局优化/">布局优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/性能优化/">性能优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/性能优化关键点/">性能优化关键点</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/性能优化工具/">性能优化工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/性能优化概述/">性能优化概述</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/方法论/">方法论</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/架构/">架构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模板方法模式/">模板方法模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/消息机制/">消息机制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/渲染优化/">渲染优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/相机/">相机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/移动端网络优化/">移动端网络优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/组合控件/">组合控件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/绘制/">绘制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自定义动画/">自定义动画</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自定义控件/">自定义控件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/装饰者模式/">装饰者模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/观察者模式/">观察者模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/迭代器模式/">迭代器模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/适配器模式/">适配器模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/重写/">重写</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/静态工厂方法/">静态工厂方法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">任磊</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">任磊</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">每个人都在成神的路上，只不过有的人在走，而有的人在跑。</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:18231195685@sina.cn" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="http://weibo.com/2729748535" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/PleaseCallMeCoder" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="http://blog.csdn.net/sdkfjksf?viewmode=list" title="CSDN"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-Android源码中的适配器模式" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/10/13/Android源码中的适配器模式/" class="article-date">
+      <time datetime="2016-10-13T07:20:00.000Z" itemprop="datePublished">2016-10-13</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Android源码中的适配器模式
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Android源码与设计模式/">Android源码与设计模式</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android源码/">Android源码</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/设计模式/">设计模式</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/适配器模式/">适配器模式</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p> Android源码中的适配器模式</p>
+<ul>
+<li><a id="more"></a>
+</li>
+</ul>
+<p><a href="http://blog.csdn.net/sdkfjksf/article/details/52624483" target="_blank" rel="external">从装饰者模式到Context类族</a></p>
+<p><a href="http://blog.csdn.net/sdkfjksf/article/details/52640111" target="_blank" rel="external">当观察者模式和回调机制遇上Android源码</a></p>
+<p><a href="http://blog.csdn.net/sdkfjksf/article/details/52672059" target="_blank" rel="external">Android源码中的静态工厂方法</a></p>
+<p><a href="http://blog.csdn.net/sdkfjksf/article/details/52700648" target="_blank" rel="external">Android中的工厂方法模式</a></p>
+<p><a href="http://blog.csdn.net/sdkfjksf/article/details/52755908" target="_blank" rel="external">Android源码中的命令模式</a></p>
+<p>前段时间写了<a href="http://blog.csdn.net/sdkfjksf/article/details/52640111" target="_blank" rel="external">当观察者模式和回调机制遇上Android源码</a>，分析了下ListView中的观察者模式，今天我们来分析下ListView部分的另一个模式，适配器模式。</p>
+<p>#定义</p>
+<p><strong>适配器模式把一个类的接口变换成客户端所期待的另一种接口，从而使原本因接口不匹配而无法在一起工作的两个类能够在一起工作。</strong></p>
+<p>#使用场景</p>
+<ul>
+<li><p>当你想使用一个已经存在的类，而它的接口不符合你的需求；</p>
+</li>
+<li><p>你想创建一个可以复用的类，该类可以与其他不相关的类或不可预见的类协同工作；</p>
+</li>
+<li><p>你想使用一些已经存在的子类，但是不可能对每一个都进行子类化以匹配它们的接口，对象适配器可以适配它的父亲接口。</p>
+</li>
+</ul>
+<p>#结构</p>
+<p>适配器模式有<strong>类的适配器模式</strong>和<strong>对象的适配器模式</strong>两种不同的形式。</p>
+<p>##类适配器</p>
+<p><img src="http://i.imgur.com/z2CTtCi.png" alt=""></p>
+<p>##对象适配器</p>
+<p><img src="http://i.imgur.com/TNagOhd.png" alt=""></p>
+<p><strong>可以看到，对象的适配器模式不是使用继承关系连接到Adaptee类，而是使用委派关系连接的。</strong></p>
+<p>##模式所涉及的角色有：</p>
+<ul>
+<li><p><strong>目标(Target)角色</strong>：这就是所期待得到的接口。注意：由于这里讨论的是类适配器模式，因此目标不可以是类。</p>
+</li>
+<li><p><strong>源(Adapee)角色</strong>：现在需要适配的接口。</p>
+</li>
+<li><p><strong>适配器(Adaper)角色</strong>：适配器类是本模式的核心。适配器把源接口转换成目标接口。显然，这一角色不可以是接口，而必须是具体类。</p>
+</li>
+</ul>
+<p>#实现</p>
+<p>这里我们通过一个实例来模拟一下适配器模式。需求是这样的：IPhone7的耳机口被取消，我们怎么保证之前的耳机还能用呢？当然是需要一个转接头了，这个转接头呢，其实就类似我们的适配器。<strong>耳机需要的接口就是我们的目标角色，手机提供的接口就是我们的源角色，转接头当然就是适配器角色了。</strong></p>
+<p>##类适配器</p>
+<p>目标角色</p>
+<pre><code>public interface ITarget {
+    //获取需要的接口
+    String getRightInterface();
+}
+</code></pre><p>源角色</p>
+<pre><code>public class IPhoneSeven {
+
+    //获取iphone7提供的接口
+    public String getInterface(){
+        return &quot;iphone7 interface&quot;;
+    }
+}
+</code></pre><p>适配器</p>
+<pre><code>public class CAdapter extends IPhoneSeven implements ITarget{
+
+    @Override
+    public String getRightInterface() {
+        String newInterface = getInterface();
+        return suit(newInterface);
+    }
+
+    /**
+     * 转换操作
+     * @param newInterface
+     * @return
+     */
+    private String suit(String newInterface) {
+        return &quot;3.5mm interface&quot;;
+    }
+}
+</code></pre><p>##对象适配器</p>
+<p>对象适配器的目标角色和源角色是一样的，我们就不再写了。</p>
+<p>适配器</p>
+<pre><code>public class Adapter implements ITarget {
+
+    private IPhoneSeven mIPhoneSeven;
+
+    public Adapter(IPhoneSeven IPhoneSeven) {
+        mIPhoneSeven = IPhoneSeven;
+    }
+
+    @Override
+    public String getRightInterface() {
+        String newInterface = mIPhoneSeven.getInterface();
+        return suit(newInterface);
+    }
+
+    /**
+     * 转换操作
+     * @param newInterface
+     * @return
+     */
+    private String suit(String newInterface) {
+        return &quot;3.5mm interface&quot;;
+    }
+}
+</code></pre><p>#Android源码中的适配器模式</p>
+<p>Android源码中的适配器模式，最典型的无非就是ListView、GridVIew、RecyclerView等等。我们来简单分析一下ListView，其他的大同小异。</p>
+<p>我们前边在使用场景中有这么一点：<strong>你想使用一些已经存在的子类，但是不可能对每一个都进行子类化以匹配它们的接口，对象适配器可以适配它的父亲接口。</strong></p>
+<p>这句话怎么理解呢？其实放到ListView源码中理解起来更容易一些。<strong>首先我们的Item View可以是有各种不同布局的，我们不可能对每一个布局都去进行匹配，但是我们可以去适配它们的父类，父类是什么，就是View类。</strong></p>
+<p><strong>ListView做为client，他所需要的目标接口(target interface)就是ListAdapter，包含getCount(),getItem(),getView()等几个基本的方法，为了兼容List<t>,Cursor等数据类型作为数据源，还专门定义两个适配器来适配他们：ArrayAdapter和CursorAdapter。这两个适配器，说白了，就是针对目标接口对数据源进行兼容修饰。</t></strong></p>
+<p>我们来看下结构，以下UML图省略了部分不重要的类。</p>
+<p><img src="http://i.imgur.com/46Q3HYJ.png" alt=""></p>
+<p>接下来我们看看源码中的具体实现。我们Adapter的使用时在ListView的父类，AbsListView中，我们看下注释</p>
+<blockquote>
+<p>/**</p>
+<ul>
+<li>Base class that can be used to implement virtualized lists of items. A list does</li>
+<li>not have a spatial definition here. For instance, subclases of this class can</li>
+<li>display the content of the list in a grid, in a carousel, as stack, etc.<br>*/</li>
+</ul>
+</blockquote>
+<p><strong>AbsListView定义了集合视图的逻辑框架，比如Adapter的使用、复用Item View的逻辑、布局子视图的逻辑等，子类只需要重写特定的方法即可实现集合视图的功能。</strong>我们看下代码</p>
+<pre><code>public abstract class AbsListView extends AdapterView&lt;ListAdapter&gt; implements TextWatcher,
+        ViewTreeObserver.OnGlobalLayoutListener, Filter.FilterListener,
+        ViewTreeObserver.OnTouchModeChangeListener,
+        RemoteViewsAdapter.RemoteAdapterConnectionCallback {
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+
+        final ViewTreeObserver treeObserver = getViewTreeObserver();
+        treeObserver.addOnTouchModeChangeListener(this);
+        if (mTextFilterEnabled &amp;&amp; mPopup != null &amp;&amp; !mGlobalLayoutListenerAddedFilter) {
+            treeObserver.addOnGlobalLayoutListener(this);
+        }
+
+        if (mAdapter != null &amp;&amp; mDataSetObserver == null) {
+            mDataSetObserver = new AdapterDataSetObserver();
+            mAdapter.registerDataSetObserver(mDataSetObserver);
+
+            // Data may have changed while we were detached. Refresh.
+            mDataChanged = true;
+            mOldItemCount = mItemCount;
+            mItemCount = mAdapter.getCount();
+        }
+    }
+
+    /**
+     * Subclasses should NOT override this method but
+     *  {@link #layoutChildren()} instead.
+     */
+    @Override
+    protected void onLayout(boolean changed, int l, int t, int r, int b) {
+        super.onLayout(changed, l, t, r, b);
+
+        mInLayout = true;
+
+        final int childCount = getChildCount();
+        if (changed) {
+            for (int i = 0; i &lt; childCount; i++) {
+                getChildAt(i).forceLayout();
+            }
+            mRecycler.markChildrenDirty();
+        }
+
+        layoutChildren();
+        mInLayout = false;
+
+        mOverscrollMax = (b - t) / OVERSCROLL_LIMIT_DIVISOR;
+
+        // TODO: Move somewhere sane. This doesn&apos;t belong in onLayout().
+        if (mFastScroll != null) {
+            mFastScroll.onItemCountChanged(getChildCount(), mItemCount);
+        }
+    }
+
+    /**
+     * Subclasses must override this method to layout their children.
+     */
+    protected void layoutChildren() {
+    }
+}
+</code></pre><p><strong>首先在onAttachedToWindow()方法中调用mAdapter.getCount()，获取Item View的数量，然后调用onLayout(boolean changed, int l, int t, int r, int b)方法进行布局，从注释里也可以看到，子类对于Item View的布局需要重写layoutChildren()方法。我们看下ListView中的layoutChildren()方法。</strong></p>
+<pre><code>@Override
+protected void layoutChildren() {
+    try {
+        //根据不同的布局模式来布局Item View
+        switch (mLayoutMode) {
+            //~省略部分无关代码~
+            case LAYOUT_FORCE_BOTTOM:
+                sel = fillUp(mItemCount - 1, childrenBottom);
+                adjustViewsUpOrDown();
+                break;
+            case LAYOUT_FORCE_TOP:
+                mFirstPosition = 0;
+                sel = fillFromTop(childrenTop);
+                adjustViewsUpOrDown();
+                break;
+            //~省略部分无关代码~
+            defaule:
+                break;
+        }
+    }
+}
+
+/**
+ * Fills the list from pos up to the top of the list view.
+ *
+ */
+private View fillUp(int pos, int nextBottom) {
+    View selectedView = null;
+
+    int end = 0;
+    if ((mGroupFlags &amp; CLIP_TO_PADDING_MASK) == CLIP_TO_PADDING_MASK) {
+        end = mListPadding.top;
+    }
+
+    while (nextBottom &gt; end &amp;&amp; pos &gt;= 0) {
+        // is this the selected item?
+        boolean selected = pos == mSelectedPosition;
+        View child = makeAndAddView(pos, nextBottom, false, mListPadding.left, selected);
+        nextBottom = child.getTop() - mDividerHeight;
+        if (selected) {
+            selectedView = child;
+        }
+        pos--;
+    }
+
+    mFirstPosition = pos + 1;
+    setVisibleRangeHint(mFirstPosition, mFirstPosition + getChildCount() - 1);
+    return selectedView;
+}
+
+/**
+ * Fills the list from top to bottom, starting with mFirstPosition
+ */
+private View fillFromTop(int nextTop) {
+    mFirstPosition = Math.min(mFirstPosition, mSelectedPosition);
+    mFirstPosition = Math.min(mFirstPosition, mItemCount - 1);
+    if (mFirstPosition &lt; 0) {
+        mFirstPosition = 0;
+    }
+    return fillDown(mFirstPosition, nextTop);
+}
+
+/**
+ * Fills the list from pos down to the end of the list view.
+ */
+private View fillDown(int pos, int nextTop) {
+    View selectedView = null;
+
+    int end = (mBottom - mTop);
+    if ((mGroupFlags &amp; CLIP_TO_PADDING_MASK) == CLIP_TO_PADDING_MASK) {
+        end -= mListPadding.bottom;
+    }
+
+    while (nextTop &lt; end &amp;&amp; pos &lt; mItemCount) {
+        // is this the selected item?
+        boolean selected = pos == mSelectedPosition;
+        View child = makeAndAddView(pos, nextTop, true, mListPadding.left, selected);
+
+        nextTop = child.getBottom() + mDividerHeight;
+        if (selected) {
+            selectedView = child;
+        }
+        pos++;
+    }
+
+    setVisibleRangeHint(mFirstPosition, mFirstPosition + getChildCount() - 1);
+    return selectedView;
+}
+</code></pre><p><strong>从layoutChildren()方法这一串调用来看，无非就是对应ListView的不同布局模式，一种是新数据显示在最上方，一种是把新数据显示在最下方。但是无论是哪一种方式，在循环中获取View都是通过makeAndAddView(pos, nextTop, true, mListPadding.left, selected)方法来进行的。</strong></p>
+<pre><code>/**
+ * Obtain the view and add it to our list of children. The view can be made
+ * fresh, converted from an unused view, or used as is if it was in the
+ * recycle bin.
+ */
+private View makeAndAddView(int position, int y, boolean flow, int childrenLeft,
+        boolean selected) {
+    View child;
+
+
+    if (!mDataChanged) {
+        // Try to use an existing view for this position
+        child = mRecycler.getActiveView(position);
+        if (child != null) {
+            // Found it -- we&apos;re using an existing child
+            // This just needs to be positioned
+            setupChild(child, position, y, flow, childrenLeft, selected, true);
+
+            return child;
+        }
+    }
+
+    // Make a new view for this position, or convert an unused view if possible
+    child = obtainView(position, mIsScrap);
+
+    // This needs to be positioned and measured
+    setupChild(child, position, y, flow, childrenLeft, selected, mIsScrap[0]);
+
+    return child;
+}
+</code></pre><p><strong>从注释了解到，这个方法是用来对我们的Item View进行缓存的。这里边又调用了obtainView(position, mIsScrap)来获取Item View，因为我们的Adapter变量是在AbsListView中，通过mAdapter来调用getView肯定也在AbsListView中。</strong></p>
+<p>因为缓存机制不是我们今天分析的重点，我们看下方法注释好了</p>
+<blockquote>
+<p>/**</p>
+<pre><code>* Get a view and have it show the data associated with the specified
+* position. This is called when we have already discovered that the view is
+* not available for reuse in the recycle bin. The only choices left are
+* converting an old view or making a new one.
+* /
+</code></pre></blockquote>
+<p>注释说的很明确：<strong>获得一个View，并且使它显示特定位置的数据。同时这里会处理View的复用或者重新生成。</strong></p>
+<p>总结一下就是，<strong>我们在负责展示数据的集合视图（AbsListView类族）和用户提供的布局、数据之间隔了一个类，即Adapter。Adapter会返回给集合视图用户数据的数量、布局，但是它吧所有的布局都抽象成了View。这样保证了AbsListView类族的高度可定制化。</strong></p>
+<p>测试代码已上传到<a href="https://github.com/PleaseCallMeCoder/DesignPatterns" target="_blank" rel="external">github</a>。</p>
+<p>#参考链接</p>
+<p><a href="http://blog.csdn.net/bboyfeiyu/article/details/43950185" target="_blank" rel="external">http://blog.csdn.net/bboyfeiyu/article/details/43950185</a></p>
+<p><a href="http://www.codexiu.cn/android/blog/27959/" target="_blank" rel="external">http://www.codexiu.cn/android/blog/27959/</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/10/13/Android源码中的适配器模式/">Android源码中的适配器模式</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">任磊</a></p>
+        <p><span>发布时间:</span>2016-10-13, 15:20:00</p>
+        <p><span>最后更新:</span>2016-11-10, 11:01:51</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/10/13/Android源码中的适配器模式/" title="Android源码中的适配器模式">http://yoursite.com/2016/10/13/Android源码中的适配器模式/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2016/10/13/Android源码中的适配器模式/　　作者: 任磊" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2016/10/13/Android Handler 消息机制（解惑篇）/">
+                    Android Handler 消息机制（解惑篇）
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/10/08/Android源码中的命令模式/">
+                    Android源码中的命令模式
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"Android源码中的适配器模式　| PleaseCallMeCoder　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="2016/10/13/Android源码中的适配器模式/" data-title="Android源码中的适配器模式" data-url="http://yoursite.com/2016/10/13/Android源码中的适配器模式/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"renleicoder"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+    <!-- 多说公共JS代码 end -->
+</div>
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2016/10/13/Android Handler 消息机制（解惑篇）/" title="上一篇: Android Handler 消息机制（解惑篇）">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/10/08/Android源码中的命令模式/" title="下一篇: Android源码中的命令模式">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/11/03/不只是迭代器模式/">不只是迭代器模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/19/Android源码中的模板方法模式/">Android源码中的模板方法模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/14/Android源码中的外观模式/">Android源码中的外观模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/13/Android Handler 消息机制（解惑篇）/">Android Handler 消息机制（解惑篇）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/13/Android源码中的适配器模式/">Android源码中的适配器模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/08/Android源码中的命令模式/">Android源码中的命令模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/29/Android中的工厂方法模式/">Android中的工厂方法模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/26/Android源码中的静态工厂方法/">Android源码中的静态工厂方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/23/当观察者模式和回调机制遇上Android源码/">当观察者模式和回调机制遇上Android源码</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/22/从装饰者模式到Context类簇/">从装饰者模式到Context类族</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/02/由面试想到的/">由面试想到的</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/12/分享一个基于MVP+Retrofit+RxJava+MaterialDesign的App/">分享一个基于MVP+Retrofit+RxJava+MaterialDesign的App</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/12/Android网络操作和优化相关/">Andorid网络操作和优化相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/01/Android中的进程和线程/">Andorid中的进程和线程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/17/方法论-成为大神路上的捷径/">方法论-成为大神路上的捷径</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/04/TextView实战之你真的懂我么？/">TextView实战之你真的懂我么？</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/29/Andorid自定义圆形渐变色进度条的从实现到开源/">Andorid自定义圆形渐变色进度条的从实现到开源</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/26/Android性能优化之Performance Tips/">Android性能优化之Performance Tips</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/19/Android性能优化之被忽视的Memory Leaks/">Android性能优化之被忽视的Memory Leaks</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/12/Androd自定义控件（五）打造自己的Camera/">Androd自定义控件（五）打造自己的Camera</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/09/这些Tips让你的App更容易维护/">这些Tips让你的App更容易维护</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/05/Androd自定义控件（四）自定义类继承viewgroup/">Androd自定义控件（四）自定义类继承viewgroup</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/29/Material Design实战/">Material Design实战</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/28/Android性能优化之渲染优化的8个点/">Android性能优化之渲染优化的8个点</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/22/Android性能优化之工具篇/">Android性能优化之工具篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/20/AndrodUI优化之布局优化/">AndrodUI优化之布局优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/18/Android加载长图那些事/">Android加载长图那些事</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/14/Androd自定义控件（三）飞翔的小火箭/">Androd自定义控件（三）飞翔的小火箭</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/09/那些年大家都在谈论的Android性能优化/">那些年大家都在谈论的Android性能优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/08/自定义view你需要知道的/">自定义view你需要知道的</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/06/Androd自定义控件（二）自定义类继承view/">Androd自定义控件（二）自定义类继承view</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/03/Android Studio1.5中NDK开发/">Android Studio1.5中NDK开发</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/29/N个非常有用的Android程序片段（持续更新）/">N个非常有用的Android程序片段（持续更新）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/28/Androd自定义控件（一）概述/">Androd自定义控件（一）概述</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016 任磊
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >本站到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.1.22/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

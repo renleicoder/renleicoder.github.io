@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  
+  <title>当观察者模式和回调机制遇上Android源码 | PleaseCallMeCoder</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="当观察者模式和回调机制遇上Android源码">
+<meta property="og:type" content="article">
+<meta property="og:title" content="当观察者模式和回调机制遇上Android源码">
+<meta property="og:url" content="http://yoursite.com/2016/09/23/当观察者模式和回调机制遇上Android源码/index.html">
+<meta property="og:site_name" content="PleaseCallMeCoder">
+<meta property="og:description" content="当观察者模式和回调机制遇上Android源码">
+<meta property="og:image" content="http://i.imgur.com/Jbw7PMO.png">
+<meta property="og:image" content="http://i.imgur.com/M5Gf0MO.png">
+<meta property="og:updated_time" content="2016-11-10T03:07:49.749Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="当观察者模式和回调机制遇上Android源码">
+<meta name="twitter:description" content="当观察者模式和回调机制遇上Android源码">
+<meta name="twitter:image" content="http://i.imgur.com/Jbw7PMO.png">
+  
+    <link rel="alternative" href="/atom.xml" title="PleaseCallMeCoder" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+      <link href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css" rel="stylesheet">
+  
+  
+  
+      <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+      <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+  
+  <script src="//cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.9/clipboard.min.js"></script>
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false,
+          fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+          scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.0.9/scrollreveal.min.js"
+      }
+  </script>
+
+  
+      <script>
+          yiliaConfig.rootUrl = "/";
+      </script>
+  
+
+  
+  
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">任磊</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">每个人都在成神的路上，只不过有的人在走，而有的人在跑。</p>
+        
+                
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:18231195685@sina.cn" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="http://weibo.com/2729748535" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/PleaseCallMeCoder" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="http://blog.csdn.net/sdkfjksf?viewmode=list" title="CSDN"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/APP/">APP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ActivityThread/">ActivityThread</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Andorid中的网络操作/">Andorid中的网络操作</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Andorid中的进程和线程/">Andorid中的进程和线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AndroidStudio1-5/">AndroidStudio1.5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android源码/">Android源码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/App设计模式/">App设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AsyncTask/">AsyncTask</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bitmap/">Bitmap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BitmapRegionDecoder/">BitmapRegionDecoder</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CPU和GPU/">CPU和GPU</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Camera/">Camera</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Handler机制/">Handler机制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JNI/">JNI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MAT/">MAT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVP/">MVP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MaterialDesign/">MaterialDesign</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NDK/">NDK</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Overdraw/">Overdraw</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RecyclerView/">RecyclerView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Retrofit/">Retrofit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RxJava/">RxJava</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TextView/">TextView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Toolbar/">Toolbar</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/View/">View</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ViewGroup/">ViewGroup</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/View的工作原理/">View的工作原理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hierarchyviewer/">hierarchyviewer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/include/">include</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/leakcanary/">leakcanary</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lint/">lint</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/merge/">merge</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/paint/">paint</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/surfaceview/">surfaceview</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/viewstub/">viewstub</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/代码片段/">代码片段</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/内存优化/">内存优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/内存泄漏/">内存泄漏</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原形渐变色进度条/">原形渐变色进度条</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原生控件属性/">原生控件属性</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/可扩展/">可扩展</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/可维护/">可维护</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/命令模式/">命令模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/回调机制/">回调机制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/外观模式/">外观模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大图加载/">大图加载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习方法/">学习方法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/官方demo/">官方demo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/官方文档/">官方文档</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工厂方法模式/">工厂方法模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/布局优化/">布局优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/性能优化/">性能优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/性能优化关键点/">性能优化关键点</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/性能优化工具/">性能优化工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/性能优化概述/">性能优化概述</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/方法论/">方法论</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/架构/">架构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模板方法模式/">模板方法模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/消息机制/">消息机制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/渲染优化/">渲染优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/相机/">相机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/移动端网络优化/">移动端网络优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/组合控件/">组合控件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/绘制/">绘制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自定义动画/">自定义动画</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自定义控件/">自定义控件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/装饰者模式/">装饰者模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/观察者模式/">观察者模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/迭代器模式/">迭代器模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/适配器模式/">适配器模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/重写/">重写</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/静态工厂方法/">静态工厂方法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">任磊</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">任磊</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">每个人都在成神的路上，只不过有的人在走，而有的人在跑。</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:18231195685@sina.cn" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="http://weibo.com/2729748535" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/PleaseCallMeCoder" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="http://blog.csdn.net/sdkfjksf?viewmode=list" title="CSDN"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-当观察者模式和回调机制遇上Android源码" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/09/23/当观察者模式和回调机制遇上Android源码/" class="article-date">
+      <time datetime="2016-09-23T08:54:00.000Z" itemprop="datePublished">2016-09-23</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      当观察者模式和回调机制遇上Android源码
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Android源码与设计模式/">Android源码与设计模式</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android源码/">Android源码</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/回调机制/">回调机制</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/观察者模式/">观察者模式</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p> 当观察者模式和回调机制遇上Android源码</p>
+<ul>
+<li><a id="more"></a>
+</li>
+</ul>
+<p>上一篇博客跟大家分享了Android源码中的装饰者模式，有点意犹未尽，今天跟大家分享下Android中的观察者模式，顺便说一说观察者模式和回调机制的关系，欢迎大家拍砖。</p>
+<p>#观察者模式</p>
+<p>##定义</p>
+<p><strong>观察者模式定义了一种一对多的依赖关系，让多个观察者对象同时监听某一个主题对象。这个主题对象在状态上发生变化时，会通知所有观察者对象，使它们能够自动更新自己。</strong></p>
+<p>##观察者模式的结构</p>
+<p><img src="http://i.imgur.com/Jbw7PMO.png" alt=""></p>
+<p>观察者模式所涉及的角色有：</p>
+<ul>
+<li><p>抽象主题(Subject)角色：抽象主题角色把所有对观察者对象的引用保存在一个聚集（比如ArrayList对象）里，每个主题都可以有任何数量的观察者。抽象主题提供一个接口，可以增加和删除观察者对象，抽象主题角色又叫做抽象被观察者(Observable)角色。</p>
+</li>
+<li><p>具体主题(ConcreteSubject)角色：将有关状态存入具体观察者对象；在具体主题的内部状态改变时，给所有登记过的观察者发出通知。具体主题角色又叫做具体被观察者(Concrete Observable)角色。　　</p>
+</li>
+<li><p>抽象观察者(Observer)角色：为所有的具体观察者定义一个接口，在得到主题的通知时更新自己，这个接口叫做更新接口。
+　　</p>
+</li>
+<li>具体观察者(ConcreteObserver)角色：存储与主题的状态自恰的状态。具体观察者角色实现抽象观察者角色所要求的更新接口，以便使本身的状态与主题的状态 像协调。如果需要，具体观察者角色可以保持一个指向具体主题对象的引用。</li>
+</ul>
+<p>##实现</p>
+<p>抽象主题角色类</p>
+<pre><code>public abstract class Subject {
+    /**
+     * 用来保存注册的观察者对象
+     */
+    private    List&lt;Observer&gt; list = new ArrayList&lt;Observer&gt;();
+    /**
+     * 注册观察者对象
+     * @param observer    观察者对象
+     */
+    public void attach(Observer observer){
+
+        list.add(observer);
+        System.out.println(&quot;Attached an observer&quot;);
+    }
+    /**
+     * 删除观察者对象
+     * @param observer    观察者对象
+     */
+    public void detach(Observer observer){
+
+        list.remove(observer);
+    }
+    /**
+     * 通知所有注册的观察者对象
+     */
+    public void nodifyObservers(String newState){
+
+        for(Observer observer : list){
+            observer.update(newState);
+        }
+    }
+}
+</code></pre><p>具体主题角色类</p>
+<pre><code>public class ConcreteSubject extends Subject{
+
+    private String state;
+
+    public String getState() {
+        return state;
+    }
+
+    public void change(String newState){
+        state = newState;
+        System.out.println(&quot;主题状态为：&quot; + state);
+        //状态发生改变，通知各个观察者
+        this.nodifyObservers(state);
+    }
+}
+</code></pre><p>抽象观察者角色类</p>
+<pre><code>public interface Observer {
+    /**
+     * 更新接口
+     * @param state    更新的状态
+     */
+    public void update(String state);
+}
+</code></pre><p>具体观察者角色类</p>
+<pre><code>public class ConcreteObserver implements Observer {
+    //观察者的状态
+    private String observerState;
+
+    @Override
+    public void update(String state) {
+        /**
+         * 更新观察者的状态，使其与目标的状态保持一致
+         */
+        observerState = state;
+        System.out.println(&quot;状态为：&quot;+observerState);
+    }
+
+}
+</code></pre><p>测试类</p>
+<pre><code>public class Test {
+
+    public static void main(String[] args) {
+        //创建主题对象
+        ConcreteSubject subject = new ConcreteSubject();
+        //创建观察者对象
+        Observer observer = new ConcreteObserver();
+        //将观察者对象登记到主题对象上
+        subject.attach(observer);
+        //改变主题对象的状态
+        subject.change(&quot;new state&quot;);
+    }
+
+}
+</code></pre><p>#观察者的两种实现方式</p>
+<ul>
+<li><p>Push</p>
+<p>  主题对象向观察者推送主题的详细信息，不管观察者是否需要，推送的信息通常是主题对象的全部或部分数据。</p>
+</li>
+<li><p>Pull</p>
+<p>  主题对象在通知观察者的时候，只传递少量信息。如果观察者需要更具体的信息，由观察者主动到主题对象中获取，相当于是观察者从主题对象中拉数据。一般这种模型的实现中，会把主题对象自身通过update()方法传递给观察者，这样在观察者需要获取数据的时候，就可以通过这个引用来获取了。</p>
+</li>
+</ul>
+<p>##两种方式的比较</p>
+<ul>
+<li><p>Push模型是假定主题对象知道观察者需要的数据；而Pull模型是主题对象不知道观察者具体需要什么数据，没有办法的情况下，干脆把自身传递给观察者，让观察者自己去按需要取值。</p>
+</li>
+<li><p>Push模型可能会使得观察者对象难以复用，因为观察者的update()方法是按需要定义的参数，可能无法兼顾没有考虑到的使用情况。这就意味着出现新情况的时候，就可能提供新的update()方法，或者是干脆重新实现观察者；而Pull模型就不会造成这样的情况，因为Pull模型下，update()方法的参数是主题对象本身，这基本上是主题对象能传递的最大数据集合了，基本上可以适应各种情况的需要。</p>
+</li>
+</ul>
+<p>#回调机制和观察者模式</p>
+<p><strong>Android中有非常多的地方使用了回调机制，例如Activity的生命周期、按钮的点击事件、线程的run()方法等。</strong></p>
+<p>下面是回调的基本模型：</p>
+<pre><code>public interface CallBack {  
+    public void oncall();  
+}  
+
+public class A {  
+    private CallBack callback;  
+    //注册一个事件  
+    public void register(CallBack callback){  
+        this.callback = callback;  
+    }  
+    // 需要调用的时候回调  
+    public void call(){  
+        callback.oncall();  
+    }  
+}  
+
+public static void main(String[] args) {  
+    A a = new A();  
+    a.register(new CallBack() {  
+        @Override  
+        public void oncall() {  
+            System.out.println(&quot;回调函数被调用&quot;);  
+        }  
+    });  
+    a.call();  
+</code></pre><p>}  </p>
+<p><strong>这样看来，回调机制和观察者模式是一致的，区别是观察者模式里面目标类维护了所有观察者的引用，而回调里面只是维护了一个引用。</strong></p>
+<p>#Android中的观察者模式</p>
+<p><strong>Android中大量的使用了观察者模式，Framework层里面的事件驱动都是基于观察者模式实现的。另外在Framework层里面的各种服务在数据变更的时候，也是通过观察者模式实现上层数据更新的。像View的Listener监听、GPS位置信息监听、BroadcastReceiver等都是基于观察者模式实现的。</strong>下面我们说一说ListView中的观察者模式是如何实现的，RecyclerView大同小异，感兴趣的可以自己研究下。</p>
+<p>##Listview的notifyDataSetChanged()</p>
+<p>我们先来看下listview部分观察者模式的结构</p>
+<p><img src="http://i.imgur.com/M5Gf0MO.png" alt=""></p>
+<p>其中为了方便研究关系，我们省略了Adapter部分的一些类的关系。接下来我们看下具体调用关系。</p>
+<p>首先当我们数据改变的时候我们会调用adapter的notifyDataSetChanged()方法。</p>
+<pre><code>/**
+ * Common base class of common implementation for an {@link Adapter} that can be
+ * used in both {@link ListView} (by implementing the specialized
+ * {@link ListAdapter} interface) and {@link Spinner} (by implementing the
+ * specialized {@link SpinnerAdapter} interface).
+ */
+public abstract class BaseAdapter implements ListAdapter, SpinnerAdapter {
+    private final DataSetObservable mDataSetObservable = new DataSetObservable();
+
+    public boolean hasStableIds() {
+        return false;
+    }
+
+    public void registerDataSetObserver(DataSetObserver observer) {
+        mDataSetObservable.registerObserver(observer);
+    }
+
+    public void unregisterDataSetObserver(DataSetObserver observer) {
+        mDataSetObservable.unregisterObserver(observer);
+    }
+
+    /**
+     * Notifies the attached observers that the underlying data has been changed
+     * and any View reflecting the data set should refresh itself.
+     */
+    public void notifyDataSetChanged() {
+        mDataSetObservable.notifyChanged();
+    }
+
+    /**
+     * Notifies the attached observers that the underlying data is no longer valid
+     * or available. Once invoked this adapter is no longer valid and should
+     * not report further data set changes.
+     */
+    public void notifyDataSetInvalidated() {
+        mDataSetObservable.notifyInvalidated();
+    }
+}
+</code></pre><p>根据上述代码我们可以定位到mDataSetObservable.notifyChanged()方法。</p>
+<pre><code>/**
+ * A specialization of {@link Observable} for {@link DataSetObserver}
+ * that provides methods for sending notifications to a list of
+ * {@link DataSetObserver} objects.
+ */
+public class DataSetObservable extends Observable&lt;DataSetObserver&gt; {
+    /**
+     * Invokes {@link DataSetObserver#onChanged} on each observer.
+     * Called when the contents of the data set have changed.  The recipient
+     * will obtain the new contents the next time it queries the data set.
+     */
+    public void notifyChanged() {
+        synchronized(mObservers) {
+            // since onChanged() is implemented by the app, it could do anything, including
+            // removing itself from {@link mObservers} - and that could cause problems if
+            // an iterator is used on the ArrayList {@link mObservers}.
+            // to avoid such problems, just march thru the list in the reverse order.
+            for (int i = mObservers.size() - 1; i &gt;= 0; i--) {
+                mObservers.get(i).onChanged();
+            }
+        }
+    }
+
+    /**
+     * Invokes {@link DataSetObserver#onInvalidated} on each observer.
+     * Called when the data set is no longer valid and cannot be queried again,
+     * such as when the data set has been closed.
+     */
+    public void notifyInvalidated() {
+        synchronized (mObservers) {
+            for (int i = mObservers.size() - 1; i &gt;= 0; i--) {
+                mObservers.get(i).onInvalidated();
+            }
+        }
+    }
+}
+</code></pre><p>我们看到，调用notifyChanged()方法，会去遍历mObservers，调用所有观察者的onchange（）方法。</p>
+<p>那么问题来了，我们的观察者对象是什么时候添加进去的呢？我们去看下ListView第一次和BaseAdapter产生关联的地方，也就是setAdapter(ListAdapter adapter)方法。</p>
+<pre><code>@Override
+public void setAdapter(ListAdapter adapter) {
+    //如果已经设置过了Adapter，那么取消注册对应的观察者。
+    if (mAdapter != null &amp;&amp; mDataSetObserver != null) {
+        mAdapter.unregisterDataSetObserver(mDataSetObserver);
+    }
+
+    //省略部分代码
+
+    if (mAdapter != null) {
+        mAreAllItemsSelectable = mAdapter.areAllItemsEnabled();
+        mOldItemCount = mItemCount;
+        mItemCount = mAdapter.getCount();
+        checkFocus();
+
+        //创建一个对应数据的观察者
+        mDataSetObserver = new AdapterDataSetObserver();
+        //间接调用DataSetObservable的注册方法
+        mAdapter.registerDataSetObserver(mDataSetObserver);
+
+        //省略部分代码
+    } else {
+        mAreAllItemsSelectable = true;
+        checkFocus();
+        // Nothing selected
+        checkSelectionChanged();
+    }
+
+    requestLayout();
+}
+</code></pre><p>这样我们的四个角色就全了，<strong>Observable—&gt;Subject;DataSetObservable—&gt;Concrete Subject;DataSetObserver—&gt;Observer;AdapterDataSetObserver—&gt;Concrete Observer</strong>。然后我们注册的地方也找到了。</p>
+<p>最后就剩下我们的数据是如何刷新这一个问题了。AdapterDataSetObserver定义在ListView的父类AbsListView中，它又继承自AbsListView的父类AdapterView的AdapterDataSetObserver。</p>
+<pre><code>class AdapterDataSetObserver extends DataSetObserver {
+
+    private Parcelable mInstanceState = null;
+    //当我们调用Adapter的notifyDataSetChanged的时候会调用所有观察者的onChanged方法,核心实现就在这里
+    @Override
+    public void onChanged() {
+        mDataChanged = true;
+        mOldItemCount = mItemCount;
+        // 获取Adapter中数据的数量
+        mItemCount = getAdapter().getCount();
+
+        // Detect the case where a cursor that was previously invalidated has
+        // been repopulated with new data.
+        if (AdapterView.this.getAdapter().hasStableIds() &amp;&amp; mInstanceState != null
+                &amp;&amp; mOldItemCount == 0 &amp;&amp; mItemCount &gt; 0) {
+            AdapterView.this.onRestoreInstanceState(mInstanceState);
+            mInstanceState = null;
+        } else {
+            rememberSyncState();
+        }
+        checkFocus();
+        // 重新布局ListView、GridView等AdapterView组件
+        requestLayout();
+    }
+
+    // 代码省略
+
+    public void clearSavedState() {
+        mInstanceState = null;
+    }
+} 
+</code></pre><p>requestLayout()方法在View里有实现，子View按需求重写。我们看下注释好了。</p>
+<blockquote>
+<p>/<em>*Call this when something has changed which has invalidated the layout of this view. This will schedule a layout pass of the view tree.</em>/</p>
+</blockquote>
+<p>好了，到这里所有的调用关系我们基本就搞清楚了。<strong>当ListView的数据发生变化时，调用Adapter的notifyDataSetChanged函数，这个函数又会调用DataSetObservable的notifyChanged函数，这个函数会调用所有观察者 (AdapterDataSetObserver) 的onChanged方法。在onChanged函数中会获取Adapter中数据集的新数量，然后调用ListView的requestLayout()方法重新进行布局，更新用户界面。</strong></p>
+<p>#瞎总结</p>
+<p>ListView主要运用了Adapter和观察者模式使得可扩展性、灵活性非常强，而耦合度却很低，这是我认为设计模式在Android源码中优秀运用的典范。那我们就要开始思考了，<strong>我们有没有其他更漂亮的套路来实现ListView组件，我们可以把这件实现思路应用到哪里？</strong></p>
+<p>人是会思考的芦苇，思考着思考着我们就成为了别人眼中的大神。</p>
+<p>参考链接：</p>
+<p><a href="http://www.itdadao.com/articles/c15a265623p0.html" target="_blank" rel="external">http://www.itdadao.com/articles/c15a265623p0.html</a></p>
+<p><a href="http://blog.csdn.net/bboyfeiyu/article/details/44040533" target="_blank" rel="external">http://blog.csdn.net/bboyfeiyu/article/details/44040533</a></p>
+<p><a href="http://www.cnblogs.com/mythou/p/3370340.html" target="_blank" rel="external">http://www.cnblogs.com/mythou/p/3370340.html</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/09/23/当观察者模式和回调机制遇上Android源码/">当观察者模式和回调机制遇上Android源码</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">任磊</a></p>
+        <p><span>发布时间:</span>2016-09-23, 16:54:00</p>
+        <p><span>最后更新:</span>2016-11-10, 11:07:49</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/09/23/当观察者模式和回调机制遇上Android源码/" title="当观察者模式和回调机制遇上Android源码">http://yoursite.com/2016/09/23/当观察者模式和回调机制遇上Android源码/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2016/09/23/当观察者模式和回调机制遇上Android源码/　　作者: 任磊" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2016/09/26/Android源码中的静态工厂方法/">
+                    Android源码中的静态工厂方法
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/09/22/从装饰者模式到Context类簇/">
+                    从装饰者模式到Context类族
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"当观察者模式和回调机制遇上Android源码　| PleaseCallMeCoder　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="2016/09/23/当观察者模式和回调机制遇上Android源码/" data-title="当观察者模式和回调机制遇上Android源码" data-url="http://yoursite.com/2016/09/23/当观察者模式和回调机制遇上Android源码/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"renleicoder"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+    <!-- 多说公共JS代码 end -->
+</div>
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2016/09/26/Android源码中的静态工厂方法/" title="上一篇: Android源码中的静态工厂方法">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/09/22/从装饰者模式到Context类簇/" title="下一篇: 从装饰者模式到Context类族">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/11/03/不只是迭代器模式/">不只是迭代器模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/19/Android源码中的模板方法模式/">Android源码中的模板方法模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/14/Android源码中的外观模式/">Android源码中的外观模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/13/Android Handler 消息机制（解惑篇）/">Android Handler 消息机制（解惑篇）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/13/Android源码中的适配器模式/">Android源码中的适配器模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/08/Android源码中的命令模式/">Android源码中的命令模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/29/Android中的工厂方法模式/">Android中的工厂方法模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/26/Android源码中的静态工厂方法/">Android源码中的静态工厂方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/23/当观察者模式和回调机制遇上Android源码/">当观察者模式和回调机制遇上Android源码</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/22/从装饰者模式到Context类簇/">从装饰者模式到Context类族</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/02/由面试想到的/">由面试想到的</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/12/分享一个基于MVP+Retrofit+RxJava+MaterialDesign的App/">分享一个基于MVP+Retrofit+RxJava+MaterialDesign的App</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/12/Android网络操作和优化相关/">Andorid网络操作和优化相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/01/Android中的进程和线程/">Andorid中的进程和线程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/17/方法论-成为大神路上的捷径/">方法论-成为大神路上的捷径</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/04/TextView实战之你真的懂我么？/">TextView实战之你真的懂我么？</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/29/Andorid自定义圆形渐变色进度条的从实现到开源/">Andorid自定义圆形渐变色进度条的从实现到开源</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/26/Android性能优化之Performance Tips/">Android性能优化之Performance Tips</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/19/Android性能优化之被忽视的Memory Leaks/">Android性能优化之被忽视的Memory Leaks</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/12/Androd自定义控件（五）打造自己的Camera/">Androd自定义控件（五）打造自己的Camera</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/09/这些Tips让你的App更容易维护/">这些Tips让你的App更容易维护</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/05/Androd自定义控件（四）自定义类继承viewgroup/">Androd自定义控件（四）自定义类继承viewgroup</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/29/Material Design实战/">Material Design实战</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/28/Android性能优化之渲染优化的8个点/">Android性能优化之渲染优化的8个点</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/22/Android性能优化之工具篇/">Android性能优化之工具篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/20/AndrodUI优化之布局优化/">AndrodUI优化之布局优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/18/Android加载长图那些事/">Android加载长图那些事</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/14/Androd自定义控件（三）飞翔的小火箭/">Androd自定义控件（三）飞翔的小火箭</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/09/那些年大家都在谈论的Android性能优化/">那些年大家都在谈论的Android性能优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/08/自定义view你需要知道的/">自定义view你需要知道的</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/06/Androd自定义控件（二）自定义类继承view/">Androd自定义控件（二）自定义类继承view</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/03/Android Studio1.5中NDK开发/">Android Studio1.5中NDK开发</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/29/N个非常有用的Android程序片段（持续更新）/">N个非常有用的Android程序片段（持续更新）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/28/Androd自定义控件（一）概述/">Androd自定义控件（一）概述</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016 任磊
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >本站到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.1.22/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
