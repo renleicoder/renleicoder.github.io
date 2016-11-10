@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  
+  <title>Android Handler 消息机制（解惑篇） | PleaseCallMeCoder</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Android Handler 消息机制（解惑篇）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android Handler 消息机制（解惑篇）">
+<meta property="og:url" content="http://yoursite.com/2016/10/13/Android Handler 消息机制（解惑篇）/index.html">
+<meta property="og:site_name" content="PleaseCallMeCoder">
+<meta property="og:description" content="Android Handler 消息机制（解惑篇）">
+<meta property="og:image" content="http://i.imgur.com/QqGpsAJ.png">
+<meta property="og:updated_time" content="2016-11-10T02:48:59.445Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android Handler 消息机制（解惑篇）">
+<meta name="twitter:description" content="Android Handler 消息机制（解惑篇）">
+<meta name="twitter:image" content="http://i.imgur.com/QqGpsAJ.png">
+  
+    <link rel="alternative" href="/atom.xml" title="PleaseCallMeCoder" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+      <link href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css" rel="stylesheet">
+  
+  
+  
+      <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+      <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+  
+  <script src="//cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.9/clipboard.min.js"></script>
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false,
+          fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+          scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.0.9/scrollreveal.min.js"
+      }
+  </script>
+
+  
+      <script>
+          yiliaConfig.rootUrl = "/";
+      </script>
+  
+
+  
+  
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">任磊</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">每个人都在成神的路上，只不过有的人在走，而有的人在跑。</p>
+        
+                
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:18231195685@sina.cn" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="http://weibo.com/2729748535" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/PleaseCallMeCoder" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="http://blog.csdn.net/sdkfjksf?viewmode=list" title="CSDN"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/APP/">APP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ActivityThread/">ActivityThread</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Andorid中的网络操作/">Andorid中的网络操作</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Andorid中的进程和线程/">Andorid中的进程和线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AndroidStudio1-5/">AndroidStudio1.5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/App设计模式/">App设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AsyncTask/">AsyncTask</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bitmap/">Bitmap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BitmapRegionDecoder/">BitmapRegionDecoder</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CPU和GPU/">CPU和GPU</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Camera/">Camera</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Handler机制/">Handler机制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JNI/">JNI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MAT/">MAT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVP/">MVP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MaterialDesign/">MaterialDesign</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NDK/">NDK</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Overdraw/">Overdraw</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RecyclerView/">RecyclerView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Retrofit/">Retrofit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RxJava/">RxJava</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TextView/">TextView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Toolbar/">Toolbar</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/View/">View</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ViewGroup/">ViewGroup</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/View的工作原理/">View的工作原理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hierarchyviewer/">hierarchyviewer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/include/">include</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/leakcanary/">leakcanary</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lint/">lint</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/merge/">merge</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/paint/">paint</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/surfaceview/">surfaceview</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/viewstub/">viewstub</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/代码片段/">代码片段</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/内存优化/">内存优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/内存泄漏/">内存泄漏</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原形渐变色进度条/">原形渐变色进度条</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原生控件属性/">原生控件属性</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/可扩展/">可扩展</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/可维护/">可维护</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大图加载/">大图加载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习方法/">学习方法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/官方demo/">官方demo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/官方文档/">官方文档</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/布局优化/">布局优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/性能优化/">性能优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/性能优化关键点/">性能优化关键点</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/性能优化工具/">性能优化工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/性能优化概述/">性能优化概述</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/方法论/">方法论</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/架构/">架构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/消息机制/">消息机制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/渲染优化/">渲染优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/相机/">相机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/移动端网络优化/">移动端网络优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/组合控件/">组合控件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/绘制/">绘制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自定义动画/">自定义动画</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自定义控件/">自定义控件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/重写/">重写</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">任磊</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">任磊</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">每个人都在成神的路上，只不过有的人在走，而有的人在跑。</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:18231195685@sina.cn" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="http://weibo.com/2729748535" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/PleaseCallMeCoder" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="http://blog.csdn.net/sdkfjksf?viewmode=list" title="CSDN"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-Android Handler 消息机制（解惑篇）" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/10/13/Android Handler 消息机制（解惑篇）/" class="article-date">
+      <time datetime="2016-10-13T07:20:00.000Z" itemprop="datePublished">2016-10-13</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Android Handler 消息机制（解惑篇）
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Android源码与设计模式/">Android源码与设计模式</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ActivityThread/">ActivityThread</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Handler机制/">Handler机制</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/消息机制/">消息机制</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>Android Handler 消息机制（解惑篇）</p>
+<ul>
+<li><a id="more"></a>
+</li>
+</ul>
+<p>#Android中的消息处理机制概述</p>
+<p>大家对于Android中的消息处理机制的用法一定都比较熟悉，至于工作原理估计不少人有研究。就像我们自己写的类我们用起来比较熟悉一样，如果我们熟悉了消息处理机制的具体实现，那么我们用起来肯定也会事半功倍。</p>
+<p>博主之前只是稍有涉猎，对其中一些地方也还心存疑虑，比如<strong>既然Looper.loop()里是一个死循环，那它会不会很消耗CPU呢？死循环阻塞了线程，那我们其他的事务是如何被处理的呢？Android的UI线程是在哪里被初始化的呢？</strong>等等。索性今天就把他们放到一起，说道说道。</p>
+<p>##Android中线程的分类</p>
+<ul>
+<li><p>带有消息队列，用来执行循环性任务（例如主线程、android.os.HandlerThread）</p>
+<ul>
+<li><p>有消息时就处理</p>
+</li>
+<li><p>没有消息时就睡眠</p>
+</li>
+</ul>
+</li>
+<li><p>没有消息队列，用来执行一次性任务（例如java.lang.Thread）</p>
+<ul>
+<li>任务一旦执行完成便退出</li>
+</ul>
+</li>
+</ul>
+<p>##带有消息队列线程概述</p>
+<p>###四要素</p>
+<ul>
+<li><p>Message(消息)</p>
+</li>
+<li><p>MessageQueue(消息队列)</p>
+</li>
+<li><p>Looper(消息循环)</p>
+</li>
+<li><p>Handler(消息发送和处理)</p>
+</li>
+</ul>
+<p>###四要素的交互过程</p>
+<p><img src="http://i.imgur.com/QqGpsAJ.png" alt=""></p>
+<p>具体工作过程</p>
+<ul>
+<li><p>消息队列的创建</p>
+</li>
+<li><p>消息循环</p>
+</li>
+<li><p>消息的发送</p>
+<p>  最基本的两个API</p>
+<ul>
+<li><p>Handler.sendMessage</p>
+<ul>
+<li>带一个Message参数，用来描述消息的内容</li>
+</ul>
+</li>
+<li><p>Handler.post</p>
+<ul>
+<li>带一个Runnable参数，会被转换为一个Message参数</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>消息的处理</p>
+</li>
+</ul>
+<p>###基于消息的异步任务接口</p>
+<ul>
+<li><p>android.os.HandlerThread</p>
+<ul>
+<li>适合用来处于不需要更新UI的后台任务</li>
+</ul>
+</li>
+<li><p>android.os.AyncTask</p>
+<ul>
+<li>适合用来处于需要更新UI的后台任务</li>
+</ul>
+</li>
+</ul>
+<p>#带有消息队列线程的具体实现</p>
+<p>##ThreadLocal</p>
+<p>ThreadLocal并不是一个Thread，而是Thread的<strong>局部变量</strong>。当使用ThreadLocal维护变量时，ThreadLocal为每个使用该变量的线程提供独立的变量副本，所以每一个线程都可以独立地改变自己的副本，而不会影响其它线程所对应的副本。</p>
+<p>从线程的角度看，目标变量就象是<strong>线程的本地变量</strong>，这也是类名中“Local”所要表达的意思。</p>
+<p>##Looper</p>
+<p>用于在指定线程中运行一个消息循环，一旦有新任务则执行，执行完继续等待下一个任务，即变成<strong>Looper线程</strong>。Looper类的注释里有这样一个例子：</p>
+<pre><code>class LooperThread extends Thread {
+
+    public Handler mHandler;
+
+    public void run() {
+
+        //将当前线程初始化为Looper线程
+        Looper.prepare();
+
+        // ...其他处理，如实例化handler
+        mHandler = new Handler() {
+            public void handleMessage(Message msg) {
+                // process incoming messages here
+            }
+        };
+
+        // 开始循环处理消息队列
+        Looper.loop();
+    }
+}
+</code></pre><p>其实核心代码就两行，我们先来看下Looper.prepare()方法的具体实现</p>
+<pre><code>public final class Looper {
+
+    private static final String TAG = &quot;Looper&quot;;
+
+    // sThreadLocal.get() will return null unless you&apos;ve called prepare().
+    static final ThreadLocal&lt;Looper&gt; sThreadLocal = new ThreadLocal&lt;Looper&gt;();
+    private static Looper sMainLooper;  // guarded by Looper.class
+
+    //Looper内的消息队列
+    final MessageQueue mQueue;
+    // 当前线程
+    final Thread mThread;
+
+    private Printer mLogging;
+
+    private Looper(boolean quitAllowed) {
+        mQueue = new MessageQueue(quitAllowed);
+        mThread = Thread.currentThread();
+    }
+
+     /** Initialize the current thread as a looper.
+      * This gives you a chance to create handlers that then reference
+      * this looper, before actually starting the loop. Be sure to call
+      * {@link #loop()} after calling this method, and end it by calling
+      * {@link #quit()}.
+      */
+    public static void prepare() {
+        prepare(true);
+    }
+
+    private static void prepare(boolean quitAllowed) {
+        //试图在有Looper的线程中再次创建Looper将抛出异常
+        if (sThreadLocal.get() != null) {
+            throw new RuntimeException(&quot;Only one Looper may be created per thread&quot;);
+        }
+        sThreadLocal.set(new Looper(quitAllowed));
+    }
+
+    /**
+     * Initialize the current thread as a looper, marking it as an
+     * application&apos;s main looper. The main looper for your application
+     * is created by the Android environment, so you should never need
+     * to call this function yourself.  See also: {@link #prepare()}
+     */
+    public static void prepareMainLooper() {
+        prepare(false);
+        synchronized (Looper.class) {
+            if (sMainLooper != null) {
+                throw new IllegalStateException(&quot;The main Looper has already been prepared.&quot;);
+            }
+            sMainLooper = myLooper();
+        }
+    }
+
+    //~省略部分无关代码~
+}
+</code></pre><p>从中我们可以看到以下几点：</p>
+<ul>
+<li><strong>prepare()其核心就是将looper对象定义为ThreadLocal</strong></li>
+<li><strong>一个Thread只能有一个Looper对象</strong></li>
+<li><strong>prepare()方法会调用Looper的构造方法，初始化一个消息队列，并且指定当前线程</strong></li>
+<li><strong>在调用Looper.loop()方法之前，确保已经调用了prepare(boolean quitAllowed)方法，并且我们可以调用quite方法结束循环</strong></li>
+</ul>
+<p>说到初始化MessageQueue，我们来看下它是干什么的</p>
+<blockquote>
+<p>/**</p>
+<ul>
+<li>Low-level class holding the list of messages to be dispatched by a</li>
+<li>{@link Looper}.  Messages are not added directly to a MessageQueue,</li>
+<li>but rather through {@link Handler} objects associated with the Looper.</li>
+<li></li>
+<li><p>You can retrieve the MessageQueue for the current thread with</p></li>
+<li>{@link Looper#myQueue() Looper.myQueue()}.<br>*/</li>
+</ul>
+</blockquote>
+<p><strong>它是一个低等级的持有Messages集合的类，被Looper分发。Messages并不是直接加到MessageQueue的，而是通过Handler对象和Looper关联到一起。我们可以通过Looper.myQueue()方法来检索当前线程的MessageQueue。</strong></p>
+<p>接下来再看看Looper.loop()</p>
+<pre><code>/**
+ * Run the message queue in this thread. Be sure to call
+ * {@link #quit()} to end the loop.
+ */
+public static void loop() {
+    //得到当前线程Looper
+    final Looper me = myLooper();
+    if (me == null) {
+        throw new RuntimeException(&quot;No Looper; Looper.prepare() wasn&apos;t called on this thread.&quot;);
+    }
+    //得到当前looper的MessageQueue
+    final MessageQueue queue = me.mQueue;
+
+    // Make sure the identity of this thread is that of the local process,
+    // and keep track of what that identity token actually is.
+    Binder.clearCallingIdentity();
+    final long ident = Binder.clearCallingIdentity();
+
+    //开始循环
+    for (;;) {
+        Message msg = queue.next(); // might block
+        if (msg == null) {
+            // No message indicates that the message queue is quitting.
+            //没有消息表示消息队列正在退出
+            return;
+        }
+
+        // This must be in a local variable, in case a UI event sets the logger
+        Printer logging = me.mLogging;
+        if (logging != null) {
+            logging.println(&quot;&gt;&gt;&gt;&gt;&gt; Dispatching to &quot; + msg.target + &quot; &quot; +
+                    msg.callback + &quot;: &quot; + msg.what);
+        }
+
+        //将真正的处理工作交给message的target，即handler
+        msg.target.dispatchMessage(msg);
+
+        if (logging != null) {
+            logging.println(&quot;&lt;&lt;&lt;&lt;&lt; Finished to &quot; + msg.target + &quot; &quot; + msg.callback);
+        }
+
+        // Make sure that during the course of dispatching the
+        // identity of the thread wasn&apos;t corrupted.
+        final long newIdent = Binder.clearCallingIdentity();
+        if (ident != newIdent) {
+            Log.wtf(TAG, &quot;Thread identity changed from 0x&quot;
+                    + Long.toHexString(ident) + &quot; to 0x&quot;
+                    + Long.toHexString(newIdent) + &quot; while dispatching to &quot;
+                    + msg.target.getClass().getName() + &quot; &quot;
+                    + msg.callback + &quot; what=&quot; + msg.what);
+        }
+
+        //回收消息资源
+        msg.recycleUnchecked();
+    }
+}
+</code></pre><p>通过这段代码可知，<strong>调用loop方法后，Looper线程就开始真正工作了，它不断从自己的MessageQueue中取出队头的消息(或者说是任务)执行</strong>。</p>
+<p>除了prepare()和loop()方法，Looper类还有一些比较有用的方法，比如</p>
+<ul>
+<li><p>Looper.myLooper()得到当前线程looper对象</p>
+</li>
+<li><p>getThread()得到looper对象所属线程</p>
+</li>
+<li><p>quit()方法结束looper循环</p>
+<p>  这里需要注意的一点是，quit（）方法其实调用的是MessageWueue的quite（boolean safe）方法。</p>
+<pre><code>void quit(boolean safe) {
+    if (!mQuitAllowed) {
+        throw new IllegalStateException(&quot;Main thread not allowed to quit.&quot;);
+    }
+
+    synchronized (this) {
+        if (mQuitting) {
+            return;
+        }
+        mQuitting = true;
+
+        if (safe) {
+            removeAllFutureMessagesLocked();
+        } else {
+            removeAllMessagesLocked();
+        }
+
+        // We can assume mPtr != 0 because mQuitting was previously false.
+        nativeWake(mPtr);
+    }
+}
+</code></pre><p>  <strong>我们看到其实主线程是不能调用这个方法退出消息队列的。至于mQuitAllowed参数是在Looper初始化的时候初始化的，主线程初始化调用的是Looper.prepareMainLooper()方法，这个方法把参数设置为false。</strong></p>
+</li>
+</ul>
+<p>##Message</p>
+<p><strong>在整个消息处理机制中，message又叫task，封装了任务携带的信息和处理该任务的handler</strong>。我们看下这个类的注释</p>
+<blockquote>
+<p>/**</p>
+<ul>
+<li></li>
+<li>Defines a message containing a description and arbitrary data object that can be</li>
+<li>sent to a {@link Handler}.  This object contains two extra int fields and an</li>
+<li>extra object field that allow you to not do allocations in many cases.<br>*</li>
+<li><p class="note">While the constructor of Message is public, the best way to get</p></li>
+<li>one of these is to call {@link #obtain Message.obtain()} or one of the</li>
+<li>{@link Handler#obtainMessage Handler.obtainMessage()} methods, which will pull</li>
+<li>them from a pool of recycled objects.<p></p><br>*/</li>
+</ul>
+</blockquote>
+<p><strong>这个类定义了一个包含描述和一个任意类型对象的对象，它可以被发送给Handler。</strong></p>
+<p>从注释里我们还可以了解到以下几点：</p>
+<ul>
+<li><p>尽管Message有public的默认构造方法，但是你应该通过Message.obtain()来从消息池中获得空消息对象，以节省资源。</p>
+</li>
+<li><p>如果你的message只需要携带简单的int信息，请优先使用Message.arg1和Message.arg2来传递信息，这比用Bundle更省内存</p>
+</li>
+<li><p>用message.what来标识信息，以便用不同方式处理message。</p>
+</li>
+</ul>
+<p>##Handler</p>
+<p>从MessageQueue的注释中，我们知道添加消息到消息队列是通过Handler来操作的。我们通过源码来看下具体是怎么实现的</p>
+<blockquote>
+<p>/**</p>
+<ul>
+<li>A Handler allows you to send and process {@link Message} and Runnable</li>
+<li>objects associated with a thread’s {@link MessageQueue}.  Each Handler</li>
+<li>instance is associated with a single thread and that thread’s message</li>
+<li>queue.  When you create a new Handler, it is bound to the thread /</li>
+<li>message queue of the thread that is creating it – from that point on,</li>
+<li>it will deliver messages and runnables to that message queue and execute</li>
+<li>them as they come out of the message queue.</li>
+<li></li>
+<li><p>There are two main uses for a Handler: (1) to schedule messages and</p></li>
+<li>runnables to be executed as some point in the future; and (2) to enqueue</li>
+<li>an action to be performed on a different thread than your own.</li>
+<li>*/</li>
+</ul>
+</blockquote>
+<p>注释比较简单，这里就不过多翻译了，主要内容是：<strong>每一个Handler实例关联了一个单一的ghread和这个thread的messagequeue，当Handler的实例被创建的时候它就被绑定到了创建它的thread。它用来调度message和runnables在未来某个时间点的执行，还可以排列其他线程里执行的操作。</strong></p>
+<pre><code>public class Handler {
+
+    //~省略部分无关代码~
+
+    final MessageQueue mQueue;
+    final Looper mLooper;
+
+    public Handler() {
+        this(null, false);
+    }
+
+    public Handler(Looper looper) {
+        this(looper, null, false);
+    }
+
+    public Handler(boolean async) {
+        this(null, async);
+    }
+
+    public Handler(Callback callback, boolean async) {
+        if (FIND_POTENTIAL_LEAKS) {
+            final Class&lt;? extends Handler&gt; klass = getClass();
+            if ((klass.isAnonymousClass() || klass.isMemberClass() || klass.isLocalClass()) &amp;&amp;
+                    (klass.getModifiers() &amp; Modifier.STATIC) == 0) {
+                Log.w(TAG, &quot;The following Handler class should be static or leaks might occur: &quot; +
+                    klass.getCanonicalName());
+            }
+        }
+
+        mLooper = Looper.myLooper();
+        if (mLooper == null) {
+            throw new RuntimeException(
+                &quot;Can&apos;t create handler inside thread that has not called Looper.prepare()&quot;);
+        }
+        mQueue = mLooper.mQueue;
+        mCallback = callback;
+        mAsynchronous = async;
+    }
+
+    public Handler(Looper looper, Callback callback, boolean async) {
+        mLooper = looper;
+        mQueue = looper.mQueue;
+        mCallback = callback;
+        mAsynchronous = async;
+    }
+
+    //~省略部分无关代码~
+}
+</code></pre><p>先看构造方法，<strong>其实里边的重点是初始化了两个变量，把关联looper的MessageQueue作为自己的MessageQueue，因此它的消息将发送到关联looper的MessageQueue上</strong>。</p>
+<p>有了handler之后，我们就可以使用Handler提供的post和send系列方法向MessageQueue上发送消息了。其实<strong>post发出的Runnable对象最后都被封装成message对象</strong></p>
+<p>接下来我们看一下handler是如何发送消息的</p>
+<pre><code>/**
+ * Causes the Runnable r to be added to the message queue.
+ * The runnable will be run on the thread to which this handler is 
+ * attached. 
+ *  
+ * @param r The Runnable that will be executed.
+ * 
+ * @return Returns true if the Runnable was successfully placed in to the 
+ *         message queue.  Returns false on failure, usually because the
+ *         looper processing the message queue is exiting.
+ */
+public final boolean post(Runnable r)
+{
+   return  sendMessageDelayed(getPostMessage(r), 0);
+}
+
+/**
+ * Enqueue a message into the message queue after all pending messages
+ * before (current time + delayMillis). You will receive it in
+ * {@link #handleMessage}, in the thread attached to this handler.
+ *  
+ * @return Returns true if the message was successfully placed in to the 
+ *         message queue.  Returns false on failure, usually because the
+ *         looper processing the message queue is exiting.  Note that a
+ *         result of true does not mean the message will be processed -- if
+ *         the looper is quit before the delivery time of the message
+ *         occurs then the message will be dropped.
+ */
+public final boolean sendMessageDelayed(Message msg, long delayMillis)
+{
+    if (delayMillis &lt; 0) {
+        delayMillis = 0;
+    }
+    return sendMessageAtTime(msg, SystemClock.uptimeMillis() + delayMillis);
+}
+
+/**
+ * Enqueue a message into the message queue after all pending messages
+ * before the absolute time (in milliseconds) &lt;var&gt;uptimeMillis&lt;/var&gt;.
+ * &lt;b&gt;The time-base is {@link android.os.SystemClock#uptimeMillis}.&lt;/b&gt;
+ * Time spent in deep sleep will add an additional delay to execution.
+ * You will receive it in {@link #handleMessage}, in the thread attached
+ * to this handler.
+ * 
+ * @param uptimeMillis The absolute time at which the message should be
+ *         delivered, using the
+ *         {@link android.os.SystemClock#uptimeMillis} time-base.
+ *         
+ * @return Returns true if the message was successfully placed in to the 
+ *         message queue.  Returns false on failure, usually because the
+ *         looper processing the message queue is exiting.  Note that a
+ *         result of true does not mean the message will be processed -- if
+ *         the looper is quit before the delivery time of the message
+ *         occurs then the message will be dropped.
+ */
+public boolean sendMessageAtTime(Message msg, long uptimeMillis) {
+    MessageQueue queue = mQueue;
+    if (queue == null) {
+        RuntimeException e = new RuntimeException(
+                this + &quot; sendMessageAtTime() called with no mQueue&quot;);
+        Log.w(&quot;Looper&quot;, e.getMessage(), e);
+        return false;
+    }
+    return enqueueMessage(queue, msg, uptimeMillis);
+}
+
+private boolean enqueueMessage(MessageQueue queue, Message msg, long uptimeMillis) {
+    msg.target = this;
+    if (mAsynchronous) {
+        msg.setAsynchronous(true);
+    }
+    return queue.enqueueMessage(msg, uptimeMillis);
+}
+</code></pre><p>这里我们只列出了一种调用关系，其他调用关系大同小异，我们来分析一下</p>
+<ol>
+<li>调用getPostMessage(r)，把runnable对象添加到一个Message对象中。</li>
+<li>sendMessageDelayed(getPostMessage(r), 0)，基本没做什么操作，又继续调用sendMessageAtTime(msg, SystemClock.uptimeMillis() + delayMillis)方法，在这个方法里拿到创建这个Handler对象的线程持有的MessageQueue。</li>
+<li>调用enqueueMessage(queue, msg, uptimeMillis)方法，给msg对象的target变量赋值为当前的Handler对象，然后放入到MessageQueue。</li>
+</ol>
+<p>那发送消息说完了，那我们的消息是怎样被处理的呢？</p>
+<p><strong>我们看到message.target为该handler对象，这确保了looper执行到该message时能找到处理它的handler，即loop()方法中的关键代码。</strong></p>
+<pre><code>/**
+ * Callback interface you can use when instantiating a Handler to avoid
+ * having to implement your own subclass of Handler.
+ *
+ * @param msg A {@link android.os.Message Message} object
+ * @return True if no further handling is desired
+ */
+public interface Callback {
+    public boolean handleMessage(Message msg);
+}
+
+/**
+ * Subclasses must implement this to receive messages.
+ */
+public void handleMessage(Message msg) {
+}
+
+/**
+ * Handle system messages here.
+ */
+public void dispatchMessage(Message msg) {
+    if (msg.callback != null) {
+        handleCallback(msg);
+    } else {
+        if (mCallback != null) {
+            if (mCallback.handleMessage(msg)) {
+                return;
+            }
+        }
+        handleMessage(msg);
+    }
+}
+
+private static void handleCallback(Message message) {
+    message.callback.run();
+}
+</code></pre><p><strong>我们看到这里最终又调用到了我们重写的handleMessage(Message msg)方法来做处理子线程发来的消息或者调用handleCallback(Message message)去执行我们子线程中定义并传过来的操作。</strong></p>
+<p>#思考</p>
+<p>##为什么要有Handler机制</p>
+<p>这个问题可以这么考虑</p>
+<ol>
+<li>我们如何在子线程更新UI？——使用Handler机制传递消息到主线程（UI线程）</li>
+<li>为什么我们不在子线程更新UI呢？——因为Android是单线程模型</li>
+<li>为什么要做成单线程模型呢？——<strong>多线程并发访问UI可能会导致UI控件处于不可预期的状态。如果加锁，虽然能解决，但是缺点也很明显：1.锁机制让UI访问逻辑变得复杂；2.加锁导致效率低下。</strong></li>
+</ol>
+<p>##Handler机制与命令模式</p>
+<p>我在之前分享过<a href="http://blog.csdn.net/sdkfjksf/article/details/52755908" target="_blank" rel="external">Android源码中的命令模式</a>，我们仔细分下一下不难看出<strong>Handler机制其实是一个非典型的命令模式</strong>。</p>
+<ul>
+<li><p>接收者：Handler，执行消息处理操作。</p>
+</li>
+<li><p>调用者：Looper，调用消息的的处理方法。</p>
+</li>
+<li><p>命令角色：Message，消息类。</p>
+</li>
+<li><p>客户端:Thread，创建消息并绑定Handler（接受者）。</p>
+</li>
+</ul>
+<p>##Android主线程是如何管理子线程消息的</p>
+<p><strong>我们知道Android上一个应用的入口，应该是ActivityThread。和普通的Java类一样，入口是一个main方法。</strong></p>
+<pre><code>public static void main(String[] args) {
+
+    //~省略部分无关代码~
+
+    //创建Looper和MessageQueue对象，用于处理主线程的消息
+    Looper.prepareMainLooper();
+
+    //创建ActivityThread对象
+    ActivityThread thread = new ActivityThread();
+
+    //建立Binder通道 (创建新线程)
+    thread.attach(false);
+
+    if (sMainThreadHandler == null) {
+        sMainThreadHandler = thread.getHandler();
+    }
+
+    if (false) {
+        Looper.myLooper().setMessageLogging(new
+                LogPrinter(Log.DEBUG, &quot;ActivityThread&quot;));
+    }
+
+    // End of event ActivityThreadMain.
+    Trace.traceEnd(Trace.TRACE_TAG_ACTIVITY_MANAGER);
+
+    //消息循环运行
+    Looper.loop();
+
+    throw new RuntimeException(&quot;Main thread loop unexpectedly exited&quot;);
+}
+</code></pre><p>我们可以看到其实我们在这里初始化了我们主线程（UI）的Looper并且启动它。然后就可以处理子线程和其他组件发来的消息了。</p>
+<p>##为什么主线程不会因为Looper.loop()里的死循环卡死或者不能处理其他事务</p>
+<p>这里涉及到的东西比较多，概括的理解是这样的</p>
+<ol>
+<li><p>为什么不会卡死</p>
+<p> <strong>handler机制是使用pipe来实现的，主线程没有消息处理时会阻塞在管道的读端。</strong></p>
+<p> <strong>binder线程会往主线程消息队列里添加消息，然后往管道写端写一个字节，这样就能唤醒主线程从管道读端返回，也就是说queue.next()会调用返回。</strong></p>
+<p> <strong>主线程大多数时候都是处于休眠状态，并不会消耗大量CPU资源。</strong></p>
+</li>
+<li><p>既然是死循环又如何去处理其他事务呢？</p>
+<p> 答案是<strong>通过创建新线程的方式</strong>。</p>
+<p> <strong>我们看到main方法里调用了thread.attach(false)，这里便会创建一个Binder线程（具体是指ApplicationThread，Binder的服务端，用于接收系统服务AMS发送来的事件），该Binder线程通过Handler将Message发送给主线程。</strong></p>
+<p> <strong>ActivityThread对应的Handler是一个内部类H，里边包含了启动Activity、处理Activity生命周期等方法。</strong></p>
+</li>
+</ol>
+<p>#参考资料</p>
+<p><a href="http://www.cnblogs.com/codingmyworld/archive/2011/09/12/2174255.html" target="_blank" rel="external">http://www.cnblogs.com/codingmyworld/archive/2011/09/12/2174255.html</a></p>
+<p><a href="http://czpsailer.iteye.com/blog/655942" target="_blank" rel="external">http://czpsailer.iteye.com/blog/655942</a></p>
+<p><a href="https://www.zhihu.com/question/34652589" target="_blank" rel="external">https://www.zhihu.com/question/34652589</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/10/13/Android Handler 消息机制（解惑篇）/">Android Handler 消息机制（解惑篇）</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">任磊</a></p>
+        <p><span>发布时间:</span>2016-10-13, 15:20:00</p>
+        <p><span>最后更新:</span>2016-11-10, 10:48:59</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/10/13/Android Handler 消息机制（解惑篇）/" title="Android Handler 消息机制（解惑篇）">http://yoursite.com/2016/10/13/Android Handler 消息机制（解惑篇）/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2016/10/13/Android Handler 消息机制（解惑篇）/　　作者: 任磊" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/09/02/由面试想到的/">
+                    由面试想到的
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"Android Handler 消息机制（解惑篇）　| PleaseCallMeCoder　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="2016/10/13/Android Handler 消息机制（解惑篇）/" data-title="Android Handler 消息机制（解惑篇）" data-url="http://yoursite.com/2016/10/13/Android Handler 消息机制（解惑篇）/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"renleicoder"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+    <!-- 多说公共JS代码 end -->
+</div>
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/09/02/由面试想到的/" title="下一篇: 由面试想到的">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/10/13/Android Handler 消息机制（解惑篇）/">Android Handler 消息机制（解惑篇）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/02/由面试想到的/">由面试想到的</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/12/分享一个基于MVP+Retrofit+RxJava+MaterialDesign的App/">分享一个基于MVP+Retrofit+RxJava+MaterialDesign的App</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/12/Android网络操作和优化相关/">Andorid网络操作和优化相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/01/Android中的进程和线程/">Andorid中的进程和线程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/17/方法论-成为大神路上的捷径/">方法论-成为大神路上的捷径</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/04/TextView实战之你真的懂我么？/">TextView实战之你真的懂我么？</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/29/Andorid自定义圆形渐变色进度条的从实现到开源/">Andorid自定义圆形渐变色进度条的从实现到开源</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/26/Android性能优化之Performance Tips/">Android性能优化之Performance Tips</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/19/Android性能优化之被忽视的Memory Leaks/">Android性能优化之被忽视的Memory Leaks</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/12/Androd自定义控件（五）打造自己的Camera/">Androd自定义控件（五）打造自己的Camera</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/09/这些Tips让你的App更容易维护/">这些Tips让你的App更容易维护</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/05/Androd自定义控件（四）自定义类继承viewgroup/">Androd自定义控件（四）自定义类继承viewgroup</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/29/Material Design实战/">Material Design实战</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/28/Android性能优化之渲染优化的8个点/">Android性能优化之渲染优化的8个点</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/22/Android性能优化之工具篇/">Android性能优化之工具篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/20/AndrodUI优化之布局优化/">AndrodUI优化之布局优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/18/Android加载长图那些事/">Android加载长图那些事</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/14/Androd自定义控件（三）飞翔的小火箭/">Androd自定义控件（三）飞翔的小火箭</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/09/那些年大家都在谈论的Android性能优化/">那些年大家都在谈论的Android性能优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/08/自定义view你需要知道的/">自定义view你需要知道的</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/06/Androd自定义控件（二）自定义类继承view/">Androd自定义控件（二）自定义类继承view</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/03/Android Studio1.5中NDK开发/">Android Studio1.5中NDK开发</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/29/N个非常有用的Android程序片段（持续更新）/">N个非常有用的Android程序片段（持续更新）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/28/Androd自定义控件（一）概述/">Androd自定义控件（一）概述</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016 任磊
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >本站到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.1.22/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

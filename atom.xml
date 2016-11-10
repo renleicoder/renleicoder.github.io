@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-09-06T06:14:42.105Z</updated>
+  <updated>2016-11-10T02:48:59.445Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,587 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Android Handler 消息机制（解惑篇）</title>
+    <link href="http://yoursite.com/2016/10/13/Android%20Handler%20%E6%B6%88%E6%81%AF%E6%9C%BA%E5%88%B6%EF%BC%88%E8%A7%A3%E6%83%91%E7%AF%87%EF%BC%89/"/>
+    <id>http://yoursite.com/2016/10/13/Android Handler 消息机制（解惑篇）/</id>
+    <published>2016-10-13T07:20:00.000Z</published>
+    <updated>2016-11-10T02:48:59.445Z</updated>
+    
+    <content type="html">&lt;p&gt;Android Handler 消息机制（解惑篇）&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;#Android中的消息处理机制概述&lt;/p&gt;
+&lt;p&gt;大家对于Android中的消息处理机制的用法一定都比较熟悉，至于工作原理估计不少人有研究。就像我们自己写的类我们用起来比较熟悉一样，如果我们熟悉了消息处理机制的具体实现，那么我们用起来肯定也会事半功倍。&lt;/p&gt;
+&lt;p&gt;博主之前只是稍有涉猎，对其中一些地方也还心存疑虑，比如&lt;strong&gt;既然Looper.loop()里是一个死循环，那它会不会很消耗CPU呢？死循环阻塞了线程，那我们其他的事务是如何被处理的呢？Android的UI线程是在哪里被初始化的呢？&lt;/strong&gt;等等。索性今天就把他们放到一起，说道说道。&lt;/p&gt;
+&lt;p&gt;##Android中线程的分类&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;带有消息队列，用来执行循环性任务（例如主线程、android.os.HandlerThread）&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;有消息时就处理&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;没有消息时就睡眠&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;没有消息队列，用来执行一次性任务（例如java.lang.Thread）&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;任务一旦执行完成便退出&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;##带有消息队列线程概述&lt;/p&gt;
+&lt;p&gt;###四要素&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Message(消息)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;MessageQueue(消息队列)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Looper(消息循环)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Handler(消息发送和处理)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;###四要素的交互过程&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://i.imgur.com/QqGpsAJ.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;具体工作过程&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;消息队列的创建&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;消息循环&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;消息的发送&lt;/p&gt;
+&lt;p&gt;  最基本的两个API&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Handler.sendMessage&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;带一个Message参数，用来描述消息的内容&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Handler.post&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;带一个Runnable参数，会被转换为一个Message参数&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;消息的处理&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;###基于消息的异步任务接口&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;android.os.HandlerThread&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;适合用来处于不需要更新UI的后台任务&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;android.os.AyncTask&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;适合用来处于需要更新UI的后台任务&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;#带有消息队列线程的具体实现&lt;/p&gt;
+&lt;p&gt;##ThreadLocal&lt;/p&gt;
+&lt;p&gt;ThreadLocal并不是一个Thread，而是Thread的&lt;strong&gt;局部变量&lt;/strong&gt;。当使用ThreadLocal维护变量时，ThreadLocal为每个使用该变量的线程提供独立的变量副本，所以每一个线程都可以独立地改变自己的副本，而不会影响其它线程所对应的副本。&lt;/p&gt;
+&lt;p&gt;从线程的角度看，目标变量就象是&lt;strong&gt;线程的本地变量&lt;/strong&gt;，这也是类名中“Local”所要表达的意思。&lt;/p&gt;
+&lt;p&gt;##Looper&lt;/p&gt;
+&lt;p&gt;用于在指定线程中运行一个消息循环，一旦有新任务则执行，执行完继续等待下一个任务，即变成&lt;strong&gt;Looper线程&lt;/strong&gt;。Looper类的注释里有这样一个例子：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;class LooperThread extends Thread {
+
+    public Handler mHandler;
+
+    public void run() {
+
+        //将当前线程初始化为Looper线程
+        Looper.prepare();
+
+        // ...其他处理，如实例化handler
+        mHandler = new Handler() {
+            public void handleMessage(Message msg) {
+                // process incoming messages here
+            }
+        };
+
+        // 开始循环处理消息队列
+        Looper.loop();
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;其实核心代码就两行，我们先来看下Looper.prepare()方法的具体实现&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;public final class Looper {
+
+    private static final String TAG = &amp;quot;Looper&amp;quot;;
+
+    // sThreadLocal.get() will return null unless you&amp;apos;ve called prepare().
+    static final ThreadLocal&amp;lt;Looper&amp;gt; sThreadLocal = new ThreadLocal&amp;lt;Looper&amp;gt;();
+    private static Looper sMainLooper;  // guarded by Looper.class
+
+    //Looper内的消息队列
+    final MessageQueue mQueue;
+    // 当前线程
+    final Thread mThread;
+
+    private Printer mLogging;
+
+    private Looper(boolean quitAllowed) {
+        mQueue = new MessageQueue(quitAllowed);
+        mThread = Thread.currentThread();
+    }
+
+     /** Initialize the current thread as a looper.
+      * This gives you a chance to create handlers that then reference
+      * this looper, before actually starting the loop. Be sure to call
+      * {@link #loop()} after calling this method, and end it by calling
+      * {@link #quit()}.
+      */
+    public static void prepare() {
+        prepare(true);
+    }
+
+    private static void prepare(boolean quitAllowed) {
+        //试图在有Looper的线程中再次创建Looper将抛出异常
+        if (sThreadLocal.get() != null) {
+            throw new RuntimeException(&amp;quot;Only one Looper may be created per thread&amp;quot;);
+        }
+        sThreadLocal.set(new Looper(quitAllowed));
+    }
+
+    /**
+     * Initialize the current thread as a looper, marking it as an
+     * application&amp;apos;s main looper. The main looper for your application
+     * is created by the Android environment, so you should never need
+     * to call this function yourself.  See also: {@link #prepare()}
+     */
+    public static void prepareMainLooper() {
+        prepare(false);
+        synchronized (Looper.class) {
+            if (sMainLooper != null) {
+                throw new IllegalStateException(&amp;quot;The main Looper has already been prepared.&amp;quot;);
+            }
+            sMainLooper = myLooper();
+        }
+    }
+
+    //~省略部分无关代码~
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;从中我们可以看到以下几点：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;prepare()其核心就是将looper对象定义为ThreadLocal&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;一个Thread只能有一个Looper对象&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;prepare()方法会调用Looper的构造方法，初始化一个消息队列，并且指定当前线程&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;在调用Looper.loop()方法之前，确保已经调用了prepare(boolean quitAllowed)方法，并且我们可以调用quite方法结束循环&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;说到初始化MessageQueue，我们来看下它是干什么的&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;/**&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Low-level class holding the list of messages to be dispatched by a&lt;/li&gt;
+&lt;li&gt;{@link Looper}.  Messages are not added directly to a MessageQueue,&lt;/li&gt;
+&lt;li&gt;but rather through {@link Handler} objects associated with the Looper.&lt;/li&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;You can retrieve the MessageQueue for the current thread with&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;{@link Looper#myQueue() Looper.myQueue()}.&lt;br&gt;*/&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;它是一个低等级的持有Messages集合的类，被Looper分发。Messages并不是直接加到MessageQueue的，而是通过Handler对象和Looper关联到一起。我们可以通过Looper.myQueue()方法来检索当前线程的MessageQueue。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;接下来再看看Looper.loop()&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;/**
+ * Run the message queue in this thread. Be sure to call
+ * {@link #quit()} to end the loop.
+ */
+public static void loop() {
+    //得到当前线程Looper
+    final Looper me = myLooper();
+    if (me == null) {
+        throw new RuntimeException(&amp;quot;No Looper; Looper.prepare() wasn&amp;apos;t called on this thread.&amp;quot;);
+    }
+    //得到当前looper的MessageQueue
+    final MessageQueue queue = me.mQueue;
+
+    // Make sure the identity of this thread is that of the local process,
+    // and keep track of what that identity token actually is.
+    Binder.clearCallingIdentity();
+    final long ident = Binder.clearCallingIdentity();
+
+    //开始循环
+    for (;;) {
+        Message msg = queue.next(); // might block
+        if (msg == null) {
+            // No message indicates that the message queue is quitting.
+            //没有消息表示消息队列正在退出
+            return;
+        }
+
+        // This must be in a local variable, in case a UI event sets the logger
+        Printer logging = me.mLogging;
+        if (logging != null) {
+            logging.println(&amp;quot;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt; Dispatching to &amp;quot; + msg.target + &amp;quot; &amp;quot; +
+                    msg.callback + &amp;quot;: &amp;quot; + msg.what);
+        }
+
+        //将真正的处理工作交给message的target，即handler
+        msg.target.dispatchMessage(msg);
+
+        if (logging != null) {
+            logging.println(&amp;quot;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt; Finished to &amp;quot; + msg.target + &amp;quot; &amp;quot; + msg.callback);
+        }
+
+        // Make sure that during the course of dispatching the
+        // identity of the thread wasn&amp;apos;t corrupted.
+        final long newIdent = Binder.clearCallingIdentity();
+        if (ident != newIdent) {
+            Log.wtf(TAG, &amp;quot;Thread identity changed from 0x&amp;quot;
+                    + Long.toHexString(ident) + &amp;quot; to 0x&amp;quot;
+                    + Long.toHexString(newIdent) + &amp;quot; while dispatching to &amp;quot;
+                    + msg.target.getClass().getName() + &amp;quot; &amp;quot;
+                    + msg.callback + &amp;quot; what=&amp;quot; + msg.what);
+        }
+
+        //回收消息资源
+        msg.recycleUnchecked();
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;通过这段代码可知，&lt;strong&gt;调用loop方法后，Looper线程就开始真正工作了，它不断从自己的MessageQueue中取出队头的消息(或者说是任务)执行&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;除了prepare()和loop()方法，Looper类还有一些比较有用的方法，比如&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Looper.myLooper()得到当前线程looper对象&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;getThread()得到looper对象所属线程&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;quit()方法结束looper循环&lt;/p&gt;
+&lt;p&gt;  这里需要注意的一点是，quit（）方法其实调用的是MessageWueue的quite（boolean safe）方法。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;void quit(boolean safe) {
+    if (!mQuitAllowed) {
+        throw new IllegalStateException(&amp;quot;Main thread not allowed to quit.&amp;quot;);
+    }
+
+    synchronized (this) {
+        if (mQuitting) {
+            return;
+        }
+        mQuitting = true;
+
+        if (safe) {
+            removeAllFutureMessagesLocked();
+        } else {
+            removeAllMessagesLocked();
+        }
+
+        // We can assume mPtr != 0 because mQuitting was previously false.
+        nativeWake(mPtr);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;  &lt;strong&gt;我们看到其实主线程是不能调用这个方法退出消息队列的。至于mQuitAllowed参数是在Looper初始化的时候初始化的，主线程初始化调用的是Looper.prepareMainLooper()方法，这个方法把参数设置为false。&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;##Message&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;在整个消息处理机制中，message又叫task，封装了任务携带的信息和处理该任务的handler&lt;/strong&gt;。我们看下这个类的注释&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;/**&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;li&gt;Defines a message containing a description and arbitrary data object that can be&lt;/li&gt;
+&lt;li&gt;sent to a {@link Handler}.  This object contains two extra int fields and an&lt;/li&gt;
+&lt;li&gt;extra object field that allow you to not do allocations in many cases.&lt;br&gt;*&lt;/li&gt;
+&lt;li&gt;&lt;p class=&quot;note&quot;&gt;While the constructor of Message is public, the best way to get&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;one of these is to call {@link #obtain Message.obtain()} or one of the&lt;/li&gt;
+&lt;li&gt;{@link Handler#obtainMessage Handler.obtainMessage()} methods, which will pull&lt;/li&gt;
+&lt;li&gt;them from a pool of recycled objects.&lt;p&gt;&lt;/p&gt;&lt;br&gt;*/&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;这个类定义了一个包含描述和一个任意类型对象的对象，它可以被发送给Handler。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;从注释里我们还可以了解到以下几点：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;尽管Message有public的默认构造方法，但是你应该通过Message.obtain()来从消息池中获得空消息对象，以节省资源。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;如果你的message只需要携带简单的int信息，请优先使用Message.arg1和Message.arg2来传递信息，这比用Bundle更省内存&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;用message.what来标识信息，以便用不同方式处理message。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;##Handler&lt;/p&gt;
+&lt;p&gt;从MessageQueue的注释中，我们知道添加消息到消息队列是通过Handler来操作的。我们通过源码来看下具体是怎么实现的&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;/**&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A Handler allows you to send and process {@link Message} and Runnable&lt;/li&gt;
+&lt;li&gt;objects associated with a thread’s {@link MessageQueue}.  Each Handler&lt;/li&gt;
+&lt;li&gt;instance is associated with a single thread and that thread’s message&lt;/li&gt;
+&lt;li&gt;queue.  When you create a new Handler, it is bound to the thread /&lt;/li&gt;
+&lt;li&gt;message queue of the thread that is creating it – from that point on,&lt;/li&gt;
+&lt;li&gt;it will deliver messages and runnables to that message queue and execute&lt;/li&gt;
+&lt;li&gt;them as they come out of the message queue.&lt;/li&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;There are two main uses for a Handler: (1) to schedule messages and&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;runnables to be executed as some point in the future; and (2) to enqueue&lt;/li&gt;
+&lt;li&gt;an action to be performed on a different thread than your own.&lt;/li&gt;
+&lt;li&gt;*/&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;注释比较简单，这里就不过多翻译了，主要内容是：&lt;strong&gt;每一个Handler实例关联了一个单一的ghread和这个thread的messagequeue，当Handler的实例被创建的时候它就被绑定到了创建它的thread。它用来调度message和runnables在未来某个时间点的执行，还可以排列其他线程里执行的操作。&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;public class Handler {
+
+    //~省略部分无关代码~
+
+    final MessageQueue mQueue;
+    final Looper mLooper;
+
+    public Handler() {
+        this(null, false);
+    }
+
+    public Handler(Looper looper) {
+        this(looper, null, false);
+    }
+
+    public Handler(boolean async) {
+        this(null, async);
+    }
+
+    public Handler(Callback callback, boolean async) {
+        if (FIND_POTENTIAL_LEAKS) {
+            final Class&amp;lt;? extends Handler&amp;gt; klass = getClass();
+            if ((klass.isAnonymousClass() || klass.isMemberClass() || klass.isLocalClass()) &amp;amp;&amp;amp;
+                    (klass.getModifiers() &amp;amp; Modifier.STATIC) == 0) {
+                Log.w(TAG, &amp;quot;The following Handler class should be static or leaks might occur: &amp;quot; +
+                    klass.getCanonicalName());
+            }
+        }
+
+        mLooper = Looper.myLooper();
+        if (mLooper == null) {
+            throw new RuntimeException(
+                &amp;quot;Can&amp;apos;t create handler inside thread that has not called Looper.prepare()&amp;quot;);
+        }
+        mQueue = mLooper.mQueue;
+        mCallback = callback;
+        mAsynchronous = async;
+    }
+
+    public Handler(Looper looper, Callback callback, boolean async) {
+        mLooper = looper;
+        mQueue = looper.mQueue;
+        mCallback = callback;
+        mAsynchronous = async;
+    }
+
+    //~省略部分无关代码~
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;先看构造方法，&lt;strong&gt;其实里边的重点是初始化了两个变量，把关联looper的MessageQueue作为自己的MessageQueue，因此它的消息将发送到关联looper的MessageQueue上&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;有了handler之后，我们就可以使用Handler提供的post和send系列方法向MessageQueue上发送消息了。其实&lt;strong&gt;post发出的Runnable对象最后都被封装成message对象&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;接下来我们看一下handler是如何发送消息的&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;/**
+ * Causes the Runnable r to be added to the message queue.
+ * The runnable will be run on the thread to which this handler is 
+ * attached. 
+ *  
+ * @param r The Runnable that will be executed.
+ * 
+ * @return Returns true if the Runnable was successfully placed in to the 
+ *         message queue.  Returns false on failure, usually because the
+ *         looper processing the message queue is exiting.
+ */
+public final boolean post(Runnable r)
+{
+   return  sendMessageDelayed(getPostMessage(r), 0);
+}
+
+/**
+ * Enqueue a message into the message queue after all pending messages
+ * before (current time + delayMillis). You will receive it in
+ * {@link #handleMessage}, in the thread attached to this handler.
+ *  
+ * @return Returns true if the message was successfully placed in to the 
+ *         message queue.  Returns false on failure, usually because the
+ *         looper processing the message queue is exiting.  Note that a
+ *         result of true does not mean the message will be processed -- if
+ *         the looper is quit before the delivery time of the message
+ *         occurs then the message will be dropped.
+ */
+public final boolean sendMessageDelayed(Message msg, long delayMillis)
+{
+    if (delayMillis &amp;lt; 0) {
+        delayMillis = 0;
+    }
+    return sendMessageAtTime(msg, SystemClock.uptimeMillis() + delayMillis);
+}
+
+/**
+ * Enqueue a message into the message queue after all pending messages
+ * before the absolute time (in milliseconds) &amp;lt;var&amp;gt;uptimeMillis&amp;lt;/var&amp;gt;.
+ * &amp;lt;b&amp;gt;The time-base is {@link android.os.SystemClock#uptimeMillis}.&amp;lt;/b&amp;gt;
+ * Time spent in deep sleep will add an additional delay to execution.
+ * You will receive it in {@link #handleMessage}, in the thread attached
+ * to this handler.
+ * 
+ * @param uptimeMillis The absolute time at which the message should be
+ *         delivered, using the
+ *         {@link android.os.SystemClock#uptimeMillis} time-base.
+ *         
+ * @return Returns true if the message was successfully placed in to the 
+ *         message queue.  Returns false on failure, usually because the
+ *         looper processing the message queue is exiting.  Note that a
+ *         result of true does not mean the message will be processed -- if
+ *         the looper is quit before the delivery time of the message
+ *         occurs then the message will be dropped.
+ */
+public boolean sendMessageAtTime(Message msg, long uptimeMillis) {
+    MessageQueue queue = mQueue;
+    if (queue == null) {
+        RuntimeException e = new RuntimeException(
+                this + &amp;quot; sendMessageAtTime() called with no mQueue&amp;quot;);
+        Log.w(&amp;quot;Looper&amp;quot;, e.getMessage(), e);
+        return false;
+    }
+    return enqueueMessage(queue, msg, uptimeMillis);
+}
+
+private boolean enqueueMessage(MessageQueue queue, Message msg, long uptimeMillis) {
+    msg.target = this;
+    if (mAsynchronous) {
+        msg.setAsynchronous(true);
+    }
+    return queue.enqueueMessage(msg, uptimeMillis);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这里我们只列出了一种调用关系，其他调用关系大同小异，我们来分析一下&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;调用getPostMessage(r)，把runnable对象添加到一个Message对象中。&lt;/li&gt;
+&lt;li&gt;sendMessageDelayed(getPostMessage(r), 0)，基本没做什么操作，又继续调用sendMessageAtTime(msg, SystemClock.uptimeMillis() + delayMillis)方法，在这个方法里拿到创建这个Handler对象的线程持有的MessageQueue。&lt;/li&gt;
+&lt;li&gt;调用enqueueMessage(queue, msg, uptimeMillis)方法，给msg对象的target变量赋值为当前的Handler对象，然后放入到MessageQueue。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;那发送消息说完了，那我们的消息是怎样被处理的呢？&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;我们看到message.target为该handler对象，这确保了looper执行到该message时能找到处理它的handler，即loop()方法中的关键代码。&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;/**
+ * Callback interface you can use when instantiating a Handler to avoid
+ * having to implement your own subclass of Handler.
+ *
+ * @param msg A {@link android.os.Message Message} object
+ * @return True if no further handling is desired
+ */
+public interface Callback {
+    public boolean handleMessage(Message msg);
+}
+
+/**
+ * Subclasses must implement this to receive messages.
+ */
+public void handleMessage(Message msg) {
+}
+
+/**
+ * Handle system messages here.
+ */
+public void dispatchMessage(Message msg) {
+    if (msg.callback != null) {
+        handleCallback(msg);
+    } else {
+        if (mCallback != null) {
+            if (mCallback.handleMessage(msg)) {
+                return;
+            }
+        }
+        handleMessage(msg);
+    }
+}
+
+private static void handleCallback(Message message) {
+    message.callback.run();
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;我们看到这里最终又调用到了我们重写的handleMessage(Message msg)方法来做处理子线程发来的消息或者调用handleCallback(Message message)去执行我们子线程中定义并传过来的操作。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;#思考&lt;/p&gt;
+&lt;p&gt;##为什么要有Handler机制&lt;/p&gt;
+&lt;p&gt;这个问题可以这么考虑&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;我们如何在子线程更新UI？——使用Handler机制传递消息到主线程（UI线程）&lt;/li&gt;
+&lt;li&gt;为什么我们不在子线程更新UI呢？——因为Android是单线程模型&lt;/li&gt;
+&lt;li&gt;为什么要做成单线程模型呢？——&lt;strong&gt;多线程并发访问UI可能会导致UI控件处于不可预期的状态。如果加锁，虽然能解决，但是缺点也很明显：1.锁机制让UI访问逻辑变得复杂；2.加锁导致效率低下。&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;##Handler机制与命令模式&lt;/p&gt;
+&lt;p&gt;我在之前分享过&lt;a href=&quot;http://blog.csdn.net/sdkfjksf/article/details/52755908&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android源码中的命令模式&lt;/a&gt;，我们仔细分下一下不难看出&lt;strong&gt;Handler机制其实是一个非典型的命令模式&lt;/strong&gt;。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;接收者：Handler，执行消息处理操作。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;调用者：Looper，调用消息的的处理方法。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;命令角色：Message，消息类。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;客户端:Thread，创建消息并绑定Handler（接受者）。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;##Android主线程是如何管理子线程消息的&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;我们知道Android上一个应用的入口，应该是ActivityThread。和普通的Java类一样，入口是一个main方法。&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;public static void main(String[] args) {
+
+    //~省略部分无关代码~
+
+    //创建Looper和MessageQueue对象，用于处理主线程的消息
+    Looper.prepareMainLooper();
+
+    //创建ActivityThread对象
+    ActivityThread thread = new ActivityThread();
+
+    //建立Binder通道 (创建新线程)
+    thread.attach(false);
+
+    if (sMainThreadHandler == null) {
+        sMainThreadHandler = thread.getHandler();
+    }
+
+    if (false) {
+        Looper.myLooper().setMessageLogging(new
+                LogPrinter(Log.DEBUG, &amp;quot;ActivityThread&amp;quot;));
+    }
+
+    // End of event ActivityThreadMain.
+    Trace.traceEnd(Trace.TRACE_TAG_ACTIVITY_MANAGER);
+
+    //消息循环运行
+    Looper.loop();
+
+    throw new RuntimeException(&amp;quot;Main thread loop unexpectedly exited&amp;quot;);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;我们可以看到其实我们在这里初始化了我们主线程（UI）的Looper并且启动它。然后就可以处理子线程和其他组件发来的消息了。&lt;/p&gt;
+&lt;p&gt;##为什么主线程不会因为Looper.loop()里的死循环卡死或者不能处理其他事务&lt;/p&gt;
+&lt;p&gt;这里涉及到的东西比较多，概括的理解是这样的&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;为什么不会卡死&lt;/p&gt;
+&lt;p&gt; &lt;strong&gt;handler机制是使用pipe来实现的，主线程没有消息处理时会阻塞在管道的读端。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt; &lt;strong&gt;binder线程会往主线程消息队列里添加消息，然后往管道写端写一个字节，这样就能唤醒主线程从管道读端返回，也就是说queue.next()会调用返回。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt; &lt;strong&gt;主线程大多数时候都是处于休眠状态，并不会消耗大量CPU资源。&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;既然是死循环又如何去处理其他事务呢？&lt;/p&gt;
+&lt;p&gt; 答案是&lt;strong&gt;通过创建新线程的方式&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt; &lt;strong&gt;我们看到main方法里调用了thread.attach(false)，这里便会创建一个Binder线程（具体是指ApplicationThread，Binder的服务端，用于接收系统服务AMS发送来的事件），该Binder线程通过Handler将Message发送给主线程。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt; &lt;strong&gt;ActivityThread对应的Handler是一个内部类H，里边包含了启动Activity、处理Activity生命周期等方法。&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;#参考资料&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.cnblogs.com/codingmyworld/archive/2011/09/12/2174255.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.cnblogs.com/codingmyworld/archive/2011/09/12/2174255.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://czpsailer.iteye.com/blog/655942&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://czpsailer.iteye.com/blog/655942&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.zhihu.com/question/34652589&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://www.zhihu.com/question/34652589&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Android Handler 消息机制（解惑篇）&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+    
+    </summary>
+    
+      <category term="Android源码与设计模式" scheme="http://yoursite.com/categories/Android%E6%BA%90%E7%A0%81%E4%B8%8E%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+      <category term="消息机制" scheme="http://yoursite.com/tags/%E6%B6%88%E6%81%AF%E6%9C%BA%E5%88%B6/"/>
+    
+      <category term="Handler机制" scheme="http://yoursite.com/tags/Handler%E6%9C%BA%E5%88%B6/"/>
+    
+      <category term="ActivityThread" scheme="http://yoursite.com/tags/ActivityThread/"/>
+    
+  </entry>
   
   <entry>
     <title>由面试想到的</title>
@@ -2289,39 +2870,6 @@ Android性能优化似乎是一个老生常谈的问题，但我似乎只是一�
       <category term="性能优化概述" scheme="http://yoursite.com/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%A6%82%E8%BF%B0/"/>
     
       <category term="性能优化关键点" scheme="http://yoursite.com/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E5%85%B3%E9%94%AE%E7%82%B9/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>自定义view你需要知道的</title>
-    <link href="http://yoursite.com/2016/03/08/%E8%87%AA%E5%AE%9A%E4%B9%89view%E4%BD%A0%E9%9C%80%E8%A6%81%E7%9F%A5%E9%81%93%E7%9A%84/"/>
-    <id>http://yoursite.com/2016/03/08/自定义view你需要知道的/</id>
-    <published>2016-03-08T03:31:00.000Z</published>
-    <updated>2016-05-07T04:53:47.292Z</updated>
-    
-    <content type="html">&lt;p&gt;自定义view的时候可能需要重写的方法。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-前面我已经跟大家分享了&lt;a href=&quot;http://blog.csdn.net/sdkfjksf/article/details/50762249&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;自定义view概述&lt;/a&gt;，今天跟大家分享一下官方文档中关于自定义view可能重写到的方法。&lt;a href=&quot;http://developer.android.com/reference/android/view/View.html#&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;官方文档&lt;/a&gt;&lt;br&gt;###概述&lt;br&gt;实现自定义view，我们通常会去重写一些系统会在所有view中调用到的标准方法。事实上，我们不用重写所有的方法，甚至只重写onDraw(android.graphics.Canvas)方法就可以了。&lt;br&gt;###创建&lt;br&gt;####构造方法&lt;br&gt;构造方法有两种形式，一种是在view在代码中创建的时候调用，另一种是view从布局文件中加载的时候调用。第二种方式需要去解析在布局文件中定义的属性。&lt;br&gt;####onFinishInflate()&lt;br&gt;回调方法，当view和他的子view已经从布局文件中加载完成的时候调用。&lt;br&gt;###布局&lt;br&gt;####onMeasure(int, int)&lt;br&gt;用来计算并且确定此view和他的子view需要的尺寸。&lt;br&gt;####onLayout(boolean, int, int, int, int)&lt;br&gt;当这个view需要分配他的子view的位置和占用空间的时候调用。&lt;br&gt;####onSizeChanged(int, int, int, int)&lt;br&gt;当这个view的尺寸已经发生改变的时候调用。&lt;br&gt;###绘制&lt;br&gt;####onDraw(android.graphics.Canvas)&lt;br&gt;当view需要渲染他的内容的时候调用。&lt;br&gt;###事件处理&lt;br&gt;####onKeyDown(int, KeyEvent)&lt;br&gt;当按下某个按键的时候触发，比如返回键。&lt;br&gt;####onKeyUp(int, KeyEvent)&lt;br&gt;当离开按键的时候触发。&lt;br&gt;####onTrackballEvent(MotionEvent)&lt;br&gt;当发生轨迹球事件时触发。&lt;br&gt;####onTouchEvent(MotionEvent)&lt;br&gt;发生触屏事件的时候触发。&lt;br&gt;###焦点&lt;br&gt;####onFocusChanged(boolean, int, android.graphics.Rect)&lt;br&gt;当view获得或者失去焦点时触发。&lt;br&gt;####onWindowFocusChanged(boolean)&lt;br&gt;当包含这个view的window得到或者失去焦点时触发。&lt;br&gt;###依附&lt;br&gt;####onAttachedToWindow()&lt;br&gt;当这个view依附到window中时触发。&lt;br&gt;####onDetachedFromWindow()&lt;br&gt;当这个view从依附的window中分离时触发。&lt;br&gt;####onWindowVisibilityChanged(int)&lt;br&gt;当包含该view的window的可见性发生改变时触发的方法。&lt;/li&gt;
-&lt;/ul&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;自定义view的时候可能需要重写的方法。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-    
-    </summary>
-    
-      <category term="自定义控件" scheme="http://yoursite.com/categories/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A7%E4%BB%B6/"/>
-    
-    
-      <category term="自定义控件" scheme="http://yoursite.com/tags/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A7%E4%BB%B6/"/>
-    
-      <category term="官方文档" scheme="http://yoursite.com/tags/%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3/"/>
-    
-      <category term="重写" scheme="http://yoursite.com/tags/%E9%87%8D%E5%86%99/"/>
     
   </entry>
   
