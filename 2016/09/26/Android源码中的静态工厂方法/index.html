@@ -12,7 +12,7 @@
 <meta property="og:site_name" content="PleaseCallMeCoder">
 <meta property="og:description" content="Android源码中的静态工厂方法">
 <meta property="og:image" content="http://i.imgur.com/iLCpogO.png">
-<meta property="og:updated_time" content="2016-11-10T02:56:18.799Z">
+<meta property="og:updated_time" content="2017-04-22T06:44:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android源码中的静态工厂方法">
 <meta name="twitter:description" content="Android源码中的静态工厂方法">
@@ -326,7 +326,7 @@
 <p>##Android中简单工厂模式的应用</p>
 <p>在Android中我们了解的使用到了简单工厂方法的地方有Bitmap对象的获取、Fragment创建等。接下来我们分开看一下。</p>
 <p>###Bitmap源码分析 </p>
-<p><strong>首先来说我们是不能通过new方法来创建Bitmap对象的，因为从源码中可以看到Bitmap的类名是通过final来修饰的。</strong></p>
+<p><strong>首先来说我们是不能通过new方法来创建Bitmap对象的，因为Bitmap类的构造函数是私有的，只能是通过JNI实例化。</strong></p>
 <p>接下来我们随便找个入口开始看，比如：</p>
 <pre><code>Bitmap bmp = BitmapFactory.decodeFile(String pathName);
 </code></pre><p>我们把源码中的调用关系找出来，如下</p>
@@ -418,7 +418,7 @@ private static void setDensityFromOptions(Bitmap outputBitmap, Options opts) {
 <blockquote>
 <p>/**</p>
 <ul>
-<li>Creates Bitmap objects from various sources, including files, streams, and byte-arrays.<br>*/</li>
+<li>Creates Bitmap objects from various sources, including files, streams, and byte-arrays.<br>  */</li>
 </ul>
 </blockquote>
 <p>看下BitmapFactory的注释我们可以看到，这个工厂支持从不同的资源创建Bitmap对象，包括files, streams, 和byte-arrays，但是调用关系都大同小异。</p>
@@ -452,7 +452,7 @@ private static void setDensityFromOptions(Bitmap outputBitmap, Options opts) {
         <p><span>本文标题:</span><a href="/2016/09/26/Android源码中的静态工厂方法/">Android源码中的静态工厂方法</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">任磊</a></p>
         <p><span>发布时间:</span>2016-09-26, 17:20:00</p>
-        <p><span>最后更新:</span>2016-11-10, 10:56:18</p>
+        <p><span>最后更新:</span>2017-04-22, 14:44:29</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2016/09/26/Android源码中的静态工厂方法/" title="Android源码中的静态工厂方法">http://yoursite.com/2016/09/26/Android源码中的静态工厂方法/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2016/09/26/Android源码中的静态工厂方法/　　作者: 任磊" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -612,7 +612,7 @@ private static void setDensityFromOptions(Bitmap outputBitmap, Options opts) {
         <div id="footer-info">
             <div class="footer-left">
                 <i class="fa fa-copyright"></i> 
-                2016 任磊
+                2016-2017 任磊
             </div>
             <div class="footer-right">
                 <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
