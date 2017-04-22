@@ -98,7 +98,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/03/20/AndrodUI优化之布局优化/index.html">
 <meta property="og:site_name" content="PleaseCallMeCoder">
 <meta property="og:description" content="AndroidUI优化之布局优化。">
-<meta property="og:updated_time" content="2016-05-07T04:41:42.000Z">
+<meta property="og:updated_time" content="2017-04-22T08:18:39.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AndrodUI优化之布局优化">
 <meta name="twitter:description" content="AndroidUI优化之布局优化。">
@@ -378,10 +378,7 @@
 
       
         <p>AndroidUI优化之布局优化。</p>
-<ul>
-<li><a id="more"></a>
-</li>
-</ul>
+<a id="more"></a>
 <p>前些天在<a href="http://blog.csdn.net/sdkfjksf/article/details/50839296" target="_blank" rel="external"> 那些年大家都在谈论的Android性能优化 </a>中已经跟大家分享了Android中性能优化的概念，优化的一些关键点以及优化方案。今天跟大家探讨一下AndroidUI优化中的布局优化具体是怎么操作的。</p>
 <p>###选择合适的ViewGroup<br>1.FrameLayout和LinearLayout是Android中比较简单并且高效的viewgroup，如果不考虑布局嵌套的话，尽量使用这两种。<br>2.大多数情况单纯使用FrameLayout或者LinearLayout无法实现产品效果，需要进行布局嵌套，这种情况尽量使用RelativeLayout。嵌套会增加布局的层级，降低App的性能。大约在Android4.0之后，新建工程的默认main.xml中顶节点改成了RelativeLayout，因为RelativeLayout性能更优，可以简单实现LinearLayout嵌套才能实现的布局。</p>
 <p>###抽象布局标签</p>

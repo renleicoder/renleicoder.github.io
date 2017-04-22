@@ -99,7 +99,7 @@
 <meta property="og:site_name" content="PleaseCallMeCoder">
 <meta property="og:description" content="Android Handler 消息机制（解惑篇）">
 <meta property="og:image" content="http://i.imgur.com/QqGpsAJ.png">
-<meta property="og:updated_time" content="2016-11-10T03:11:14.000Z">
+<meta property="og:updated_time" content="2017-04-22T08:18:43.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android Handler 消息机制（解惑篇）">
 <meta name="twitter:description" content="Android Handler 消息机制（解惑篇）">
@@ -380,10 +380,7 @@
 
       
         <p>Android Handler 消息机制（解惑篇）</p>
-<ul>
-<li><a id="more"></a>
-</li>
-</ul>
+<a id="more"></a>
 <p>#Android中的消息处理机制概述</p>
 <p>大家对于Android中的消息处理机制的用法一定都比较熟悉，至于工作原理估计不少人有研究。就像我们自己写的类我们用起来比较熟悉一样，如果我们熟悉了消息处理机制的具体实现，那么我们用起来肯定也会事半功倍。</p>
 <p>博主之前只是稍有涉猎，对其中一些地方也还心存疑虑，比如<strong>既然Looper.loop()里是一个死循环，那它会不会很消耗CPU呢？死循环阻塞了线程，那我们其他的事务是如何被处理的呢？Android的UI线程是在哪里被初始化的呢？</strong>等等。索性今天就把他们放到一起，说道说道。</p>
@@ -424,7 +421,7 @@
 <li><p>消息循环</p>
 </li>
 <li><p>消息的发送</p>
-<p>  最基本的两个API</p>
+<p>最基本的两个API</p>
 <ul>
 <li><p>Handler.sendMessage</p>
 <ul>
@@ -551,9 +548,9 @@
 <li>Low-level class holding the list of messages to be dispatched by a</li>
 <li>{@link Looper}.  Messages are not added directly to a MessageQueue,</li>
 <li>but rather through {@link Handler} objects associated with the Looper.</li>
-<li></li>
+<li>​</li>
 <li><p>You can retrieve the MessageQueue for the current thread with</p></li>
-<li>{@link Looper#myQueue() Looper.myQueue()}.<br>*/</li>
+<li>{@link Looper#myQueue() Looper.myQueue()}.<br>  */</li>
 </ul>
 </blockquote>
 <p><strong>它是一个低等级的持有Messages集合的类，被Looper分发。Messages并不是直接加到MessageQueue的，而是通过Handler对象和Looper关联到一起。我们可以通过Looper.myQueue()方法来检索当前线程的MessageQueue。</strong></p>
@@ -622,7 +619,7 @@ public static void loop() {
 <li><p>getThread()得到looper对象所属线程</p>
 </li>
 <li><p>quit()方法结束looper循环</p>
-<p>  这里需要注意的一点是，quit（）方法其实调用的是MessageWueue的quite（boolean safe）方法。</p>
+<p>这里需要注意的一点是，quit（）方法其实调用的是MessageWueue的quite（boolean safe）方法。</p>
 <pre><code>void quit(boolean safe) {
     if (!mQuitAllowed) {
         throw new IllegalStateException(&quot;Main thread not allowed to quit.&quot;);
@@ -644,7 +641,7 @@ public static void loop() {
         nativeWake(mPtr);
     }
 }
-</code></pre><p>  <strong>我们看到其实主线程是不能调用这个方法退出消息队列的。至于mQuitAllowed参数是在Looper初始化的时候初始化的，主线程初始化调用的是Looper.prepareMainLooper()方法，这个方法把参数设置为false。</strong></p>
+</code></pre><p><strong>我们看到其实主线程是不能调用这个方法退出消息队列的。至于mQuitAllowed参数是在Looper初始化的时候初始化的，主线程初始化调用的是Looper.prepareMainLooper()方法，这个方法把参数设置为false。</strong></p>
 </li>
 </ul>
 <p>##Message</p>
@@ -652,14 +649,14 @@ public static void loop() {
 <blockquote>
 <p>/**</p>
 <ul>
-<li></li>
+<li>​</li>
 <li>Defines a message containing a description and arbitrary data object that can be</li>
 <li>sent to a {@link Handler}.  This object contains two extra int fields and an</li>
-<li>extra object field that allow you to not do allocations in many cases.<br>*</li>
+<li>extra object field that allow you to not do allocations in many cases.<br>  *</li>
 <li><p class="note">While the constructor of Message is public, the best way to get</p></li>
 <li>one of these is to call {@link #obtain Message.obtain()} or one of the</li>
 <li>{@link Handler#obtainMessage Handler.obtainMessage()} methods, which will pull</li>
-<li>them from a pool of recycled objects.<p></p><br>*/</li>
+<li>them from a pool of recycled objects.<p></p><br>  */</li>
 </ul>
 </blockquote>
 <p><strong>这个类定义了一个包含描述和一个任意类型对象的对象，它可以被发送给Handler。</strong></p>
@@ -684,11 +681,11 @@ public static void loop() {
 <li>message queue of the thread that is creating it – from that point on,</li>
 <li>it will deliver messages and runnables to that message queue and execute</li>
 <li>them as they come out of the message queue.</li>
-<li></li>
+<li>​</li>
 <li><p>There are two main uses for a Handler: (1) to schedule messages and</p></li>
 <li>runnables to be executed as some point in the future; and (2) to enqueue</li>
 <li>an action to be performed on a different thread than your own.</li>
-<li>*/</li>
+<li>  */</li>
 </ul>
 </blockquote>
 <p>注释比较简单，这里就不过多翻译了，主要内容是：<strong>每一个Handler实例关联了一个单一的ghread和这个thread的messagequeue，当Handler的实例被创建的时候它就被绑定到了创建它的thread。它用来调度message和runnables在未来某个时间点的执行，还可以排列其他线程里执行的操作。</strong></p>
@@ -918,14 +915,14 @@ private static void handleCallback(Message message) {
 <p>这里涉及到的东西比较多，概括的理解是这样的</p>
 <ol>
 <li><p>为什么不会卡死</p>
-<p> <strong>handler机制是使用pipe来实现的，主线程没有消息处理时会阻塞在管道的读端。</strong></p>
-<p> <strong>binder线程会往主线程消息队列里添加消息，然后往管道写端写一个字节，这样就能唤醒主线程从管道读端返回，也就是说queue.next()会调用返回。</strong></p>
-<p> <strong>主线程大多数时候都是处于休眠状态，并不会消耗大量CPU资源。</strong></p>
+<p><strong>handler机制是使用pipe来实现的，主线程没有消息处理时会阻塞在管道的读端。</strong></p>
+<p><strong>binder线程会往主线程消息队列里添加消息，然后往管道写端写一个字节，这样就能唤醒主线程从管道读端返回，也就是说queue.next()会调用返回。</strong></p>
+<p><strong>主线程大多数时候都是处于休眠状态，并不会消耗大量CPU资源。</strong></p>
 </li>
 <li><p>既然是死循环又如何去处理其他事务呢？</p>
-<p> 答案是<strong>通过创建新线程的方式</strong>。</p>
-<p> <strong>我们看到main方法里调用了thread.attach(false)，这里便会创建一个Binder线程（具体是指ApplicationThread，Binder的服务端，用于接收系统服务AMS发送来的事件），该Binder线程通过Handler将Message发送给主线程。</strong></p>
-<p> <strong>ActivityThread对应的Handler是一个内部类H，里边包含了启动Activity、处理Activity生命周期等方法。</strong></p>
+<p>答案是<strong>通过创建新线程的方式</strong>。</p>
+<p><strong>我们看到main方法里调用了thread.attach(false)，这里便会创建一个Binder线程（具体是指ApplicationThread，Binder的服务端，用于接收系统服务AMS发送来的事件），该Binder线程通过Handler将Message发送给主线程。</strong></p>
+<p><strong>ActivityThread对应的Handler是一个内部类H，里边包含了启动Activity、处理Activity生命周期等方法。</strong></p>
 </li>
 </ol>
 <p>#参考资料</p>

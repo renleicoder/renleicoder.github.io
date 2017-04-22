@@ -101,7 +101,7 @@
 <meta property="og:image" content="http://img.blog.csdn.net/20160328215418351">
 <meta property="og:image" content="http://img.blog.csdn.net/20160328221353687">
 <meta property="og:image" content="http://img.blog.csdn.net/20160328222257357">
-<meta property="og:updated_time" content="2016-05-07T04:44:56.000Z">
+<meta property="og:updated_time" content="2017-04-22T08:19:41.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android性能优化之渲染优化的8个点">
 <meta name="twitter:description" content="Android性能优化之渲染优化。">
@@ -382,10 +382,15 @@
 
       
         <p>Android性能优化之渲染优化。</p>
-<ul>
-<li><a id="more"></a>
-###1.渲染性能分析<br>大多数手机的屏幕刷新频率是60hz，如果在1000/60=16.67ms内没有办法把这一帧的任务执行完毕，系统将放弃这一帧，即发生丢帧的现象。在动画中出现一个丢弃帧会在平滑的体验中看到一个跳跃，用户可以很容易看出来。丢帧越多，用户感受到的卡顿情况就越严重。<br><img src="http://img.blog.csdn.net/20160328215418351" alt=""><br>如图某个时候我们需要用34ms的时间去更新UI，这是用户就会感觉到卡顿。<br>###2.渲染性能低的原因<br>那么都有哪些情况可能我们不能再16ms的时间内完成呢？<br>1.花了太多时间去重绘大量的视图层次（View hierarchy），这是很浪费CPU周期的。<br>2.绘制了太多的对象，在像素着色上浪费了宝贵的时间，然而这些对象对最终用户而言都是不可见的。<br>3.一遍又一遍的在做大量的动画，这会导致CPU和GPU产生大量的工作。<br>###3.CPU和GPU<br>渲染操作通常依赖于两个核心组件：CPU与GPU。CPU负责包括Measure，Layout，Record，Execute的计算操作，GPU负责Rasterization(栅格化)操作。Resterization栅格化是绘制那些Button，Shape，Path，String，Bitmap等组件最基础的操作。它把那些组件拆分到不同的像素上进行显示。这是一个很费时的操作，GPU的引入就是为了加快栅格化的操作。CPU负责把UI组件计算成Polygons，Texture纹理，然后交给GPU进行栅格化渲染。<br>###4.GPU性能问题: 过度重绘（Overdraw）<br>Overdraw(过度绘制)描述的是屏幕上的某个像素在同一帧的时间内被绘制了多次。在多层次重叠的UI结构里面，如果不可见的UI也在做绘制的操作，会导致某些像素区域被绘制了多次。这样就会浪费大量的CPU以及GPU资源。<br>###5.检测过度重绘的工具<br>我们可以通过手机设置里面的开发者选项，打开调试GPU过度绘制的选项。<br><img src="http://img.blog.csdn.net/20160328221353687" alt="这里写图片描述"><br>蓝色，淡绿，淡红，深红代表了4种不同程度的Overdraw情况，我们的目标就是尽量减少红色Overdraw，看到更多的蓝色区域。<br>###6.GridView，ListView等如何减少过度绘制<br>1.移除Window默认的Background<br>2.移除XML布局文件中非必需的Background<br>3.按需显示占位背景图片<br>###7.自定义View如何减少过度绘制<br>我们可以通过canvas.clipRect()来帮助系统识别那些可见的区域。这个方法可以指定一块矩形区域，只有在这个区域内才会被绘制，其他的区域会被忽视。这个API可以很好的帮助那些有多组重叠组件的自定义View来控制显示的区域。同时clipRect方法还可以帮助节约CPU与GPU资源，在clipRect区域之外的绘制指令都不会被执行，那些部分内容在矩形区域内的组件，仍然会得到绘制。除了clipRect方法之外，我们还可以使用canvas.quickreject()来判断是否没和某个矩形相交，从而跳过那些非矩形区域内的绘制操作。<br><img src="http://img.blog.csdn.net/20160328222257357" alt="这里写图片描述"><br>###8.让onDraw方法保持干净<br>View的onDraw方法要避免执行大量的操作，主要指两个方面。<br>1.onDraw中不要穿件新的局部变量，因为onDraw方法可能会被频繁调用。<br>2.onDraw方法中不要做耗时的操作，也不要执行过多的循环操作，否则很难保证每帧的绘制时间不超过16ms。</li>
-</ul>
+<a id="more"></a>
+<p>###1.渲染性能分析<br>大多数手机的屏幕刷新频率是60hz，如果在1000/60=16.67ms内没有办法把这一帧的任务执行完毕，系统将放弃这一帧，即发生丢帧的现象。在动画中出现一个丢弃帧会在平滑的体验中看到一个跳跃，用户可以很容易看出来。丢帧越多，用户感受到的卡顿情况就越严重。<br><img src="http://img.blog.csdn.net/20160328215418351" alt=""><br>如图某个时候我们需要用34ms的时间去更新UI，这是用户就会感觉到卡顿。</p>
+<p>###2.渲染性能低的原因<br>那么都有哪些情况可能我们不能再16ms的时间内完成呢？<br>1.花了太多时间去重绘大量的视图层次（View hierarchy），这是很浪费CPU周期的。<br>2.绘制了太多的对象，在像素着色上浪费了宝贵的时间，然而这些对象对最终用户而言都是不可见的。<br>3.一遍又一遍的在做大量的动画，这会导致CPU和GPU产生大量的工作。</p>
+<p>###3.CPU和GPU<br>渲染操作通常依赖于两个核心组件：CPU与GPU。CPU负责包括Measure，Layout，Record，Execute的计算操作，GPU负责Rasterization(栅格化)操作。Resterization栅格化是绘制那些Button，Shape，Path，String，Bitmap等组件最基础的操作。它把那些组件拆分到不同的像素上进行显示。这是一个很费时的操作，GPU的引入就是为了加快栅格化的操作。CPU负责把UI组件计算成Polygons，Texture纹理，然后交给GPU进行栅格化渲染。</p>
+<p>###4.GPU性能问题: 过度重绘（Overdraw）<br>Overdraw(过度绘制)描述的是屏幕上的某个像素在同一帧的时间内被绘制了多次。在多层次重叠的UI结构里面，如果不可见的UI也在做绘制的操作，会导致某些像素区域被绘制了多次。这样就会浪费大量的CPU以及GPU资源。</p>
+<p>###5.检测过度重绘的工具<br>我们可以通过手机设置里面的开发者选项，打开调试GPU过度绘制的选项。<br><img src="http://img.blog.csdn.net/20160328221353687" alt="这里写图片描述"><br>蓝色，淡绿，淡红，深红代表了4种不同程度的Overdraw情况，我们的目标就是尽量减少红色Overdraw，看到更多的蓝色区域。</p>
+<p>###6.GridView，ListView等如何减少过度绘制<br>1.移除Window默认的Background<br>2.移除XML布局文件中非必需的Background<br>3.按需显示占位背景图片</p>
+<p>###7.自定义View如何减少过度绘制<br>我们可以通过canvas.clipRect()来帮助系统识别那些可见的区域。这个方法可以指定一块矩形区域，只有在这个区域内才会被绘制，其他的区域会被忽视。这个API可以很好的帮助那些有多组重叠组件的自定义View来控制显示的区域。同时clipRect方法还可以帮助节约CPU与GPU资源，在clipRect区域之外的绘制指令都不会被执行，那些部分内容在矩形区域内的组件，仍然会得到绘制。除了clipRect方法之外，我们还可以使用canvas.quickreject()来判断是否没和某个矩形相交，从而跳过那些非矩形区域内的绘制操作。<br><img src="http://img.blog.csdn.net/20160328222257357" alt="这里写图片描述"></p>
+<p>###8.让onDraw方法保持干净<br>View的onDraw方法要避免执行大量的操作，主要指两个方面。<br>1.onDraw中不要穿件新的局部变量，因为onDraw方法可能会被频繁调用。<br>2.onDraw方法中不要做耗时的操作，也不要执行过多的循环操作，否则很难保证每帧的绘制时间不超过16ms。</p>
 
       
     </div>

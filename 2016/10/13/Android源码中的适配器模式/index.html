@@ -101,7 +101,7 @@
 <meta property="og:image" content="http://i.imgur.com/z2CTtCi.png">
 <meta property="og:image" content="http://i.imgur.com/TNagOhd.png">
 <meta property="og:image" content="http://i.imgur.com/46Q3HYJ.png">
-<meta property="og:updated_time" content="2016-11-10T03:01:52.000Z">
+<meta property="og:updated_time" content="2017-04-22T08:20:05.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android源码中的适配器模式">
 <meta name="twitter:description" content="Android源码中的适配器模式">
@@ -382,10 +382,7 @@
 
       
         <p> Android源码中的适配器模式</p>
-<ul>
-<li><a id="more"></a>
-</li>
-</ul>
+<a id="more"></a>
 <p><a href="http://blog.csdn.net/sdkfjksf/article/details/52624483" target="_blank" rel="external">从装饰者模式到Context类族</a></p>
 <p><a href="http://blog.csdn.net/sdkfjksf/article/details/52640111" target="_blank" rel="external">当观察者模式和回调机制遇上Android源码</a></p>
 <p><a href="http://blog.csdn.net/sdkfjksf/article/details/52672059" target="_blank" rel="external">Android源码中的静态工厂方法</a></p>
@@ -487,12 +484,13 @@
 <p>我们来看下结构，以下UML图省略了部分不重要的类。</p>
 <p><img src="http://i.imgur.com/46Q3HYJ.png" alt=""></p>
 <p>接下来我们看看源码中的具体实现。我们Adapter的使用时在ListView的父类，AbsListView中，我们看下注释</p>
+<p>&gt;</p>
 <blockquote>
 <p>/**</p>
 <ul>
 <li>Base class that can be used to implement virtualized lists of items. A list does</li>
 <li>not have a spatial definition here. For instance, subclases of this class can</li>
-<li>display the content of the list in a grid, in a carousel, as stack, etc.<br>*/</li>
+<li>display the content of the list in a grid, in a carousel, as stack, etc.<br>  */</li>
 </ul>
 </blockquote>
 <p><strong>AbsListView定义了集合视图的逻辑框架，比如Adapter的使用、复用Item View的逻辑、布局子视图的逻辑等，子类只需要重写特定的方法即可实现集合视图的功能。</strong>我们看下代码</p>

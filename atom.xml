@@ -174,13 +174,10 @@
     <link href="http://yoursite.com/2016/10/19/Android%E6%BA%90%E7%A0%81%E4%B8%AD%E7%9A%84%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/"/>
     <id>http://yoursite.com/2016/10/19/Android源码中的模板方法模式/</id>
     <published>2016-10-19T09:54:00.000Z</published>
-    <updated>2016-11-10T03:00:52.000Z</updated>
+    <updated>2017-04-22T08:20:01.000Z</updated>
     
     <content type="html">&lt;p&gt; Android源码中的模板方法模式&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;p&gt;&lt;a href=&quot;http://blog.csdn.net/sdkfjksf/article/details/52624483&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;从装饰者模式到Context类族&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;http://blog.csdn.net/sdkfjksf/article/details/52640111&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;当观察者模式和回调机制遇上Android源码&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;http://blog.csdn.net/sdkfjksf/article/details/52672059&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android源码中的静态工厂方法&lt;/a&gt;&lt;/p&gt;
@@ -211,11 +208,11 @@
 &lt;p&gt;模板方法中的方法可以分为两大类：模板方法和基本方法。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;&lt;strong&gt;模板方法&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;  一个模板方法是定义在抽象类中的，把基本操作方法组合在一起形成一个总算法或一个总行为的方法。&lt;/p&gt;
-&lt;p&gt;  一个抽象类可以有任意多个模板方法，而不限于一个。每一个模板方法都可以调用任意多个具体方法。&lt;/p&gt;
+&lt;p&gt;一个模板方法是定义在抽象类中的，把基本操作方法组合在一起形成一个总算法或一个总行为的方法。&lt;/p&gt;
+&lt;p&gt;一个抽象类可以有任意多个模板方法，而不限于一个。每一个模板方法都可以调用任意多个具体方法。&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;strong&gt;基本方法&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;  基本方法又可以分为三种：抽象方法(Abstract Method)、具体方法(Concrete Method)和钩子方法(Hook Method)。&lt;/p&gt;
+&lt;p&gt;基本方法又可以分为三种：抽象方法(Abstract Method)、具体方法(Concrete Method)和钩子方法(Hook Method)。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;&lt;strong&gt;抽象方法&lt;/strong&gt;：一个抽象方法由抽象类声明，由具体子类实现。在Java语言里抽象方法以abstract关键字标示。&lt;/p&gt;
 &lt;/li&gt;
@@ -368,8 +365,6 @@ protected void dispatchDraw(Canvas canvas) {
     <summary type="html">
     
       &lt;p&gt; Android源码中的模板方法模式&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
     
     </summary>
     
@@ -389,13 +384,10 @@ protected void dispatchDraw(Canvas canvas) {
     <link href="http://yoursite.com/2016/10/14/Android%E6%BA%90%E7%A0%81%E4%B8%AD%E7%9A%84%E5%A4%96%E8%A7%82%E6%A8%A1%E5%BC%8F/"/>
     <id>http://yoursite.com/2016/10/14/Android源码中的外观模式/</id>
     <published>2016-10-14T08:21:00.000Z</published>
-    <updated>2016-11-10T03:02:46.000Z</updated>
+    <updated>2017-04-22T08:20:11.000Z</updated>
     
     <content type="html">&lt;p&gt; Android源码中的外观模式&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;p&gt;&lt;a href=&quot;http://blog.csdn.net/sdkfjksf/article/details/52624483&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;从装饰者模式到Context类族&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;http://blog.csdn.net/sdkfjksf/article/details/52640111&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;当观察者模式和回调机制遇上Android源码&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;http://blog.csdn.net/sdkfjksf/article/details/52672059&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android源码中的静态工厂方法&lt;/a&gt;&lt;/p&gt;
@@ -501,8 +493,6 @@ public class AirCondition {
     <summary type="html">
     
       &lt;p&gt; Android源码中的外观模式&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
     
     </summary>
     
@@ -522,13 +512,10 @@ public class AirCondition {
     <link href="http://yoursite.com/2016/10/13/Android%E6%BA%90%E7%A0%81%E4%B8%AD%E7%9A%84%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/"/>
     <id>http://yoursite.com/2016/10/13/Android源码中的适配器模式/</id>
     <published>2016-10-13T07:20:00.000Z</published>
-    <updated>2016-11-10T03:01:52.000Z</updated>
+    <updated>2017-04-22T08:20:05.000Z</updated>
     
     <content type="html">&lt;p&gt; Android源码中的适配器模式&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;p&gt;&lt;a href=&quot;http://blog.csdn.net/sdkfjksf/article/details/52624483&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;从装饰者模式到Context类族&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;http://blog.csdn.net/sdkfjksf/article/details/52640111&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;当观察者模式和回调机制遇上Android源码&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;http://blog.csdn.net/sdkfjksf/article/details/52672059&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android源码中的静态工厂方法&lt;/a&gt;&lt;/p&gt;
@@ -630,12 +617,13 @@ public class AirCondition {
 &lt;p&gt;我们来看下结构，以下UML图省略了部分不重要的类。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;http://i.imgur.com/46Q3HYJ.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;p&gt;接下来我们看看源码中的具体实现。我们Adapter的使用时在ListView的父类，AbsListView中，我们看下注释&lt;/p&gt;
+&lt;p&gt;&amp;gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;/**&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Base class that can be used to implement virtualized lists of items. A list does&lt;/li&gt;
 &lt;li&gt;not have a spatial definition here. For instance, subclases of this class can&lt;/li&gt;
-&lt;li&gt;display the content of the list in a grid, in a carousel, as stack, etc.&lt;br&gt;*/&lt;/li&gt;
+&lt;li&gt;display the content of the list in a grid, in a carousel, as stack, etc.&lt;br&gt;  */&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;&lt;strong&gt;AbsListView定义了集合视图的逻辑框架，比如Adapter的使用、复用Item View的逻辑、布局子视图的逻辑等，子类只需要重写特定的方法即可实现集合视图的功能。&lt;/strong&gt;我们看下代码&lt;/p&gt;
@@ -840,8 +828,6 @@ private View makeAndAddView(int position, int y, boolean flow, int childrenLeft,
     <summary type="html">
     
       &lt;p&gt; Android源码中的适配器模式&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
     
     </summary>
     
@@ -861,13 +847,10 @@ private View makeAndAddView(int position, int y, boolean flow, int childrenLeft,
     <link href="http://yoursite.com/2016/10/10/Android%20Handler%20%E6%B6%88%E6%81%AF%E6%9C%BA%E5%88%B6%EF%BC%88%E8%A7%A3%E6%83%91%E7%AF%87%EF%BC%89/"/>
     <id>http://yoursite.com/2016/10/10/Android Handler 消息机制（解惑篇）/</id>
     <published>2016-10-10T06:49:00.000Z</published>
-    <updated>2016-11-10T03:11:14.000Z</updated>
+    <updated>2017-04-22T08:18:43.000Z</updated>
     
     <content type="html">&lt;p&gt;Android Handler 消息机制（解惑篇）&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;p&gt;#Android中的消息处理机制概述&lt;/p&gt;
 &lt;p&gt;大家对于Android中的消息处理机制的用法一定都比较熟悉，至于工作原理估计不少人有研究。就像我们自己写的类我们用起来比较熟悉一样，如果我们熟悉了消息处理机制的具体实现，那么我们用起来肯定也会事半功倍。&lt;/p&gt;
 &lt;p&gt;博主之前只是稍有涉猎，对其中一些地方也还心存疑虑，比如&lt;strong&gt;既然Looper.loop()里是一个死循环，那它会不会很消耗CPU呢？死循环阻塞了线程，那我们其他的事务是如何被处理的呢？Android的UI线程是在哪里被初始化的呢？&lt;/strong&gt;等等。索性今天就把他们放到一起，说道说道。&lt;/p&gt;
@@ -908,7 +891,7 @@ private View makeAndAddView(int position, int y, boolean flow, int childrenLeft,
 &lt;li&gt;&lt;p&gt;消息循环&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;消息的发送&lt;/p&gt;
-&lt;p&gt;  最基本的两个API&lt;/p&gt;
+&lt;p&gt;最基本的两个API&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;Handler.sendMessage&lt;/p&gt;
 &lt;ul&gt;
@@ -1035,9 +1018,9 @@ private View makeAndAddView(int position, int y, boolean flow, int childrenLeft,
 &lt;li&gt;Low-level class holding the list of messages to be dispatched by a&lt;/li&gt;
 &lt;li&gt;{@link Looper}.  Messages are not added directly to a MessageQueue,&lt;/li&gt;
 &lt;li&gt;but rather through {@link Handler} objects associated with the Looper.&lt;/li&gt;
-&lt;li&gt;&lt;/li&gt;
+&lt;li&gt;​&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;You can retrieve the MessageQueue for the current thread with&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;{@link Looper#myQueue() Looper.myQueue()}.&lt;br&gt;*/&lt;/li&gt;
+&lt;li&gt;{@link Looper#myQueue() Looper.myQueue()}.&lt;br&gt;  */&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;&lt;strong&gt;它是一个低等级的持有Messages集合的类，被Looper分发。Messages并不是直接加到MessageQueue的，而是通过Handler对象和Looper关联到一起。我们可以通过Looper.myQueue()方法来检索当前线程的MessageQueue。&lt;/strong&gt;&lt;/p&gt;
@@ -1106,7 +1089,7 @@ public static void loop() {
 &lt;li&gt;&lt;p&gt;getThread()得到looper对象所属线程&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;quit()方法结束looper循环&lt;/p&gt;
-&lt;p&gt;  这里需要注意的一点是，quit（）方法其实调用的是MessageWueue的quite（boolean safe）方法。&lt;/p&gt;
+&lt;p&gt;这里需要注意的一点是，quit（）方法其实调用的是MessageWueue的quite（boolean safe）方法。&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;void quit(boolean safe) {
     if (!mQuitAllowed) {
         throw new IllegalStateException(&amp;quot;Main thread not allowed to quit.&amp;quot;);
@@ -1128,7 +1111,7 @@ public static void loop() {
         nativeWake(mPtr);
     }
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;  &lt;strong&gt;我们看到其实主线程是不能调用这个方法退出消息队列的。至于mQuitAllowed参数是在Looper初始化的时候初始化的，主线程初始化调用的是Looper.prepareMainLooper()方法，这个方法把参数设置为false。&lt;/strong&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;我们看到其实主线程是不能调用这个方法退出消息队列的。至于mQuitAllowed参数是在Looper初始化的时候初始化的，主线程初始化调用的是Looper.prepareMainLooper()方法，这个方法把参数设置为false。&lt;/strong&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;##Message&lt;/p&gt;
@@ -1136,14 +1119,14 @@ public static void loop() {
 &lt;blockquote&gt;
 &lt;p&gt;/**&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;/li&gt;
+&lt;li&gt;​&lt;/li&gt;
 &lt;li&gt;Defines a message containing a description and arbitrary data object that can be&lt;/li&gt;
 &lt;li&gt;sent to a {@link Handler}.  This object contains two extra int fields and an&lt;/li&gt;
-&lt;li&gt;extra object field that allow you to not do allocations in many cases.&lt;br&gt;*&lt;/li&gt;
+&lt;li&gt;extra object field that allow you to not do allocations in many cases.&lt;br&gt;  *&lt;/li&gt;
 &lt;li&gt;&lt;p class=&quot;note&quot;&gt;While the constructor of Message is public, the best way to get&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;one of these is to call {@link #obtain Message.obtain()} or one of the&lt;/li&gt;
 &lt;li&gt;{@link Handler#obtainMessage Handler.obtainMessage()} methods, which will pull&lt;/li&gt;
-&lt;li&gt;them from a pool of recycled objects.&lt;p&gt;&lt;/p&gt;&lt;br&gt;*/&lt;/li&gt;
+&lt;li&gt;them from a pool of recycled objects.&lt;p&gt;&lt;/p&gt;&lt;br&gt;  */&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;&lt;strong&gt;这个类定义了一个包含描述和一个任意类型对象的对象，它可以被发送给Handler。&lt;/strong&gt;&lt;/p&gt;
@@ -1168,11 +1151,11 @@ public static void loop() {
 &lt;li&gt;message queue of the thread that is creating it – from that point on,&lt;/li&gt;
 &lt;li&gt;it will deliver messages and runnables to that message queue and execute&lt;/li&gt;
 &lt;li&gt;them as they come out of the message queue.&lt;/li&gt;
-&lt;li&gt;&lt;/li&gt;
+&lt;li&gt;​&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;There are two main uses for a Handler: (1) to schedule messages and&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;runnables to be executed as some point in the future; and (2) to enqueue&lt;/li&gt;
 &lt;li&gt;an action to be performed on a different thread than your own.&lt;/li&gt;
-&lt;li&gt;*/&lt;/li&gt;
+&lt;li&gt;  */&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;注释比较简单，这里就不过多翻译了，主要内容是：&lt;strong&gt;每一个Handler实例关联了一个单一的ghread和这个thread的messagequeue，当Handler的实例被创建的时候它就被绑定到了创建它的thread。它用来调度message和runnables在未来某个时间点的执行，还可以排列其他线程里执行的操作。&lt;/strong&gt;&lt;/p&gt;
@@ -1402,14 +1385,14 @@ private static void handleCallback(Message message) {
 &lt;p&gt;这里涉及到的东西比较多，概括的理解是这样的&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;p&gt;为什么不会卡死&lt;/p&gt;
-&lt;p&gt; &lt;strong&gt;handler机制是使用pipe来实现的，主线程没有消息处理时会阻塞在管道的读端。&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt; &lt;strong&gt;binder线程会往主线程消息队列里添加消息，然后往管道写端写一个字节，这样就能唤醒主线程从管道读端返回，也就是说queue.next()会调用返回。&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt; &lt;strong&gt;主线程大多数时候都是处于休眠状态，并不会消耗大量CPU资源。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;handler机制是使用pipe来实现的，主线程没有消息处理时会阻塞在管道的读端。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;binder线程会往主线程消息队列里添加消息，然后往管道写端写一个字节，这样就能唤醒主线程从管道读端返回，也就是说queue.next()会调用返回。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;主线程大多数时候都是处于休眠状态，并不会消耗大量CPU资源。&lt;/strong&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;既然是死循环又如何去处理其他事务呢？&lt;/p&gt;
-&lt;p&gt; 答案是&lt;strong&gt;通过创建新线程的方式&lt;/strong&gt;。&lt;/p&gt;
-&lt;p&gt; &lt;strong&gt;我们看到main方法里调用了thread.attach(false)，这里便会创建一个Binder线程（具体是指ApplicationThread，Binder的服务端，用于接收系统服务AMS发送来的事件），该Binder线程通过Handler将Message发送给主线程。&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt; &lt;strong&gt;ActivityThread对应的Handler是一个内部类H，里边包含了启动Activity、处理Activity生命周期等方法。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;答案是&lt;strong&gt;通过创建新线程的方式&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;我们看到main方法里调用了thread.attach(false)，这里便会创建一个Binder线程（具体是指ApplicationThread，Binder的服务端，用于接收系统服务AMS发送来的事件），该Binder线程通过Handler将Message发送给主线程。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;ActivityThread对应的Handler是一个内部类H，里边包含了启动Activity、处理Activity生命周期等方法。&lt;/strong&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;#参考资料&lt;/p&gt;
@@ -1421,8 +1404,6 @@ private static void handleCallback(Message message) {
     <summary type="html">
     
       &lt;p&gt;Android Handler 消息机制（解惑篇）&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
     
     </summary>
     
@@ -1442,13 +1423,10 @@ private static void handleCallback(Message message) {
     <link href="http://yoursite.com/2016/10/08/Android%E6%BA%90%E7%A0%81%E4%B8%AD%E7%9A%84%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F/"/>
     <id>http://yoursite.com/2016/10/08/Android源码中的命令模式/</id>
     <published>2016-10-08T05:41:00.000Z</published>
-    <updated>2016-11-10T02:57:52.000Z</updated>
+    <updated>2017-04-22T08:19:56.000Z</updated>
     
     <content type="html">&lt;p&gt; Android源码中的命令模式&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;p&gt;#写在前面&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;http://blog.csdn.net/sdkfjksf/article/details/52624483&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;从装饰者模式到Context类族&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;http://blog.csdn.net/sdkfjksf/article/details/52640111&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;当观察者模式和回调机制遇上Android源码&lt;/a&gt;&lt;/p&gt;
@@ -1497,11 +1475,8 @@ private static void handleCallback(Message message) {
 
     }
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;具体命令角色&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;//做烤乳猪的命令
-public class PigCook implements Command {
-
-    private Cook mCook;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;具体命令角色&lt;br&gt;​&lt;br&gt;    //做烤乳猪的命令&lt;br&gt;    public class PigCook implements Command {&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    private Cook mCook;
 
     public PigCook(Cook cook) {
         mCook = cook;
@@ -1707,8 +1682,6 @@ public class DuckCook implements Command {
     <summary type="html">
     
       &lt;p&gt; Android源码中的命令模式&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
     
     </summary>
     
@@ -1728,13 +1701,10 @@ public class DuckCook implements Command {
     <link href="http://yoursite.com/2016/09/29/Android%E4%B8%AD%E7%9A%84%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/"/>
     <id>http://yoursite.com/2016/09/29/Android中的工厂方法模式/</id>
     <published>2016-09-29T03:39:00.000Z</published>
-    <updated>2016-11-10T03:04:38.000Z</updated>
+    <updated>2017-04-22T08:20:16.000Z</updated>
     
     <content type="html">&lt;p&gt; Android中的工厂方法模式&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;p&gt;#写在前面的话&lt;/p&gt;
 &lt;p&gt;在上一篇&lt;a href=&quot;http://blog.csdn.net/sdkfjksf/article/details/52672059&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android源码中的静态工厂方法&lt;/a&gt;中我门一起研究了工厂模式三兄弟中最简单的静态工厂方法。今天我们来一起看看三兄弟中的老二————工厂方法模式，以及它在Android源码中的体现。&lt;/p&gt;
 &lt;p&gt;今天我们先来模拟一个场景，把这三兄弟拎出来给大家瞅瞅，以免以后大家认错。&lt;/p&gt;
@@ -1900,8 +1870,6 @@ public Iterator&amp;lt;E&amp;gt; iterator() {
     <summary type="html">
     
       &lt;p&gt; Android中的工厂方法模式&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
     
     </summary>
     
@@ -1921,13 +1889,10 @@ public Iterator&amp;lt;E&amp;gt; iterator() {
     <link href="http://yoursite.com/2016/09/26/Android%E6%BA%90%E7%A0%81%E4%B8%AD%E7%9A%84%E9%9D%99%E6%80%81%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95/"/>
     <id>http://yoursite.com/2016/09/26/Android源码中的静态工厂方法/</id>
     <published>2016-09-26T09:20:00.000Z</published>
-    <updated>2017-04-22T06:44:29.000Z</updated>
+    <updated>2017-04-22T08:19:51.000Z</updated>
     
     <content type="html">&lt;p&gt; Android源码中的静态工厂方法&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;p&gt;我们知道工厂模式有三兄弟，通常我们说的工厂模式指的是工厂方法模式，它的应用频率最高。本篇博客分享的简单工厂模式是工厂方法模式的“小弟”，确切的来讲它不属于设计模式，而是一种方法。此外，工厂方法模式还有一位“大哥”——抽象工厂模式。&lt;/p&gt;
 &lt;p&gt;今天我们来分享一下简单工厂模式的一些情况，以及它在Android源码中的应用。&lt;/p&gt;
 &lt;p&gt;#简单工厂模式&lt;/p&gt;
@@ -2116,8 +2081,6 @@ private static void setDensityFromOptions(Bitmap outputBitmap, Options opts) {
     <summary type="html">
     
       &lt;p&gt; Android源码中的静态工厂方法&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
     
     </summary>
     
@@ -2814,13 +2777,10 @@ public void setTheme(int resid) {
     <link href="http://yoursite.com/2016/06/12/Android%E7%BD%91%E7%BB%9C%E6%93%8D%E4%BD%9C%E5%92%8C%E4%BC%98%E5%8C%96%E7%9B%B8%E5%85%B3/"/>
     <id>http://yoursite.com/2016/06/12/Android网络操作和优化相关/</id>
     <published>2016-06-12T04:43:00.000Z</published>
-    <updated>2016-06-14T02:36:14.000Z</updated>
+    <updated>2017-04-22T08:18:59.000Z</updated>
     
     <content type="html">&lt;p&gt;Andorid网络操作相关和优化关键点。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;p&gt;&lt;img src=&quot;http://i.imgur.com/CKaD46w.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;p&gt;人性的弱点在于习惯于学习精确的东西而不善于总体的把握。&lt;/p&gt;
 &lt;p&gt;#写在前面的话&lt;/p&gt;
@@ -2857,33 +2817,32 @@ public void setTheme(int resid) {
 &lt;p&gt;大多数连接网络的 Android app 会使用 HTTP 来发送与接收数据。Android 提供了三种 HTTP client：HttpURLConnection、Apache HttpClient和okhttp。二者均支持 HTTPS、流媒体上传和下载、可配置的超时、IPv6 与连接池（connection pooling）。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;Java.net包中的HttpURLConnection类 &lt;/p&gt;
-&lt;p&gt;  HttpUrlConnection是JDK里提供的联网API，我们知道Android SDK是基于Java的，所以当然优先考虑HttpUrlConnection这种最原始最基本的API，其实大多数开源的联网框架基本上也是基于JDK的HttpUrlConnection进行的封装罢了&lt;/p&gt;
+&lt;p&gt;HttpUrlConnection是JDK里提供的联网API，我们知道Android SDK是基于Java的，所以当然优先考虑HttpUrlConnection这种最原始最基本的API，其实大多数开源的联网框架基本上也是基于JDK的HttpUrlConnection进行的封装罢了&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;HttpClient&lt;/p&gt;
-&lt;p&gt;  HttpClient是开源组织Apache提供的Java请求网络框架，其最早是为了方便Java服务器开发而诞生的，是对JDK中的HttpUrlConnection各API进行了封装和简化，提高了性能并且降低了调用API的繁琐，Android因此也引进了这个联网框架，我们再不需要导入任何jar或者类库就可以直接使用，值得注意的是Android官方已经宣布不建议使用HttpClient了，我们再开发的时候尽量少用吧，但是用了也无妨！&lt;/p&gt;
+&lt;p&gt;HttpClient是开源组织Apache提供的Java请求网络框架，其最早是为了方便Java服务器开发而诞生的，是对JDK中的HttpUrlConnection各API进行了封装和简化，提高了性能并且降低了调用API的繁琐，Android因此也引进了这个联网框架，我们再不需要导入任何jar或者类库就可以直接使用，值得注意的是Android官方已经宣布不建议使用HttpClient了，我们再开发的时候尽量少用吧，但是用了也无妨！&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;okhttp&lt;/p&gt;
-&lt;p&gt;  http是现在主流应用使用的网络请求方式, 用来交换数据和内容, 有效的使用HTTP可以使你的APP变的更快和减少流量的使用。&lt;/p&gt;
-&lt;p&gt;  OkHttp是一个很棒HTTP客户端:&lt;/p&gt;
+&lt;p&gt;http是现在主流应用使用的网络请求方式, 用来交换数据和内容, 有效的使用HTTP可以使你的APP变的更快和减少流量的使用。&lt;/p&gt;
+&lt;p&gt;OkHttp是一个很棒HTTP客户端:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;支持SPDY,可以合并多个到同一个主机的请求&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;支持SPDY,可以合并多个到同一个主机的请求&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;使用连接池技术减少请求的延迟(如果SPDY是可用的话)&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;pre&gt;&lt;code&gt;- 使用连接池技术减少请求的延迟(如果SPDY是可用的话)
-
-
-- 使用GZIP压缩减少传输的数据量
-
-
-- 缓存响应避免重复的网络请求
-
-当你的网络出现拥挤的时候,就是OKHttp大显身手的时候,它可以避免常见的网络问题,如果你的服务是部署在不同的IP上面的,如果第一个连接失败,OkHTtp会尝试其他的连接。这对现在IPv4+IPv6中常见的把服务冗余部署在不同的数据中心上也是很有必要的。OkHttp将使用现在TLS特性(SNI ALPN)来初始化新的连接，如果握手失败,将切换到TLS 1.0。
-
-使用OkHttp很容易,同时支持异步阻塞请求和回调.
-
-如果你使用OkHttp ,你不用重写你的代码,   okhttp-urlconnection模块实现了 java.net.HttpURLConnection 中的API,  okhttp-apache模块实现了HttpClient中的API
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;#如何管理网络的使用情况&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;使用GZIP压缩减少传输的数据量&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;缓存响应避免重复的网络请求&lt;/p&gt;
+&lt;p&gt;当你的网络出现拥挤的时候,就是OKHttp大显身手的时候,它可以避免常见的网络问题,如果你的服务是部署在不同的IP上面的,如果第一个连接失败,OkHTtp会尝试其他的连接。这对现在IPv4+IPv6中常见的把服务冗余部署在不同的数据中心上也是很有必要的。OkHttp将使用现在TLS特性(SNI ALPN)来初始化新的连接，如果握手失败,将切换到TLS 1.0。&lt;/p&gt;
+&lt;p&gt;使用OkHttp很容易,同时支持异步阻塞请求和回调.&lt;/p&gt;
+&lt;p&gt;如果你使用OkHttp ,你不用重写你的代码,   okhttp-urlconnection模块实现了 java.net.HttpURLConnection 中的API,  okhttp-apache模块实现了HttpClient中的API&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;#如何管理网络的使用情况&lt;/p&gt;
 &lt;p&gt;如果我们的程序需要执行大量网络操作，那么应该提供用户设置选项，来允许用户控制程序的数据偏好。例如，同步数据的频率，是否只在连接到 WiFi 才进行下载与上传操作，是否在漫游时使用套餐数据流量等等。这样用户才不大可能在快到达流量上限时，禁止我们的程序获取后台数据，因为他们可以精确控制我们的 app 使用多少数据流量。&lt;/p&gt;
 &lt;p&gt;##检查网络连接&lt;/p&gt;
 &lt;p&gt;在执行网络操作之前，检查设备当前连接的网络连接信息是个好习惯。这样可以防止我们的程序在无意间连接使用了非意向的网络频道。如果网络连接不可用，那么我们的应用应该优雅地做出响应。为了检测网络连接，我们需要使用到下面两个类：&lt;/p&gt;
@@ -2902,10 +2861,10 @@ public void setTheme(int resid) {
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;##管理网络的使用情况&lt;/p&gt;
 &lt;p&gt;我们可以实现一个偏好设置的选项，使用户能直接设置程序对网络资源的使用情况。例如:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;可以允许用户仅在连接到 Wi-Fi 时上传视频。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;ul&gt;
-&lt;li&gt;可以根据诸如网络可用，时间间隔等条件来选择是否做同步的操作。&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;可以允许用户仅在连接到 Wi-Fi 时上传视频。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;可以根据诸如网络可用，时间间隔等条件来选择是否做同步的操作。&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;##检测网络连接变化&lt;/p&gt;
 &lt;p&gt;要检测网络连接的变化需要用到BroadcastReceiver 的子类：NetworkReceiver。当设备网络连接改变时，NetworkReceiver 会监听到 CONNECTIVITY_ACTION，这时需要判断当前网络连接类型并相应的设置好 wifiConnected 与 mobileConnected。&lt;/p&gt;
@@ -2986,37 +2945,37 @@ public void getWeahter(String tag) {
 &lt;p&gt;以下是具体可以优化的点：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;不用域名，用IP直连&lt;/p&gt;
-&lt;p&gt;  省去 DNS 解析过程，DNS 全名 Domain Name System，解析意指根据域名得到其对应的IP地址。&lt;/p&gt;
+&lt;p&gt;省去 DNS 解析过程，DNS 全名 Domain Name System，解析意指根据域名得到其对应的IP地址。&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;服务器合理部署&lt;/p&gt;
-&lt;p&gt;  服务器多运营商多地部署，一般至少含三大运营商、南中北三地部署。&lt;/p&gt;
+&lt;p&gt;服务器多运营商多地部署，一般至少含三大运营商、南中北三地部署。&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;根据当前的网络环境选择当下最佳的策略&lt;/p&gt;
-&lt;p&gt;  主要的实施步骤有两步：第1是检测收集当前的网络环境信息，第2是根据当前收集到的信息进行网络请求行为的调整。&lt;/p&gt;
+&lt;p&gt;主要的实施步骤有两步：第1是检测收集当前的网络环境信息，第2是根据当前收集到的信息进行网络请求行为的调整。&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;预取&lt;/p&gt;
-&lt;p&gt;  我们需要预先判断用户在此次操作之后，后续零散的请求是否很有可能会马上被触发，可以把后面几分钟有可能会使用到的零散请求都一次集中执行完毕。&lt;/p&gt;
+&lt;p&gt;我们需要预先判断用户在此次操作之后，后续零散的请求是否很有可能会马上被触发，可以把后面几分钟有可能会使用到的零散请求都一次集中执行完毕。&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;连接复用&lt;/p&gt;
-&lt;p&gt;  节省连接建立时间，如开启 keep-alive。&lt;/p&gt;
+&lt;p&gt;节省连接建立时间，如开启 keep-alive。&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;用捆绑批量访问的方式来减少访问的频率&lt;/p&gt;
-&lt;p&gt;  预先判定那些可能马上就会使用到的网络资源，捆绑一起集中进行网络请求。这点我们可以考虑按照提前预期后续1-2分钟的数据作为基准。&lt;/p&gt;
+&lt;p&gt;预先判定那些可能马上就会使用到的网络资源，捆绑一起集中进行网络请求。这点我们可以考虑按照提前预期后续1-2分钟的数据作为基准。&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;分优先级、延迟部分请求&lt;/p&gt;
-&lt;p&gt; 首先我们需要区分哪些网络请求是需要及时返回结果的，哪些是可以延迟执行的。我们可以有针对性的把请求行为捆绑起来，延迟到某个时刻统一发起请求。&lt;/p&gt;
+&lt;p&gt;首先我们需要区分哪些网络请求是需要及时返回结果的，哪些是可以延迟执行的。我们可以有针对性的把请求行为捆绑起来，延迟到某个时刻统一发起请求。&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;对传输的数据进行压缩&lt;/p&gt;
-&lt;p&gt;  网络传输数据量的大小主要由两部分组成：图片与序列化的数据，那么我们需要做的就是减少这两部分的数据传输大小。&lt;/p&gt;
+&lt;p&gt;网络传输数据量的大小主要由两部分组成：图片与序列化的数据，那么我们需要做的就是减少这两部分的数据传输大小。&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;多连接&lt;/p&gt;
-&lt;p&gt;  对于较大文件，如大图片、文件下载可考虑多连接。 需要控制请求的最大并发量，毕竟移动端网络受限。&lt;/p&gt;
+&lt;p&gt;对于较大文件，如大图片、文件下载可考虑多连接。 需要控制请求的最大并发量，毕竟移动端网络受限。&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;避免不必要的同步操作&lt;/p&gt;
-&lt;p&gt;  应用程序的一个基础功能是能够保持确保界面上呈现的信息是即时最新的，例如呈现最新的新闻，天气，信息流等等信息。但是，过于频繁的促使手机客户端应用去同步最新的服务器数据会对性能产生很大的负面影响，不仅仅使得CPU不停的在工作，内存，网络流量，电量等等都会持续的被消耗，所以在进行网络请求操作的时候一定要避免多度同步操作。&lt;/p&gt;
+&lt;p&gt;应用程序的一个基础功能是能够保持确保界面上呈现的信息是即时最新的，例如呈现最新的新闻，天气，信息流等等信息。但是，过于频繁的促使手机客户端应用去同步最新的服务器数据会对性能产生很大的负面影响，不仅仅使得CPU不停的在工作，内存，网络流量，电量等等都会持续的被消耗，所以在进行网络请求操作的时候一定要避免多度同步操作。&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;做好网络数据的缓存&lt;/p&gt;
-&lt;p&gt;  从手机的缓存中直接读取数据肯定比从网络上获取数据要更加的便捷高效，特别是对于那些会被频繁访问到的数据，需要把这些数据缓存到设备上，以便更加快速的进行访问。&lt;/p&gt;
+&lt;p&gt;从手机的缓存中直接读取数据肯定比从网络上获取数据要更加的便捷高效，特别是对于那些会被频繁访问到的数据，需要把这些数据缓存到设备上，以便更加快速的进行访问。&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;#结语&lt;/p&gt;
@@ -3034,8 +2993,6 @@ public void getWeahter(String tag) {
     <summary type="html">
     
       &lt;p&gt;Andorid网络操作相关和优化关键点。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
     
     </summary>
     
@@ -3053,13 +3010,10 @@ public void getWeahter(String tag) {
     <link href="http://yoursite.com/2016/06/01/Android%E4%B8%AD%E7%9A%84%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/"/>
     <id>http://yoursite.com/2016/06/01/Android中的进程和线程/</id>
     <published>2016-06-01T07:00:00.000Z</published>
-    <updated>2016-06-14T02:36:34.000Z</updated>
+    <updated>2017-04-22T08:20:21.000Z</updated>
     
     <content type="html">&lt;p&gt;Andorid进程和线程相关概念。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;p&gt;#写在前面的话&lt;/p&gt;
 &lt;p&gt;个Android应用就是一个Linux进程，每个应用在各自的进程中运行，互不干扰，比较安全。&lt;/p&gt;
 &lt;p&gt;一个应用对应一个主线程，就是通常所说的UI线程，android遵守的就是单线程模型，所以说Ui操作不是线程安全的并且这些操作必须在UI线程中执行。&lt;/p&gt;
@@ -3078,34 +3032,35 @@ public void getWeahter(String tag) {
 &lt;p&gt;重要性层次结构一共有 5 级。以下列表按照重要程度列出了各类进程（第一个进程最重要，将是最后一个被终止的进程）：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;p&gt;前台进程&lt;/p&gt;
-&lt;p&gt; 用户当前操作所必需的进程。如果一个进程满足以下任一条件，即视为前台进程：&lt;/p&gt;
+&lt;p&gt;用户当前操作所必需的进程。如果一个进程满足以下任一条件，即视为前台进程：&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;pre&gt;&lt;code&gt;- 托管用户正在交互的 Activity（已调用 Activity 的 onResume() 方法）
-- 托管某个 Service，后者绑定到用户正在交互的 Activity
-- 托管正在“前台”运行的 Service（服务已调用 startForeground()）
-- 托管正执行一个生命周期回调的 Service（onCreate()、onStart() 或 onDestroy()）
-- 托管正执行其 onReceive() 方法的 BroadcastReceiver
-
-通常，在任意给定时间前台进程都为数不多。只有在内在不足以支持它们同时继续运行这一万不得已的情况下，系统才会终止它们。 此时，设备往往已达到内存分页状态，因此需要终止一些前台进程来确保用户界面正常响应。
-&lt;/code&gt;&lt;/pre&gt;&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;可见进程&lt;/p&gt;
-&lt;p&gt; 没有任何前台组件、但仍会影响用户在屏幕上所见内容的进程。 如果一个进程满足以下任一条件，即视为可见进程：&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;托管不在前台、但仍对用户可见的 Activity（已调用其 onPause() 方法）。例如，如果前台 Activity 启动了一个对话框，允许在其后显示上一 Activity，则有可能会发生这种情况&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;托管绑定到可见（或前台）Activity 的 Service&lt;/p&gt;
-&lt;p&gt;可见进程被视为是极其重要的进程，除非为了维持所有前台进程同时运行而必须终止，否则系统不会终止这些进程。&lt;/p&gt;
+&lt;li&gt;托管用户正在交互的 Activity（已调用 Activity 的 onResume() 方法）&lt;/li&gt;
+&lt;li&gt;托管某个 Service，后者绑定到用户正在交互的 Activity&lt;/li&gt;
+&lt;li&gt;托管正在“前台”运行的 Service（服务已调用 startForeground()）&lt;/li&gt;
+&lt;li&gt;托管正执行一个生命周期回调的 Service（onCreate()、onStart() 或 onDestroy()）&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;托管正执行其 onReceive() 方法的 BroadcastReceiver&lt;/p&gt;
+&lt;p&gt;通常，在任意给定时间前台进程都为数不多。只有在内在不足以支持它们同时继续运行这一万不得已的情况下，系统才会终止它们。 此时，设备往往已达到内存分页状态，因此需要终止一些前台进程来确保用户界面正常响应。&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;可见进程&lt;/p&gt;
+&lt;p&gt;没有任何前台组件、但仍会影响用户在屏幕上所见内容的进程。 如果一个进程满足以下任一条件，即视为可见进程：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;托管不在前台、但仍对用户可见的 Activity（已调用其 onPause() 方法）。例如，如果前台 Activity 启动了一个对话框，允许在其后显示上一 Activity，则有可能会发生这种情况&lt;/li&gt;
+&lt;li&gt;托管绑定到可见（或前台）Activity 的 Service&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;可见进程被视为是极其重要的进程，除非为了维持所有前台进程同时运行而必须终止，否则系统不会终止这些进程。&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;服务进程&lt;/p&gt;
-&lt;p&gt; 正在运行已使用 startService() 方法启动的服务且不属于上述两个更高类别进程的进程。尽管服务进程与用户所见内容没有直接关联，但是它们通常在执行一些用户关心的操作（例如，在后台播放音乐或从网络下载数据）。因此，除非内存不足以维持所有前台进程和可见进程同时运行，否则系统会让服务进程保持运行状态。&lt;/p&gt;
+&lt;p&gt;正在运行已使用 startService() 方法启动的服务且不属于上述两个更高类别进程的进程。尽管服务进程与用户所见内容没有直接关联，但是它们通常在执行一些用户关心的操作（例如，在后台播放音乐或从网络下载数据）。因此，除非内存不足以维持所有前台进程和可见进程同时运行，否则系统会让服务进程保持运行状态。&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;后台进程&lt;/p&gt;
-&lt;p&gt; 包含目前对用户不可见的 Activity 的进程（已调用 Activity 的 onStop() 方法）。这些进程对用户体验没有直接影响，系统可能随时终止它们，以回收内存供前台进程、可见进程或服务进程使用。 通常会有很多后台进程在运行，因此它们会保存在 LRU （最近最少使用）列表中，以确保包含用户最近查看的 Activity 的进程最后一个被终止。如果某个 Activity 正确实现了生命周期方法，并保存了其当前状态，则终止其进程不会对用户体验产生明显影响，因为当用户导航回该 Activity 时，Activity 会恢复其所有可见状态。 有关保存和恢复状态的信息，请参阅Activity文档。&lt;/p&gt;
+&lt;p&gt;包含目前对用户不可见的 Activity 的进程（已调用 Activity 的 onStop() 方法）。这些进程对用户体验没有直接影响，系统可能随时终止它们，以回收内存供前台进程、可见进程或服务进程使用。 通常会有很多后台进程在运行，因此它们会保存在 LRU （最近最少使用）列表中，以确保包含用户最近查看的 Activity 的进程最后一个被终止。如果某个 Activity 正确实现了生命周期方法，并保存了其当前状态，则终止其进程不会对用户体验产生明显影响，因为当用户导航回该 Activity 时，Activity 会恢复其所有可见状态。 有关保存和恢复状态的信息，请参阅Activity文档。&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;空进程&lt;/p&gt;
-&lt;p&gt; 不含任何活动应用组件的进程。保留这种进程的的唯一目的是用作缓存，以缩短下次在其中运行组件所需的启动时间。 为使总体系统资源在进程缓存和底层内核缓存之间保持平衡，系统往往会终止这些进程。&lt;/p&gt;
+&lt;p&gt;不含任何活动应用组件的进程。保留这种进程的的唯一目的是用作缓存，以缩短下次在其中运行组件所需的启动时间。 为使总体系统资源在进程缓存和底层内核缓存之间保持平衡，系统往往会终止这些进程。&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;根据进程中当前活动组件的重要程度，Android 会将进程评定为它可能达到的最高级别。例如，如果某进程托管着服务和可见 Activity，则会将此进程评定为可见进程，而不是服务进程。&lt;/p&gt;
@@ -3200,8 +3155,6 @@ private class DownloadImageTask extends AsyncTask&amp;lt;String, Void, Bitmap&am
     <summary type="html">
     
       &lt;p&gt;Andorid进程和线程相关概念。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
     
     </summary>
     
@@ -3301,13 +3254,10 @@ private class DownloadImageTask extends AsyncTask&amp;lt;String, Void, Bitmap&am
     <link href="http://yoursite.com/2016/05/04/TextView%E5%AE%9E%E6%88%98%E4%B9%8B%E4%BD%A0%E7%9C%9F%E7%9A%84%E6%87%82%E6%88%91%E4%B9%88%EF%BC%9F/"/>
     <id>http://yoursite.com/2016/05/04/TextView实战之你真的懂我么？/</id>
     <published>2016-05-04T10:40:00.000Z</published>
-    <updated>2016-11-10T03:54:22.000Z</updated>
+    <updated>2017-04-22T08:20:36.000Z</updated>
     
     <content type="html">&lt;p&gt;对于TextView,我想大家都已经熟的不能再熟了。但是它的用法我们真的熟么？为了避免总是一言不合就去翻官方文档，在这里我总结一下我也可能是你容易忽视的一些细节。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;p&gt;&lt;img src=&quot;http://i.imgur.com/j1Knx9T.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;不要以为别人是赢在了起跑线上，他们其实生在了终点。&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;#写在前面的话&lt;/p&gt;
@@ -3588,8 +3538,6 @@ Html.ImageGetter imageGetter = new Html.ImageGetter() {
     <summary type="html">
     
       &lt;p&gt;对于TextView,我想大家都已经熟的不能再熟了。但是它的用法我们真的熟么？为了避免总是一言不合就去翻官方文档，在这里我总结一下我也可能是你容易忽视的一些细节。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
     
     </summary>
     
@@ -3607,13 +3555,10 @@ Html.ImageGetter imageGetter = new Html.ImageGetter() {
     <link href="http://yoursite.com/2016/04/29/Andorid%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9C%86%E5%BD%A2%E6%B8%90%E5%8F%98%E8%89%B2%E8%BF%9B%E5%BA%A6%E6%9D%A1%E7%9A%84%E4%BB%8E%E5%AE%9E%E7%8E%B0%E5%88%B0%E5%BC%80%E6%BA%90/"/>
     <id>http://yoursite.com/2016/04/29/Andorid自定义圆形渐变色进度条的从实现到开源/</id>
     <published>2016-04-29T06:31:00.000Z</published>
-    <updated>2016-09-06T06:23:54.000Z</updated>
+    <updated>2017-04-22T08:18:05.000Z</updated>
     
     <content type="html">&lt;p&gt;Andorid自定义圆形渐变色进度条的从实现到开源的全过程。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;p&gt;&lt;img src=&quot;http://i.imgur.com/5tRNY53.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;信自己也是一种信仰&lt;/strong&gt;。&lt;/p&gt;
 &lt;p&gt;#写在前面的话&lt;/p&gt;
@@ -3819,8 +3764,6 @@ public class BarAnimation extends Animation {
     <summary type="html">
     
       &lt;p&gt;Andorid自定义圆形渐变色进度条的从实现到开源的全过程。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
     
     </summary>
     
@@ -3838,13 +3781,10 @@ public class BarAnimation extends Animation {
     <link href="http://yoursite.com/2016/04/26/Android%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E4%B9%8BPerformance%20Tips/"/>
     <id>http://yoursite.com/2016/04/26/Android性能优化之Performance Tips/</id>
     <published>2016-04-26T03:01:00.000Z</published>
-    <updated>2016-05-06T14:02:02.000Z</updated>
+    <updated>2017-04-22T08:19:46.000Z</updated>
     
     <content type="html">&lt;p&gt;这篇文章主要是对官方文档中PerformanceTips（性能优化关键点）的翻译，欢迎拍砖。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;p&gt;&lt;img src=&quot;http://i.imgur.com/uWNFnJF.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;p&gt;如果你真的愿意去努力，你人生最坏的结果，也不过是大器晚成。&lt;/p&gt;
 &lt;blockquote&gt;
@@ -4000,8 +3940,6 @@ public void two() {
     <summary type="html">
     
       &lt;p&gt;这篇文章主要是对官方文档中PerformanceTips（性能优化关键点）的翻译，欢迎拍砖。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
     
     </summary>
     
@@ -4019,13 +3957,10 @@ public void two() {
     <link href="http://yoursite.com/2016/04/19/Android%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E4%B9%8B%E8%A2%AB%E5%BF%BD%E8%A7%86%E7%9A%84Memory%20Leaks/"/>
     <id>http://yoursite.com/2016/04/19/Android性能优化之被忽视的Memory Leaks/</id>
     <published>2016-04-19T10:16:00.000Z</published>
-    <updated>2016-05-06T14:06:58.000Z</updated>
+    <updated>2017-04-22T08:19:10.000Z</updated>
     
     <content type="html">&lt;p&gt;Android内存优化之内存泄漏的发现和处理，以及常见情况。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;p&gt;#起因&lt;/p&gt;
 &lt;p&gt;写博客就像讲故事，得有起因，经过，结果，人物，地点和时间。今天就容我给大家讲一个故事。人物呢，肯定是我了。故事则发生在最近的这两天,地点在coder君上班的公司。那天无意中我发现了一个奇怪的现象，随着我点开我们App的页面，Memory Monitor中显示占用的内存越来越多（前面的页面已经finish掉了）。咦？什么鬼？&lt;/p&gt;
 &lt;p&gt;#经过&lt;/p&gt;
@@ -4042,48 +3977,48 @@ public void two() {
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;&lt;strong&gt;总内存&lt;/strong&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;private String getTotalMemory() {
-    String str1 = &amp;quot;/proc/meminfo&amp;quot;;// 系统内存信息文件
-    String str2;
-    String[] arrayOfString;
-    long initial_memory = 0;
-    try {
-        FileReader localFileReader = new FileReader(str1);
-        BufferedReader localBufferedReader = new BufferedReader(
-                localFileReader, 8192);
-        str2 = localBufferedReader.readLine();// 读取meminfo第一行，系统总内存大小
-        arrayOfString = str2.split(&amp;quot;\\s+&amp;quot;);
-        for (String num : arrayOfString) {
-            Log.i(str2, num + &amp;quot;\t&amp;quot;);
-        }
-        initial_memory = Integer.valueOf(arrayOfString[1]).intValue() * 1024;// 获得系统总内存，单位是KB，乘以1024转换为Byte
-        localBufferedReader.close();
-    } catch (IOException e) {
-    }
-    return Formatter.formatFileSize(getBaseContext(), initial_memory);// Byte转换为KB或者MB，内存大小规格化
-}
+      String str1 = &amp;quot;/proc/meminfo&amp;quot;;// 系统内存信息文件
+      String str2;
+      String[] arrayOfString;
+      long initial_memory = 0;
+      try {
+          FileReader localFileReader = new FileReader(str1);
+          BufferedReader localBufferedReader = new BufferedReader(
+                  localFileReader, 8192);
+          str2 = localBufferedReader.readLine();// 读取meminfo第一行，系统总内存大小
+          arrayOfString = str2.split(&amp;quot;\\s+&amp;quot;);
+          for (String num : arrayOfString) {
+              Log.i(str2, num + &amp;quot;\t&amp;quot;);
+          }
+          initial_memory = Integer.valueOf(arrayOfString[1]).intValue() * 1024;// 获得系统总内存，单位是KB，乘以1024转换为Byte
+          localBufferedReader.close();
+      } catch (IOException e) {
+      }
+      return Formatter.formatFileSize(getBaseContext(), initial_memory);// Byte转换为KB或者MB，内存大小规格化
+  }
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;strong&gt;系统当前可用内存&lt;/strong&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;private String getAvailMemory() {
     // 获取android当前可用内存大小
-    ActivityManager am = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
-    ActivityManager.MemoryInfo mi = new ActivityManager.MemoryInfo();
-    am.getMemoryInfo(mi);
-    //mi.availMem; 当前系统的可用内存
-    return Formatter.formatFileSize(getBaseContext(), mi.availMem);// 将获取的内存大小规格化
-}
+      ActivityManager am = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+      ActivityManager.MemoryInfo mi = new ActivityManager.MemoryInfo();
+      am.getMemoryInfo(mi);
+      //mi.availMem; 当前系统的可用内存
+      return Formatter.formatFileSize(getBaseContext(), mi.availMem);// 将获取的内存大小规格化
+  }
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;strong&gt;我们可以使用的内存&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;  &lt;strong&gt;每一个Android设备都会有不同的RAM总大小与可用空间，因此不同设备为app提供了不同大小的heap限制。你可以通过调用getMemoryClass())来获取你的app的可用heap大小。如果你的app尝试申请更多的内存，会出现OutOfMemory的错误。&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;  在一些特殊的情景下，你可以通过在manifest的application标签下添加largeHeap=true的属性来声明一个更大的heap空间。如果你这样做，你可以通过getLargeMemoryClass())来获取到一个更大的heap size。&lt;/p&gt;
-&lt;p&gt;  然而，能够获取更大heap的设计本意是为了一小部分会消耗大量RAM的应用(例如一个大图片的编辑应用)。不要轻易的因为你需要使用大量的内存而去请求一个大的heap size。只有当你清楚的知道哪里会使用大量的内存并且为什么这些内存必须被保留时才去使用large heap. 因此请尽量少使用large heap。使用额外的内存会影响系统整体的用户体验，并且会使得GC的每次运行时间更长。在任务切换时，系统的性能会变得大打折扣。&lt;/p&gt;
-&lt;p&gt;  另外, large heap并不一定能够获取到更大的heap。在某些有严格限制的机器上，large heap的大小和通常的heap size是一样的。因此即使你申请了large heap，你还是应该通过执行getMemoryClass()来检查实际获取到的heap大小。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;每一个Android设备都会有不同的RAM总大小与可用空间，因此不同设备为app提供了不同大小的heap限制。你可以通过调用getMemoryClass())来获取你的app的可用heap大小。如果你的app尝试申请更多的内存，会出现OutOfMemory的错误。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;在一些特殊的情景下，你可以通过在manifest的application标签下添加largeHeap=true的属性来声明一个更大的heap空间。如果你这样做，你可以通过getLargeMemoryClass())来获取到一个更大的heap size。&lt;/p&gt;
+&lt;p&gt;然而，能够获取更大heap的设计本意是为了一小部分会消耗大量RAM的应用(例如一个大图片的编辑应用)。不要轻易的因为你需要使用大量的内存而去请求一个大的heap size。只有当你清楚的知道哪里会使用大量的内存并且为什么这些内存必须被保留时才去使用large heap. 因此请尽量少使用large heap。使用额外的内存会影响系统整体的用户体验，并且会使得GC的每次运行时间更长。在任务切换时，系统的性能会变得大打折扣。&lt;/p&gt;
+&lt;p&gt;另外, large heap并不一定能够获取到更大的heap。在某些有严格限制的机器上，large heap的大小和通常的heap size是一样的。因此即使你申请了large heap，你还是应该通过执行getMemoryClass()来检查实际获取到的heap大小。&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;private String getAllocationMemory() {
     // 获取系统分配的内存大小
-    ActivityManager am = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
-    //开启了android:largeHeap=&amp;quot;true&amp;quot;,米4系统能分配的内存为512M，不开启为128M
-    //return  am.getLargeMemoryClass()+&amp;quot;&amp;quot;;
-    //return  am.getMemoryClass()+&amp;quot;&amp;quot;;
-}        
+      ActivityManager am = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+      //开启了android:largeHeap=&amp;quot;true&amp;quot;,米4系统能分配的内存为512M，不开启为128M
+      //return  am.getLargeMemoryClass()+&amp;quot;&amp;quot;;
+      //return  am.getMemoryClass()+&amp;quot;&amp;quot;;
+  }        
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;##Java中的四种引用&lt;/p&gt;
@@ -4093,26 +4028,26 @@ public void two() {
 &lt;p&gt;其中引用类型变量分为四类：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;&lt;strong&gt;强引用&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;  最常用的引用形式。把一个对象赋给一个引用类型变量，则为强引用。&lt;/p&gt;
-&lt;p&gt;  只要一个引用是强引用，则垃圾回收器永远都无法回收这个对象的内存空间，除非JVM终止。&lt;/p&gt;
+&lt;p&gt;最常用的引用形式。把一个对象赋给一个引用类型变量，则为强引用。&lt;/p&gt;
+&lt;p&gt;只要一个引用是强引用，则垃圾回收器永远都无法回收这个对象的内存空间，除非JVM终止。&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;strong&gt;软引用&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;  当内存资源充足的时候，垃圾回收器不会回收软引用对应的对象的内存空间;但当内存资源紧张时，软引用所对应的对象就会被垃圾回收器回收。&lt;/p&gt;
+&lt;p&gt;当内存资源充足的时候，垃圾回收器不会回收软引用对应的对象的内存空间;但当内存资源紧张时，软引用所对应的对象就会被垃圾回收器回收。&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;//创建一个Student类型的软引用
 
-SoftReference&amp;lt;Student&amp;gt; sr = new SoftReference&amp;lt;Student&amp;gt;(new Student());
+  SoftReference&amp;lt;Student&amp;gt; sr = new SoftReference&amp;lt;Student&amp;gt;(new Student());
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;strong&gt;弱引用&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;  不管JVM内存资源是否紧张，只要垃圾回收器运行，弱引用所对应的对象就会被释放。&lt;/p&gt;
+&lt;p&gt;不管JVM内存资源是否紧张，只要垃圾回收器运行，弱引用所对应的对象就会被释放。&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;strong&gt;虚引用&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;  虚引用等于没有引用，无法通过虚引用访问其对应的对象。&lt;/p&gt;
-&lt;p&gt;  软引用和弱引用在其对象被回收之后，这些引用会被添加到引用队列中去;而虚引用在其对象被回收之前，虚引用就被添加到引用队列中去了。因此虚引用可以在其对象被释放之前进行一些操作。&lt;/p&gt;
-&lt;p&gt;  虚引用和引用队列绑定的方法：&lt;/p&gt;
+&lt;p&gt;虚引用等于没有引用，无法通过虚引用访问其对应的对象。&lt;/p&gt;
+&lt;p&gt;软引用和弱引用在其对象被回收之后，这些引用会被添加到引用队列中去;而虚引用在其对象被回收之前，虚引用就被添加到引用队列中去了。因此虚引用可以在其对象被释放之前进行一些操作。&lt;/p&gt;
+&lt;p&gt;虚引用和引用队列绑定的方法：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;//创建引用队列  
-ReferenceQueue&amp;lt;String&amp;gt; queue = new ReferenceQueue&amp;lt;String&amp;gt;();  
-//创建虚引用，并绑定引用队列  
-PhantomReference&amp;lt;String&amp;gt; str = new PhantomReference&amp;lt;String&amp;gt;(&amp;quot;啦啦啦&amp;quot;,queue);    
+  ReferenceQueue&amp;lt;String&amp;gt; queue = new ReferenceQueue&amp;lt;String&amp;gt;();  
+  //创建虚引用，并绑定引用队列  
+  PhantomReference&amp;lt;String&amp;gt; str = new PhantomReference&amp;lt;String&amp;gt;(&amp;quot;啦啦啦&amp;quot;,queue);    
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;##Garbage Collection Android中的垃圾回收&lt;/p&gt;
@@ -4145,16 +4080,15 @@ PhantomReference&amp;lt;String&amp;gt; str = new PhantomReference&amp;lt;String&
 &lt;p&gt;AndriodStudio中抓取内存信息还是很方便的，有两种方法：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;使用Android Device Monitor&lt;/p&gt;
-&lt;p&gt;  点击Android Studio工具栏上的Tool–&amp;gt;Android Device Monitor    &lt;/p&gt;
-&lt;p&gt;  &lt;img src=&quot;http://i.imgur.com/7ndnk8N.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;  在Android Device Monitor界面中选在你要分析的应用程序的包名，点击Update Heap来更新统计信息，然后点击Cause GC即可查看当前堆的使用情况，点击Dump HPROF file，将该应用当前的内存信息保存成hprof文件，放在桌面即可，操作如下图&lt;/p&gt;
-&lt;p&gt;  &lt;img src=&quot;http://i.imgur.com/CuAzhDK.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;点击Android Studio工具栏上的Tool–&amp;gt;Android Device Monitor    &lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://i.imgur.com/7ndnk8N.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;在Android Device Monitor界面中选在你要分析的应用程序的包名，点击Update Heap来更新统计信息，然后点击Cause GC即可查看当前堆的使用情况，点击Dump HPROF file，将该应用当前的内存信息保存成hprof文件，放在桌面即可，操作如下图&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://i.imgur.com/CuAzhDK.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;直接获取&lt;/p&gt;
-&lt;p&gt;  Android Studio的最新版本可以直接获取hprof文件，但是注意&lt;strong&gt;在使用之前一定要手动点击 Initiate GC按钮手动触发GC&lt;/strong&gt;，这样抓到的内存使用情况就是不包括Unreachable对象的。&lt;/p&gt;
-&lt;p&gt;  &lt;img src=&quot;http://i.imgur.com/mM8Dhr5.png&quot; alt=&quot;&quot;&gt;  &lt;/p&gt;
-&lt;p&gt;  稍等片刻，生成的文件会出现在captures中，然后选择文件，点击右键转换成标准的hprof文件，就可以在MAT中打开了。&lt;/p&gt;
-&lt;p&gt;  &lt;img src=&quot;http://i.imgur.com/gFGFREY.png&quot; alt=&quot;&quot;&gt; &lt;/p&gt;
+&lt;p&gt;Android Studio的最新版本可以直接获取hprof文件，但是注意&lt;strong&gt;在使用之前一定要手动点击 Initiate GC按钮手动触发GC&lt;/strong&gt;，这样抓到的内存使用情况就是不包括Unreachable对象的。&lt;br&gt;​&lt;br&gt;&lt;img src=&quot;http://i.imgur.com/mM8Dhr5.png&quot; alt=&quot;&quot;&gt;  &lt;/p&gt;
+&lt;p&gt;稍等片刻，生成的文件会出现在captures中，然后选择文件，点击右键转换成标准的hprof文件，就可以在MAT中打开了。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://i.imgur.com/gFGFREY.png&quot; alt=&quot;&quot;&gt; &lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;####使用MAT工具查看分析&lt;/p&gt;
@@ -4221,7 +4155,7 @@ public void printActivityName() {
 &lt;li&gt;带有黄点的对象就表示是可以被GC Roots访问到的，根据上面的讲解，可以被GC Root访问到的对象都是无法被回收的。&lt;/li&gt;
 &lt;li&gt;并不是所有带黄点的对象都是泄漏的对象，有些对象系统需要一直使用，本来就不应该被回收。我们可以注意到，有些带黄点的对象最右边会写一个System Class，说明这是一个由系统管理的对象，并不是由我们自己创建并导致内存泄漏的对象。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;现在我们可以对着我们想查看的内容点击右键 -&amp;gt; Path to GC Roots -&amp;gt; exclude weak references，为什么选择exclude weak references呢？因为弱引用是不会阻止对象被垃圾回收器回收的，所以我们这里直接把它排除掉，然后一步一步分析。&lt;/p&gt;
+&lt;p&gt;现在我们可以对着我们想查看的内容点击右键 -&amp;gt; Path to GC Roots -&amp;gt; exclude weak references，为什么选择exclude weak references呢？因为弱引用是不会阻止对象被垃圾回收器回收的，所以我们这里直接把它排除掉，然后一步一步分析。&lt;br&gt;​    &lt;/p&gt;
 &lt;p&gt;###LeakCanary&lt;/p&gt;
 &lt;p&gt;leakcanary是一个开源项目，一个内存泄露自动检测工具，是著名的GitHub开源组织Square贡献的，它的主要优势就在于自动化过早的发觉内存泄露、配置简单、抓取贴心，缺点在于还存在一些bug，不过正常使用百分之九十情况是OK的，其核心原理与MAT工具类似。&lt;/p&gt;
 &lt;p&gt;因为配置十分简单，这里就不多说了，&lt;a href=&quot;https://github.com/square/leakcanary&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;官方文档。&lt;/a&gt;&lt;/p&gt;
@@ -4256,8 +4190,6 @@ public void printActivityName() {
     <summary type="html">
     
       &lt;p&gt;Android内存优化之内存泄漏的发现和处理，以及常见情况。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
     
     </summary>
     
@@ -4281,13 +4213,10 @@ public void printActivityName() {
     <link href="http://yoursite.com/2016/04/12/Androd%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A7%E4%BB%B6%EF%BC%88%E4%BA%94%EF%BC%89%E6%89%93%E9%80%A0%E8%87%AA%E5%B7%B1%E7%9A%84Camera/"/>
     <id>http://yoursite.com/2016/04/12/Androd自定义控件（五）打造自己的Camera/</id>
     <published>2016-04-12T13:30:00.000Z</published>
-    <updated>2016-05-06T14:31:38.000Z</updated>
+    <updated>2017-04-22T08:18:28.000Z</updated>
     
     <content type="html">&lt;p&gt;使用surfaceview自定义相机，同时把自己踩过的坑分享给大家，希望大家有所收获。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;p&gt;#写在前面的话&lt;br&gt;前一阵子负责一个自定义相机进行拍照并在另一个页面进行人脸识别的模块，相机部分需求并不怎么复杂，可以切换前后摄像头，可以拍照并把照片返回上一个页面。由于没有怎么接触过自定义相机的部分，而网上的一些资料又不全，踩了不少坑。故在这里总结一下，希望对大家有所帮助，同时把自定义控件系列的最后一个坑填上（surfaceview）。效果图如下：&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;http://img.blog.csdn.net/20160412212407832&quot; alt=&quot;这里写图片描述&quot;&gt;&lt;/p&gt;
 &lt;p&gt;#Android中开发相机的两种方式&lt;/p&gt;
@@ -4368,8 +4297,6 @@ public void printActivityName() {
     <summary type="html">
     
       &lt;p&gt;使用surfaceview自定义相机，同时把自己踩过的坑分享给大家，希望大家有所收获。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
     
     </summary>
     

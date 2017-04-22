@@ -98,7 +98,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/03/08/自定义view你需要知道的/index.html">
 <meta property="og:site_name" content="PleaseCallMeCoder">
 <meta property="og:description" content="自定义view的时候可能需要重写的方法。">
-<meta property="og:updated_time" content="2016-05-07T04:53:48.000Z">
+<meta property="og:updated_time" content="2017-04-22T08:18:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="自定义view你需要知道的">
 <meta name="twitter:description" content="自定义view的时候可能需要重写的方法。">
@@ -378,10 +378,30 @@
 
       
         <p>自定义view的时候可能需要重写的方法。</p>
-<ul>
-<li><a id="more"></a>
-前面我已经跟大家分享了<a href="http://blog.csdn.net/sdkfjksf/article/details/50762249" target="_blank" rel="external">自定义view概述</a>，今天跟大家分享一下官方文档中关于自定义view可能重写到的方法。<a href="http://developer.android.com/reference/android/view/View.html#" target="_blank" rel="external">官方文档</a><br>###概述<br>实现自定义view，我们通常会去重写一些系统会在所有view中调用到的标准方法。事实上，我们不用重写所有的方法，甚至只重写onDraw(android.graphics.Canvas)方法就可以了。<br>###创建<br>####构造方法<br>构造方法有两种形式，一种是在view在代码中创建的时候调用，另一种是view从布局文件中加载的时候调用。第二种方式需要去解析在布局文件中定义的属性。<br>####onFinishInflate()<br>回调方法，当view和他的子view已经从布局文件中加载完成的时候调用。<br>###布局<br>####onMeasure(int, int)<br>用来计算并且确定此view和他的子view需要的尺寸。<br>####onLayout(boolean, int, int, int, int)<br>当这个view需要分配他的子view的位置和占用空间的时候调用。<br>####onSizeChanged(int, int, int, int)<br>当这个view的尺寸已经发生改变的时候调用。<br>###绘制<br>####onDraw(android.graphics.Canvas)<br>当view需要渲染他的内容的时候调用。<br>###事件处理<br>####onKeyDown(int, KeyEvent)<br>当按下某个按键的时候触发，比如返回键。<br>####onKeyUp(int, KeyEvent)<br>当离开按键的时候触发。<br>####onTrackballEvent(MotionEvent)<br>当发生轨迹球事件时触发。<br>####onTouchEvent(MotionEvent)<br>发生触屏事件的时候触发。<br>###焦点<br>####onFocusChanged(boolean, int, android.graphics.Rect)<br>当view获得或者失去焦点时触发。<br>####onWindowFocusChanged(boolean)<br>当包含这个view的window得到或者失去焦点时触发。<br>###依附<br>####onAttachedToWindow()<br>当这个view依附到window中时触发。<br>####onDetachedFromWindow()<br>当这个view从依附的window中分离时触发。<br>####onWindowVisibilityChanged(int)<br>当包含该view的window的可见性发生改变时触发的方法。</li>
-</ul>
+<a id="more"></a>
+<p>前面我已经跟大家分享了<a href="http://blog.csdn.net/sdkfjksf/article/details/50762249" target="_blank" rel="external">自定义view概述</a>，今天跟大家分享一下官方文档中关于自定义view可能重写到的方法。<a href="http://developer.android.com/reference/android/view/View.html#" target="_blank" rel="external">官方文档</a></p>
+<p>###概述<br>实现自定义view，我们通常会去重写一些系统会在所有view中调用到的标准方法。事实上，我们不用重写所有的方法，甚至只重写onDraw(android.graphics.Canvas)方法就可以了。</p>
+<p>###创建</p>
+<p>####构造方法<br>构造方法有两种形式，一种是在view在代码中创建的时候调用，另一种是view从布局文件中加载的时候调用。第二种方式需要去解析在布局文件中定义的属性。</p>
+<p>####onFinishInflate()<br>回调方法，当view和他的子view已经从布局文件中加载完成的时候调用。</p>
+<p>###布局</p>
+<p>####onMeasure(int, int)<br>用来计算并且确定此view和他的子view需要的尺寸。</p>
+<p>####onLayout(boolean, int, int, int, int)<br>当这个view需要分配他的子view的位置和占用空间的时候调用。</p>
+<p>####onSizeChanged(int, int, int, int)<br>当这个view的尺寸已经发生改变的时候调用。</p>
+<p>###绘制</p>
+<p>####onDraw(android.graphics.Canvas)<br>当view需要渲染他的内容的时候调用。</p>
+<p>###事件处理</p>
+<p>####onKeyDown(int, KeyEvent)<br>当按下某个按键的时候触发，比如返回键。</p>
+<p>####onKeyUp(int, KeyEvent)<br>当离开按键的时候触发。</p>
+<p>####onTrackballEvent(MotionEvent)<br>当发生轨迹球事件时触发。</p>
+<p>####onTouchEvent(MotionEvent)<br>发生触屏事件的时候触发。</p>
+<p>###焦点</p>
+<p>####onFocusChanged(boolean, int, android.graphics.Rect)<br>当view获得或者失去焦点时触发。</p>
+<p>####onWindowFocusChanged(boolean)<br>当包含这个view的window得到或者失去焦点时触发。</p>
+<p>###依附</p>
+<p>####onAttachedToWindow()<br>当这个view依附到window中时触发。</p>
+<p>####onDetachedFromWindow()<br>当这个view从依附的window中分离时触发。</p>
+<p>####onWindowVisibilityChanged(int)<br>当包含该view的window的可见性发生改变时触发的方法。</p>
 
       
     </div>
