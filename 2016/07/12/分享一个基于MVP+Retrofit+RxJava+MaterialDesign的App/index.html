@@ -103,7 +103,7 @@
 <meta property="og:image" content="http://i.imgur.com/ivGy3ga.jpg">
 <meta property="og:image" content="http://i.imgur.com/HI3PipV.png">
 <meta property="og:image" content="http://img.blog.csdn.net/20160422143030784">
-<meta property="og:updated_time" content="2016-07-12T08:41:22.000Z">
+<meta property="og:updated_time" content="2017-04-22T08:15:04.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分享一个基于MVP+Retrofit+RxJava+MaterialDesign的App">
 <meta name="twitter:description" content="最近一直在忙项目的事，所以很久不写博客了。抽时间整理了下最近的收藏的一些文章，感觉新的知识点还是挺多的，于是乎自己抽时间写了一个简单的App。这个App基于MVP+Retrofit+RxJava+MaterialDesign，分享给大家。">
@@ -212,6 +212,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
@@ -245,7 +255,7 @@
         <li class="menu-item menu-item-search">
           <a href="/search" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-search"></i> <br />
             
             搜索
           </a>
@@ -285,7 +295,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="任磊">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/uploads/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -374,10 +384,7 @@
 
       
         <p>最近一直在忙项目的事，所以很久不写博客了。抽时间整理了下最近的收藏的一些文章，感觉新的知识点还是挺多的，于是乎自己抽时间写了一个简单的App。这个App基于MVP+Retrofit+RxJava+MaterialDesign，分享给大家。</p>
-<ul>
-<li><a id="more"></a>
-</li>
-</ul>
+<a id="more"></a>
 <p><img src="http://i.imgur.com/JgQm7Ac.jpg" alt=""></p>
 <p>2016已经荒废了一半，还有一半可以继续浪费。</p>
 <p>源码我已经上传到github上了，欢迎fork和star<br><a href="https://github.com/PleaseCallMeCoder/PrettyGirls" target="_blank" rel="external">https://github.com/PleaseCallMeCoder/PrettyGirls</a></p>
@@ -407,19 +414,19 @@
 <p>这里我采用的是<strong>按模块来划分包</strong>。包括以下几部分：</p>
 <ul>
 <li><p>app</p>
-<p>  包括全局异常处理，系统常量，和app的基本配置等。</p>
+<p>包括全局异常处理，系统常量，和app的基本配置等。</p>
 </li>
 <li><p>模块包</p>
-<p>  每个模块包含一个契约接口，本模块的一个activity和多个fragment，presenter的实现类等，当然如果模块比较复杂还可以再继续分</p>
+<p>每个模块包含一个契约接口，本模块的一个activity和多个fragment，presenter的实现类等，当然如果模块比较复杂还可以再继续分</p>
 </li>
 <li><p>data</p>
-<p>  提供app的本地或者远程数据，数据模型等</p>
+<p>提供app的本地或者远程数据，数据模型等</p>
 </li>
 <li><p>util</p>
-<p>  工具类</p>
+<p>工具类</p>
 </li>
 <li><p>widget</p>
-<p>  自定义控件</p>
+<p>自定义控件</p>
 </li>
 </ul>
 <p>##依赖库</p>
@@ -560,7 +567,7 @@
       <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/images/avatar.gif"
+               src="/uploads/avatar.png"
                alt="任磊" />
           <p class="site-author-name" itemprop="name">任磊</p>
            

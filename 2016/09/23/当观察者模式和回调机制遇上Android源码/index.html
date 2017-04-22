@@ -100,7 +100,7 @@
 <meta property="og:description" content="当观察者模式和回调机制遇上Android源码">
 <meta property="og:image" content="http://i.imgur.com/Jbw7PMO.png">
 <meta property="og:image" content="http://i.imgur.com/M5Gf0MO.png">
-<meta property="og:updated_time" content="2016-11-10T03:07:50.000Z">
+<meta property="og:updated_time" content="2017-04-22T08:14:52.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="当观察者模式和回调机制遇上Android源码">
 <meta name="twitter:description" content="当观察者模式和回调机制遇上Android源码">
@@ -209,6 +209,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
@@ -242,7 +252,7 @@
         <li class="menu-item menu-item-search">
           <a href="/search" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-search"></i> <br />
             
             搜索
           </a>
@@ -282,7 +292,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="任磊">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/uploads/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -371,10 +381,7 @@
 
       
         <p> 当观察者模式和回调机制遇上Android源码</p>
-<ul>
-<li><a id="more"></a>
-</li>
-</ul>
+<a id="more"></a>
 <p>上一篇博客跟大家分享了Android源码中的装饰者模式，有点意犹未尽，今天跟大家分享下Android中的观察者模式，顺便说一说观察者模式和回调机制的关系，欢迎大家拍砖。</p>
 <p>#观察者模式</p>
 <p>##定义</p>
@@ -387,10 +394,10 @@
 </li>
 <li><p>具体主题(ConcreteSubject)角色：将有关状态存入具体观察者对象；在具体主题的内部状态改变时，给所有登记过的观察者发出通知。具体主题角色又叫做具体被观察者(Concrete Observable)角色。　　</p>
 </li>
-<li><p>抽象观察者(Observer)角色：为所有的具体观察者定义一个接口，在得到主题的通知时更新自己，这个接口叫做更新接口。
-　　</p>
+<li><p>抽象观察者(Observer)角色：为所有的具体观察者定义一个接口，在得到主题的通知时更新自己，这个接口叫做更新接口。</p>
 </li>
-<li>具体观察者(ConcreteObserver)角色：存储与主题的状态自恰的状态。具体观察者角色实现抽象观察者角色所要求的更新接口，以便使本身的状态与主题的状态 像协调。如果需要，具体观察者角色可以保持一个指向具体主题对象的引用。</li>
+<li><p>具体观察者(ConcreteObserver)角色：存储与主题的状态自恰的状态。具体观察者角色实现抽象观察者角色所要求的更新接口，以便使本身的状态与主题的状态 像协调。如果需要，具体观察者角色可以保持一个指向具体主题对象的引用。</p>
+</li>
 </ul>
 <p>##实现</p>
 <p>抽象主题角色类</p>
@@ -483,10 +490,10 @@
 </code></pre><p>#观察者的两种实现方式</p>
 <ul>
 <li><p>Push</p>
-<p>  主题对象向观察者推送主题的详细信息，不管观察者是否需要，推送的信息通常是主题对象的全部或部分数据。</p>
+<p>主题对象向观察者推送主题的详细信息，不管观察者是否需要，推送的信息通常是主题对象的全部或部分数据。</p>
 </li>
 <li><p>Pull</p>
-<p>  主题对象在通知观察者的时候，只传递少量信息。如果观察者需要更具体的信息，由观察者主动到主题对象中获取，相当于是观察者从主题对象中拉数据。一般这种模型的实现中，会把主题对象自身通过update()方法传递给观察者，这样在观察者需要获取数据的时候，就可以通过这个引用来获取了。</p>
+<p>主题对象在通知观察者的时候，只传递少量信息。如果观察者需要更具体的信息，由观察者主动到主题对象中获取，相当于是观察者从主题对象中拉数据。一般这种模型的实现中，会把主题对象自身通过update()方法传递给观察者，这样在观察者需要获取数据的时候，就可以通过这个引用来获取了。</p>
 </li>
 </ul>
 <p>##两种方式的比较</p>
@@ -796,7 +803,7 @@ public void setAdapter(ListAdapter adapter) {
       <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/images/avatar.gif"
+               src="/uploads/avatar.png"
                alt="任磊" />
           <p class="site-author-name" itemprop="name">任磊</p>
            

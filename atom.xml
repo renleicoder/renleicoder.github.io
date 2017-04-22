@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-04-22T07:46:03.000Z</updated>
+  <updated>2017-04-22T08:14:39.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,13 +20,10 @@
     <link href="http://yoursite.com/2016/11/03/%E4%B8%8D%E5%8F%AA%E6%98%AF%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%A8%A1%E5%BC%8F/"/>
     <id>http://yoursite.com/2016/11/03/不只是迭代器模式/</id>
     <published>2016-11-03T03:41:00.000Z</published>
-    <updated>2017-04-22T07:46:03.000Z</updated>
+    <updated>2017-04-22T08:14:39.000Z</updated>
     
     <content type="html">&lt;p&gt; 不只是迭代器模式&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;p&gt;#写在前面的话&lt;/p&gt;
 &lt;p&gt;这章为什么叫不只是迭代器模式呢？首先声明我不是标题党，不是为了引起注意。&lt;strong&gt;古人说认知东西的三种境界，看山是山，看山不是山，看山还是山&lt;/strong&gt;，认知总是要有一个过程才行。而最近在我研究设计模式的过程中就有一种学进去没跳出来的感觉，用和尚的话来说就是&lt;strong&gt;着相了&lt;/strong&gt;。&lt;/p&gt;
 &lt;p&gt;##学进去和跳出来&lt;/p&gt;
@@ -158,8 +155,6 @@
     <summary type="html">
     
       &lt;p&gt; 不只是迭代器模式&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
     
     </summary>
     
@@ -2142,13 +2137,10 @@ private static void setDensityFromOptions(Bitmap outputBitmap, Options opts) {
     <link href="http://yoursite.com/2016/09/23/%E5%BD%93%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F%E5%92%8C%E5%9B%9E%E8%B0%83%E6%9C%BA%E5%88%B6%E9%81%87%E4%B8%8AAndroid%E6%BA%90%E7%A0%81/"/>
     <id>http://yoursite.com/2016/09/23/当观察者模式和回调机制遇上Android源码/</id>
     <published>2016-09-23T08:54:00.000Z</published>
-    <updated>2016-11-10T03:07:50.000Z</updated>
+    <updated>2017-04-22T08:14:52.000Z</updated>
     
     <content type="html">&lt;p&gt; 当观察者模式和回调机制遇上Android源码&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;p&gt;上一篇博客跟大家分享了Android源码中的装饰者模式，有点意犹未尽，今天跟大家分享下Android中的观察者模式，顺便说一说观察者模式和回调机制的关系，欢迎大家拍砖。&lt;/p&gt;
 &lt;p&gt;#观察者模式&lt;/p&gt;
 &lt;p&gt;##定义&lt;/p&gt;
@@ -2161,10 +2153,10 @@ private static void setDensityFromOptions(Bitmap outputBitmap, Options opts) {
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;具体主题(ConcreteSubject)角色：将有关状态存入具体观察者对象；在具体主题的内部状态改变时，给所有登记过的观察者发出通知。具体主题角色又叫做具体被观察者(Concrete Observable)角色。　　&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;抽象观察者(Observer)角色：为所有的具体观察者定义一个接口，在得到主题的通知时更新自己，这个接口叫做更新接口。
-　　&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;抽象观察者(Observer)角色：为所有的具体观察者定义一个接口，在得到主题的通知时更新自己，这个接口叫做更新接口。&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;具体观察者(ConcreteObserver)角色：存储与主题的状态自恰的状态。具体观察者角色实现抽象观察者角色所要求的更新接口，以便使本身的状态与主题的状态 像协调。如果需要，具体观察者角色可以保持一个指向具体主题对象的引用。&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;具体观察者(ConcreteObserver)角色：存储与主题的状态自恰的状态。具体观察者角色实现抽象观察者角色所要求的更新接口，以便使本身的状态与主题的状态 像协调。如果需要，具体观察者角色可以保持一个指向具体主题对象的引用。&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;##实现&lt;/p&gt;
 &lt;p&gt;抽象主题角色类&lt;/p&gt;
@@ -2257,10 +2249,10 @@ private static void setDensityFromOptions(Bitmap outputBitmap, Options opts) {
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;#观察者的两种实现方式&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;Push&lt;/p&gt;
-&lt;p&gt;  主题对象向观察者推送主题的详细信息，不管观察者是否需要，推送的信息通常是主题对象的全部或部分数据。&lt;/p&gt;
+&lt;p&gt;主题对象向观察者推送主题的详细信息，不管观察者是否需要，推送的信息通常是主题对象的全部或部分数据。&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;Pull&lt;/p&gt;
-&lt;p&gt;  主题对象在通知观察者的时候，只传递少量信息。如果观察者需要更具体的信息，由观察者主动到主题对象中获取，相当于是观察者从主题对象中拉数据。一般这种模型的实现中，会把主题对象自身通过update()方法传递给观察者，这样在观察者需要获取数据的时候，就可以通过这个引用来获取了。&lt;/p&gt;
+&lt;p&gt;主题对象在通知观察者的时候，只传递少量信息。如果观察者需要更具体的信息，由观察者主动到主题对象中获取，相当于是观察者从主题对象中拉数据。一般这种模型的实现中，会把主题对象自身通过update()方法传递给观察者，这样在观察者需要获取数据的时候，就可以通过这个引用来获取了。&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;##两种方式的比较&lt;/p&gt;
@@ -2464,8 +2456,6 @@ public void setAdapter(ListAdapter adapter) {
     <summary type="html">
     
       &lt;p&gt; 当观察者模式和回调机制遇上Android源码&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
     
     </summary>
     
@@ -2487,20 +2477,17 @@ public void setAdapter(ListAdapter adapter) {
     <link href="http://yoursite.com/2016/09/22/%E4%BB%8E%E8%A3%85%E9%A5%B0%E8%80%85%E6%A8%A1%E5%BC%8F%E5%88%B0Context%E7%B1%BB%E7%B0%87/"/>
     <id>http://yoursite.com/2016/09/22/从装饰者模式到Context类簇/</id>
     <published>2016-09-22T08:40:00.000Z</published>
-    <updated>2016-11-10T03:07:00.000Z</updated>
+    <updated>2017-04-22T08:14:46.000Z</updated>
     
     <content type="html">&lt;p&gt; 从装饰者模式到Context类族&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;p&gt;本着不学习就要落后，落后就要挨打的态度，我也开始捣鼓起了设计模式。但只看设计模式又不免有些索然无味，索性就连Android源码也一起研究研究，现在看来效果不错。昨天晚上刚看了装饰者模式，正好今天总结一番分享给大家。新手上路，如有不足之处，还请大家多指教。&lt;/p&gt;
 &lt;p&gt;#装饰者模式&lt;/p&gt;
 &lt;p&gt;Decorator模式（别名Wrapper）：动态将职责附加到对象上，若要扩展功能，装饰者提供了比继承更具弹性的代替方案。&lt;/p&gt;
 &lt;p&gt;##遵循的设计原则&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;p&gt;多用组合，少用继承。&lt;/p&gt;
-&lt;p&gt; 利用继承设计子类的行为，是在编译时静态决定的，而且所有的子类都会继承到相同的行为。然而，如果能够利用组合的做法扩展对象的行为，就可以在运行时动态地进行扩展。&lt;/p&gt;
+&lt;p&gt;利用继承设计子类的行为，是在编译时静态决定的，而且所有的子类都会继承到相同的行为。然而，如果能够利用组合的做法扩展对象的行为，就可以在运行时动态地进行扩展。&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;类应设计的对扩展开放，对修改关闭。&lt;/p&gt;
 &lt;/li&gt;
@@ -2579,7 +2566,7 @@ public void setAdapter(ListAdapter adapter) {
 &lt;blockquote&gt;
 &lt;p&gt;/**&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Interface to global information about an application environment.  This is an abstract class whose implementation is provided by the Android system.  It allows access to application-specific resources and classes, as well as up-calls for application-level operations such as launching activities,broadcasting and receiving intents, etc.&lt;br&gt;*/&lt;/li&gt;
+&lt;li&gt;Interface to global information about an application environment.  This is an abstract class whose implementation is provided by the Android system.  It allows access to application-specific resources and classes, as well as up-calls for application-level operations such as launching activities,broadcasting and receiving intents, etc.&lt;br&gt;  */&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;注释的意思大概是这样的：这是一个由Android系统提供其实现的抽象类，它是提供应用环境（application environment）信息的接口。通过它可以访问到应用的资源和类，以及进行一些系统级别的操作，比如加载activity、发送广播和接收intent等。&lt;/p&gt;
@@ -2626,7 +2613,7 @@ public class ContextWrapper extends Context {
 &lt;blockquote&gt;
 &lt;p&gt;/**&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;A context wrapper that allows you to modify or replace the theme of the wrapped context.&lt;br&gt;*/&lt;/li&gt;
+&lt;li&gt;A context wrapper that allows you to modify or replace the theme of the wrapped context.&lt;br&gt;  */&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;注释中说的很清楚，这个类扩展的功能就是允许我们去修改或者替换包装的context的主题。&lt;/p&gt;
@@ -2648,8 +2635,6 @@ public void setTheme(int resid) {
     <summary type="html">
     
       &lt;p&gt; 从装饰者模式到Context类族&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
     
     </summary>
     
@@ -2669,13 +2654,10 @@ public void setTheme(int resid) {
     <link href="http://yoursite.com/2016/09/02/%E7%94%B1%E9%9D%A2%E8%AF%95%E6%83%B3%E5%88%B0%E7%9A%84/"/>
     <id>http://yoursite.com/2016/09/02/由面试想到的/</id>
     <published>2016-09-02T06:54:00.000Z</published>
-    <updated>2016-09-06T06:14:44.000Z</updated>
+    <updated>2017-04-22T08:15:15.000Z</updated>
     
     <content type="html">&lt;p&gt;由面试想到的。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;p&gt;&lt;img src=&quot;http://i.imgur.com/s5MsBzS.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;p&gt;尚未功成名就，如何衣锦还乡。&lt;/p&gt;
 &lt;p&gt;首先说下为什么有这个话题呢，因为博主前一段时间在找工作，也算有些小心得。不过今天的重点不是那些面试题们，而是由面试想到的一些东西想跟大家分享一下，个人认为这些甚至比面试题和面试技巧要来的重要。因为这些Tips会使我们跑的更快，走的更远。当然，不分享面试题似乎又有些耍流氓的嫌疑，所以想看面试题的童鞋&lt;a href=&quot;https://github.com/PleaseCallMeCoder/Topia/tree/master/startInterview&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;戳这里&lt;/a&gt;。&lt;/p&gt;
@@ -2687,7 +2669,7 @@ public void setTheme(int resid) {
 &lt;li&gt;Java从基础到高深&lt;/li&gt;
 &lt;li&gt;Android从基础到高深&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;数据结构和算法&lt;/p&gt;
-&lt;p&gt;  关于算法我想多说几句，可能大家（包括我）会觉得这个东西有卵用，用的又不多。确实是这样的，这里给大家举个不太恰当的例子，国家为什么会征兵，和平时期又不打仗？但是不打仗我们就不征兵了么，养兵千日，用在一时。&lt;/p&gt;
+&lt;p&gt;关于算法我想多说几句，可能大家（包括我）会觉得这个东西有卵用，用的又不多。确实是这样的，这里给大家举个不太恰当的例子，国家为什么会征兵，和平时期又不打仗？但是不打仗我们就不征兵了么，养兵千日，用在一时。&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;设计模式&lt;/li&gt;
 &lt;li&gt;Android源码&lt;/li&gt;
@@ -2714,8 +2696,6 @@ public void setTheme(int resid) {
     <summary type="html">
     
       &lt;p&gt;由面试想到的。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
     
     </summary>
     
@@ -2733,13 +2713,10 @@ public void setTheme(int resid) {
     <link href="http://yoursite.com/2016/07/12/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E5%9F%BA%E4%BA%8EMVP+Retrofit+RxJava+MaterialDesign%E7%9A%84App/"/>
     <id>http://yoursite.com/2016/07/12/分享一个基于MVP+Retrofit+RxJava+MaterialDesign的App/</id>
     <published>2016-07-12T07:59:00.000Z</published>
-    <updated>2016-07-12T08:41:22.000Z</updated>
+    <updated>2017-04-22T08:15:04.000Z</updated>
     
     <content type="html">&lt;p&gt;最近一直在忙项目的事，所以很久不写博客了。抽时间整理了下最近的收藏的一些文章，感觉新的知识点还是挺多的，于是乎自己抽时间写了一个简单的App。这个App基于MVP+Retrofit+RxJava+MaterialDesign，分享给大家。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;p&gt;&lt;img src=&quot;http://i.imgur.com/JgQm7Ac.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;p&gt;2016已经荒废了一半，还有一半可以继续浪费。&lt;/p&gt;
 &lt;p&gt;源码我已经上传到github上了，欢迎fork和star&lt;br&gt;&lt;a href=&quot;https://github.com/PleaseCallMeCoder/PrettyGirls&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/PleaseCallMeCoder/PrettyGirls&lt;/a&gt;&lt;/p&gt;
@@ -2769,19 +2746,19 @@ public void setTheme(int resid) {
 &lt;p&gt;这里我采用的是&lt;strong&gt;按模块来划分包&lt;/strong&gt;。包括以下几部分：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;app&lt;/p&gt;
-&lt;p&gt;  包括全局异常处理，系统常量，和app的基本配置等。&lt;/p&gt;
+&lt;p&gt;包括全局异常处理，系统常量，和app的基本配置等。&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;模块包&lt;/p&gt;
-&lt;p&gt;  每个模块包含一个契约接口，本模块的一个activity和多个fragment，presenter的实现类等，当然如果模块比较复杂还可以再继续分&lt;/p&gt;
+&lt;p&gt;每个模块包含一个契约接口，本模块的一个activity和多个fragment，presenter的实现类等，当然如果模块比较复杂还可以再继续分&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;data&lt;/p&gt;
-&lt;p&gt;  提供app的本地或者远程数据，数据模型等&lt;/p&gt;
+&lt;p&gt;提供app的本地或者远程数据，数据模型等&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;util&lt;/p&gt;
-&lt;p&gt;  工具类&lt;/p&gt;
+&lt;p&gt;工具类&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;widget&lt;/p&gt;
-&lt;p&gt;  自定义控件&lt;/p&gt;
+&lt;p&gt;自定义控件&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;##依赖库&lt;/p&gt;
@@ -2814,8 +2791,6 @@ public void setTheme(int resid) {
     <summary type="html">
     
       &lt;p&gt;最近一直在忙项目的事，所以很久不写博客了。抽时间整理了下最近的收藏的一些文章，感觉新的知识点还是挺多的，于是乎自己抽时间写了一个简单的App。这个App基于MVP+Retrofit+RxJava+MaterialDesign，分享给大家。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
     
     </summary>
     
@@ -3244,13 +3219,10 @@ private class DownloadImageTask extends AsyncTask&amp;lt;String, Void, Bitmap&am
     <link href="http://yoursite.com/2016/05/17/%E6%96%B9%E6%B3%95%E8%AE%BA-%E6%88%90%E4%B8%BA%E5%A4%A7%E7%A5%9E%E8%B7%AF%E4%B8%8A%E7%9A%84%E6%8D%B7%E5%BE%84/"/>
     <id>http://yoursite.com/2016/05/17/方法论-成为大神路上的捷径/</id>
     <published>2016-05-17T01:21:00.000Z</published>
-    <updated>2016-09-06T06:28:42.000Z</updated>
+    <updated>2017-04-22T08:14:58.000Z</updated>
     
     <content type="html">&lt;p&gt;跟大家分享一下成为大神路上的捷径，与诸君共勉。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;p&gt;&lt;img src=&quot;http://i.imgur.com/PxCfAEr.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;每个人都在成为大神的路上，只不过有的人在走，而有的人在跑。&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;#写在前面的话&lt;/p&gt;
@@ -3310,8 +3282,6 @@ private class DownloadImageTask extends AsyncTask&amp;lt;String, Void, Bitmap&am
     <summary type="html">
     
       &lt;p&gt;跟大家分享一下成为大神路上的捷径，与诸君共勉。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
     
     </summary>
     

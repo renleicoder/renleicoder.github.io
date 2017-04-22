@@ -100,7 +100,7 @@
 <meta property="og:description" content="从装饰者模式到Context类族">
 <meta property="og:image" content="http://i.imgur.com/gLypqDf.jpg">
 <meta property="og:image" content="http://i.imgur.com/HbXf8Lt.png">
-<meta property="og:updated_time" content="2016-11-10T03:07:00.000Z">
+<meta property="og:updated_time" content="2017-04-22T08:14:46.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从装饰者模式到Context类族">
 <meta name="twitter:description" content="从装饰者模式到Context类族">
@@ -209,6 +209,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
@@ -242,7 +252,7 @@
         <li class="menu-item menu-item-search">
           <a href="/search" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-search"></i> <br />
             
             搜索
           </a>
@@ -282,7 +292,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="任磊">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/uploads/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -371,17 +381,14 @@
 
       
         <p> 从装饰者模式到Context类族</p>
-<ul>
-<li><a id="more"></a>
-</li>
-</ul>
+<a id="more"></a>
 <p>本着不学习就要落后，落后就要挨打的态度，我也开始捣鼓起了设计模式。但只看设计模式又不免有些索然无味，索性就连Android源码也一起研究研究，现在看来效果不错。昨天晚上刚看了装饰者模式，正好今天总结一番分享给大家。新手上路，如有不足之处，还请大家多指教。</p>
 <p>#装饰者模式</p>
 <p>Decorator模式（别名Wrapper）：动态将职责附加到对象上，若要扩展功能，装饰者提供了比继承更具弹性的代替方案。</p>
 <p>##遵循的设计原则</p>
 <ol>
 <li><p>多用组合，少用继承。</p>
-<p> 利用继承设计子类的行为，是在编译时静态决定的，而且所有的子类都会继承到相同的行为。然而，如果能够利用组合的做法扩展对象的行为，就可以在运行时动态地进行扩展。</p>
+<p>利用继承设计子类的行为，是在编译时静态决定的，而且所有的子类都会继承到相同的行为。然而，如果能够利用组合的做法扩展对象的行为，就可以在运行时动态地进行扩展。</p>
 </li>
 <li><p>类应设计的对扩展开放，对修改关闭。</p>
 </li>
@@ -460,7 +467,7 @@
 <blockquote>
 <p>/**</p>
 <ul>
-<li>Interface to global information about an application environment.  This is an abstract class whose implementation is provided by the Android system.  It allows access to application-specific resources and classes, as well as up-calls for application-level operations such as launching activities,broadcasting and receiving intents, etc.<br>*/</li>
+<li>Interface to global information about an application environment.  This is an abstract class whose implementation is provided by the Android system.  It allows access to application-specific resources and classes, as well as up-calls for application-level operations such as launching activities,broadcasting and receiving intents, etc.<br>  */</li>
 </ul>
 </blockquote>
 <p>注释的意思大概是这样的：这是一个由Android系统提供其实现的抽象类，它是提供应用环境（application environment）信息的接口。通过它可以访问到应用的资源和类，以及进行一些系统级别的操作，比如加载activity、发送广播和接收intent等。</p>
@@ -507,7 +514,7 @@ public class ContextWrapper extends Context {
 <blockquote>
 <p>/**</p>
 <ul>
-<li>A context wrapper that allows you to modify or replace the theme of the wrapped context.<br>*/</li>
+<li>A context wrapper that allows you to modify or replace the theme of the wrapped context.<br>  */</li>
 </ul>
 </blockquote>
 <p>注释中说的很清楚，这个类扩展的功能就是允许我们去修改或者替换包装的context的主题。</p>
@@ -633,7 +640,7 @@ public void setTheme(int resid) {
       <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/images/avatar.gif"
+               src="/uploads/avatar.png"
                alt="任磊" />
           <p class="site-author-name" itemprop="name">任磊</p>
            
