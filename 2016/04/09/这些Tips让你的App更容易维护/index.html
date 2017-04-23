@@ -93,6 +93,7 @@
 
 
 <meta name="description" content="提高App的可维护性和可扩展性。">
+<meta name="keywords" content="可扩展,App设计模式,架构,可维护">
 <meta property="og:type" content="article">
 <meta property="og:title" content="这些Tips让你的App更容易维护">
 <meta property="og:url" content="http://yoursite.com/2016/04/09/这些Tips让你的App更容易维护/index.html">
@@ -433,7 +434,7 @@
 <a id="more"></a>
 <p>##前言<br>在开始正文之前容我先描述几个场景，可能你也遇到过或者将要遇到，也可能你已经完美的解决了这些问题。现在我把它们拿出来跟大家讨论。</p>
 <p>###场景一<br>同事A离职，他负责的是报表模块，同事B是一个刚毕业的大学生。某天产品经理说报表模块需要改动，交给B来负责。同事A走的时候没有交接，没写文档，需要B从头理清然后修改。然后B在看的过程中发现，A的代码命名既有拼音又有英文，还有一些毫无关联的命名。如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var ischange  =&apos;false&apos;;  //查询条件是否改变</span><br><span class="line">var ssssss=[];           //保存上一次结果的笛卡尔积</span><br><span class="line">var mapaddWei = new Array();//保存小分类的值</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var ischange  =&apos;false&apos;;  //查询条件是否改变</div><div class="line">var ssssss=[];           //保存上一次结果的笛卡尔积</div><div class="line">var mapaddWei = new Array();//保存小分类的值</div></pre></td></tr></table></figure>
 <p>并且A的一个方法包含100行到1000多行代码不等。致使B花了大概一周多的时间才把A的代码完全看懂。</p>
 <p>###场景二<br>A所在公司的App1.0版本已经上线。连续进行了4次小更新后的某天，产品经理又要求A去修改主页面，包括UI和部分逻辑的变动。改完之后又过了不久，产品经理提出要增加一个商城模块。这时候A发现，项目越来越臃肿，代码越改越乱，越改越烂，甚至自己写的类都忘记了放在哪个包下。</p>
 <p>之后用户反馈说Android5.0系统注册闪退。A和同事通过查找发现问题出在网络框架上，他们所用的网络框架不支持5.0及以上系统。但是由于在最开始设计这款App的时候没有再网络框架的上层封装一层自己的接口，导致所有用到网络请求的地方都需要修改。</p>
@@ -513,8 +514,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/04/05/Androd自定义控件（四）自定义类继承viewgroup/" rel="next" title="Androd自定义控件（四）自定义类继承viewgroup">
-                <i class="fa fa-chevron-left"></i> Androd自定义控件（四）自定义类继承viewgroup
+              <a href="/2016/04/12/Androd自定义控件（五）打造自己的Camera/" rel="next" title="Androd自定义控件（五）打造自己的Camera">
+                <i class="fa fa-chevron-left"></i> Androd自定义控件（五）打造自己的Camera
               </a>
             
           </div>
@@ -523,8 +524,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/04/12/Androd自定义控件（五）打造自己的Camera/" rel="prev" title="Androd自定义控件（五）打造自己的Camera">
-                Androd自定义控件（五）打造自己的Camera <i class="fa fa-chevron-right"></i>
+              <a href="/2016/04/05/Androd自定义控件（四）自定义类继承viewgroup/" rel="prev" title="Androd自定义控件（四）自定义类继承viewgroup">
+                Androd自定义控件（四）自定义类继承viewgroup <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
