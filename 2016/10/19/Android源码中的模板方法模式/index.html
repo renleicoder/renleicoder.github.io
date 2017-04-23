@@ -1,0 +1,1086 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="模板方法模式,设计模式,Android源码" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="PleaseCallMeCoder" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="Android源码中的模板方法模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android源码中的模板方法模式">
+<meta property="og:url" content="http://yoursite.com/2016/10/19/Android源码中的模板方法模式/index.html">
+<meta property="og:site_name" content="PleaseCallMeCoder">
+<meta property="og:description" content="Android源码中的模板方法模式">
+<meta property="og:image" content="http://i.imgur.com/4P3YxUE.png">
+<meta property="og:image" content="http://img.blog.csdn.net/20161019174419222">
+<meta property="og:updated_time" content="2017-04-22T08:20:01.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android源码中的模板方法模式">
+<meta name="twitter:description" content="Android源码中的模板方法模式">
+<meta name="twitter:image" content="http://i.imgur.com/4P3YxUE.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'X6XZYA04JV',
+      apiKey: 'abdb5abda2ee8a5e60a5682dea929ef0',
+      indexName: 'renleicoder',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/10/19/Android源码中的模板方法模式/"/>
+
+
+
+
+
+  <title>Android源码中的模板方法模式 | PleaseCallMeCoder</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f298a9ae5a2d1230596870c757ed632b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">PleaseCallMeCoder</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">每个人都在成为大神的路上，只不过有的人在走，而有的人在跑。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/10/19/Android源码中的模板方法模式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="任磊_Coder">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PleaseCallMeCoder">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Android源码中的模板方法模式
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-19T17:54:00+08:00">
+                2016-10-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android源码与设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">Android源码与设计模式</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2016/10/19/Android源码中的模板方法模式/" class="leancloud_visitors" data-flag-title="Android源码中的模板方法模式">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p> Android源码中的模板方法模式</p>
+<a id="more"></a>
+<p><a href="http://blog.csdn.net/sdkfjksf/article/details/52624483" target="_blank" rel="external">从装饰者模式到Context类族</a></p>
+<p><a href="http://blog.csdn.net/sdkfjksf/article/details/52640111" target="_blank" rel="external">当观察者模式和回调机制遇上Android源码</a></p>
+<p><a href="http://blog.csdn.net/sdkfjksf/article/details/52672059" target="_blank" rel="external">Android源码中的静态工厂方法</a></p>
+<p><a href="http://blog.csdn.net/sdkfjksf/article/details/52700648" target="_blank" rel="external">Android中的工厂方法模式</a></p>
+<p><a href="http://blog.csdn.net/sdkfjksf/article/details/52755908" target="_blank" rel="external">Android源码中的命令模式</a></p>
+<p><a href="http://blog.csdn.net/sdkfjksf/article/details/52807179" target="_blank" rel="external">Android源码中的适配器模式</a></p>
+<p><a href="http://blog.csdn.net/sdkfjksf/article/details/52816893" target="_blank" rel="external"> Android源码中的外观模式</a></p>
+<p>#定义</p>
+<p><strong>模板方法模式在一个方法中定义一个算法的骨架，而将一些步骤延迟到子类中。模板方法使得子类可以在不改变算法结构的情况下，重新定义算法的某些步骤。</strong></p>
+<p>#使用场景</p>
+<ol>
+<li><p>对一些复杂的算法进行分割，将其算法中固定不变的部分设计为模板方法和父类具体方法，而一些可以改变的细节由其子类来实现。即：一次性实现一个算法的不变部分，并将可变的行为留给子类来实现。</p>
+</li>
+<li><p>各子类中公共的行为应被提取出来并集中到一个公共父类中以避免代码重复。</p>
+</li>
+<li><p>需要通过子类来决定父类算法中某个步骤是否执行，实现子类对父类的反向控制。</p>
+</li>
+</ol>
+<p>#结构</p>
+<p><img src="http://i.imgur.com/4P3YxUE.png" alt=""></p>
+<p>模式所涉及的角色有：</p>
+<ul>
+<li><p><strong>抽象类（AbstractClass）</strong>：实现了模板方法，定义了算法的骨架。</p>
+</li>
+<li><p><strong>具体类（ConcreteClass)</strong>：实现抽象类中的抽象方法，已完成完整的算法。</p>
+</li>
+</ul>
+<p>模板方法中的方法可以分为两大类：模板方法和基本方法。</p>
+<ul>
+<li><p><strong>模板方法</strong></p>
+<p>一个模板方法是定义在抽象类中的，把基本操作方法组合在一起形成一个总算法或一个总行为的方法。</p>
+<p>一个抽象类可以有任意多个模板方法，而不限于一个。每一个模板方法都可以调用任意多个具体方法。</p>
+</li>
+<li><p><strong>基本方法</strong></p>
+<p>基本方法又可以分为三种：抽象方法(Abstract Method)、具体方法(Concrete Method)和钩子方法(Hook Method)。</p>
+<ul>
+<li><p><strong>抽象方法</strong>：一个抽象方法由抽象类声明，由具体子类实现。在Java语言里抽象方法以abstract关键字标示。</p>
+</li>
+<li><p><strong>具体方法</strong>：一个具体方法由抽象类声明并实现，而子类并不实现或置换。</p>
+</li>
+<li><p><strong>钩子方法</strong>：一个钩子方法由抽象类声明并实现，而子类会加以扩展。通常抽象类给出的实现是一个空实现，作为方法的默认实现。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>#实现</p>
+<p>分析完理论，我们用一个饮料店出售饮料的小例子来分析一下模板方法模式。夏天我们去饮料店购买饮料，告诉服务员要<strong>一大杯奶茶，还要加冰</strong>。</p>
+<p>那么饮料店是如何装配我们的饮料的呢？首先准备一个大杯子，然后入我们需要的饮料，如果加冰会放入一些冰块，最后盖好盖子打包给我们。</p>
+<p>仔细思考一下我们的使用场景，有没有发现很符合呢？接下来我们用代码实现一下。</p>
+<p>抽象方法，装配饮料的模板</p>
+<pre><code>/**
+ * 饮料模板
+ * Created by lei on 2016/10/19.
+ */
+
+public abstract class TemplateDrink {
+
+    /**
+     * 获取饮料的方法，用final修饰，防止被子类修改算法结构。模板方法
+     */
+    public final void getDrink() {
+        getGlass();
+        getContent();
+        if (hook()) {
+            Log.e(TAG, &quot;加冰---&gt;&quot;);
+        } else {
+            Log.e(TAG, &quot;不加冰---&gt;&quot;);
+        }
+        pack();
+    }
+
+    /**
+     * 获取杯子，杯子分大中小杯
+     */
+    public abstract void getGlass();
+
+    /**
+     * 获取具体种类饮料
+     */
+    public abstract void getContent();
+
+    /**
+     * 夏天我们的饮料是默认加冰的。钩子方法
+     */
+    public boolean hook() {
+        return true;
+    }
+
+    /**
+     * 打包
+     */
+    public void pack() {
+        Log.e(TAG, &quot;包装&quot;);
+    }
+}
+</code></pre><p><strong>这里需要注意的是getDrink（）方法是用final修饰的，这样就保证了逻辑流程不会被子类修改，子类只能修改某一个步骤的具体实现。</strong></p>
+<p>具体某种饮料的实现</p>
+<pre><code>/**
+ * 具体的饮料，比如奶茶
+ * Created by lei on 2016/10/19.
+ */
+
+public class ConcreteDrink extends TemplateDrink {
+
+    @Override
+    public void getGlass() {
+        Log.e(TAG, &quot;中杯---&gt;&quot;);
+    }
+
+    @Override
+    public void getContent() {
+        Log.e(TAG, &quot;奶茶---&gt;&quot;);
+    }
+
+    @Override
+    public boolean hook() {
+        return super.hook();
+    }
+}
+</code></pre><p>#Android源码中的模板方法模式</p>
+<p>这个模式相对来说比较简单，但是应用却非常广泛，毕竟越简单越容易应用嘛。<strong>比如在重构的时候，把相同的代码抽取到父类中，然后配合钩子函数约束其行为。</strong></p>
+<p>当然在Android源码中的应用肯定也不少，<strong>比如AsyncTask的实现，调用execute后会依次执行onPreExecute、doInBackground、onPostExecute,还可以通过onProgressUpdate来更新进度，它的执行过程其实是一个框架，类似的还有Activity的生命周期回调方法的执行。</strong></p>
+<p>接下来我们看一个比较明显的，即<strong>View中的Draw()方法</strong>。</p>
+<p>我们先看下方法注释</p>
+<blockquote>
+<p>/**</p>
+<pre><code>* Manually render this view (and all of its children) to the given Canvas.
+* The view must have already done a full layout before this function is
+* called.  When implementing a view, implement
+* {@link #onDraw(android.graphics.Canvas)} instead of overriding this method.
+* If you do need to override this method, call the superclass version.
+*
+* @param canvas The Canvas to which the View is rendered.
+*/
+</code></pre></blockquote>
+<p>即<strong>在我们调用layout()方法之后，可以调用draw()方法来手动渲染view(包括它的子view)到传入的canvas上。如果我们继承View类的话需要重写ondraw()方法而不是draw()。如果你必须重写，需要调用超类的版本。</strong></p>
+<p>draw()方法比较长，我们挑主要的看一下。</p>
+<p>方法开头有一段注释是这样的：</p>
+<blockquote>
+<p>/*</p>
+<pre><code>* Draw traversal performs several drawing steps which must be executed
+* in the appropriate order:
+*
+*      1. Draw the background
+*      2. If necessary, save the canvas&apos; layers to prepare for fading
+*      3. Draw view&apos;s content
+*      4. Draw children
+*      5. If necessary, draw the fading edges and restore layers
+*      6. Draw decorations (scrollbars for instance)
+*/
+</code></pre></blockquote>
+<p><strong>遍历执行几个绘制步骤，并且这些步骤需要按适当顺序执行。</strong></p>
+<p>我们重点看下3和4</p>
+<pre><code>// Step 3, draw the content
+if (!dirtyOpaque) onDraw(canvas);
+
+// Step 4, draw the children
+dispatchDraw(canvas);
+</code></pre><p>具体方法如下</p>
+<pre><code>/**
+ * Implement this to do your drawing.
+ *
+ * @param canvas the canvas on which the background will be drawn
+ */
+protected void onDraw(Canvas canvas) {
+}
+
+/**
+ * Called by draw to draw the child views. This may be overridden
+ * by derived classes to gain control just before its children are drawn
+ * (but after its own view has been drawn).
+ * @param canvas the canvas on which to draw the view
+ */
+protected void dispatchDraw(Canvas canvas) {
+
+}
+</code></pre><p>我们看一下View类族的UML图</p>
+<p><img src="http://img.blog.csdn.net/20161019174419222" alt=""></p>
+<p><strong>子类只能通过扩展onDraw(Canvas canvas)和dispatchDraw(Canvas canvas)两个函数，使子类的显示效果和别的具体子类。</strong></p>
+<p>接下来对号入座，<strong>draw()对应我们的模板方法，ondraw()和dispatchDraw()就是钩子方法。</strong></p>
+<p>搞定，收工。</p>
+<p>测试代码已上传到<a href="https://github.com/PleaseCallMeCoder/DesignPatterns" target="_blank" rel="external">github</a>。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/设计模式/" rel="tag"># 设计模式</a>
+          
+            <a href="/tags/Android源码/" rel="tag"># Android源码</a>
+          
+            <a href="/tags/模板方法模式/" rel="tag"># 模板方法模式</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/14/Android源码中的外观模式/" rel="next" title="Android源码中的外观模式">
+                <i class="fa fa-chevron-left"></i> Android源码中的外观模式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/03/不只是迭代器模式/" rel="prev" title="不只是迭代器模式">
+                不只是迭代器模式 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpeg"
+               alt="任磊_Coder" />
+          <p class="site-author-name" itemprop="name">任磊_Coder</p>
+           
+              <p class="site-description motion-element" itemprop="description">每个人都在成为大神的路上，只不过有的人在走，而有的人在跑。</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">75</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">任磊_Coder</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.1"></script>
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("WRMNDFdhvgzhvChWrX6qyTJI-gzGzoHsz", "xM8HS64Yu434V4EvE8j9wLsf");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
