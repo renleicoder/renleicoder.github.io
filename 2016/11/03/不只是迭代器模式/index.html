@@ -100,7 +100,7 @@
 <meta property="og:description" content="不只是迭代器模式">
 <meta property="og:image" content="http://i.imgur.com/l9AkaDE.png">
 <meta property="og:image" content="http://i.imgur.com/Dqcwfau.png">
-<meta property="og:updated_time" content="2017-04-22T08:14:39.000Z">
+<meta property="og:updated_time" content="2017-04-23T03:50:39.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="不只是迭代器模式">
 <meta name="twitter:description" content="不只是迭代器模式">
@@ -372,14 +372,10 @@
       
         <p> 不只是迭代器模式</p>
 <a id="more"></a>
-<p>#写在前面的话</p>
-<p>这章为什么叫不只是迭代器模式呢？首先声明我不是标题党，不是为了引起注意。<strong>古人说认知东西的三种境界，看山是山，看山不是山，看山还是山</strong>，认知总是要有一个过程才行。而最近在我研究设计模式的过程中就有一种学进去没跳出来的感觉，用和尚的话来说就是<strong>着相了</strong>。</p>
-<p>##学进去和跳出来</p>
-<p>最近写了几篇有关Android源码和设计模式的博客，然后发现最近的思考方式有点过于注意细枝末节了。而我认识一个东西的习惯是<strong>在关注细节的同时也必须要对这个东西在宏观上有一个认知</strong>。<strong>既要能学进去，又要能跳出来</strong>。所以我们不妨先跳出来，复习一下设计模式的概况。</p>
-<p>##什么是设计模式</p>
-<p>在软件工程中，设计模式（design pattern）是对软件设计中普遍存在的各种问题，所提出的解决方案。<strong>设计模式并不是固定的一套代码，而是针对某一特定问题的具体解决思路与方案</strong>。可以认为是<strong>一种最佳实践</strong>，因为他是无数软件开发人员经过长时间的实践总结出来的。</p>
-<p>##为什么要学习设计模式</p>
-<ul>
+<h1 id="写在前面的话"><a href="#写在前面的话" class="headerlink" title="写在前面的话"></a>写在前面的话</h1><p>这章为什么叫不只是迭代器模式呢？首先声明我不是标题党，不是为了引起注意。<strong>古人说认知东西的三种境界，看山是山，看山不是山，看山还是山</strong>，认知总是要有一个过程才行。而最近在我研究设计模式的过程中就有一种学进去没跳出来的感觉，用和尚的话来说就是<strong>着相了</strong>。</p>
+<h2 id="学进去和跳出来"><a href="#学进去和跳出来" class="headerlink" title="学进去和跳出来"></a>学进去和跳出来</h2><p>最近写了几篇有关Android源码和设计模式的博客，然后发现最近的思考方式有点过于注意细枝末节了。而我认识一个东西的习惯是<strong>在关注细节的同时也必须要对这个东西在宏观上有一个认知</strong>。<strong>既要能学进去，又要能跳出来</strong>。所以我们不妨先跳出来，复习一下设计模式的概况。</p>
+<h2 id="什么是设计模式"><a href="#什么是设计模式" class="headerlink" title="什么是设计模式"></a>什么是设计模式</h2><p>在软件工程中，设计模式（design pattern）是对软件设计中普遍存在的各种问题，所提出的解决方案。<strong>设计模式并不是固定的一套代码，而是针对某一特定问题的具体解决思路与方案</strong>。可以认为是<strong>一种最佳实践</strong>，因为他是无数软件开发人员经过长时间的实践总结出来的。</p>
+<h2 id="为什么要学习设计模式"><a href="#为什么要学习设计模式" class="headerlink" title="为什么要学习设计模式"></a>为什么要学习设计模式</h2><ul>
 <li><p><strong>复用解决方案</strong>：模式是对一个通用设计问题可以复用的解决方式。</p>
 </li>
 <li><p><strong>确立通用术语</strong>：模式在开发者沟通之间提供了一机制,允许开发者在更高的层次沟通而不是代码层面，并且目标是理解被开发的代码。</p>
@@ -390,13 +386,10 @@
 <p>其实在我们每看一个设计模式的时候要记得无论它是哪种模式，它的初衷都是一样的。<strong>我们不一定要用这些设计模式，也不一定要生搬硬套这些设计，我们要做的是解决问题，只不过这些模式在解决这些问题上更成熟，所以才被大家广泛使用</strong>。</p>
 <p><strong>如果我们没有遇到设计模式的使用场景，或者之后的变化也不会用到，就不要去思考如何用设计模式优化。</strong></p>
 <p>接下来开始今天的正题，看下我们的迭代器模式。</p>
-<p>#定义</p>
-<p><strong>提供一种方法访问一个容器对象中各个元素，而又不需要暴露对象的内部细节。是一种行为型设计模式。</strong></p>
-<p>#使用场景</p>
-<p>迭代器模式是与集合共生共死的，一般来说，我们只要实现一个集合，就需要同时提供这个集合的迭代器，就像java中的Collection，List、Set、Map等，这些集合都有自己的迭代器。假如我们要实现一个这样的新的容器，当然也需要引入迭代器模式，给我们的容器实现一个迭代器。</p>
+<h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p><strong>提供一种方法访问一个容器对象中各个元素，而又不需要暴露对象的内部细节。是一种行为型设计模式。</strong></p>
+<h1 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h1><p>迭代器模式是与集合共生共死的，一般来说，我们只要实现一个集合，就需要同时提供这个集合的迭代器，就像java中的Collection，List、Set、Map等，这些集合都有自己的迭代器。假如我们要实现一个这样的新的容器，当然也需要引入迭代器模式，给我们的容器实现一个迭代器。</p>
 <p>但是，由于容器与迭代器的关系太密切了，所以大多数语言在实现容器的时候都给提供了迭代器，并且这些语言提供的容器和迭代器在绝大多数情况下就可以满足我们的需要，所以现在需要我们自己去实践迭代器模式的场景还是比较少见的，我们只需要使用语言中已有的容器和迭代器就可以了。</p>
-<p>#结构</p>
-<p><img src="http://i.imgur.com/l9AkaDE.png" alt=""></p>
+<h1 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h1><p><img src="http://i.imgur.com/l9AkaDE.png" alt=""></p>
 <p>模式所涉及的角色有：</p>
 <ul>
 <li><p><strong>迭代器角色(Iterator)</strong>：迭代器角色负责定义访问和遍历元素的接口。</p>
@@ -408,8 +401,7 @@
 <li><p><strong>具体容器角色(ConcreteAggregate)</strong>：具体容器角色实现创建具体迭代器角色的接口。这个具体迭代器角色与该容器的结构相关。</p>
 </li>
 </ul>
-<p>#实现</p>
-<p>这里我们用一个现实中的例子来演示一下迭代器模式。场景是这样的：我们要创办一个提供家具一站式服务的公司，但是我们并不自己生产家具，我们有自己获取家具的渠道。可是每个渠道存储他们产品的数据结构可能是不一样的，我们怎样才能方便的访问他们的产品呢？</p>
+<h1 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h1><p>这里我们用一个现实中的例子来演示一下迭代器模式。场景是这样的：我们要创办一个提供家具一站式服务的公司，但是我们并不自己生产家具，我们有自己获取家具的渠道。可是每个渠道存储他们产品的数据结构可能是不一样的，我们怎样才能方便的访问他们的产品呢？</p>
 <p><strong>不知道大家发现没，大部分设计模式解耦或者封装变化的方式都是加了一个中间层</strong>。迭代器模式也是这样的，<strong>Iterator就是一个中间层，封装了各个数据结构遍历的变化。</strong></p>
 <p>迭代器角色</p>
 <pre><code>public interface Iterator&lt;T&gt; {
@@ -491,8 +483,7 @@
     }
 }
 </code></pre><p>依次类推，我们的空调厂商提供空调、冰箱厂商提供冰箱都是一样的道理。但是对于我们这个公司来说，<strong>我们需要关心的只有是否有下一个hasNext()和取出下一个next()</strong>。</p>
-<p>#Android源码中的迭代器模式</p>
-<p>就像在使用场景中说的那样，一般我们不会去自己实现一个迭代器，Android中用到迭代器的场景比较典型的场景是<strong>类集框架的遍历和数据库的Cursor</strong>。</p>
+<h1 id="Android源码中的迭代器模式"><a href="#Android源码中的迭代器模式" class="headerlink" title="Android源码中的迭代器模式"></a>Android源码中的迭代器模式</h1><p>就像在使用场景中说的那样，一般我们不会去自己实现一个迭代器，Android中用到迭代器的场景比较典型的场景是<strong>类集框架的遍历和数据库的Cursor</strong>。</p>
 <p>在前面的<a href="http://blog.csdn.net/sdkfjksf/article/details/52700648" target="_blank" rel="external">Android中的工厂方法模式</a>中，我们说Java的类集框架用到了工厂模式，现在我们再来看一下它的设计结构：</p>
 <p><img src="http://i.imgur.com/Dqcwfau.png" alt=""></p>
 <p><strong>我们知道Iterator是迭代器，用来遍历一个集合中的元素。而不同的数据结构遍历的方式是不一样的，所以迭代器的实现也是不同的。每一个集合内部都会有一个Iterator的实现。使用工厂方法模式将迭代器的具体类型延迟到具体容器类中，比较灵活，容易扩展。</strong></p>
@@ -599,8 +590,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/avatar.png"
@@ -669,6 +669,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#写在前面的话"><span class="nav-number">1.</span> <span class="nav-text">写在前面的话</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#学进去和跳出来"><span class="nav-number">1.1.</span> <span class="nav-text">学进去和跳出来</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是设计模式"><span class="nav-number">1.2.</span> <span class="nav-text">什么是设计模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么要学习设计模式"><span class="nav-number">1.3.</span> <span class="nav-text">为什么要学习设计模式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#定义"><span class="nav-number">2.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用场景"><span class="nav-number">3.</span> <span class="nav-text">使用场景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结构"><span class="nav-number">4.</span> <span class="nav-text">结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实现"><span class="nav-number">5.</span> <span class="nav-text">实现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Android源码中的迭代器模式"><span class="nav-number">6.</span> <span class="nav-text">Android源码中的迭代器模式</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
