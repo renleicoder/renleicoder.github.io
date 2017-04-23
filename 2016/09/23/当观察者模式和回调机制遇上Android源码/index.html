@@ -1,0 +1,1315 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="观察者模式,回调机制,设计模式,Android源码" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="KIKO_奶糖的博客" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="当观察者模式和回调机制遇上Android源码">
+<meta name="keywords" content="设计模式,Android源码,观察者模式,回调机制">
+<meta property="og:type" content="article">
+<meta property="og:title" content="当观察者模式和回调机制遇上Android源码">
+<meta property="og:url" content="http://yoursite.com/2016/09/23/当观察者模式和回调机制遇上Android源码/index.html">
+<meta property="og:site_name" content="KIKO_奶糖的博客">
+<meta property="og:description" content="当观察者模式和回调机制遇上Android源码">
+<meta property="og:image" content="http://i.imgur.com/Jbw7PMO.png">
+<meta property="og:image" content="http://i.imgur.com/M5Gf0MO.png">
+<meta property="og:updated_time" content="2017-04-22T08:14:52.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="当观察者模式和回调机制遇上Android源码">
+<meta name="twitter:description" content="当观察者模式和回调机制遇上Android源码">
+<meta name="twitter:image" content="http://i.imgur.com/Jbw7PMO.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'X6XZYA04JV',
+      apiKey: 'abdb5abda2ee8a5e60a5682dea929ef0',
+      indexName: 'renleicoder',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/09/23/当观察者模式和回调机制遇上Android源码/"/>
+
+
+
+
+
+  <title>当观察者模式和回调机制遇上Android源码 | KIKO_奶糖的博客</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f298a9ae5a2d1230596870c757ed632b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">KIKO_奶糖的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">每个人都在成为大神的路上，只不过有的人在走，而有的人在跑。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/09/23/当观察者模式和回调机制遇上Android源码/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="任磊_Coder">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KIKO_奶糖的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                当观察者模式和回调机制遇上Android源码
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-23T16:54:00+08:00">
+                2016-09-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android源码与设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">Android源码与设计模式</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/09/23/当观察者模式和回调机制遇上Android源码/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2016/09/23/当观察者模式和回调机制遇上Android源码/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2016/09/23/当观察者模式和回调机制遇上Android源码/" class="leancloud_visitors" data-flag-title="当观察者模式和回调机制遇上Android源码">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p> 当观察者模式和回调机制遇上Android源码</p>
+<a id="more"></a>
+<p>上一篇博客跟大家分享了Android源码中的装饰者模式，有点意犹未尽，今天跟大家分享下Android中的观察者模式，顺便说一说观察者模式和回调机制的关系，欢迎大家拍砖。</p>
+<p>#观察者模式</p>
+<p>##定义</p>
+<p><strong>观察者模式定义了一种一对多的依赖关系，让多个观察者对象同时监听某一个主题对象。这个主题对象在状态上发生变化时，会通知所有观察者对象，使它们能够自动更新自己。</strong></p>
+<p>##观察者模式的结构</p>
+<p><img src="http://i.imgur.com/Jbw7PMO.png" alt=""></p>
+<p>观察者模式所涉及的角色有：</p>
+<ul>
+<li><p>抽象主题(Subject)角色：抽象主题角色把所有对观察者对象的引用保存在一个聚集（比如ArrayList对象）里，每个主题都可以有任何数量的观察者。抽象主题提供一个接口，可以增加和删除观察者对象，抽象主题角色又叫做抽象被观察者(Observable)角色。</p>
+</li>
+<li><p>具体主题(ConcreteSubject)角色：将有关状态存入具体观察者对象；在具体主题的内部状态改变时，给所有登记过的观察者发出通知。具体主题角色又叫做具体被观察者(Concrete Observable)角色。　　</p>
+</li>
+<li><p>抽象观察者(Observer)角色：为所有的具体观察者定义一个接口，在得到主题的通知时更新自己，这个接口叫做更新接口。</p>
+</li>
+<li><p>具体观察者(ConcreteObserver)角色：存储与主题的状态自恰的状态。具体观察者角色实现抽象观察者角色所要求的更新接口，以便使本身的状态与主题的状态 像协调。如果需要，具体观察者角色可以保持一个指向具体主题对象的引用。</p>
+</li>
+</ul>
+<p>##实现</p>
+<p>抽象主题角色类</p>
+<pre><code>public abstract class Subject {
+    /**
+     * 用来保存注册的观察者对象
+     */
+    private    List&lt;Observer&gt; list = new ArrayList&lt;Observer&gt;();
+    /**
+     * 注册观察者对象
+     * @param observer    观察者对象
+     */
+    public void attach(Observer observer){
+
+        list.add(observer);
+        System.out.println(&quot;Attached an observer&quot;);
+    }
+    /**
+     * 删除观察者对象
+     * @param observer    观察者对象
+     */
+    public void detach(Observer observer){
+
+        list.remove(observer);
+    }
+    /**
+     * 通知所有注册的观察者对象
+     */
+    public void nodifyObservers(String newState){
+
+        for(Observer observer : list){
+            observer.update(newState);
+        }
+    }
+}
+</code></pre><p>具体主题角色类</p>
+<pre><code>public class ConcreteSubject extends Subject{
+
+    private String state;
+
+    public String getState() {
+        return state;
+    }
+
+    public void change(String newState){
+        state = newState;
+        System.out.println(&quot;主题状态为：&quot; + state);
+        //状态发生改变，通知各个观察者
+        this.nodifyObservers(state);
+    }
+}
+</code></pre><p>抽象观察者角色类</p>
+<pre><code>public interface Observer {
+    /**
+     * 更新接口
+     * @param state    更新的状态
+     */
+    public void update(String state);
+}
+</code></pre><p>具体观察者角色类</p>
+<pre><code>public class ConcreteObserver implements Observer {
+    //观察者的状态
+    private String observerState;
+
+    @Override
+    public void update(String state) {
+        /**
+         * 更新观察者的状态，使其与目标的状态保持一致
+         */
+        observerState = state;
+        System.out.println(&quot;状态为：&quot;+observerState);
+    }
+
+}
+</code></pre><p>测试类</p>
+<pre><code>public class Test {
+
+    public static void main(String[] args) {
+        //创建主题对象
+        ConcreteSubject subject = new ConcreteSubject();
+        //创建观察者对象
+        Observer observer = new ConcreteObserver();
+        //将观察者对象登记到主题对象上
+        subject.attach(observer);
+        //改变主题对象的状态
+        subject.change(&quot;new state&quot;);
+    }
+
+}
+</code></pre><p>#观察者的两种实现方式</p>
+<ul>
+<li><p>Push</p>
+<p>主题对象向观察者推送主题的详细信息，不管观察者是否需要，推送的信息通常是主题对象的全部或部分数据。</p>
+</li>
+<li><p>Pull</p>
+<p>主题对象在通知观察者的时候，只传递少量信息。如果观察者需要更具体的信息，由观察者主动到主题对象中获取，相当于是观察者从主题对象中拉数据。一般这种模型的实现中，会把主题对象自身通过update()方法传递给观察者，这样在观察者需要获取数据的时候，就可以通过这个引用来获取了。</p>
+</li>
+</ul>
+<p>##两种方式的比较</p>
+<ul>
+<li><p>Push模型是假定主题对象知道观察者需要的数据；而Pull模型是主题对象不知道观察者具体需要什么数据，没有办法的情况下，干脆把自身传递给观察者，让观察者自己去按需要取值。</p>
+</li>
+<li><p>Push模型可能会使得观察者对象难以复用，因为观察者的update()方法是按需要定义的参数，可能无法兼顾没有考虑到的使用情况。这就意味着出现新情况的时候，就可能提供新的update()方法，或者是干脆重新实现观察者；而Pull模型就不会造成这样的情况，因为Pull模型下，update()方法的参数是主题对象本身，这基本上是主题对象能传递的最大数据集合了，基本上可以适应各种情况的需要。</p>
+</li>
+</ul>
+<p>#回调机制和观察者模式</p>
+<p><strong>Android中有非常多的地方使用了回调机制，例如Activity的生命周期、按钮的点击事件、线程的run()方法等。</strong></p>
+<p>下面是回调的基本模型：</p>
+<pre><code>public interface CallBack {  
+    public void oncall();  
+}  
+
+public class A {  
+    private CallBack callback;  
+    //注册一个事件  
+    public void register(CallBack callback){  
+        this.callback = callback;  
+    }  
+    // 需要调用的时候回调  
+    public void call(){  
+        callback.oncall();  
+    }  
+}  
+
+public static void main(String[] args) {  
+    A a = new A();  
+    a.register(new CallBack() {  
+        @Override  
+        public void oncall() {  
+            System.out.println(&quot;回调函数被调用&quot;);  
+        }  
+    });  
+    a.call();  
+</code></pre><p>}  </p>
+<p><strong>这样看来，回调机制和观察者模式是一致的，区别是观察者模式里面目标类维护了所有观察者的引用，而回调里面只是维护了一个引用。</strong></p>
+<p>#Android中的观察者模式</p>
+<p><strong>Android中大量的使用了观察者模式，Framework层里面的事件驱动都是基于观察者模式实现的。另外在Framework层里面的各种服务在数据变更的时候，也是通过观察者模式实现上层数据更新的。像View的Listener监听、GPS位置信息监听、BroadcastReceiver等都是基于观察者模式实现的。</strong>下面我们说一说ListView中的观察者模式是如何实现的，RecyclerView大同小异，感兴趣的可以自己研究下。</p>
+<p>##Listview的notifyDataSetChanged()</p>
+<p>我们先来看下listview部分观察者模式的结构</p>
+<p><img src="http://i.imgur.com/M5Gf0MO.png" alt=""></p>
+<p>其中为了方便研究关系，我们省略了Adapter部分的一些类的关系。接下来我们看下具体调用关系。</p>
+<p>首先当我们数据改变的时候我们会调用adapter的notifyDataSetChanged()方法。</p>
+<pre><code>/**
+ * Common base class of common implementation for an {@link Adapter} that can be
+ * used in both {@link ListView} (by implementing the specialized
+ * {@link ListAdapter} interface) and {@link Spinner} (by implementing the
+ * specialized {@link SpinnerAdapter} interface).
+ */
+public abstract class BaseAdapter implements ListAdapter, SpinnerAdapter {
+    private final DataSetObservable mDataSetObservable = new DataSetObservable();
+
+    public boolean hasStableIds() {
+        return false;
+    }
+
+    public void registerDataSetObserver(DataSetObserver observer) {
+        mDataSetObservable.registerObserver(observer);
+    }
+
+    public void unregisterDataSetObserver(DataSetObserver observer) {
+        mDataSetObservable.unregisterObserver(observer);
+    }
+
+    /**
+     * Notifies the attached observers that the underlying data has been changed
+     * and any View reflecting the data set should refresh itself.
+     */
+    public void notifyDataSetChanged() {
+        mDataSetObservable.notifyChanged();
+    }
+
+    /**
+     * Notifies the attached observers that the underlying data is no longer valid
+     * or available. Once invoked this adapter is no longer valid and should
+     * not report further data set changes.
+     */
+    public void notifyDataSetInvalidated() {
+        mDataSetObservable.notifyInvalidated();
+    }
+}
+</code></pre><p>根据上述代码我们可以定位到mDataSetObservable.notifyChanged()方法。</p>
+<pre><code>/**
+ * A specialization of {@link Observable} for {@link DataSetObserver}
+ * that provides methods for sending notifications to a list of
+ * {@link DataSetObserver} objects.
+ */
+public class DataSetObservable extends Observable&lt;DataSetObserver&gt; {
+    /**
+     * Invokes {@link DataSetObserver#onChanged} on each observer.
+     * Called when the contents of the data set have changed.  The recipient
+     * will obtain the new contents the next time it queries the data set.
+     */
+    public void notifyChanged() {
+        synchronized(mObservers) {
+            // since onChanged() is implemented by the app, it could do anything, including
+            // removing itself from {@link mObservers} - and that could cause problems if
+            // an iterator is used on the ArrayList {@link mObservers}.
+            // to avoid such problems, just march thru the list in the reverse order.
+            for (int i = mObservers.size() - 1; i &gt;= 0; i--) {
+                mObservers.get(i).onChanged();
+            }
+        }
+    }
+
+    /**
+     * Invokes {@link DataSetObserver#onInvalidated} on each observer.
+     * Called when the data set is no longer valid and cannot be queried again,
+     * such as when the data set has been closed.
+     */
+    public void notifyInvalidated() {
+        synchronized (mObservers) {
+            for (int i = mObservers.size() - 1; i &gt;= 0; i--) {
+                mObservers.get(i).onInvalidated();
+            }
+        }
+    }
+}
+</code></pre><p>我们看到，调用notifyChanged()方法，会去遍历mObservers，调用所有观察者的onchange（）方法。</p>
+<p>那么问题来了，我们的观察者对象是什么时候添加进去的呢？我们去看下ListView第一次和BaseAdapter产生关联的地方，也就是setAdapter(ListAdapter adapter)方法。</p>
+<pre><code>@Override
+public void setAdapter(ListAdapter adapter) {
+    //如果已经设置过了Adapter，那么取消注册对应的观察者。
+    if (mAdapter != null &amp;&amp; mDataSetObserver != null) {
+        mAdapter.unregisterDataSetObserver(mDataSetObserver);
+    }
+
+    //省略部分代码
+
+    if (mAdapter != null) {
+        mAreAllItemsSelectable = mAdapter.areAllItemsEnabled();
+        mOldItemCount = mItemCount;
+        mItemCount = mAdapter.getCount();
+        checkFocus();
+
+        //创建一个对应数据的观察者
+        mDataSetObserver = new AdapterDataSetObserver();
+        //间接调用DataSetObservable的注册方法
+        mAdapter.registerDataSetObserver(mDataSetObserver);
+
+        //省略部分代码
+    } else {
+        mAreAllItemsSelectable = true;
+        checkFocus();
+        // Nothing selected
+        checkSelectionChanged();
+    }
+
+    requestLayout();
+}
+</code></pre><p>这样我们的四个角色就全了，<strong>Observable—&gt;Subject;DataSetObservable—&gt;Concrete Subject;DataSetObserver—&gt;Observer;AdapterDataSetObserver—&gt;Concrete Observer</strong>。然后我们注册的地方也找到了。</p>
+<p>最后就剩下我们的数据是如何刷新这一个问题了。AdapterDataSetObserver定义在ListView的父类AbsListView中，它又继承自AbsListView的父类AdapterView的AdapterDataSetObserver。</p>
+<pre><code>class AdapterDataSetObserver extends DataSetObserver {
+
+    private Parcelable mInstanceState = null;
+    //当我们调用Adapter的notifyDataSetChanged的时候会调用所有观察者的onChanged方法,核心实现就在这里
+    @Override
+    public void onChanged() {
+        mDataChanged = true;
+        mOldItemCount = mItemCount;
+        // 获取Adapter中数据的数量
+        mItemCount = getAdapter().getCount();
+
+        // Detect the case where a cursor that was previously invalidated has
+        // been repopulated with new data.
+        if (AdapterView.this.getAdapter().hasStableIds() &amp;&amp; mInstanceState != null
+                &amp;&amp; mOldItemCount == 0 &amp;&amp; mItemCount &gt; 0) {
+            AdapterView.this.onRestoreInstanceState(mInstanceState);
+            mInstanceState = null;
+        } else {
+            rememberSyncState();
+        }
+        checkFocus();
+        // 重新布局ListView、GridView等AdapterView组件
+        requestLayout();
+    }
+
+    // 代码省略
+
+    public void clearSavedState() {
+        mInstanceState = null;
+    }
+} 
+</code></pre><p>requestLayout()方法在View里有实现，子View按需求重写。我们看下注释好了。</p>
+<blockquote>
+<p>/<em>*Call this when something has changed which has invalidated the layout of this view. This will schedule a layout pass of the view tree.</em>/</p>
+</blockquote>
+<p>好了，到这里所有的调用关系我们基本就搞清楚了。<strong>当ListView的数据发生变化时，调用Adapter的notifyDataSetChanged函数，这个函数又会调用DataSetObservable的notifyChanged函数，这个函数会调用所有观察者 (AdapterDataSetObserver) 的onChanged方法。在onChanged函数中会获取Adapter中数据集的新数量，然后调用ListView的requestLayout()方法重新进行布局，更新用户界面。</strong></p>
+<p>#瞎总结</p>
+<p>ListView主要运用了Adapter和观察者模式使得可扩展性、灵活性非常强，而耦合度却很低，这是我认为设计模式在Android源码中优秀运用的典范。那我们就要开始思考了，<strong>我们有没有其他更漂亮的套路来实现ListView组件，我们可以把这件实现思路应用到哪里？</strong></p>
+<p>人是会思考的芦苇，思考着思考着我们就成为了别人眼中的大神。</p>
+<p>参考链接：</p>
+<p><a href="http://www.itdadao.com/articles/c15a265623p0.html" target="_blank" rel="external">http://www.itdadao.com/articles/c15a265623p0.html</a></p>
+<p><a href="http://blog.csdn.net/bboyfeiyu/article/details/44040533" target="_blank" rel="external">http://blog.csdn.net/bboyfeiyu/article/details/44040533</a></p>
+<p><a href="http://www.cnblogs.com/mythou/p/3370340.html" target="_blank" rel="external">http://www.cnblogs.com/mythou/p/3370340.html</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/wechatqcode.png" alt="任磊_Coder wechat" style="width: 200px; max-width: 100%;"/>
+    <div>关注博主是一种态度，评论博主是一种欣赏。</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat.png" alt="任磊_Coder WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.png" alt="任磊_Coder Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/设计模式/" rel="tag"># 设计模式</a>
+          
+            <a href="/tags/Android源码/" rel="tag"># Android源码</a>
+          
+            <a href="/tags/观察者模式/" rel="tag"># 观察者模式</a>
+          
+            <a href="/tags/回调机制/" rel="tag"># 回调机制</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/26/Android源码中的静态工厂方法/" rel="next" title="Android源码中的静态工厂方法">
+                <i class="fa fa-chevron-left"></i> Android源码中的静态工厂方法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/22/从装饰者模式到Context类簇/" rel="prev" title="从装饰者模式到Context类族">
+                从装饰者模式到Context类族 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpeg"
+               alt="任磊_Coder" />
+          <p class="site-author-name" itemprop="name">任磊_Coder</p>
+           
+              <p class="site-description motion-element" itemprop="description">每个人都在成为大神的路上，只不过有的人在走，而有的人在跑。</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">75</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/PleaseCallMeCoder" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/2729748535/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1e" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/u/575326a8ce05" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://blog.csdn.net/sdkfjksf" target="_blank" title="CSDN">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  CSDN
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">任磊_Coder</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://renleicoder.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2016/09/23/当观察者模式和回调机制遇上Android源码/';
+          this.page.identifier = '2016/09/23/当观察者模式和回调机制遇上Android源码/';
+          this.page.title = '当观察者模式和回调机制遇上Android源码';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://renleicoder.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.1"></script>
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("WRMNDFdhvgzhvChWrX6qyTJI-gzGzoHsz", "xM8HS64Yu434V4EvE8j9wLsf");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
