@@ -1,0 +1,1086 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="网络框架源码分析,Volley源码分析,Picasso源码分析" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="KIKO_奶糖的博客" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="网络框架分析-全是套路。">
+<meta name="keywords" content="网络框架源码分析">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络框架分析-全是套路">
+<meta property="og:url" content="http://yoursite.com/2016/12/15/网络框架分析-全是套路/index.html">
+<meta property="og:site_name" content="KIKO_奶糖的博客">
+<meta property="og:description" content="网络框架分析-全是套路。">
+<meta property="og:image" content="http://img.blog.csdn.net/20161215185549942?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2RrZmprc2Y=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:updated_time" content="2017-04-24T08:51:21.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="网络框架分析-全是套路">
+<meta name="twitter:description" content="网络框架分析-全是套路。">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20161215185549942?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2RrZmprc2Y=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'X6XZYA04JV',
+      apiKey: 'abdb5abda2ee8a5e60a5682dea929ef0',
+      indexName: 'renleicoder',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/12/15/网络框架分析-全是套路/"/>
+
+
+
+
+
+  <title>网络框架分析-全是套路 | KIKO_奶糖的博客</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f298a9ae5a2d1230596870c757ed632b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">KIKO_奶糖的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">每个人都在成为大神的路上，只不过有的人在走，而有的人在跑。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/12/15/网络框架分析-全是套路/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="任磊_Coder">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KIKO_奶糖的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                网络框架分析-全是套路
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-15T18:57:00+08:00">
+                2016-12-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android源码与设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">Android源码与设计模式</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/12/15/网络框架分析-全是套路/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2016/12/15/网络框架分析-全是套路/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2016/12/15/网络框架分析-全是套路/" class="leancloud_visitors" data-flag-title="网络框架分析-全是套路">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p> 网络框架分析-全是套路。</p>
+<a id="more"></a>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这几天抽时间啃完了Volley和Picasso的源码，收获颇多，所以在这里跟大家分享一下。</p>
+<p>对于网络请求框架或者图片加载框架来说，我们的理想型大体应该是这样的：</p>
+<ul>
+<li>简单：框架的出现当然是为了提升我们的开发效率，使我们的开发变得简单，所以在保证质量的情况下简单是第一位的</li>
+<li>可配置：天底下没有完全相同的两片树叶，也没有完全相同的两个项目，所以某些差异应该是可配置的，比如缓存位置、缓存大小、缓存策略等等</li>
+<li>方便扩展：框架在设计的时候就要考虑到变化，并且封装起来。举个例子，比如有了更好的Http客户端，我们应该能很方便的修改并且不能对我们之前的代码产生太大影响</li>
+</ul>
+<p>但万变不离其宗，这些框架的骨架其实基本上都是一样的，今天我们就来讨论下这些框架中的套路。</p>
+<h1 id="基本模块"><a href="#基本模块" class="headerlink" title="基本模块"></a>基本模块</h1><p>既然我们说这些框架的结构其实基本上都是一样的，那么我们就先来看看它们之间类似的模块结构。</p>
+<p><img src="http://img.blog.csdn.net/20161215185549942?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2RrZmprc2Y=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p>整体流程大概是这样的：</p>
+<blockquote>
+<p>客户端请求-&gt;生成框架封装的请求类型-&gt;调度器开始处理任务-&gt;调用数据获取模块-&gt;对获取的数据进行处理-&gt;回调给客户端</p>
+</blockquote>
+<h1 id="生产者消费者模型"><a href="#生产者消费者模型" class="headerlink" title="生产者消费者模型"></a>生产者消费者模型</h1><p>框架中请求管理和任务调度模块一般会用到生产者消费者模型。</p>
+<h2 id="为什么会有生产者消费者模型"><a href="#为什么会有生产者消费者模型" class="headerlink" title="为什么会有生产者消费者模型"></a>为什么会有生产者消费者模型</h2><p><strong>在线程世界里，生产者就是生产数据的线程，消费者就是消费数据的线程。</strong>在多线程开发当中，如果生产者处理速度很快，而消费者处理速度很慢，那么生产者就必须等待消费者处理完，才能继续生产数据。同样的道理，如果消费者的处理能力大于生产者，那么消费者就必须等待生产者。为了解决这个问题于是引入了生产者和消费者模型。</p>
+<h2 id="什么是生产者消费者模型"><a href="#什么是生产者消费者模型" class="headerlink" title="什么是生产者消费者模型"></a>什么是生产者消费者模型</h2><p><strong>生产者消费者模式是通过一个容器来解决生产者和消费者的强耦合问题。</strong>生产者和消费者彼此之间不直接通讯，而通过<strong>阻塞队列</strong>来进行通讯，所以生产者生产完数据之后不用等待消费者处理，直接扔给阻塞队列，消费者不找生产者要数据，而是直接从阻塞队列里取，阻塞队列就相当于一个<strong>缓冲区</strong>，<strong>平衡了生产者和消费者的处理能力。</strong></p>
+<h2 id="生产者消费者模型的使用场景"><a href="#生产者消费者模型的使用场景" class="headerlink" title="生产者消费者模型的使用场景"></a>生产者消费者模型的使用场景</h2><p><strong>Java中的线程池类</strong>其实就是一种生产者和消费者模式的实现方式，但是实现方法更高明。生产者把任务丢给线程池，线程池创建线程并处理任务，<strong>如果将要运行的任务数大于线程池的基本线程数就把任务扔到阻塞队列里</strong>，这种做法比<strong>只使用一个阻塞队列来实现生产者和消费者模型</strong>显然要高明很多，因为消费者能够处理直接就处理掉了，这样速度更快，而生产者先存，消费者再取这种方式显然慢一些。</p>
+<h2 id="框架中的应用"><a href="#框架中的应用" class="headerlink" title="框架中的应用"></a>框架中的应用</h2><p>对于上述的使用场景我们分别可以在框架中找到实现。</p>
+<p><strong>Volley源码中实现方式是用一个优先级阻塞队列来实现生产者消费者模型。生产者是往队列里添加数据的线程，消费者是一个默认4个元素的线程数组（不包括处理缓存的线程），来不停的取出消息处理。</strong></p>
+<p><strong>而Picssso是一个比较典型的线程池实现的生产者消费者模型</strong>，这里就不做过多介绍了。</p>
+<p><strong>这两个框架使用的数据结构都是PriorityBlockingQueue（优先级阻塞队列），目的是为了做排序，保证优先级高的请求先被处理。</strong></p>
+<p><strong>顺便说一下Android的消息处理机制其实也是一个生产者消费者模型。</strong></p>
+<h2 id="一个小问题"><a href="#一个小问题" class="headerlink" title="一个小问题"></a>一个小问题</h2><p>这里博主当时想到了一个小问题：那就是<strong>唤醒消费者的时候唤醒的顺序是怎样的？</strong></p>
+<p>这里涉及到一个概念叫<strong>公平访问队列</strong>，所谓<strong>公平访问队列是指所有阻塞的生产者线程或者消费者线程，当队列可用是，可以按照阻塞的先后顺序访问队列，</strong>即先阻塞的生产者线程，可以先往队列里插入元素，先阻塞的消费者线程，可以先从队列里获取元素。<strong>通常情况下为了保证公平性会降低吞吐量。</strong></p>
+<h1 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h1><p><strong>Android缓存分为内存缓存和文件缓存（磁盘缓存）。</strong></p>
+<p><strong>一般网络框架是不需要处理内存缓存的，但是图片加载框架需要。</strong>在Android3.1以后，Android推出了<strong>LruCache</strong>这个内存缓存类，LruCache中的对象是强引用的。Picasso的内存缓存就是使用的LruCache实现的。对于磁盘缓存，Google提供的一种解决方案是使用<strong>DiskLruCache</strong>（DiskLruCache并没有集成到Android源码中，在Android Doc的例子中有讲解）。Picasso的磁盘缓存是基于okhttp的，使用了DiskLruCache。而Volley的磁盘缓存是在DiskBasedCache中实现得，也是基于Lru算法的。</p>
+<p>至于其他缓存算法、缓存命中率等等概念这里我就不做过多介绍了。</p>
+<h1 id="异步的处理"><a href="#异步的处理" class="headerlink" title="异步的处理"></a>异步的处理</h1><p>我们知道Android是单线程模型，我们应该避免在UI线程中进行耗时操作，网络请求算是一个比较典型的耗时操作，所以网络相关的框架中都会对异步操作进行一些封装。</p>
+<p>其实这里没什么复杂的地方，无非就是<strong>利用Handler进行线程间通信</strong>，然后<strong>配合回调机制</strong>，把结果返回到主线程里。这里可以参考我之前的文章<a href="http://blog.csdn.net/sdkfjksf/article/details/52777722" target="_blank" rel="external">Android Handler 消息机制（解惑篇)</a>和<a href="http://blog.csdn.net/sdkfjksf/article/details/52640111" target="_blank" rel="external">当观察者模式和回调机制遇上Android源码</a>。</p>
+<p>我们以Volley为例来简单看一下，ExecutorDelivery类的职责是分发子线程产生的responses数据或者错误信息。初始化是在RequestQueue类里。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="title">RequestQueue</span><span class="params">(Cache cache, Network network, <span class="keyword">int</span> threadPoolSize)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>(cache, network, threadPoolSize,</div><div class="line">                <span class="keyword">new</span> ExecutorDelivery(<span class="keyword">new</span> Handler(Looper.getMainLooper())));</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>这里传入的是主线程的Handler对象，而这个ExecutorDelivery对象会被传入到NetworkDispatcher和CacheDispatcher中，这两个类是继承于Thread的，负责处理队列中的请求。所以处理请求的操作是发生在子线程的。</p>
+<p>然后我们看下ExecutorDelivery类的构造方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="title">ExecutorDelivery</span><span class="params">(<span class="keyword">final</span> Handler handler)</span> </span>&#123;</div><div class="line">        <span class="comment">// Make an Executor that just wraps the handler.</span></div><div class="line">        mResponsePoster = <span class="keyword">new</span> Executor() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">(Runnable command)</span> </span>&#123;</div><div class="line">                handler.post(command);</div><div class="line">            &#125;</div><div class="line">        &#125;;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>这里用Executor对Handler进行了一层包装。Volley中的responses数据或者错误信息都会通过Executor发送出去，这样消息就到了主线程中。</p>
+<p>Picasso比Volley要稍稍复杂了一点，由Picasso会对图片进行变换等操作，属于耗时操作，所以在Picasso中请求的分发和结果的处理会单独放到一个线程中。这个线程是一个<strong>带有消息队列的线程，用来执行循环性任务</strong>，即对获取到的数据进行处理。当它对结果处理完成之后，才会通过主线程的Handler把结果发送回主线程进行显示等操作。</p>
+<h1 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h1><p>优秀的框架会合理的利用设计模式，使代码易于扩展和后期的维护。这里有一些出现频率比较高的设计模式。</p>
+<ul>
+<li>静态工厂方法：由一个工厂对象决定创建出哪一种产品类的实例</li>
+<li>单例模式：确保有且只有一个对象被创建</li>
+<li>建造者模式：将一个复杂对象的构建与它的表示分离，使得同样的构建过程可以创建不同的表示</li>
+<li>外观模式：简化一群类的接口</li>
+<li>命令模式：封装请求成为对象</li>
+<li>策略模式：封装可以互选的行为，并使用委托来决定使用哪一个</li>
+</ul>
+<h2 id="框架入口"><a href="#框架入口" class="headerlink" title="框架入口"></a>框架入口</h2><p>一般框架为了调用简洁，并不会让客户端直接通过new实例化一个入口对象。这里就需要用到<strong>创建型模式</strong>。</p>
+<p>Volley的入口使用的是<strong>静态工厂方法</strong>，与Android源码中Bitmap的实例化类似，具体可以参考<a href="http://blog.csdn.net/sdkfjksf/article/details/52672059" target="_blank" rel="external">Android源码中的静态工厂方法</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">  * Creates a default instance of the worker pool and calls &#123;<span class="doctag">@link</span> RequestQueue#start()&#125; on it.</div><div class="line">  *</div><div class="line">  * <span class="doctag">@param</span> context A &#123;<span class="doctag">@link</span> Context&#125; to use for creating the cache dir.</div><div class="line">  * <span class="doctag">@return</span> A started &#123;<span class="doctag">@link</span> RequestQueue&#125; instance.</div><div class="line">  */</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> RequestQueue <span class="title">newRequestQueue</span><span class="params">(Context context)</span> </span>&#123;</div><div class="line">  <span class="keyword">return</span> newRequestQueue(context, <span class="keyword">null</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Picasso的入口方法则用到了双重锁的<strong>单例模式</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">static</span> <span class="keyword">volatile</span> Picasso singleton = <span class="keyword">null</span>;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Picasso <span class="title">with</span><span class="params">(Context context)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (singleton == <span class="keyword">null</span>) &#123;</div><div class="line">      <span class="keyword">synchronized</span> (Picasso.class) &#123;</div><div class="line">        <span class="keyword">if</span> (singleton == <span class="keyword">null</span>) &#123;</div><div class="line">          singleton = <span class="keyword">new</span> Builder(context).build();</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> singleton;</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<p>同时由于可配置项太多，所以Picasso还使用了<strong>Builder模式</strong>。</p>
+<p>同时一些框架为了给给客户端提供一个简洁的的API，会使用<strong>外观模式</strong>定义一个高层接口，使得框架中的各个模块更加容易使用。外观模式是一种<strong>结构型模式</strong>。</p>
+<p>外观模式可以参考<a href="http://blog.csdn.net/sdkfjksf/article/details/52816893" target="_blank" rel="external">Android源码中的外观模式</a></p>
+<h2 id="命令模式"><a href="#命令模式" class="headerlink" title="命令模式"></a>命令模式</h2><p><strong>命令模式</strong>的定义是将一个请求封装成一个对象，从而使你可用不同的请求对客户进行参数化，对请求排队或记录请求日志，以及支持可撤销的操作。在网络请求框架中都会将请求做一个封装成对象，方便传递和使用。比如Volley中的Request，Picasso中的Request和Action。</p>
+<p>命令模式可以参考<a href="http://blog.csdn.net/sdkfjksf/article/details/52755908" target="_blank" rel="external">Android源码中的命令模式</a></p>
+<h2 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h2><p> <strong>策略模式</strong>也是大部分框架都会用到的一个模式 ，作用是封装可以互选的行为，并使用委托来决定使用哪一个。</p>
+<p>Volley中就大量使用了<strong>面向接口编程</strong>的编程思想。这里我们看下Volley的入口方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> RequestQueue <span class="title">newRequestQueue</span><span class="params">(Context context, HttpStack stack, <span class="keyword">int</span> maxDiskCacheBytes)</span> </span>&#123;</div><div class="line">  <span class="comment">//~省略部分无关代码~</span></div><div class="line">  <span class="keyword">if</span> (stack == <span class="keyword">null</span>) &#123;</div><div class="line">    <span class="keyword">if</span> (Build.VERSION.SDK_INT &gt;= <span class="number">9</span>) &#123;</div><div class="line">      stack = <span class="keyword">new</span> HurlStack();</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      <span class="comment">// Prior to Gingerbread, HttpUrlConnection was unreliable.</span></div><div class="line">      <span class="comment">// See: http://android-developers.blogspot.com/2011/09/androids-http-clients.html</span></div><div class="line">      stack = <span class="keyword">new</span> HttpClientStack(AndroidHttpClient.newInstance(userAgent));</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">	</div><div class="line">  Network network = <span class="keyword">new</span> BasicNetwork(stack);</div><div class="line">  <span class="comment">//~省略部分无关代码~</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这里会根据API版本选择不同的Http客户端，它们实现了一个共同的接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * An HTTP stack abstraction.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">HttpStack</span> </span>&#123;</div><div class="line">  <span class="comment">/**</span></div><div class="line">     * Performs an HTTP request with the given parameters.</div><div class="line">     *</div><div class="line">     * &lt;p&gt;A GET request is sent if request.getPostBody() == null. A POST request is sent otherwise,</div><div class="line">     * and the Content-Type header is set to request.getPostBodyContentType().&lt;/p&gt;</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> request the request to perform</div><div class="line">     * <span class="doctag">@param</span> additionalHeaders additional headers to be sent together with</div><div class="line">     *         &#123;<span class="doctag">@link</span> Request#getHeaders()&#125;</div><div class="line">     * <span class="doctag">@return</span> the HTTP response</div><div class="line">     */</div><div class="line">  <span class="function"><span class="keyword">public</span> HttpResponse <span class="title">performRequest</span><span class="params">(Request&lt;?&gt; request, Map&lt;String, String&gt; additionalHeaders)</span></span></div><div class="line">    <span class="keyword">throws</span> IOException, AuthFailureError;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>当然我们也可以自己实现这个接口，然后把Http客户端换成okhttp。</p>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>网络相关的框架套路基本上就这些了，具体细节大家可以去自己看下相关源码。如果有什么不完善或者不对的地方也请大家多指教。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/wechatqcode.png" alt="任磊_Coder wechat" style="width: 200px; max-width: 100%;"/>
+    <div>关注博主是一种态度，评论博主是一种欣赏。</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat.png" alt="任磊_Coder WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.png" alt="任磊_Coder Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/网络框架源码分析/" rel="tag"># 网络框架源码分析</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/12/Java集合框架中隐藏的设计套路/" rel="next" title="Java集合框架中隐藏的设计套路">
+                <i class="fa fa-chevron-left"></i> Java集合框架中隐藏的设计套路
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/17/用错的状态模式？/" rel="prev" title="用错的状态模式？">
+                用错的状态模式？ <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpeg"
+               alt="任磊_Coder" />
+          <p class="site-author-name" itemprop="name">任磊_Coder</p>
+           
+              <p class="site-description motion-element" itemprop="description">每个人都在成为大神的路上，只不过有的人在走，而有的人在跑。</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">38</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">80</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/PleaseCallMeCoder" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/2729748535/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1e" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/u/575326a8ce05" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://blog.csdn.net/sdkfjksf" target="_blank" title="CSDN">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  CSDN
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基本模块"><span class="nav-number">2.</span> <span class="nav-text">基本模块</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#生产者消费者模型"><span class="nav-number">3.</span> <span class="nav-text">生产者消费者模型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么会有生产者消费者模型"><span class="nav-number">3.1.</span> <span class="nav-text">为什么会有生产者消费者模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是生产者消费者模型"><span class="nav-number">3.2.</span> <span class="nav-text">什么是生产者消费者模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生产者消费者模型的使用场景"><span class="nav-number">3.3.</span> <span class="nav-text">生产者消费者模型的使用场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#框架中的应用"><span class="nav-number">3.4.</span> <span class="nav-text">框架中的应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一个小问题"><span class="nav-number">3.5.</span> <span class="nav-text">一个小问题</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#缓存"><span class="nav-number">4.</span> <span class="nav-text">缓存</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#异步的处理"><span class="nav-number">5.</span> <span class="nav-text">异步的处理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#设计模式"><span class="nav-number">6.</span> <span class="nav-text">设计模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#框架入口"><span class="nav-number">6.1.</span> <span class="nav-text">框架入口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命令模式"><span class="nav-number">6.2.</span> <span class="nav-text">命令模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#策略模式"><span class="nav-number">6.3.</span> <span class="nav-text">策略模式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#后记"><span class="nav-number">7.</span> <span class="nav-text">后记</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">任磊_Coder</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://renleicoder.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2016/12/15/网络框架分析-全是套路/';
+          this.page.identifier = '2016/12/15/网络框架分析-全是套路/';
+          this.page.title = '网络框架分析-全是套路';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://renleicoder.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.1"></script>
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("WRMNDFdhvgzhvChWrX6qyTJI-gzGzoHsz", "xM8HS64Yu434V4EvE8j9wLsf");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

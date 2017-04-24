@@ -1,0 +1,1228 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Java集合框架源码,数据结构和算法" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="KIKO_奶糖的博客" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="Java集合框架中隐藏的设计套路。">
+<meta name="keywords" content="Java集合框架源码,数据结构和算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java集合框架中隐藏的设计套路">
+<meta property="og:url" content="http://yoursite.com/2017/01/12/Java集合框架中隐藏的设计套路/index.html">
+<meta property="og:site_name" content="KIKO_奶糖的博客">
+<meta property="og:description" content="Java集合框架中隐藏的设计套路。">
+<meta property="og:image" content="http://img.blog.csdn.net/20170112182613917?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2RrZmprc2Y=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20161019174419222">
+<meta property="og:image" content="http://i.imgur.com/HbXf8Lt.png">
+<meta property="og:image" content="http://img.blog.csdn.net/20170112182658931?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2RrZmprc2Y=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170112183735948?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2RrZmprc2Y=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:updated_time" content="2017-04-24T08:55:29.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java集合框架中隐藏的设计套路">
+<meta name="twitter:description" content="Java集合框架中隐藏的设计套路。">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20170112182613917?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2RrZmprc2Y=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'X6XZYA04JV',
+      apiKey: 'abdb5abda2ee8a5e60a5682dea929ef0',
+      indexName: 'renleicoder',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/01/12/Java集合框架中隐藏的设计套路/"/>
+
+
+
+
+
+  <title>Java集合框架中隐藏的设计套路 | KIKO_奶糖的博客</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f298a9ae5a2d1230596870c757ed632b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">KIKO_奶糖的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">每个人都在成为大神的路上，只不过有的人在走，而有的人在跑。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/12/Java集合框架中隐藏的设计套路/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="任磊_Coder">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KIKO_奶糖的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Java集合框架中隐藏的设计套路
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-12T18:38:00+08:00">
+                2017-01-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android源码与设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">Android源码与设计模式</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/01/12/Java集合框架中隐藏的设计套路/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/01/12/Java集合框架中隐藏的设计套路/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/01/12/Java集合框架中隐藏的设计套路/" class="leancloud_visitors" data-flag-title="Java集合框架中隐藏的设计套路">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p> Java集合框架中隐藏的设计套路。</p>
+<a id="more"></a>
+<h1 id="我们的世界不应该只有“胡萝卜”"><a href="#我们的世界不应该只有“胡萝卜”" class="headerlink" title="我们的世界不应该只有“胡萝卜”"></a>我们的世界不应该只有“胡萝卜”</h1><p> <img src="http://img.blog.csdn.net/20170112182613917?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2RrZmprc2Y=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p>进入正题之前容我先扯点别的。</p>
+<p>最近突然想到了一个驴子和胡萝卜不得不说的故事。说是一个人坐在驴子背上，用一根长杆绑着一根胡萝卜，然后把胡萝卜悬到驴子的面前，驴子以为只要向前走一步就可以吃到胡萝卜，于是不停地向前走，可是它始终无法吃到这根萝卜。</p>
+<p>一千个读者就有一千个哈姆雷特，当然不同的人对这个故事也会有不同的理解。比如我们为了生活拼命地工作，却永远达不到财务自由，我们是不是也像一只忙碌的“驴子”呢？</p>
+<p>所以，<strong>我们的世界不应该只有“胡萝卜”</strong>。</p>
+<p>不识庐山真面目，只缘身在此山中。有时候跳出来，用<strong>“上帝视角”</strong>来看看这个我们存在的世界，说不定会有不一样的发现。生活如此，学习也是如此。</p>
+<h1 id="数据结构和算法与Java集合框架"><a href="#数据结构和算法与Java集合框架" class="headerlink" title="数据结构和算法与Java集合框架"></a>数据结构和算法与Java集合框架</h1><p>接下来我们再来看一个故事。本故事纯属虚构，如有雷同，纯属你抄我。</p>
+<p>时间：2017/01/11</p>
+<p>地点：A公司办公室</p>
+<p>人物：小明——一个工作一年的Android小菜鸟；B大大——A公司Android开发负责人，Android高级开发工程师</p>
+<p>起因：小明想到A公司工作，由B大大对他进行面试。</p>
+<p>经过：B大大说，小明啊，你刚毕业一年，算法应该还不错，咱们先来一个简单的吧。有一个迷宫，由n行m列的单元格组成，每一个单元格要么是空地要么是障碍物，障碍物是不能穿过的。任取两个不是障碍物并且不相同的点p和q，怎么找到p到q的<strong>最短路径</strong>呢？</p>
+<p>小明支支吾吾，边挠头边说，那个B大大，我上学的时候贪玩没有好好学数据结构和算法，毕业后工作中也基本没有用到过，所有不怎么会了。。。</p>
+<p>B大大露出一副安慰的表情，说，恩，可以理解。那咱们问点工作中常用的吧。</p>
+<p>小明顿时来了精神，一顿小鸡啄米似的点头。</p>
+<p>B大大说，那你先说说你<strong>工作中接触到的数据结构</strong>吧。</p>
+<p>小明张口就来，数组、ArrayList、Map。</p>
+<p>B大大又等了一会，看小明实在没有了下文，又继续问道，那你了解<strong>Java集合框架的设计思路</strong>吗？</p>
+<p>小明说，设计思路？为什么要了解，没时间啊，老夫写代码就是一把梭！复制、粘贴，拿起键盘就是干！效率刚刚的。</p>
+<p>B大大心里一万只羊驼飞奔而过，嘴角抖了抖，说，那个小明，咱们今天的面试就先到这吧，有结果了我再让Hr通知你好吧。</p>
+<p>然后，然后就没有然后了。</p>
+<p>虽然这个故事是虚构的，但是不难找出来现实版的小明求职记。那么从这个故事我们可以反思一些什么呢？</p>
+<p>首先个人认为<strong>数据结构和算法、设计模式这些属于内功</strong>，俗话说练拳不练功，到老一场空，有了这些内功我们才能更好的去使用各种招式，否则只是徒有其形罢了。要知道一个花架子是没有多少战斗力的。</p>
+<p>其次，<strong>了解了源码里的设计思路，用起来才能更得心应手，同时也能提高自己的设计能力</strong>。而且就像开篇说的，我们<strong>要善于从宏观的角度去看一些事情</strong>，这样才能看到更多，收获更多。当然成长为高级工程师，迎娶白富美，走向人生巅峰不是梦啦。</p>
+<h2 id="数据结构和算法"><a href="#数据结构和算法" class="headerlink" title="数据结构和算法"></a>数据结构和算法</h2><p>这里我不打算再过多的重复数据结构和算法的定义、算法的时空复杂度这些问题，只过一下各个数据结构的特性。因为<strong>算法对数据结构的通用操作类似，基本都包括插入、查找、删除、遍历和排序等</strong>，所以我们重点关注下这些操作上的性能。</p>
+<ul>
+<li><strong>数组：优点是插入块，如果知道下标，可以非常快的存取。缺点是查找慢，删除慢，大小固定。</strong></li>
+<li><strong>有序数组：优点是比无序数组查找快。缺点是插入和删除慢，大小固定。</strong></li>
+<li><strong>栈：提供后进先出方式的存取。缺点是存取其他项很慢。</strong></li>
+<li><strong>队列：提供先进先出方式的存取。缺点是存取其他项很慢。</strong></li>
+<li><strong>链表：优点是插入快，删除快。缺点是查找慢。</strong></li>
+<li><strong>二叉树：优点是查找、插入、删除都快（如果树保持平衡）。缺点是删除算法复杂。</strong></li>
+<li><strong>红-黑树：优点是查找、插入、删除都快，树总是平衡的。缺点是算法复杂。</strong></li>
+<li><strong>2-3-4树：优点是查找、插入、删除都快，树总是平衡的，类似的树对磁盘存储有用。缺点是算法复杂。</strong></li>
+<li><strong>哈希表：优点是如果关键字已知，则存取极快，插入快。缺点是删除慢，如果不知道关键字则存取很慢，对存储空间使用不充分。</strong></li>
+<li><strong>堆：优点是插入、删除快，对最大数据项的存取很快。缺点是对其他数据项存取慢。</strong></li>
+<li><strong>图：对现实世界建模。有些算法慢且复杂。</strong></li>
+</ul>
+<h2 id="Java中集合框架的总体设计"><a href="#Java中集合框架的总体设计" class="headerlink" title="Java中集合框架的总体设计"></a>Java中集合框架的总体设计</h2><p><strong>良好的设计总是相似的。它使用一个好用的接口来封装一个特定的功能，它有效的使用CPU与内存，等等。</strong></p>
+<p>我们常用的数据结构有<strong>线性表、栈、队列等线性结构，还有集合以及哈希表</strong>，所以我们只讨论这几种结构的设计。</p>
+<p>在分析Java集合框架的设计思路之前，我们先来<strong>认真</strong>思考一个问题，<strong>如果让你去设计Java的集合框架，你会怎么做？</strong></p>
+<h3 id="小明的做法"><a href="#小明的做法" class="headerlink" title="小明的做法"></a>小明的做法</h3><p>如果是小明来设计的话，我猜他会选择一种<strong>简单粗暴的方式</strong>，分别去写几个类来实现线性表、栈、队列、集合以及哈希表。好，那么问题来了。</p>
+<ol>
+<li>假如用户想自定义一个用自己方式实现的线性表，那么他该如何操作？</li>
+<li>假如开始用户使用了无序的线性表，然后因为某个需求要改成有序的，那么用户需不需要进行很大改动呢？</li>
+<li>假如小明要对已有的Api进行升级，要加入无序线性表的另一种更高性能的实现，他需要改动多少东西？</li>
+</ol>
+<p>其实把三个问题总结一下无非就是<strong>维护和扩展</strong>成本的问题。</p>
+<h3 id="我们的思路"><a href="#我们的思路" class="headerlink" title="我们的思路"></a>我们的思路</h3><p>首先我们先来参考一下其他功能的设计思路，比如Android中的<strong>View类族</strong>和<strong>Context类族</strong>。我们分析一下他们的代码的<strong>结构层次</strong>。</p>
+<p>View类族的类图如下</p>
+<p><img src="http://img.blog.csdn.net/20161019174419222" alt=""></p>
+<p>Context类族的类图如下</p>
+<p><img src="http://i.imgur.com/HbXf8Lt.png" alt=""></p>
+<p>我们来分下一下这两个模块设计上相似的地方</p>
+<ul>
+<li><strong>整体的代码结构都像一棵树，有一个唯一的根节点，这个根节点封装了这个类族的公有特性</strong></li>
+<li><strong>有一层抽象类或者类似抽象类作用的类，它们实现了通用的方法。方便用户扩展自己的业务。</strong></li>
+<li><strong>有具体的实现，用户可以直接使用这些具体实现。</strong></li>
+</ul>
+<p>这些相似的地方其实可以归纳为三个结构层次</p>
+<ol>
+<li><strong>一个高度抽象的根节点接口，可以再抽象出一组带有具体操作的接口来实现我们的根节点</strong></li>
+<li><strong>一组抽象类，实现带有具体操作接口的部分方法，方便用户快速扩展自己的业务。</strong></li>
+<li><strong>具体的实现，方便用户直接调用。</strong></li>
+</ol>
+<p>这个<strong>套路</strong>在Android源码中是很常见的，这样做的好处也显而易见，比较<strong>易于维护和扩展</strong>。</p>
+<h3 id="源码的实现思路"><a href="#源码的实现思路" class="headerlink" title="源码的实现思路"></a>源码的实现思路</h3><p>然后我们来看看是不是像我们说的那样，Java的集合框架也是这种套路呢？</p>
+<p>我们来看下集合框架的类图</p>
+<p><img src="http://img.blog.csdn.net/20170112182658931?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2RrZmprc2Y=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p>这张图是我从网上找的，不过不影响我们的分析。如果有侵权，请告诉我，我会删除。</p>
+<p>从这张图我们可以很清晰的看出来，套路一模一样有没有。</p>
+<p>首先由于Map和Collection的相似点很少，所以这两部分的根节点是分开的。</p>
+<p>我们拿Collection这部分来说，首先定义了一组接口。<strong>Collection</strong>是List、Set等集合高度抽象出来的接口，它<strong>包含了这些集合的基本操作</strong>，它主要又分为：<strong>List、Set和Queue</strong>，分别对应线性表、集合、队列，实现对应的接口，则有了对应数据结构的特性。这是第一个结构层次。</p>
+<p>然后又定义了一组抽象类，我们拿AbstractCollection类来说，先看下注释</p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&gt; /**</div><div class="line">&gt;  * This class provides a skeletal implementation of the &lt;tt&gt;Collection&lt;/tt&gt;</div><div class="line">&gt;  * interface, to minimize the effort required to implement this interface. &lt;p&gt;</div><div class="line">&gt;  */</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+<p><strong>这个类实现了Collection接口的骨架，用户继承这个类可以用最小化的时间来实现一个集合。</strong></p>
+<p>其他的抽象类也都是各个数据结构的骨架，用户可以自定义自己的集合。</p>
+<p>最后第三个层次就是具体的实现类了，比如我们常用的ArrayList、LinkedList等等。<strong>比如LinkedList实现了List和Queue接口，那么它既有队列先进先出的特性，又有List可以通过位置访问元素的特性。</strong></p>
+<h3 id="源码的具体实现"><a href="#源码的具体实现" class="headerlink" title="源码的具体实现"></a>源码的具体实现</h3><h4 id="Collection部分"><a href="#Collection部分" class="headerlink" title="Collection部分"></a>Collection部分</h4><p><strong>Collection</strong>是List、Set等集合高度抽象出来的接口，它<strong>包含了这些集合的基本操作</strong>，它主要又分为两大部分：<strong>List和Set。</strong></p>
+<h5 id="Collection接口"><a href="#Collection接口" class="headerlink" title="Collection接口"></a>Collection接口</h5><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&gt; /**</div><div class="line">&gt;  * The root interface in the &lt;i&gt;collection hierarchy&lt;/i&gt;.  A collection</div><div class="line">&gt;  * represents a group of objects, known as its &lt;i&gt;elements&lt;/i&gt;.  Some</div><div class="line">&gt;  * collections allow duplicate elements and others do not.  Some are ordered</div><div class="line">&gt;  * and others unordered.  The JDK does not provide any &lt;i&gt;direct&lt;/i&gt;</div><div class="line">&gt;  * implementations of this interface: it provides implementations of more</div><div class="line">&gt;  * specific subinterfaces like &lt;tt&gt;Set&lt;/tt&gt; and &lt;tt&gt;List&lt;/tt&gt;.  This interface</div><div class="line">&gt;  * is typically used to pass collections around and manipulate them where</div><div class="line">&gt;  * maximum generality is desired.</div><div class="line">&gt;  */</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+<p>集合层次结构的根。一个集合<strong>包含一组元素对象</strong>。有一些集合允许重复元素，有一些不允许；有一些集合元素是有序的有一些不是。</p>
+<p>定义的方法：</p>
+<ul>
+<li>int size()</li>
+<li>boolean isEmpty()</li>
+<li>boolean contains(Object o)</li>
+<li>Iterator iterator()</li>
+<li>Object[] toArray()</li>
+<li>T[] toArray(T[] a)</li>
+<li>boolean add(E e)</li>
+<li>boolean remove(Object o)</li>
+<li>boolean containsAll(Collection c)</li>
+<li>boolean addAll(Collection c)</li>
+<li>boolean removeAll(Collection c)</li>
+<li>boolean retainAll(Collection c)</li>
+<li>void clear()</li>
+</ul>
+<h5 id="Iterator接口"><a href="#Iterator接口" class="headerlink" title="Iterator接口"></a>Iterator接口</h5><p>迭代器接口，用于遍历集合。</p>
+<ul>
+<li>boolean hasNext()</li>
+<li>E next()</li>
+<li>default void remove()</li>
+<li>default void forEachRemaining(Consumer action)</li>
+</ul>
+<h5 id="AbstractCollection抽象类"><a href="#AbstractCollection抽象类" class="headerlink" title="AbstractCollection抽象类"></a>AbstractCollection抽象类</h5><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">&gt; /**</div><div class="line">&gt;  * This class provides a skeletal implementation of the &lt;tt&gt;Collection&lt;/tt&gt;</div><div class="line">&gt;  * interface, to minimize the effort required to implement this interface. &lt;p&gt;</div><div class="line">&gt;  *</div><div class="line">&gt;  * To implement an unmodifiable collection, the programmer needs only to</div><div class="line">&gt;  * extend this class and provide implementations for the &lt;tt&gt;iterator&lt;/tt&gt; and</div><div class="line">&gt;  * &lt;tt&gt;size&lt;/tt&gt; methods.  (The iterator returned by the &lt;tt&gt;iterator&lt;/tt&gt;</div><div class="line">&gt;  * method must implement &lt;tt&gt;hasNext&lt;/tt&gt; and &lt;tt&gt;next&lt;/tt&gt;.)&lt;p&gt;</div><div class="line">&gt;  *</div><div class="line">&gt;  * To implement a modifiable collection, the programmer must additionally</div><div class="line">&gt;  * override this class&apos;s &lt;tt&gt;add&lt;/tt&gt; method (which otherwise throws an</div><div class="line">&gt;  * &lt;tt&gt;UnsupportedOperationException&lt;/tt&gt;), and the iterator returned by the</div><div class="line">&gt;  * &lt;tt&gt;iterator&lt;/tt&gt; method must additionally implement its &lt;tt&gt;remove&lt;/tt&gt;</div><div class="line">&gt;  * method.&lt;p&gt;</div><div class="line">&gt;  *</div><div class="line">&gt;  * The programmer should generally provide a void (no argument) and</div><div class="line">&gt;  * &lt;tt&gt;Collection&lt;/tt&gt; constructor, as per the recommendation in the</div><div class="line">&gt;  * &lt;tt&gt;Collection&lt;/tt&gt; interface specification.&lt;p&gt;</div><div class="line">&gt;  *</div><div class="line">&gt;  * The documentation for each non-abstract method in this class describes its</div><div class="line">&gt;  * implementation in detail.  Each of these methods may be overridden if</div><div class="line">&gt;  * the collection being implemented admits a more efficient implementation.&lt;p&gt;</div><div class="line">&gt;  */</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+<p><strong>这个类实现了Collection接口的骨架，用户继承这个类可以用最小化的时间来实现一个集合。</strong></p>
+<p>如果我们需要实现一个简单的集合，只需要重写iterator()、int size()和add(E o)方法。同时这个集合的特性取决于我们的实现方式。</p>
+<h5 id="List接口"><a href="#List接口" class="headerlink" title="List接口"></a>List接口</h5><p><strong>线性表(List):零个或多个数据元素的有限序列。</strong></p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&gt; /**</div><div class="line">&gt;  * An ordered collection (also known as a &lt;i&gt;sequence&lt;/i&gt;).  The user of this</div><div class="line">&gt;  * interface has precise control over where in the list each element is</div><div class="line">&gt;  * inserted.  The user can access elements by their integer index (position in</div><div class="line">&gt;  * the list), and search for elements in the list.&lt;p&gt;</div><div class="line">&gt;  */</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+<p><strong>一个有序的集合</strong>，用户可以通过这个接口精确的控制在哪里插入元素。用户可以通过元素的int下标来拿到元素和查找List中的元素。<strong>可以有重复元素。</strong></p>
+<p>List接口的扩展方法：</p>
+<ul>
+<li>add(int index, E element)</li>
+<li>addAll(int index, Collection c)</li>
+<li>E get(int index)</li>
+<li>int indexOf(Object o)</li>
+<li>int lastIndexOf(Object o)</li>
+<li>ListIterator listIterator()</li>
+<li>ListIterator listIterator(int index)</li>
+<li>E remove(int index)</li>
+<li>default void replaceAll(UnaryOperator operator)</li>
+<li>E set(int index, E element)</li>
+<li>default void sort(Comparator c)</li>
+</ul>
+<h5 id="ListIterator接口"><a href="#ListIterator接口" class="headerlink" title="ListIterator接口"></a>ListIterator接口</h5><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&gt; /**</div><div class="line">&gt;  * An iterator for lists that allows the programmer</div><div class="line">&gt;  * to traverse the list in either direction, modify</div><div class="line">&gt;  * the list during iteration, and obtain the iterator&apos;s</div><div class="line">&gt;  * current position in the list. A &#123;@code ListIterator&#125;</div><div class="line">&gt;  * has no current element; its &lt;I&gt;cursor position&lt;/I&gt; always</div><div class="line">&gt;  * lies between the element that would be returned by a call</div><div class="line">&gt;  * to &#123;@code previous()&#125; and the element that would be</div><div class="line">&gt;  * returned by a call to &#123;@code next()&#125;.</div><div class="line">&gt;  */</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+<p>一个<strong>为List设计</strong>的迭代器，允许用户从任意方向遍历List，在遍历的过程中修改List，并且获得迭代器的当前位置。</p>
+<p>ListIterator的扩展方法：</p>
+<ul>
+<li>boolean hasPrevious()</li>
+<li>E previous()</li>
+<li>int nextIndex()</li>
+<li>int previousIndex()</li>
+<li>void set(E e)</li>
+<li>void add(E e)</li>
+</ul>
+<h5 id="Set接口"><a href="#Set接口" class="headerlink" title="Set接口"></a>Set接口</h5><p><strong>集合(Set):是标记着具有某些相关联或相互依赖的一系列离散数据。</strong></p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&gt; /**</div><div class="line">&gt;  * A collection that contains no duplicate elements.  More formally, sets</div><div class="line">&gt;  * contain no pair of elements &lt;code&gt;e1&lt;/code&gt; and &lt;code&gt;e2&lt;/code&gt; such that</div><div class="line">&gt;  * &lt;code&gt;e1.equals(e2)&lt;/code&gt;, and at most one null element.  As implied by</div><div class="line">&gt;  * its name, this interface models the mathematical &lt;i&gt;set&lt;/i&gt; abstraction.</div><div class="line">&gt;  */</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+<p><strong>一个不包含重复元素的集合。</strong>所谓不重复是指不能有两个元素e1.equals(e2)，并且至多包含一个null元素。</p>
+<p>Set接口只包含继承自Collection的方法，并<strong>增加了重复的元素被禁止约束性</strong>。</p>
+<p>集<strong>还增加了对equals和hashCode操作的行为更强的契约</strong>，允许Set集合实例进行有意义的比较，即使他们的实现类型不同。</p>
+<h5 id="Queue"><a href="#Queue" class="headerlink" title="Queue"></a>Queue</h5><p><strong>队列(Queue):是只允许在一端进行插入操作，而在另一端进行删除操作的线性表。</strong></p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&gt; /**</div><div class="line">&gt;  * A collection designed for holding elements prior to processing.</div><div class="line">&gt;  * Besides basic &#123;@link java.util.Collection Collection&#125; operations,</div><div class="line">&gt;  * queues provide additional insertion, extraction, and inspection</div><div class="line">&gt;  * operations.  Each of these methods exists in two forms: one throws</div><div class="line">&gt;  * an exception if the operation fails, the other returns a special</div><div class="line">&gt;  * value (either &#123;@code null&#125; or &#123;@code false&#125;, depending on the</div><div class="line">&gt;  * operation).  The latter form of the insert operation is designed</div><div class="line">&gt;  * specifically for use with capacity-restricted &#123;@code Queue&#125;</div><div class="line">&gt;  * implementations; in most implementations, insert operations cannot</div><div class="line">&gt;  * fail.</div><div class="line">&gt;  */</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+<p><strong>队列的接口</strong>，提供了Collection之外的插入、提取和检索操作。这三种操作都有两种形式，一种失败之后会抛出异常，另一种会返回特定的值（null或者false）。</p>
+<p><img src="http://img.blog.csdn.net/20170112183735948?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2RrZmprc2Y=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<h4 id="Map部分"><a href="#Map部分" class="headerlink" title="Map部分"></a>Map部分</h4><p><strong>Map是一个映射接口</strong>，其中的每个元素都是一个<strong>key-value键值对</strong>。</p>
+<h5 id="Map接口"><a href="#Map接口" class="headerlink" title="Map接口"></a>Map接口</h5><p><strong>散列技术</strong>是在记录的<strong>存储位置</strong>和它的<strong>关键字</strong>之间建立一个确定的<strong>对应关系f</strong>，使得每个关键字key对应一个存储位置f(key)。</p>
+<p><strong>对应关系f称为散列函数，又称为哈希(Hash)函数。</strong></p>
+<p><strong>采用散列技术将记录存储在一块连续的存储空间中，这块连续的存储空间称为散列表或哈希表(Hash table)。</strong></p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&gt; /**</div><div class="line">&gt;  * An object that maps keys to values.  A map cannot contain duplicate keys;</div><div class="line">&gt;  * each key can map to at most one value.</div><div class="line">&gt;  */</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+<p><strong>一个匹配key和value的对象。</strong></p>
+<p>包含的主要方法：</p>
+<ul>
+<li>int size()</li>
+<li>boolean isEmpty()</li>
+<li>boolean containsKey(Object key)</li>
+<li>boolean containsValue(Object value)</li>
+<li>V get(Object key)</li>
+<li>V put(K key, V value)</li>
+<li>V remove(Object key)</li>
+<li>putAll(Map m)</li>
+<li>clear()</li>
+<li>Set keySet()</li>
+<li>Collection values()</li>
+<li>entrySet()</li>
+<li>boolean equals(Object o)</li>
+<li>int hashCode()</li>
+</ul>
+<p>Map接口中包含一个<strong>Entry接口</strong>，这是对Map一个条目的封装即一个键值对。可以通过它操作条目的键值。</p>
+<h5 id="AbstractMap"><a href="#AbstractMap" class="headerlink" title="AbstractMap"></a>AbstractMap</h5><p>实现Map接口的骨架，减小用户创建自定义Map的成本。</p>
+<p>如果你想创建一个自己的可以修改的Map，比如重写V put(K key, V value)和V remove(Object key)方法以及实现entrySet().iterator()。</p>
+<h5 id="SortedMap接口"><a href="#SortedMap接口" class="headerlink" title="SortedMap接口"></a>SortedMap接口</h5><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&gt; /**</div><div class="line">&gt;  * A &#123;@link Map&#125; that further provides a &lt;em&gt;total ordering&lt;/em&gt; on its keys.</div><div class="line">&gt;  * The map is ordered according to the &#123;@linkplain Comparable natural</div><div class="line">&gt;  * ordering&#125; of its keys, or by a &#123;@link Comparator&#125; typically</div><div class="line">&gt;  * provided at sorted map creation time.  This order is reflected when</div><div class="line">&gt;  * iterating over the sorted map&apos;s collection views (returned by the</div><div class="line">&gt;  * &#123;@code entrySet&#125;, &#123;@code keySet&#125; and &#123;@code values&#125; methods).</div><div class="line">&gt;  * Several additional operations are provided to take advantage of the</div><div class="line">&gt;  * ordering.  (This interface is the map analogue of &#123;@link SortedSet&#125;.)</div><div class="line">&gt;  */</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+<p>提供了进一步对Map的key进行排序的操作。</p>
+<p>扩展的方法：</p>
+<ul>
+<li>Comparator comparator()</li>
+<li>K firstKey()</li>
+<li>K lastKey()</li>
+<li>SortedMap headMap(K toKey)</li>
+<li>SortedMap subMap(K fromKey, K toKey)</li>
+<li>SortedMap tailMap(K fromKey)</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/wechatqcode.png" alt="任磊_Coder wechat" style="width: 200px; max-width: 100%;"/>
+    <div>关注博主是一种态度，评论博主是一种欣赏。</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat.png" alt="任磊_Coder WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.png" alt="任磊_Coder Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java集合框架源码/" rel="tag"># Java集合框架源码</a>
+          
+            <a href="/tags/数据结构和算法/" rel="tag"># 数据结构和算法</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/20/Gradle的卖家秀和买家秀/" rel="next" title="Gradle的卖家秀和买家秀">
+                <i class="fa fa-chevron-left"></i> Gradle的卖家秀和买家秀
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/12/15/网络框架分析-全是套路/" rel="prev" title="网络框架分析-全是套路">
+                网络框架分析-全是套路 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpeg"
+               alt="任磊_Coder" />
+          <p class="site-author-name" itemprop="name">任磊_Coder</p>
+           
+              <p class="site-description motion-element" itemprop="description">每个人都在成为大神的路上，只不过有的人在走，而有的人在跑。</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">38</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">80</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/PleaseCallMeCoder" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/2729748535/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1e" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/u/575326a8ce05" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://blog.csdn.net/sdkfjksf" target="_blank" title="CSDN">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  CSDN
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#我们的世界不应该只有“胡萝卜”"><span class="nav-number">1.</span> <span class="nav-text">我们的世界不应该只有“胡萝卜”</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据结构和算法与Java集合框架"><span class="nav-number">2.</span> <span class="nav-text">数据结构和算法与Java集合框架</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据结构和算法"><span class="nav-number">2.1.</span> <span class="nav-text">数据结构和算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java中集合框架的总体设计"><span class="nav-number">2.2.</span> <span class="nav-text">Java中集合框架的总体设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#小明的做法"><span class="nav-number">2.2.1.</span> <span class="nav-text">小明的做法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#我们的思路"><span class="nav-number">2.2.2.</span> <span class="nav-text">我们的思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#源码的实现思路"><span class="nav-number">2.2.3.</span> <span class="nav-text">源码的实现思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#源码的具体实现"><span class="nav-number">2.2.4.</span> <span class="nav-text">源码的具体实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Collection部分"><span class="nav-number">2.2.4.1.</span> <span class="nav-text">Collection部分</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Collection接口"><span class="nav-number">2.2.4.1.1.</span> <span class="nav-text">Collection接口</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Iterator接口"><span class="nav-number">2.2.4.1.2.</span> <span class="nav-text">Iterator接口</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#AbstractCollection抽象类"><span class="nav-number">2.2.4.1.3.</span> <span class="nav-text">AbstractCollection抽象类</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#List接口"><span class="nav-number">2.2.4.1.4.</span> <span class="nav-text">List接口</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#ListIterator接口"><span class="nav-number">2.2.4.1.5.</span> <span class="nav-text">ListIterator接口</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Set接口"><span class="nav-number">2.2.4.1.6.</span> <span class="nav-text">Set接口</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Queue"><span class="nav-number">2.2.4.1.7.</span> <span class="nav-text">Queue</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Map部分"><span class="nav-number">2.2.4.2.</span> <span class="nav-text">Map部分</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Map接口"><span class="nav-number">2.2.4.2.1.</span> <span class="nav-text">Map接口</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#AbstractMap"><span class="nav-number">2.2.4.2.2.</span> <span class="nav-text">AbstractMap</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#SortedMap接口"><span class="nav-number">2.2.4.2.3.</span> <span class="nav-text">SortedMap接口</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">任磊_Coder</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://renleicoder.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2017/01/12/Java集合框架中隐藏的设计套路/';
+          this.page.identifier = '2017/01/12/Java集合框架中隐藏的设计套路/';
+          this.page.title = 'Java集合框架中隐藏的设计套路';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://renleicoder.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.1"></script>
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("WRMNDFdhvgzhvChWrX6qyTJI-gzGzoHsz", "xM8HS64Yu434V4EvE8j9wLsf");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
