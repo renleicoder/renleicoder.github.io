@@ -100,7 +100,7 @@
 <meta property="og:site_name" content="KIKO_奶糖的博客">
 <meta property="og:description" content="使用surfaceview自定义相机，同时把自己踩过的坑分享给大家，希望大家有所收获。">
 <meta property="og:image" content="http://img.blog.csdn.net/20160412212407832">
-<meta property="og:updated_time" content="2017-04-22T08:18:28.000Z">
+<meta property="og:updated_time" content="2017-04-24T02:14:34.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Androd自定义控件（五）打造自己的Camera">
 <meta name="twitter:description" content="使用surfaceview自定义相机，同时把自己踩过的坑分享给大家，希望大家有所收获。">
@@ -442,19 +442,17 @@
       
         <p>使用surfaceview自定义相机，同时把自己踩过的坑分享给大家，希望大家有所收获。</p>
 <a id="more"></a>
-<p>#写在前面的话<br>前一阵子负责一个自定义相机进行拍照并在另一个页面进行人脸识别的模块，相机部分需求并不怎么复杂，可以切换前后摄像头，可以拍照并把照片返回上一个页面。由于没有怎么接触过自定义相机的部分，而网上的一些资料又不全，踩了不少坑。故在这里总结一下，希望对大家有所帮助，同时把自定义控件系列的最后一个坑填上（surfaceview）。效果图如下：</p>
+<h1 id="写在前面的话"><a href="#写在前面的话" class="headerlink" title="写在前面的话"></a>写在前面的话</h1><p>前一阵子负责一个自定义相机进行拍照并在另一个页面进行人脸识别的模块，相机部分需求并不怎么复杂，可以切换前后摄像头，可以拍照并把照片返回上一个页面。由于没有怎么接触过自定义相机的部分，而网上的一些资料又不全，踩了不少坑。故在这里总结一下，希望对大家有所帮助，同时把自定义控件系列的最后一个坑填上（surfaceview）。效果图如下：</p>
 <p><img src="http://img.blog.csdn.net/20160412212407832" alt="这里写图片描述"></p>
-<p>#Android中开发相机的两种方式</p>
-<p>Android系统提供了两种使用手机相机资源实现拍摄功能的方法，<strong>一种是直接通过Intent调用系统相机组件</strong>，这种方法快速方便，适用于直接获得照片的场景，如上传相册，微博、朋友圈发照片等。<strong>另一种是使用相机API来定制自定义相机</strong>，这种方法适用于需要定制相机界面或者开发特殊相机功能的场景，如需要对照片做裁剪、滤镜处理，添加贴纸，表情，地点标签等。</p>
-<p>##调用系统自带相机<br>关于系统自带相机的调用非常简单，这里我就不过多叙述了，具体可以参考谷歌的<a href="http://developer.android.com/training/camera/photobasics.html" target="_blank" rel="external">Training</a>。我只说容易被大家忽视的几个点：</p>
+<h1 id="Android中开发相机的两种方式"><a href="#Android中开发相机的两种方式" class="headerlink" title="Android中开发相机的两种方式"></a>Android中开发相机的两种方式</h1><p>Android系统提供了两种使用手机相机资源实现拍摄功能的方法，<strong>一种是直接通过Intent调用系统相机组件</strong>，这种方法快速方便，适用于直接获得照片的场景，如上传相册，微博、朋友圈发照片等。<strong>另一种是使用相机API来定制自定义相机</strong>，这种方法适用于需要定制相机界面或者开发特殊相机功能的场景，如需要对照片做裁剪、滤镜处理，添加贴纸，表情，地点标签等。</p>
+<h2 id="调用系统自带相机"><a href="#调用系统自带相机" class="headerlink" title="调用系统自带相机"></a>调用系统自带相机</h2><p>关于系统自带相机的调用非常简单，这里我就不过多叙述了，具体可以参考谷歌的<a href="http://developer.android.com/training/camera/photobasics.html" target="_blank" rel="external">Training</a>。我只说容易被大家忽视的几个点：</p>
 <ul>
 <li><p>如果我们的应用使用相机，但相机并不是应用的正常运行所必不可少的组件，可以将权限声明中的android:required设置为”false”。这样的话，Google Play 也会允许没有相机的设备下载该应用。当然我们有必要在使用相机之前通过调用hasSystemFeature(PackageManager.FEATURE_CAMERA)方法来检查设备上是否有相机。如果没有，我们应该禁用和相机相关的功能！</p>
 </li>
 <li><p>在调用startActivityForResult()方法之前，先调用resolveActivity()，这个方法会返回能处理该Intent的第一个Activity（译注：即检查有没有能处理这个Intent的Activity）。执行这个检查非常重要，因为如果在调用startActivityForResult()时，没有应用能处理你的Intent，应用将会崩溃。所以只要返回结果不为null，使用该Intent就是安全的。</p>
 </li>
 </ul>
-<p>##使用Android框架所提供的API来直接控制相机硬件</p>
-<p>使用API来控制相机我们需要用到关键类和接口：</p>
+<h2 id="使用Android框架所提供的API来直接控制相机硬件"><a href="#使用Android框架所提供的API来直接控制相机硬件" class="headerlink" title="使用Android框架所提供的API来直接控制相机硬件"></a>使用Android框架所提供的API来直接控制相机硬件</h2><p>使用API来控制相机我们需要用到关键类和接口：</p>
 <ul>
 <li>使用Camera对象来控制相机</li>
 <li>使用SurfaceView来展现照相机采集的图像</li>
@@ -462,8 +460,7 @@
 <li>通过SurfaceHolder.Callback 接口，监听surface状态变化</li>
 </ul>
 <p>接下来我们分为以下三部分来介绍：关键类以及接口的作用和方法，Camera控制拍照步骤，自定义相机容易踩到的坑以及解决办法。</p>
-<p>###<strong>API说明</strong></p>
-<p>Camera ：最主要的类，用于管理和操作camera资源。它提供了完整的相机底层接口，支持相机资源切换，设置预览/拍摄尺寸，设定光圈、曝光、聚焦等相关参数，获取预览/拍摄帧数据等功能，主要方法有以下这些：</p>
+<h3 id="API说明"><a href="#API说明" class="headerlink" title="API说明"></a><strong>API说明</strong></h3><p>Camera ：最主要的类，用于管理和操作camera资源。它提供了完整的相机底层接口，支持相机资源切换，设置预览/拍摄尺寸，设定光圈、曝光、聚焦等相关参数，获取预览/拍摄帧数据等功能，主要方法有以下这些：</p>
 <ul>
 <li>open()：获取camera实例。</li>
 <li>setPreviewDisplay(SurfaceHolder)：绑定绘制预览图像的surface。surface是指向屏幕窗口原始图像缓冲区（raw buffer）的一个句柄，通过它可以获得这块屏幕上对应的canvas，进而完成在屏幕上绘制View的工作。通过surfaceHolder可以将Camera和surface连接起来，当camera和surface连接后，camera获得的预览帧数据就可以通过surface显示在屏幕上了。</li>
@@ -481,8 +478,7 @@
 <li>surfaceChanged(SurfaceHolder holder, int format, int width, int height):在surface发生format或size变化时调用。在开发自定义相机时，可以通过重载这个函数调用camera.startPreview来开启相机预览，使得camera预览帧数据可以传递给surface，从而实时显示相机预览图像。</li>
 <li>surfaceDestroyed(SurfaceHolder holder)：在surface销毁之前被调用。在开发自定义相机时，可以通过重载这个函数调用camera.stopPreview()，camera.release()来实现停止相机预览及释放相机资源等操作。</li>
 </ul>
-<p>###<strong>Camera控制拍照的过程</strong></p>
-<ol>
+<h3 id="Camera控制拍照的过程"><a href="#Camera控制拍照的过程" class="headerlink" title="Camera控制拍照的过程"></a><strong>Camera控制拍照的过程</strong></h3><ol>
 <li>调用Camera的open()方法打开相机。</li>
 <li>调用Camera的getParameters（）获取拍照参数，该方法返回一个Cmera.Parameters对象。</li>
 <li>调用Camera.Parameters对象对照相的参数进行设置。</li>
@@ -492,13 +488,10 @@
 <li>程序结束时，要调用Camera的stopPreview()方法停止预览，并且通过Camera.release()来释放资源。</li>
 </ol>
 <p>具体实现代码戳后面链接</p>
-<p>###<strong>踩坑与填坑</strong></p>
-<p>####<strong>预览方向</strong></p>
-<p>先看下官方文档的说明</p>
+<h3 id="踩坑与填坑"><a href="#踩坑与填坑" class="headerlink" title="踩坑与填坑"></a><strong>踩坑与填坑</strong></h3><h4 id="预览方向"><a href="#预览方向" class="headerlink" title="预览方向"></a><strong>预览方向</strong></h4><p>先看下官方文档的说明</p>
 <p>Most camera applications lock the display into landscape mode because that is the natural orientation of the camera sensor. This setting does not prevent you from taking portrait-mode photos, because the orientation of the device is recorded in the EXIF header. The setCameraDisplayOrientation() method lets you change how the preview is displayed without affecting how the image is recorded. However, in Android prior to API level 14, you must stop your preview before changing the orientation and then restart it.</p>
 <p>大多数相机程序会锁定预览为横屏状态，因为该方向是相机传感器的自然方向。当然这一设定并不会阻止我们去拍竖屏的照片，因为设备的方向信息会被记录在EXIF头中。setCameraDisplayOrientation()方法可以让你在不影响照片拍摄过程的情况下，改变预览的方向。然而，对于Android API Level 14及以下版本的系统，在改变方向之前，我们必须先停止预览，然后再去重启它。</p>
-<p>####<strong>SurfaceView预览图像拉伸变形，拍摄照片尺寸不对</strong></p>
-<p>说明这个问题之前，同样先说一下几个跟相机有关的尺寸。</p>
+<h4 id="SurfaceView预览图像拉伸变形，拍摄照片尺寸不对"><a href="#SurfaceView预览图像拉伸变形，拍摄照片尺寸不对" class="headerlink" title="SurfaceView预览图像拉伸变形，拍摄照片尺寸不对"></a><strong>SurfaceView预览图像拉伸变形，拍摄照片尺寸不对</strong></h4><p>说明这个问题之前，同样先说一下几个跟相机有关的尺寸。</p>
 <ul>
 <li><p>SurfaceView尺寸 ：即自定义相机应用中用于显示相机预览图像的View的尺寸，当它铺满全屏时就是屏幕的大小。这里surfaceview显示的预览图像暂且称作手机预览图像。</p>
 </li>
@@ -508,8 +501,7 @@
 </li>
 </ul>
 <p>原因是没有正确设置比例 parameter.setPictureSize(width,height)，这个比例不是你决定的，要先通过camera.getParameters().getSupportedPictureSizes()获得手机支持的尺寸。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line">     * 设置照片格式</div><div class="line">     */</div><div class="line">    private void setParameter() &#123;</div><div class="line">        Camera.Parameters parameters = camera.getParameters(); // 获取各项参数</div><div class="line">        parameters.setPictureFormat(PixelFormat.JPEG); // 设置图片格式</div><div class="line">        parameters.setJpegQuality(100); // 设置照片质量</div><div class="line">        //获得相机支持的照片尺寸,选择合适的尺寸</div><div class="line">        List&lt;Camera.Size&gt; sizes = parameters.getSupportedPictureSizes();</div><div class="line">        int maxSize = Math.max(display.getWidth(), display.getHeight());</div><div class="line">        int length = sizes.size();</div><div class="line">        if (maxSize &gt; 0) &#123;</div><div class="line">            for (int i = 0; i &lt; length; i++) &#123;</div><div class="line">                if (maxSize &lt;= Math.max(sizes.get(i).width, sizes.get(i).height)) &#123;</div><div class="line">                    parameters.setPictureSize(sizes.get(i).width, sizes.get(i).height);</div><div class="line">                    break;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        List&lt;Camera.Size&gt; ShowSizes = parameters.getSupportedPreviewSizes();</div><div class="line">        int showLength = ShowSizes.size();</div><div class="line">        if (maxSize &gt; 0) &#123;</div><div class="line">            for (int i = 0; i &lt; showLength; i++) &#123;</div><div class="line">                if (maxSize &lt;= Math.max(ShowSizes.get(i).width, ShowSizes.get(i).height)) &#123;</div><div class="line">                    parameters.setPreviewSize(ShowSizes.get(i).width, ShowSizes.get(i).height);</div><div class="line">                    break;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        camera.setParameters(parameters);</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
-<p>####<strong>前置摄像头的镜像效果</strong></p>
-<ul>
+<h4 id="前置摄像头的镜像效果"><a href="#前置摄像头的镜像效果" class="headerlink" title="前置摄像头的镜像效果"></a><strong>前置摄像头的镜像效果</strong></h4><ul>
 <li>Android 相机硬件有个特殊设定，就是对于前置摄像头，在展示预览视图时采用类似镜面的效果，显示的是摄像头成像的镜像。而拍摄出的照片则仍采用摄像头成像。看到这里，大家可能会有些怀疑，不妨现在就试试自己 Android 手机上的前置摄像头，对比下预览图像和拍摄出照片的区别。这是由于底层相机在传递前置摄像头预览数据时做了水平翻转变换，即将x方向镜像翻转180度。这个变化对之前竖屏预览的方向也会造成影响，本来对于后置摄像头旋转90度即可使预览视图正确，而对前置摄像头，如果也旋转90度的话，看到的预览图像则是上下颠倒的（因为x方向翻转了180度），因此必须再旋转180度，才能显示正确。<br>解决方案，在保存图片的时候根据选择的摄像头做对应的翻转。</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">//将照片改为竖直方向</div><div class="line">                    Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);</div><div class="line">                    Matrix matrix = new Matrix();</div><div class="line">                    switch (cameraPosition) &#123;</div><div class="line">                        case 0://前</div><div class="line">                            matrix.preRotate(270);</div><div class="line">                            break;</div><div class="line">                        case 1:</div><div class="line">                            matrix.preRotate(90);</div><div class="line">                            break;</div><div class="line">                    &#125;</div><div class="line">                    bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);</div></pre></td></tr></table></figure>
@@ -657,8 +649,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpeg"
@@ -765,6 +766,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#写在前面的话"><span class="nav-number">1.</span> <span class="nav-text">写在前面的话</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Android中开发相机的两种方式"><span class="nav-number">2.</span> <span class="nav-text">Android中开发相机的两种方式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#调用系统自带相机"><span class="nav-number">2.1.</span> <span class="nav-text">调用系统自带相机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用Android框架所提供的API来直接控制相机硬件"><span class="nav-number">2.2.</span> <span class="nav-text">使用Android框架所提供的API来直接控制相机硬件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#API说明"><span class="nav-number">2.2.1.</span> <span class="nav-text">API说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Camera控制拍照的过程"><span class="nav-number">2.2.2.</span> <span class="nav-text">Camera控制拍照的过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#踩坑与填坑"><span class="nav-number">2.2.3.</span> <span class="nav-text">踩坑与填坑</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#预览方向"><span class="nav-number">2.2.3.1.</span> <span class="nav-text">预览方向</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SurfaceView预览图像拉伸变形，拍摄照片尺寸不对"><span class="nav-number">2.2.3.2.</span> <span class="nav-text">SurfaceView预览图像拉伸变形，拍摄照片尺寸不对</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#前置摄像头的镜像效果"><span class="nav-number">2.2.3.3.</span> <span class="nav-text">前置摄像头的镜像效果</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
