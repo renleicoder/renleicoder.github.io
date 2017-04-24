@@ -101,7 +101,7 @@
 <meta property="og:description" content="提高App的可维护性和可扩展性。">
 <meta property="og:image" content="http://img.blog.csdn.net/20160411160341894">
 <meta property="og:image" content="http://img.blog.csdn.net/20160411161338329">
-<meta property="og:updated_time" content="2017-04-22T08:17:55.000Z">
+<meta property="og:updated_time" content="2017-04-24T01:05:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="这些Tips让你的App更容易维护">
 <meta name="twitter:description" content="提高App的可维护性和可扩展性。">
@@ -443,38 +443,36 @@
       
         <p>提高App的可维护性和可扩展性。</p>
 <a id="more"></a>
-<p>##前言<br>在开始正文之前容我先描述几个场景，可能你也遇到过或者将要遇到，也可能你已经完美的解决了这些问题。现在我把它们拿出来跟大家讨论。</p>
-<p>###场景一<br>同事A离职，他负责的是报表模块，同事B是一个刚毕业的大学生。某天产品经理说报表模块需要改动，交给B来负责。同事A走的时候没有交接，没写文档，需要B从头理清然后修改。然后B在看的过程中发现，A的代码命名既有拼音又有英文，还有一些毫无关联的命名。如下：</p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在开始正文之前容我先描述几个场景，可能你也遇到过或者将要遇到，也可能你已经完美的解决了这些问题。现在我把它们拿出来跟大家讨论。</p>
+<h3 id="场景一"><a href="#场景一" class="headerlink" title="场景一"></a>场景一</h3><p>同事A离职，他负责的是报表模块，同事B是一个刚毕业的大学生。某天产品经理说报表模块需要改动，交给B来负责。同事A走的时候没有交接，没写文档，需要B从头理清然后修改。然后B在看的过程中发现，A的代码命名既有拼音又有英文，还有一些毫无关联的命名。如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var ischange  =&apos;false&apos;;  //查询条件是否改变</div><div class="line">var ssssss=[];           //保存上一次结果的笛卡尔积</div><div class="line">var mapaddWei = new Array();//保存小分类的值</div></pre></td></tr></table></figure>
 <p>并且A的一个方法包含100行到1000多行代码不等。致使B花了大概一周多的时间才把A的代码完全看懂。</p>
-<p>###场景二<br>A所在公司的App1.0版本已经上线。连续进行了4次小更新后的某天，产品经理又要求A去修改主页面，包括UI和部分逻辑的变动。改完之后又过了不久，产品经理提出要增加一个商城模块。这时候A发现，项目越来越臃肿，代码越改越乱，越改越烂，甚至自己写的类都忘记了放在哪个包下。</p>
+<h3 id="场景二"><a href="#场景二" class="headerlink" title="场景二"></a>场景二</h3><p>A所在公司的App1.0版本已经上线。连续进行了4次小更新后的某天，产品经理又要求A去修改主页面，包括UI和部分逻辑的变动。改完之后又过了不久，产品经理提出要增加一个商城模块。这时候A发现，项目越来越臃肿，代码越改越乱，越改越烂，甚至自己写的类都忘记了放在哪个包下。</p>
 <p>之后用户反馈说Android5.0系统注册闪退。A和同事通过查找发现问题出在网络框架上，他们所用的网络框架不支持5.0及以上系统。但是由于在最开始设计这款App的时候没有再网络框架的上层封装一层自己的接口，导致所有用到网络请求的地方都需要修改。</p>
 <hr>
 <p>通过这两个场景我们可以发现，一个App的可维护性和可扩展性在开发中是尤为重要的，本文所讲述的这些Tips概括的说明了如何去构建一个可维护可扩展的App。</p>
-<p>##包结构<br>对于包结构来说，个人觉得简单明了就好，保证让人一目了然，方便查找。大概有两种分法：按主题分和按功能分。</p>
+<h2 id="包结构"><a href="#包结构" class="headerlink" title="包结构"></a>包结构</h2><p>对于包结构来说，个人觉得简单明了就好，保证让人一目了然，方便查找。大概有两种分法：按主题分和按功能分。</p>
 <p>按主题分，如下图所示</p>
 <p><img src="http://img.blog.csdn.net/20160411160341894" alt="这里写图片描述"></p>
 <p>按模块分，如下图</p>
 <p><img src="http://img.blog.csdn.net/20160411161338329" alt="这里写图片描述"></p>
 <p>相比较来说，第二种的优势在于如果我们要增加模块的话，我们只需新增一个包，其他包的内容基本不需要动。而且当我们修改固定模块的时候也更方便查找我们要修改的内容。</p>
-<p>##代码风格<br>代码风格对代码的可读性影响很多，基本上java入门篇必谈。一段很难看懂的代码维护起来无疑成本会变高很多。</p>
-<p>###命名规范<br>Android中的变量和方法的命名要能正确的体现出他们的含义，符合驼峰命名法，尽量不要用缩写。还有一些习惯性的写法如常量写成public static final 然后名字全用大写等等。</p>
-<p>###排版<br>同类变量放在一组声明，不同组之间用空白行隔开。不同代码块之间尽量也要留一个空白行。</p>
-<p>###注释<br>为关键代码添加注释。如果你的代码命名合理的话，那么大部分代码还是不用添加注释的。</p>
-<p>##代码层次和单一职责原则<br>不要试图让一个司机去做厨子的事。</p>
+<h2 id="代码风格"><a href="#代码风格" class="headerlink" title="代码风格"></a>代码风格</h2><p>代码风格对代码的可读性影响很多，基本上java入门篇必谈。一段很难看懂的代码维护起来无疑成本会变高很多。</p>
+<h3 id="命名规范"><a href="#命名规范" class="headerlink" title="命名规范"></a>命名规范</h3><p>Android中的变量和方法的命名要能正确的体现出他们的含义，符合驼峰命名法，尽量不要用缩写。还有一些习惯性的写法如常量写成public static final 然后名字全用大写等等。</p>
+<h3 id="排版"><a href="#排版" class="headerlink" title="排版"></a>排版</h3><p>同类变量放在一组声明，不同组之间用空白行隔开。不同代码块之间尽量也要留一个空白行。</p>
+<h3 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h3><p>为关键代码添加注释。如果你的代码命名合理的话，那么大部分代码还是不用添加注释的。</p>
+<h2 id="代码层次和单一职责原则"><a href="#代码层次和单一职责原则" class="headerlink" title="代码层次和单一职责原则"></a>代码层次和单一职责原则</h2><p>不要试图让一个司机去做厨子的事。</p>
 <p>把一段业务逻辑细分为几个子逻辑，每个子逻辑只关注自己的工作，让职责变的单一。</p>
 <p>举个栗子。皇帝说“朕今天中午想吃满汉全席”。这时候太监就会去通知御膳房。御膳房总管会分配采购人员去准备材料，然后吩咐御厨去给皇上做满汉全席。这样整个业务逻辑就比较清晰了，同时太监做了太监的事，御厨做了御厨的事，各司其职。</p>
-<p>##面向接口编程<br>在一个面向对象的系统中，系统的各种功能是由许许多多的不同对象协作完成的。在这种情况下，各个对象内部是如何实现自己的,对系统设计人员来讲就不那么重要了；而各个对象之间的协作关系则成为系统设计的关键。小到不同类之间的通信，大到各模块之间的交互，在系统设计之初都是要着重考虑的，这也是系统设计的主要工作内容。面向接口编程就是指按照这种思想来编程。</p>
+<h2 id="面向接口编程"><a href="#面向接口编程" class="headerlink" title="面向接口编程"></a>面向接口编程</h2><p>在一个面向对象的系统中，系统的各种功能是由许许多多的不同对象协作完成的。在这种情况下，各个对象内部是如何实现自己的,对系统设计人员来讲就不那么重要了；而各个对象之间的协作关系则成为系统设计的关键。小到不同类之间的通信，大到各模块之间的交互，在系统设计之初都是要着重考虑的，这也是系统设计的主要工作内容。面向接口编程就是指按照这种思想来编程。</p>
 <p>拿第二个场景来说，我们自己封装一个网络操作接口，这个接口规定了他的实现类可以实现post请求。然后我们去调用接口的post方法。这样无论我们用xutils还是volley或者okhttp去实现post方法，修改起来对替他部分都不会有影响。</p>
-<p>##面向扩展编程</p>
-<p>其实这个点能不能把握好，更多的是看个人经验。如果考虑到某个模块的逻辑到后面会做一些改动，那我们在最开始设计的时候就可以为这个模块留出来更改的余地，这样就能更好的去扩展我们的应用，同时减少因为扩展带来的工作量。</p>
-<p>##设计模式</p>
-<p>设计模式包含两部分，一部分是App的设计模式，另一部分是App内模块的设计模式。良好并且适度的设计模式会给我们App的扩展和维护节约很大成本。</p>
-<p>###App的设计模式<br>Android中App的设计模式包括早期的MVC模式和最近比较流行的MVP和MVVM模式。</p>
+<h2 id="面向扩展编程"><a href="#面向扩展编程" class="headerlink" title="面向扩展编程"></a>面向扩展编程</h2><p>其实这个点能不能把握好，更多的是看个人经验。如果考虑到某个模块的逻辑到后面会做一些改动，那我们在最开始设计的时候就可以为这个模块留出来更改的余地，这样就能更好的去扩展我们的应用，同时减少因为扩展带来的工作量。</p>
+<h2 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h2><p>设计模式包含两部分，一部分是App的设计模式，另一部分是App内模块的设计模式。良好并且适度的设计模式会给我们App的扩展和维护节约很大成本。</p>
+<h3 id="App的设计模式"><a href="#App的设计模式" class="headerlink" title="App的设计模式"></a>App的设计模式</h3><p>Android中App的设计模式包括早期的MVC模式和最近比较流行的MVP和MVVM模式。</p>
 <p>MVC模式大家肯定已经很熟悉了，这里就不多说了。对于MVP模式，我和同事在上一个版本的App中做了一些尝试。</p>
 <p>MVP无疑是有好多有点的：1、Model与View完全分离，它们通过接口进行交互，便于维护和测试。2、可以更高效地使用Model，因为所有对Model的操作都在Presenter内部。3、我们可以将一个Presener用于多个视图，只需要在Presenter中为不同的View定义View Interface即可，具体的View实现自己的View Interface，即可使用Presenter中的Model操作等。</p>
 <p>但是它会带来额外的代码复杂度及学习成本。对于一个小的开发团队来说，可能效果并不会像想象中的那么明显。</p>
-<p>###App内模块的设计模式<br>常见的设计模式有很多，比如工厂模式，单利模式，适配器模式，观察者模式等等，由于本篇博客只是系统的讨论，就不对细节做过多说明了，大家可以研究一下《大话设计模式》和《HeadFrist设计模式》等等。</p>
+<h3 id="App内模块的设计模式"><a href="#App内模块的设计模式" class="headerlink" title="App内模块的设计模式"></a>App内模块的设计模式</h3><p>常见的设计模式有很多，比如工厂模式，单利模式，适配器模式，观察者模式等等，由于本篇博客只是系统的讨论，就不对细节做过多说明了，大家可以研究一下《大话设计模式》和《HeadFrist设计模式》等等。</p>
 <hr>
 <p><strong>写本篇博客权当抛砖引玉了，感兴趣的朋友大家可以一起讨论。</strong></p>
 
@@ -617,8 +615,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpeg"
@@ -725,6 +732,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#场景一"><span class="nav-number">1.1.</span> <span class="nav-text">场景一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#场景二"><span class="nav-number">1.2.</span> <span class="nav-text">场景二</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#包结构"><span class="nav-number">2.</span> <span class="nav-text">包结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码风格"><span class="nav-number">3.</span> <span class="nav-text">代码风格</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#命名规范"><span class="nav-number">3.1.</span> <span class="nav-text">命名规范</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#排版"><span class="nav-number">3.2.</span> <span class="nav-text">排版</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注释"><span class="nav-number">3.3.</span> <span class="nav-text">注释</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码层次和单一职责原则"><span class="nav-number">4.</span> <span class="nav-text">代码层次和单一职责原则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面向接口编程"><span class="nav-number">5.</span> <span class="nav-text">面向接口编程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面向扩展编程"><span class="nav-number">6.</span> <span class="nav-text">面向扩展编程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设计模式"><span class="nav-number">7.</span> <span class="nav-text">设计模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#App的设计模式"><span class="nav-number">7.1.</span> <span class="nav-text">App的设计模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#App内模块的设计模式"><span class="nav-number">7.2.</span> <span class="nav-text">App内模块的设计模式</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

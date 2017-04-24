@@ -107,8 +107,7 @@
 <meta property="og:image" content="http://i.imgur.com/VJ0oCyl.png">
 <meta property="og:image" content="http://i.imgur.com/MoYmQXp.png">
 <meta property="og:image" content="http://i.imgur.com/0jJRZy2.png">
-<meta property="og:image" content="http://img.blog.csdn.net/20160422143030784">
-<meta property="og:updated_time" content="2017-04-22T08:18:05.000Z">
+<meta property="og:updated_time" content="2017-04-24T01:07:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Andorid自定义圆形渐变色进度条的从实现到开源">
 <meta name="twitter:description" content="Andorid自定义圆形渐变色进度条的从实现到开源的全过程。">
@@ -452,11 +451,9 @@
 <a id="more"></a>
 <p><img src="http://i.imgur.com/5tRNY53.jpg" alt=""></p>
 <p><strong>信自己也是一种信仰</strong>。</p>
-<p>#写在前面的话</p>
-<p>3月初我在自定义控件概述中挖下的几个坑，前一段时间已经基本填完了，自定义控件的几种实现方式也分别写了demo来进行说明。今天我们来聊一聊如何把<strong>自己封装一个圆形渐变色进度条控件开源到github，并且上传到jcenter方便别人远程依赖</strong>。先看下效果图：</p>
+<h1 id="写在前面的话"><a href="#写在前面的话" class="headerlink" title="写在前面的话"></a>写在前面的话</h1><p>3月初我在自定义控件概述中挖下的几个坑，前一段时间已经基本填完了，自定义控件的几种实现方式也分别写了demo来进行说明。今天我们来聊一聊如何把<strong>自己封装一个圆形渐变色进度条控件开源到github，并且上传到jcenter方便别人远程依赖</strong>。先看下效果图：</p>
 <p><img src="http://i.imgur.com/N0ckzIs.png" alt=""></p>
-<p>#连接github并提交新项目</p>
-<p>前提条件：</p>
+<h1 id="连接github并提交新项目"><a href="#连接github并提交新项目" class="headerlink" title="连接github并提交新项目"></a>连接github并提交新项目</h1><p>前提条件：</p>
 <ol>
 <li>安装Git客户端（<a href="https://git-scm.com/downloads/" target="_blank" rel="external">下载地址</a>）</li>
 <li>有<a href="https://github.com" target="_blank" rel="external">GitHub</a>账号 </li>
@@ -469,14 +466,13 @@
 <li>分享项目:VCS -&gt; Import into Version Control -&gt; Share Project on GitHub, 点击之后开始设置 repository name(如果你有设置过MasterPassword 会弹出对话框让填入密码)<br><img src="http://i.imgur.com/kg5inwD.png" alt=""><br>点击Share之后, 你就可以在GitHub上看到新的仓库，同时在AndroidStudio中CVS下也可以看到版本控制Git，这样就已经设置成功。</li>
 <li>如果你想解除关联,只需要Settrings -&gt; Version Control删掉关联就可以了。</li>
 </ol>
-<p>#完成circlebar代码<br>接下来我们来实现我们的圆形渐变色进度条，需要的技能：</p>
+<h1 id="完成circlebar代码"><a href="#完成circlebar代码" class="headerlink" title="完成circlebar代码"></a>完成circlebar代码</h1><p>接下来我们来实现我们的圆形渐变色进度条，需要的技能：</p>
 <ul>
 <li>Canvas绘图基础</li>
 <li>Shader绘制渐变色</li>
 <li>绘制进度条的原理</li>
 </ul>
-<p>##Canvas绘图基础</p>
-<p>关于Canvas绘图，网上的教程很多，这里大概的说一下都有哪些点需要了解：</p>
+<h2 id="Canvas绘图基础"><a href="#Canvas绘图基础" class="headerlink" title="Canvas绘图基础"></a>Canvas绘图基础</h2><p>关于Canvas绘图，网上的教程很多，这里大概的说一下都有哪些点需要了解：</p>
 <ul>
 <li>Canvas坐标系与绘图坐标系。</li>
 <li>drawARGB：Canvas中的drawARGB可以用来对整个Canvas以某种统一的颜色整体绘制，四个参数分别是Alpha、Red、Green、Blue，取值都是0-255。</li>
@@ -490,17 +486,13 @@
 <li>drawPath：Canvas通过drawPath方法可以绘制Path。那Path是什么呢？Path致以过来是路径的意思，在Android中，Path是一种线条的组合图形，其可以由直线、二次曲线、三次曲线、椭圆的弧等组成。Path既可以画线条，也可以画填充面。</li>
 <li>drawBitmap：Canvas中提供了drawBitmap方法用于绘制Bitmap。</li>
 </ul>
-<p>##Paint和Shader</p>
-<p>###Paint</p>
-<ul>
+<h2 id="Paint和Shader"><a href="#Paint和Shader" class="headerlink" title="Paint和Shader"></a>Paint和Shader</h2><h3 id="Paint"><a href="#Paint" class="headerlink" title="Paint"></a>Paint</h3><ul>
 <li>画笔Paint控制着所绘制的图形的具体外观，Paint默认的字体大小为12px，在绘制文本时我们往往要考虑密度density设置合适的字体大小。画笔的默认颜色为黑色，默认的style为FILL，默认的cap为BUTT，默认的线宽为0.</li>
 <li>在画面状的图形时，如果Paint的style是FILL，那么绘制的就是填充面；如果是STROKE，那么绘制的就是轮廓线。</li>
 </ul>
-<p>###Shader</p>
-<p>androd 提供了Shader类专门用来渲染图像以及一些几何图形。Shader下面包括几个直接子类，分别是BitmapShader、 ComposeShader、LinearGradient、RadialGradient、SweepGradient。BitmapShader主要用来渲染图像，LinearGradient 用来进行梯度渲染，RadialGradient 用来进行环形渲染，SweepGradient 用来进行梯度渲染，ComposeShader则是一个 混合渲染，可以和其它几个子类组合起来使用。</p>
+<h3 id="Shader"><a href="#Shader" class="headerlink" title="Shader"></a>Shader</h3><p>androd 提供了Shader类专门用来渲染图像以及一些几何图形。Shader下面包括几个直接子类，分别是BitmapShader、 ComposeShader、LinearGradient、RadialGradient、SweepGradient。BitmapShader主要用来渲染图像，LinearGradient 用来进行梯度渲染，RadialGradient 用来进行环形渲染，SweepGradient 用来进行梯度渲染，ComposeShader则是一个 混合渲染，可以和其它几个子类组合起来使用。</p>
 <p>Shader类的使用，都需要先构建Shader对象，然后通过Paint的setShader方法设置渲染对象，然后设置渲染对象，然后再绘制时使用这个Paint对象即可。</p>
-<p>##绘制进度条</p>
-<p>talk is cheap，show you my code。下面说一下绘制圆形渐变进度条的过程。</p>
+<h2 id="绘制进度条"><a href="#绘制进度条" class="headerlink" title="绘制进度条"></a>绘制进度条</h2><p>talk is cheap，show you my code。下面说一下绘制圆形渐变进度条的过程。</p>
 <p>首先先跟大家说下原理，我们的主要绘制过程其实非常简单，<strong>调用drawArc方法绘制圆弧</strong>。</p>
 <p>先来说下drawArc方法。</p>
 <pre><code>/**
@@ -634,8 +626,7 @@ public class BarAnimation extends Animation {
     }
 }
 </code></pre><p>好了，到这里我们的自定义圆形渐变色进度条就完全搞定了。</p>
-<p>#上传到jcenter</p>
-<p>上传到jcenter，我用的是bintray-release这个插件。这里可以参考这篇：<a href="http://blog.csdn.net/lmj623565791/article/details/51148825" target="_blank" rel="external">http://blog.csdn.net/lmj623565791/article/details/51148825</a></p>
+<h1 id="上传到jcenter"><a href="#上传到jcenter" class="headerlink" title="上传到jcenter"></a>上传到jcenter</h1><p>上传到jcenter，我用的是bintray-release这个插件。这里可以参考这篇：<a href="http://blog.csdn.net/lmj623565791/article/details/51148825" target="_blank" rel="external">http://blog.csdn.net/lmj623565791/article/details/51148825</a></p>
 <p>步骤如下：</p>
 <ol>
 <li>注册bintray.com账号，<a href="https://bintray.com/" target="_blank" rel="external">注册地址</a></li>
@@ -644,11 +635,7 @@ public class BarAnimation extends Animation {
 <li>Add to Jcenter提交审核</li>
 </ol>
 <p><strong>需要注意的是，这里我遇到了一个问题，在这里跟大家分享一下，即当我上传的moudle中带有中文注释，编码为utf-8的时候，上传会抛出异常，然后上传失败。从网上也没有找到太好的解决办法，最后我把中文中是全部删掉才上传成功。如果你有好的解决办法，请告诉我0.0</strong></p>
-<p>#结语</p>
-<p>代码我已经上传到了github，github中有说明文档，欢迎Star、Fork。链接：<a href="https://github.com/PleaseCallMeCoder/CircleProgressBar" target="_blank" rel="external">https://github.com/PleaseCallMeCoder/CircleProgressBar</a></p>
-<p>最后，欢迎大家关注我的微信公众号：CoderTopia。</p>
-<center><img style="width:150px; height:150px" src="http://img.blog.csdn.net/20160422143030784"></center>
-
+<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>代码我已经上传到了github，github中有说明文档，欢迎Star、Fork。链接：<a href="https://github.com/PleaseCallMeCoder/CircleProgressBar" target="_blank" rel="external">https://github.com/PleaseCallMeCoder/CircleProgressBar</a></p>
 <p>参考链接：<br><a href="http://www.androidchina.net/3919.html" target="_blank" rel="external">http://www.androidchina.net/3919.html</a><br><a href="http://blog.csdn.net/lmj623565791/article/details/51148825" target="_blank" rel="external">http://blog.csdn.net/lmj623565791/article/details/51148825</a></p>
 
       
@@ -786,8 +773,17 @@ public class BarAnimation extends Animation {
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpeg"
@@ -894,6 +890,22 @@ public class BarAnimation extends Animation {
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#写在前面的话"><span class="nav-number">1.</span> <span class="nav-text">写在前面的话</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#连接github并提交新项目"><span class="nav-number">2.</span> <span class="nav-text">连接github并提交新项目</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#完成circlebar代码"><span class="nav-number">3.</span> <span class="nav-text">完成circlebar代码</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Canvas绘图基础"><span class="nav-number">3.1.</span> <span class="nav-text">Canvas绘图基础</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Paint和Shader"><span class="nav-number">3.2.</span> <span class="nav-text">Paint和Shader</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Paint"><span class="nav-number">3.2.1.</span> <span class="nav-text">Paint</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Shader"><span class="nav-number">3.2.2.</span> <span class="nav-text">Shader</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#绘制进度条"><span class="nav-number">3.3.</span> <span class="nav-text">绘制进度条</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#上传到jcenter"><span class="nav-number">4.</span> <span class="nav-text">上传到jcenter</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结语"><span class="nav-number">5.</span> <span class="nav-text">结语</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

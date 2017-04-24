@@ -99,7 +99,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/03/08/自定义view你需要知道的/index.html">
 <meta property="og:site_name" content="KIKO_奶糖的博客">
 <meta property="og:description" content="自定义view的时候可能需要重写的方法。">
-<meta property="og:updated_time" content="2017-04-22T08:18:00.000Z">
+<meta property="og:updated_time" content="2017-04-24T01:05:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="自定义view你需要知道的">
 <meta name="twitter:description" content="自定义view的时候可能需要重写的方法。">
@@ -441,28 +441,22 @@
         <p>自定义view的时候可能需要重写的方法。</p>
 <a id="more"></a>
 <p>前面我已经跟大家分享了<a href="http://blog.csdn.net/sdkfjksf/article/details/50762249" target="_blank" rel="external">自定义view概述</a>，今天跟大家分享一下官方文档中关于自定义view可能重写到的方法。<a href="http://developer.android.com/reference/android/view/View.html#" target="_blank" rel="external">官方文档</a></p>
-<p>###概述<br>实现自定义view，我们通常会去重写一些系统会在所有view中调用到的标准方法。事实上，我们不用重写所有的方法，甚至只重写onDraw(android.graphics.Canvas)方法就可以了。</p>
-<p>###创建</p>
-<p>####构造方法<br>构造方法有两种形式，一种是在view在代码中创建的时候调用，另一种是view从布局文件中加载的时候调用。第二种方式需要去解析在布局文件中定义的属性。</p>
-<p>####onFinishInflate()<br>回调方法，当view和他的子view已经从布局文件中加载完成的时候调用。</p>
-<p>###布局</p>
-<p>####onMeasure(int, int)<br>用来计算并且确定此view和他的子view需要的尺寸。</p>
-<p>####onLayout(boolean, int, int, int, int)<br>当这个view需要分配他的子view的位置和占用空间的时候调用。</p>
-<p>####onSizeChanged(int, int, int, int)<br>当这个view的尺寸已经发生改变的时候调用。</p>
-<p>###绘制</p>
-<p>####onDraw(android.graphics.Canvas)<br>当view需要渲染他的内容的时候调用。</p>
-<p>###事件处理</p>
-<p>####onKeyDown(int, KeyEvent)<br>当按下某个按键的时候触发，比如返回键。</p>
-<p>####onKeyUp(int, KeyEvent)<br>当离开按键的时候触发。</p>
-<p>####onTrackballEvent(MotionEvent)<br>当发生轨迹球事件时触发。</p>
-<p>####onTouchEvent(MotionEvent)<br>发生触屏事件的时候触发。</p>
-<p>###焦点</p>
-<p>####onFocusChanged(boolean, int, android.graphics.Rect)<br>当view获得或者失去焦点时触发。</p>
-<p>####onWindowFocusChanged(boolean)<br>当包含这个view的window得到或者失去焦点时触发。</p>
-<p>###依附</p>
-<p>####onAttachedToWindow()<br>当这个view依附到window中时触发。</p>
-<p>####onDetachedFromWindow()<br>当这个view从依附的window中分离时触发。</p>
-<p>####onWindowVisibilityChanged(int)<br>当包含该view的window的可见性发生改变时触发的方法。</p>
+<h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>实现自定义view，我们通常会去重写一些系统会在所有view中调用到的标准方法。事实上，我们不用重写所有的方法，甚至只重写onDraw(android.graphics.Canvas)方法就可以了。</p>
+<h3 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h3><h4 id="构造方法"><a href="#构造方法" class="headerlink" title="构造方法"></a>构造方法</h4><p>构造方法有两种形式，一种是在view在代码中创建的时候调用，另一种是view从布局文件中加载的时候调用。第二种方式需要去解析在布局文件中定义的属性。</p>
+<h4 id="onFinishInflate"><a href="#onFinishInflate" class="headerlink" title="onFinishInflate()"></a>onFinishInflate()</h4><p>回调方法，当view和他的子view已经从布局文件中加载完成的时候调用。</p>
+<h3 id="布局"><a href="#布局" class="headerlink" title="布局"></a>布局</h3><h4 id="onMeasure-int-int"><a href="#onMeasure-int-int" class="headerlink" title="onMeasure(int, int)"></a>onMeasure(int, int)</h4><p>用来计算并且确定此view和他的子view需要的尺寸。</p>
+<h4 id="onLayout-boolean-int-int-int-int"><a href="#onLayout-boolean-int-int-int-int" class="headerlink" title="onLayout(boolean, int, int, int, int)"></a>onLayout(boolean, int, int, int, int)</h4><p>当这个view需要分配他的子view的位置和占用空间的时候调用。</p>
+<h4 id="onSizeChanged-int-int-int-int"><a href="#onSizeChanged-int-int-int-int" class="headerlink" title="onSizeChanged(int, int, int, int)"></a>onSizeChanged(int, int, int, int)</h4><p>当这个view的尺寸已经发生改变的时候调用。</p>
+<h3 id="绘制"><a href="#绘制" class="headerlink" title="绘制"></a>绘制</h3><h4 id="onDraw-android-graphics-Canvas"><a href="#onDraw-android-graphics-Canvas" class="headerlink" title="onDraw(android.graphics.Canvas)"></a>onDraw(android.graphics.Canvas)</h4><p>当view需要渲染他的内容的时候调用。</p>
+<h3 id="事件处理"><a href="#事件处理" class="headerlink" title="事件处理"></a>事件处理</h3><h4 id="onKeyDown-int-KeyEvent"><a href="#onKeyDown-int-KeyEvent" class="headerlink" title="onKeyDown(int, KeyEvent)"></a>onKeyDown(int, KeyEvent)</h4><p>当按下某个按键的时候触发，比如返回键。</p>
+<h4 id="onKeyUp-int-KeyEvent"><a href="#onKeyUp-int-KeyEvent" class="headerlink" title="onKeyUp(int, KeyEvent)"></a>onKeyUp(int, KeyEvent)</h4><p>当离开按键的时候触发。</p>
+<h4 id="onTrackballEvent-MotionEvent"><a href="#onTrackballEvent-MotionEvent" class="headerlink" title="onTrackballEvent(MotionEvent)"></a>onTrackballEvent(MotionEvent)</h4><p>当发生轨迹球事件时触发。</p>
+<h4 id="onTouchEvent-MotionEvent"><a href="#onTouchEvent-MotionEvent" class="headerlink" title="onTouchEvent(MotionEvent)"></a>onTouchEvent(MotionEvent)</h4><p>发生触屏事件的时候触发。</p>
+<h3 id="焦点"><a href="#焦点" class="headerlink" title="焦点"></a>焦点</h3><h4 id="onFocusChanged-boolean-int-android-graphics-Rect"><a href="#onFocusChanged-boolean-int-android-graphics-Rect" class="headerlink" title="onFocusChanged(boolean, int, android.graphics.Rect)"></a>onFocusChanged(boolean, int, android.graphics.Rect)</h4><p>当view获得或者失去焦点时触发。</p>
+<h4 id="onWindowFocusChanged-boolean"><a href="#onWindowFocusChanged-boolean" class="headerlink" title="onWindowFocusChanged(boolean)"></a>onWindowFocusChanged(boolean)</h4><p>当包含这个view的window得到或者失去焦点时触发。</p>
+<h3 id="依附"><a href="#依附" class="headerlink" title="依附"></a>依附</h3><h4 id="onAttachedToWindow"><a href="#onAttachedToWindow" class="headerlink" title="onAttachedToWindow()"></a>onAttachedToWindow()</h4><p>当这个view依附到window中时触发。</p>
+<h4 id="onDetachedFromWindow"><a href="#onDetachedFromWindow" class="headerlink" title="onDetachedFromWindow()"></a>onDetachedFromWindow()</h4><p>当这个view从依附的window中分离时触发。</p>
+<h4 id="onWindowVisibilityChanged-int"><a href="#onWindowVisibilityChanged-int" class="headerlink" title="onWindowVisibilityChanged(int)"></a>onWindowVisibilityChanged(int)</h4><p>当包含该view的window的可见性发生改变时触发的方法。</p>
 
       
     </div>
@@ -601,8 +595,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpeg"
@@ -709,6 +712,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建"><span class="nav-number">2.</span> <span class="nav-text">创建</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#构造方法"><span class="nav-number">2.1.</span> <span class="nav-text">构造方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#onFinishInflate"><span class="nav-number">2.2.</span> <span class="nav-text">onFinishInflate()</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#布局"><span class="nav-number">3.</span> <span class="nav-text">布局</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#onMeasure-int-int"><span class="nav-number">3.1.</span> <span class="nav-text">onMeasure(int, int)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#onLayout-boolean-int-int-int-int"><span class="nav-number">3.2.</span> <span class="nav-text">onLayout(boolean, int, int, int, int)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#onSizeChanged-int-int-int-int"><span class="nav-number">3.3.</span> <span class="nav-text">onSizeChanged(int, int, int, int)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#绘制"><span class="nav-number">4.</span> <span class="nav-text">绘制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#onDraw-android-graphics-Canvas"><span class="nav-number">4.1.</span> <span class="nav-text">onDraw(android.graphics.Canvas)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事件处理"><span class="nav-number">5.</span> <span class="nav-text">事件处理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#onKeyDown-int-KeyEvent"><span class="nav-number">5.1.</span> <span class="nav-text">onKeyDown(int, KeyEvent)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#onKeyUp-int-KeyEvent"><span class="nav-number">5.2.</span> <span class="nav-text">onKeyUp(int, KeyEvent)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#onTrackballEvent-MotionEvent"><span class="nav-number">5.3.</span> <span class="nav-text">onTrackballEvent(MotionEvent)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#onTouchEvent-MotionEvent"><span class="nav-number">5.4.</span> <span class="nav-text">onTouchEvent(MotionEvent)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#焦点"><span class="nav-number">6.</span> <span class="nav-text">焦点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#onFocusChanged-boolean-int-android-graphics-Rect"><span class="nav-number">6.1.</span> <span class="nav-text">onFocusChanged(boolean, int, android.graphics.Rect)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#onWindowFocusChanged-boolean"><span class="nav-number">6.2.</span> <span class="nav-text">onWindowFocusChanged(boolean)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#依附"><span class="nav-number">7.</span> <span class="nav-text">依附</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#onAttachedToWindow"><span class="nav-number">7.1.</span> <span class="nav-text">onAttachedToWindow()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#onDetachedFromWindow"><span class="nav-number">7.2.</span> <span class="nav-text">onDetachedFromWindow()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#onWindowVisibilityChanged-int"><span class="nav-number">7.3.</span> <span class="nav-text">onWindowVisibilityChanged(int)</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

@@ -99,7 +99,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/03/09/那些年大家都在谈论的Android性能优化/index.html">
 <meta property="og:site_name" content="KIKO_奶糖的博客">
 <meta property="og:description" content="Android性能优化概述。">
-<meta property="og:updated_time" content="2017-04-22T08:15:09.000Z">
+<meta property="og:updated_time" content="2017-04-24T00:52:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="那些年大家都在谈论的Android性能优化">
 <meta name="twitter:description" content="Android性能优化概述。">
@@ -441,33 +441,12 @@
         <p>Android性能优化概述。</p>
 <a id="more"></a>
 <p>Android性能优化似乎是一个老生常谈的问题，但我似乎只是一个新生。我不能像老生那样告诉你N多的优化方法。从去年毕业一直到现在，大大小小的项目也写了三个了。第一个是实习的时候自己一个人搞的，服务器带客户端。然后后两个是毕业后来新公司和一个同事一起搞的，已经上线了，也都在更新维护。<br>那我也来谈谈如何进行优化？好像并不能。老板需要的是速成，优化有卵用，还不如在大更一个版本。但事实好像并不是这样的，用户铺天盖地的反馈都证明了这样做出来的app体验不好。写这篇博客我所想做的和我要说明的是，<strong>作为一个不是老生的新生，我们该怎么去在性能优化的道路上摸索前进。</strong></p>
-<p>###WHAT?什么是性能问题？<br>在性能测试中存在两个概念：</p>
-<p>####(1). 响应时间<br>指从用户操作开始到系统给用户以正确反馈的时间。一般包括逻辑处理时间 + 网络传输时间 + 展现时间。对于非网络类应用不包括网络传输时间。<br>展现时间即网页或 App 界面渲染时间。<br>响应时间是用户对性能最直接的感受。</p>
-<p>####(2). TPS(Transaction Per Second)<br>TPS为每秒处理的事务数，是系统吞吐量的指标，在搜索系统中也用QPS(Query Per Second)衡量。TPS一般与响应时间反相关。<br>通常所说的性能问题就是指响应时间过长、系统吞吐量过低。<br>对后台开发来说，也常将高并发下内存泄漏归为性能问题。<br>对移动开发来说，性能问题还包括电量、内存使用这两类较特殊情况。</p>
-<p>###HOW?怎样去进行性能优化？<br>明白了何为性能问题之后，就能明白性能优化实际就是优化系统的响应时间，提高TPS。优化响应时间，提高TPS。方式不外乎这三大类：</p>
-<p>####(1) 降低执行时间<br>又包括几小类</p>
-<p>#####a. 利用多线程并发或分布式提高 TPS</p>
-<p>#####b. 缓存(包括对象缓存、IO 缓存、网络缓存等)</p>
-<p>#####c. 数据结构和算法优化</p>
-<p>#####d. 性能更优的底层接口调用，如 JNI 实现</p>
-<p>#####e. 逻辑优化</p>
-<p>#####f. 需求优化 </p>
-<p>####(2) 同步改异步，利用多线程提高TPS</p>
-<p>####(3) 提前或延迟操作，错峰提高TPS</p>
-<p>###WHERE?Android中的性能问题常出现在哪里？</p>
-<p>####(1)UI中的性能问题</p>
-<p>#####a.布局</p>
-<p>#####b.绘制</p>
-<p>####(2)内存中的性能问题</p>
-<p>#####a.内存泄露</p>
-<p>#####b.响应速度</p>
-<p>#####c.listview</p>
-<p>#####d.OOM</p>
-<p>#####e.对象的内存占用过大以及不能重复利用</p>
-<p>#####f.bitmap加载</p>
-<p>####(3)关于电量的性能问题</p>
-<p>####(4)关于网络的性能问题</p>
-<p>###纳尼？<br>其实这些都是那些老生总结过的经验，虽然有些拿来主义，但是凭我现在的水平好像也总结不出花来。那要这篇博客何用？不急不急，这只是开胃菜而已。在以后的博客当中，我会就Android中经常出现性能问题，去一步一步提升我做过的项目的性能。<br><strong>其实每个人都在成为大神的路上，只不过有的人在走，而有的人在跑。不急不躁，脚踏实地，我们也可以————致不是老生的新生</strong></p>
+<h3 id="WHAT-什么是性能问题？"><a href="#WHAT-什么是性能问题？" class="headerlink" title="WHAT?什么是性能问题？"></a>WHAT?什么是性能问题？</h3><p>在性能测试中存在两个概念：</p>
+<h4 id="1-响应时间"><a href="#1-响应时间" class="headerlink" title="(1). 响应时间"></a>(1). 响应时间</h4><p>指从用户操作开始到系统给用户以正确反馈的时间。一般包括逻辑处理时间 + 网络传输时间 + 展现时间。对于非网络类应用不包括网络传输时间。<br>展现时间即网页或 App 界面渲染时间。<br>响应时间是用户对性能最直接的感受。</p>
+<h4 id="2-TPS-Transaction-Per-Second"><a href="#2-TPS-Transaction-Per-Second" class="headerlink" title="(2). TPS(Transaction Per Second)"></a>(2). TPS(Transaction Per Second)</h4><p>TPS为每秒处理的事务数，是系统吞吐量的指标，在搜索系统中也用QPS(Query Per Second)衡量。TPS一般与响应时间反相关。<br>通常所说的性能问题就是指响应时间过长、系统吞吐量过低。<br>对后台开发来说，也常将高并发下内存泄漏归为性能问题。<br>对移动开发来说，性能问题还包括电量、内存使用这两类较特殊情况。</p>
+<h3 id="HOW-怎样去进行性能优化？"><a href="#HOW-怎样去进行性能优化？" class="headerlink" title="HOW?怎样去进行性能优化？"></a>HOW?怎样去进行性能优化？</h3><p>明白了何为性能问题之后，就能明白性能优化实际就是优化系统的响应时间，提高TPS。优化响应时间，提高TPS。方式不外乎这三大类：</p>
+<h4 id="1-降低执行时间"><a href="#1-降低执行时间" class="headerlink" title="(1) 降低执行时间"></a>(1) 降低执行时间</h4><p>又包括几小类</p>
+<h5 id="a-利用多线程并发或分布式提高-TPS"><a href="#a-利用多线程并发或分布式提高-TPS" class="headerlink" title="a. 利用多线程并发或分布式提高 TPS"></a>a. 利用多线程并发或分布式提高 TPS</h5><h5 id="b-缓存-包括对象缓存、IO-缓存、网络缓存等"><a href="#b-缓存-包括对象缓存、IO-缓存、网络缓存等" class="headerlink" title="b. 缓存(包括对象缓存、IO 缓存、网络缓存等)"></a>b. 缓存(包括对象缓存、IO 缓存、网络缓存等)</h5><h5 id="c-数据结构和算法优化"><a href="#c-数据结构和算法优化" class="headerlink" title="c. 数据结构和算法优化"></a>c. 数据结构和算法优化</h5><h5 id="d-性能更优的底层接口调用，如-JNI-实现"><a href="#d-性能更优的底层接口调用，如-JNI-实现" class="headerlink" title="d. 性能更优的底层接口调用，如 JNI 实现"></a>d. 性能更优的底层接口调用，如 JNI 实现</h5><h5 id="e-逻辑优化"><a href="#e-逻辑优化" class="headerlink" title="e. 逻辑优化"></a>e. 逻辑优化</h5><h5 id="f-需求优化"><a href="#f-需求优化" class="headerlink" title="f. 需求优化"></a>f. 需求优化</h5><h4 id="2-同步改异步，利用多线程提高TPS"><a href="#2-同步改异步，利用多线程提高TPS" class="headerlink" title="(2) 同步改异步，利用多线程提高TPS"></a>(2) 同步改异步，利用多线程提高TPS</h4><h4 id="3-提前或延迟操作，错峰提高TPS"><a href="#3-提前或延迟操作，错峰提高TPS" class="headerlink" title="(3) 提前或延迟操作，错峰提高TPS"></a>(3) 提前或延迟操作，错峰提高TPS</h4><h3 id="WHERE-Android中的性能问题常出现在哪里？"><a href="#WHERE-Android中的性能问题常出现在哪里？" class="headerlink" title="WHERE?Android中的性能问题常出现在哪里？"></a>WHERE?Android中的性能问题常出现在哪里？</h3><h4 id="1-UI中的性能问题"><a href="#1-UI中的性能问题" class="headerlink" title="(1)UI中的性能问题"></a>(1)UI中的性能问题</h4><h5 id="a-布局"><a href="#a-布局" class="headerlink" title="a.布局"></a>a.布局</h5><h5 id="b-绘制"><a href="#b-绘制" class="headerlink" title="b.绘制"></a>b.绘制</h5><h4 id="2-内存中的性能问题"><a href="#2-内存中的性能问题" class="headerlink" title="(2)内存中的性能问题"></a>(2)内存中的性能问题</h4><h5 id="a-内存泄露"><a href="#a-内存泄露" class="headerlink" title="a.内存泄露"></a>a.内存泄露</h5><h5 id="b-响应速度"><a href="#b-响应速度" class="headerlink" title="b.响应速度"></a>b.响应速度</h5><h5 id="c-listview"><a href="#c-listview" class="headerlink" title="c.listview"></a>c.listview</h5><h5 id="d-OOM"><a href="#d-OOM" class="headerlink" title="d.OOM"></a>d.OOM</h5><h5 id="e-对象的内存占用过大以及不能重复利用"><a href="#e-对象的内存占用过大以及不能重复利用" class="headerlink" title="e.对象的内存占用过大以及不能重复利用"></a>e.对象的内存占用过大以及不能重复利用</h5><h5 id="f-bitmap加载"><a href="#f-bitmap加载" class="headerlink" title="f.bitmap加载"></a>f.bitmap加载</h5><h4 id="3-关于电量的性能问题"><a href="#3-关于电量的性能问题" class="headerlink" title="(3)关于电量的性能问题"></a>(3)关于电量的性能问题</h4><h4 id="4-关于网络的性能问题"><a href="#4-关于网络的性能问题" class="headerlink" title="(4)关于网络的性能问题"></a>(4)关于网络的性能问题</h4><h3 id="纳尼？"><a href="#纳尼？" class="headerlink" title="纳尼？"></a>纳尼？</h3><p>其实这些都是那些老生总结过的经验，虽然有些拿来主义，但是凭我现在的水平好像也总结不出花来。那要这篇博客何用？不急不急，这只是开胃菜而已。在以后的博客当中，我会就Android中经常出现性能问题，去一步一步提升我做过的项目的性能。<br><strong>其实每个人都在成为大神的路上，只不过有的人在走，而有的人在跑。不急不躁，脚踏实地，我们也可以————致不是老生的新生</strong></p>
 
       
     </div>
@@ -604,8 +583,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpeg"
@@ -712,6 +700,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#WHAT-什么是性能问题？"><span class="nav-number">1.</span> <span class="nav-text">WHAT?什么是性能问题？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-响应时间"><span class="nav-number">1.1.</span> <span class="nav-text">(1). 响应时间</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-TPS-Transaction-Per-Second"><span class="nav-number">1.2.</span> <span class="nav-text">(2). TPS(Transaction Per Second)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HOW-怎样去进行性能优化？"><span class="nav-number">2.</span> <span class="nav-text">HOW?怎样去进行性能优化？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-降低执行时间"><span class="nav-number">2.1.</span> <span class="nav-text">(1) 降低执行时间</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#a-利用多线程并发或分布式提高-TPS"><span class="nav-number">2.1.1.</span> <span class="nav-text">a. 利用多线程并发或分布式提高 TPS</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#b-缓存-包括对象缓存、IO-缓存、网络缓存等"><span class="nav-number">2.1.2.</span> <span class="nav-text">b. 缓存(包括对象缓存、IO 缓存、网络缓存等)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#c-数据结构和算法优化"><span class="nav-number">2.1.3.</span> <span class="nav-text">c. 数据结构和算法优化</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#d-性能更优的底层接口调用，如-JNI-实现"><span class="nav-number">2.1.4.</span> <span class="nav-text">d. 性能更优的底层接口调用，如 JNI 实现</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#e-逻辑优化"><span class="nav-number">2.1.5.</span> <span class="nav-text">e. 逻辑优化</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#f-需求优化"><span class="nav-number">2.1.6.</span> <span class="nav-text">f. 需求优化</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-同步改异步，利用多线程提高TPS"><span class="nav-number">2.2.</span> <span class="nav-text">(2) 同步改异步，利用多线程提高TPS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-提前或延迟操作，错峰提高TPS"><span class="nav-number">2.3.</span> <span class="nav-text">(3) 提前或延迟操作，错峰提高TPS</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WHERE-Android中的性能问题常出现在哪里？"><span class="nav-number">3.</span> <span class="nav-text">WHERE?Android中的性能问题常出现在哪里？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-UI中的性能问题"><span class="nav-number">3.1.</span> <span class="nav-text">(1)UI中的性能问题</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#a-布局"><span class="nav-number">3.1.1.</span> <span class="nav-text">a.布局</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#b-绘制"><span class="nav-number">3.1.2.</span> <span class="nav-text">b.绘制</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-内存中的性能问题"><span class="nav-number">3.2.</span> <span class="nav-text">(2)内存中的性能问题</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#a-内存泄露"><span class="nav-number">3.2.1.</span> <span class="nav-text">a.内存泄露</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#b-响应速度"><span class="nav-number">3.2.2.</span> <span class="nav-text">b.响应速度</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#c-listview"><span class="nav-number">3.2.3.</span> <span class="nav-text">c.listview</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#d-OOM"><span class="nav-number">3.2.4.</span> <span class="nav-text">d.OOM</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#e-对象的内存占用过大以及不能重复利用"><span class="nav-number">3.2.5.</span> <span class="nav-text">e.对象的内存占用过大以及不能重复利用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#f-bitmap加载"><span class="nav-number">3.2.6.</span> <span class="nav-text">f.bitmap加载</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-关于电量的性能问题"><span class="nav-number">3.3.</span> <span class="nav-text">(3)关于电量的性能问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-关于网络的性能问题"><span class="nav-number">3.4.</span> <span class="nav-text">(4)关于网络的性能问题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#纳尼？"><span class="nav-number">4.</span> <span class="nav-text">纳尼？</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
