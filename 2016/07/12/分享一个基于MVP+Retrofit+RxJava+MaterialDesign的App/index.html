@@ -103,8 +103,7 @@
 <meta property="og:image" content="http://i.imgur.com/T9U8g5b.jpg">
 <meta property="og:image" content="http://i.imgur.com/ivGy3ga.jpg">
 <meta property="og:image" content="http://i.imgur.com/HI3PipV.png">
-<meta property="og:image" content="http://img.blog.csdn.net/20160422143030784">
-<meta property="og:updated_time" content="2017-04-22T08:15:04.000Z">
+<meta property="og:updated_time" content="2017-04-24T00:48:07.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分享一个基于MVP+Retrofit+RxJava+MaterialDesign的App">
 <meta name="twitter:description" content="最近一直在忙项目的事，所以很久不写博客了。抽时间整理了下最近的收藏的一些文章，感觉新的知识点还是挺多的，于是乎自己抽时间写了一个简单的App。这个App基于MVP+Retrofit+RxJava+MaterialDesign，分享给大家。">
@@ -449,21 +448,17 @@
 <p><img src="http://i.imgur.com/JgQm7Ac.jpg" alt=""></p>
 <p>2016已经荒废了一半，还有一半可以继续浪费。</p>
 <p>源码我已经上传到github上了，欢迎fork和star<br><a href="https://github.com/PleaseCallMeCoder/PrettyGirls" target="_blank" rel="external">https://github.com/PleaseCallMeCoder/PrettyGirls</a></p>
-<p>#我想说的</p>
-<p>最近一直在忙项目的事，所以很久不写博客了。抽时间整理了下最近的收藏的一些文章，感觉新的知识点还是挺多的，于是乎自己抽时间写了一个简单的App。为什么说它简单呢？因为这个app只有四个页面而已。有人说了，这么简单你还写？答曰：麻雀虽小，五脏俱全。这个App基本包含了开发一个项目用到的所有元素。写这个app的目的如下：</p>
+<h1 id="我想说的"><a href="#我想说的" class="headerlink" title="我想说的"></a>我想说的</h1><p>最近一直在忙项目的事，所以很久不写博客了。抽时间整理了下最近的收藏的一些文章，感觉新的知识点还是挺多的，于是乎自己抽时间写了一个简单的App。为什么说它简单呢？因为这个app只有四个页面而已。有人说了，这么简单你还写？答曰：麻雀虽小，五脏俱全。这个App基本包含了开发一个项目用到的所有元素。写这个app的目的如下：</p>
 <ul>
 <li>将rxjava、retrofit、mvp、materialdesign等知识点做一个简单的整合</li>
 <li>封装一个通用baselibrary，方便以后构建项目，而且可以不断完善这个library</li>
 <li>不断优化，不断重构，因为模块少所以重构起来比较方便</li>
 <li>抛砖引玉，三人行必有我师，希望大家多多指教</li>
 </ul>
-<p>#你想知道的</p>
-<p>说完了我想说的，说说大家可能想知道的。</p>
+<h1 id="你想知道的"><a href="#你想知道的" class="headerlink" title="你想知道的"></a>你想知道的</h1><p>说完了我想说的，说说大家可能想知道的。</p>
 <p>一个项目的完整流程如下：<strong>痛点–&gt;分析–&gt;原型–&gt;UI/UE–&gt;设计–&gt;架构–&gt;测试–&gt;构建–&gt;QA–&gt;运营–&gt;迭代</strong>。这里我们重点关注架构，并不是因为架构最重要，而是因为本文的重点是这个App的整体架构。</p>
-<p>##项目结构</p>
-<p>这里我用了<strong>MVP模式配合多模块Activty+多Fragment</strong>的思路。对于MVP和Fragment的有点这里我就不过多介绍了。我简单说下我的实现思路。</p>
-<p>###封装一个baselibrary</p>
-<p><strong>我们可以利用以往项目经验分模块分类别封装出一些父类，完成公共操作，后续开发只需要继承这些父类就可以完成大部分操作，节省开发成本。</strong>这里我封装了：</p>
+<h2 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h2><p>这里我用了<strong>MVP模式配合多模块Activty+多Fragment</strong>的思路。对于MVP和Fragment的有点这里我就不过多介绍了。我简单说下我的实现思路。</p>
+<h3 id="封装一个baselibrary"><a href="#封装一个baselibrary" class="headerlink" title="封装一个baselibrary"></a>封装一个baselibrary</h3><p><strong>我们可以利用以往项目经验分模块分类别封装出一些父类，完成公共操作，后续开发只需要继承这些父类就可以完成大部分操作，节省开发成本。</strong>这里我封装了：</p>
 <ul>
 <li>包括普通activity和支持右滑退出当前页面的activity父类（退出方式类似qq）</li>
 <li>activity管理栈</li>
@@ -471,8 +466,7 @@
 <li>adapter的基类</li>
 </ul>
 <p>这个library基本已经满足了这个App的开发。但是没有最好只有更好，这个baselibrary我会不断完善和优化，以满足更复杂的需求。</p>
-<p>###分包</p>
-<p>这里我采用的是<strong>按模块来划分包</strong>。包括以下几部分：</p>
+<h3 id="分包"><a href="#分包" class="headerlink" title="分包"></a>分包</h3><p>这里我采用的是<strong>按模块来划分包</strong>。包括以下几部分：</p>
 <ul>
 <li><p>app</p>
 <p>包括全局异常处理，系统常量，和app的基本配置等。</p>
@@ -490,31 +484,22 @@
 <p>自定义控件</p>
 </li>
 </ul>
-<p>##依赖库</p>
-<p>至于依赖库的选择个人认为因人而异，我使用的库如下：</p>
+<h2 id="依赖库"><a href="#依赖库" class="headerlink" title="依赖库"></a>依赖库</h2><p>至于依赖库的选择个人认为因人而异，我使用的库如下：</p>
 <p><a href="http://jakewharton.github.io/butterknife/" target="_blank" rel="external">butterknife</a>————View注解库和配套插件<a href="https://github.com/avast/android-butterknife-zelezny" target="_blank" rel="external">android-butterknife-zelezny</a></p>
 <p><a href="https://github.com/square/retrofit" target="_blank" rel="external">retrofit</a>+<a href="https://github.com/square/okhttp" target="_blank" rel="external">okhttp</a>————网络请求相关</p>
 <p><a href="https://github.com/google/gson" target="_blank" rel="external">gson</a>————google推荐的json数据解析库</p>
 <p><a href="https://github.com/bumptech/glide" target="_blank" rel="external">glide</a>————google推荐的Android图片加载库</p>
 <p><a href="https://github.com/ReactiveX/RxAndroid" target="_blank" rel="external">RxAndroid</a>+<a href="https://github.com/ReactiveX/RxJava/" target="_blank" rel="external">RxJava</a>——Rx函数响应式编程<a href="https://mcxiaoke.gitbooks.io/rxdocs/content/" target="_blank" rel="external">中文文档</a></p>
 <p>compile ‘com.android.support:design:23.0.1’————谷歌Material Design控件库</p>
-<p>#关于App</p>
-<p>app截图</p>
+<h1 id="关于App"><a href="#关于App" class="headerlink" title="关于App"></a>关于App</h1><p>app截图</p>
 <p><img src="http://i.imgur.com/T9U8g5b.jpg" alt=""></p>
 <p><img src="http://i.imgur.com/ivGy3ga.jpg" alt=""></p>
 <p><img src="http://i.imgur.com/HI3PipV.png" alt=""></p>
 <p><a href="https://github.com/PleaseCallMeCoder/PrettyGirls" target="_blank" rel="external">github</a></p>
 <p><a href="http://pre.im/A7n1" target="_blank" rel="external">下载</a></p>
-<p>#鸣谢</p>
-<p><a href="http://gank.io/" target="_blank" rel="external">代码家-干货集中营</a></p>
+<h1 id="鸣谢"><a href="#鸣谢" class="headerlink" title="鸣谢"></a>鸣谢</h1><p><a href="http://gank.io/" target="_blank" rel="external">代码家-干货集中营</a></p>
 <p><a href="https://github.com/oxoooo/mr-mantou-android" target="_blank" rel="external">OXO</a></p>
 <p><a href="https://github.com" target="_blank" rel="external">所有开源的人</a></p>
-<p>#结语</p>
-<p>关注博主是一种态度，评论博主是一种欣赏！！</p>
-<p>最后，欢迎大家关注我的微信公众号：CoderTopia。</p>
-<center><img style="width:150px; height:150px" src="http://img.blog.csdn.net/20160422143030784"></center>
-
-
 
       
     </div>
@@ -657,8 +642,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpeg"
@@ -765,6 +759,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#我想说的"><span class="nav-number">1.</span> <span class="nav-text">我想说的</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#你想知道的"><span class="nav-number">2.</span> <span class="nav-text">你想知道的</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#项目结构"><span class="nav-number">2.1.</span> <span class="nav-text">项目结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#封装一个baselibrary"><span class="nav-number">2.1.1.</span> <span class="nav-text">封装一个baselibrary</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分包"><span class="nav-number">2.1.2.</span> <span class="nav-text">分包</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#依赖库"><span class="nav-number">2.2.</span> <span class="nav-text">依赖库</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#关于App"><span class="nav-number">3.</span> <span class="nav-text">关于App</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#鸣谢"><span class="nav-number">4.</span> <span class="nav-text">鸣谢</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

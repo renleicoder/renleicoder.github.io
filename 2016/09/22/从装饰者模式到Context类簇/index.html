@@ -101,7 +101,7 @@
 <meta property="og:description" content="从装饰者模式到Context类族">
 <meta property="og:image" content="http://i.imgur.com/gLypqDf.jpg">
 <meta property="og:image" content="http://i.imgur.com/HbXf8Lt.png">
-<meta property="og:updated_time" content="2017-04-22T08:14:46.000Z">
+<meta property="og:updated_time" content="2017-04-24T00:45:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从装饰者模式到Context类族">
 <meta name="twitter:description" content="从装饰者模式到Context类族">
@@ -444,18 +444,15 @@
         <p> 从装饰者模式到Context类族</p>
 <a id="more"></a>
 <p>本着不学习就要落后，落后就要挨打的态度，我也开始捣鼓起了设计模式。但只看设计模式又不免有些索然无味，索性就连Android源码也一起研究研究，现在看来效果不错。昨天晚上刚看了装饰者模式，正好今天总结一番分享给大家。新手上路，如有不足之处，还请大家多指教。</p>
-<p>#装饰者模式</p>
-<p>Decorator模式（别名Wrapper）：动态将职责附加到对象上，若要扩展功能，装饰者提供了比继承更具弹性的代替方案。</p>
-<p>##遵循的设计原则</p>
-<ol>
+<h1 id="装饰者模式"><a href="#装饰者模式" class="headerlink" title="装饰者模式"></a>装饰者模式</h1><p>Decorator模式（别名Wrapper）：动态将职责附加到对象上，若要扩展功能，装饰者提供了比继承更具弹性的代替方案。</p>
+<h2 id="遵循的设计原则"><a href="#遵循的设计原则" class="headerlink" title="遵循的设计原则"></a>遵循的设计原则</h2><ol>
 <li><p>多用组合，少用继承。</p>
 <p>利用继承设计子类的行为，是在编译时静态决定的，而且所有的子类都会继承到相同的行为。然而，如果能够利用组合的做法扩展对象的行为，就可以在运行时动态地进行扩展。</p>
 </li>
 <li><p>类应设计的对扩展开放，对修改关闭。</p>
 </li>
 </ol>
-<p>##实现</p>
-<p>装饰者的UML图大概如下</p>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>装饰者的UML图大概如下</p>
 <p><img src="http://i.imgur.com/gLypqDf.jpg" alt=""></p>
 <p>在装饰模式结构图中包含如下几个角色：</p>
 <ul>
@@ -512,8 +509,7 @@
         //your code
     }
 }
-</code></pre><p>##优点</p>
-<ol>
+</code></pre><h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><ol>
 <li><p>Decorator模式与继承关系的目的都是要扩展对象的功能，但是Decorator可以提供比继承更多的灵活性。</p>
 </li>
 <li><p>通过使用不同的具体装饰类以及这些装饰类的排列组合，设计师可以创造出很多不同行为的组合。</p>
@@ -521,11 +517,9 @@
 </ol>
 <p>#Context类簇中装饰者模式的实现</p>
 <p>有句话叫“没吃过猪肉，还没见过猪跑么？”。我们可能没有自己在代码中应用过装饰者模式，但是我们一定见过（可能当时不认识）。比如java中的I/O库，以及Android中的Context的设计等等。接下来我们看看Context是如何组织的。</p>
-<p>##uml图</p>
-<p><img src="http://i.imgur.com/HbXf8Lt.png" alt=""></p>
+<h2 id="uml图"><a href="#uml图" class="headerlink" title="uml图"></a>uml图</h2><p><img src="http://i.imgur.com/HbXf8Lt.png" alt=""></p>
 <p>中间省略了部分类，比如ContextWrapper的实现类里边还有MutableContextWrapper、BackupAgent类等，感兴趣的朋友可以自己研究一下。</p>
-<p>##Context类</p>
-<blockquote>
+<h2 id="Context类"><a href="#Context类" class="headerlink" title="Context类"></a>Context类</h2><blockquote>
 <p>/**</p>
 <ul>
 <li>Interface to global information about an application environment.  This is an abstract class whose implementation is provided by the Android system.  It allows access to application-specific resources and classes, as well as up-calls for application-level operations such as launching activities,broadcasting and receiving intents, etc.<br>  */</li>
@@ -534,16 +528,14 @@
 <p>注释的意思大概是这样的：这是一个由Android系统提供其实现的抽象类，它是提供应用环境（application environment）信息的接口。通过它可以访问到应用的资源和类，以及进行一些系统级别的操作，比如加载activity、发送广播和接收intent等。</p>
 <p>粗略浏览一下里边的属性和方法，我们还可以看到一些熟悉的东西，比如getSharedPreferences（String name, int mode），以及mode参数的几种可选值；再比如getColor(@ColorRes int id)、getDrawable(@DrawableRes int id)等获取系统资源的方法等等。<strong>可以这样说，Content类是application的管家，它有权管理application的大部分资源。</strong></p>
 <p>这个类对应装饰者模式中的Component。</p>
-<p>##Context的实现类</p>
-<p>###ContextImpl类</p>
-<blockquote>
+<h2 id="Context的实现类"><a href="#Context的实现类" class="headerlink" title="Context的实现类"></a>Context的实现类</h2><h3 id="ContextImpl类"><a href="#ContextImpl类" class="headerlink" title="ContextImpl类"></a>ContextImpl类</h3><blockquote>
 <p>/<em>*Common implementation of Context API, which provides the base context object for Activity and other application components.
  </em>/</p>
 </blockquote>
 <p>ContextImpl是Context抽象类的一个直接子类，有一个私有的构造方法，<strong>是Context的具体实现类</strong>。源码位于android.app包中，但它在API文档中找不到，是一个默认访问权限的类，也就是说它只允许android.app包中的类可以调用它，或者只有和它同包的类才可以通过其父类的方法使用它。<strong>它为Activity、Service等应用组件提供基本的context对象。</strong></p>
 <p>这个类对应装饰者模式中的Concrete Component。</p>
-<p>###ContextWrapper<br>    /**</p>
-<pre><code> * Proxying implementation of Context that simply delegates all of its calls to
+<h3 id="ContextWrapper"><a href="#ContextWrapper" class="headerlink" title="ContextWrapper"></a>ContextWrapper</h3><pre><code>/**
+ * Proxying implementation of Context that simply delegates all of its calls to
  * another Context.  Can be subclassed to modify behavior without changing
  * the original Context.
  */
@@ -570,8 +562,7 @@ public class ContextWrapper extends Context {
 }
 </code></pre><p>注释描述的很明显：<strong>Context类的代理实现，ContextWrapper中实现Context的方法全是通过mBase来实现的。这样它（ContextWrapper）派生出的子类就可以在不改变原始context（mBase）的情况下扩展Context的行为。</strong></p>
 <p>这个类对应装饰者模式中的Decorator。</p>
-<p>###具体扩展</p>
-<p>这里我们就不做过多的分析了，我们简单看下Activity的父类ContextThemeWrapper。</p>
+<h3 id="具体扩展"><a href="#具体扩展" class="headerlink" title="具体扩展"></a>具体扩展</h3><p>这里我们就不做过多的分析了，我们简单看下Activity的父类ContextThemeWrapper。</p>
 <blockquote>
 <p>/**</p>
 <ul>
@@ -730,8 +721,17 @@ public void setTheme(int resid) {
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpeg"
@@ -838,6 +838,22 @@ public void setTheme(int resid) {
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#装饰者模式"><span class="nav-number">1.</span> <span class="nav-text">装饰者模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#遵循的设计原则"><span class="nav-number">1.1.</span> <span class="nav-text">遵循的设计原则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现"><span class="nav-number">1.2.</span> <span class="nav-text">实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优点"><span class="nav-number">1.3.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#uml图"><span class="nav-number">1.4.</span> <span class="nav-text">uml图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Context类"><span class="nav-number">1.5.</span> <span class="nav-text">Context类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Context的实现类"><span class="nav-number">1.6.</span> <span class="nav-text">Context的实现类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ContextImpl类"><span class="nav-number">1.6.1.</span> <span class="nav-text">ContextImpl类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ContextWrapper"><span class="nav-number">1.6.2.</span> <span class="nav-text">ContextWrapper</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#具体扩展"><span class="nav-number">1.6.3.</span> <span class="nav-text">具体扩展</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
