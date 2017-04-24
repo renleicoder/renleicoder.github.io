@@ -99,7 +99,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/02/28/Androd自定义控件（一）概述/index.html">
 <meta property="og:site_name" content="KIKO_奶糖的博客">
 <meta property="og:description" content="这篇博客的主要内容是： 1.什么是控件，以及自定义控件。 2.自定义控件的种类。 3.view的工作原理。">
-<meta property="og:updated_time" content="2017-04-22T08:18:33.000Z">
+<meta property="og:updated_time" content="2017-04-24T01:55:34.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Androd自定义控件（一）概述">
 <meta name="twitter:description" content="这篇博客的主要内容是： 1.什么是控件，以及自定义控件。 2.自定义控件的种类。 3.view的工作原理。">
@@ -441,13 +441,11 @@
         <p>这篇博客的主要内容是： 1.什么是控件，以及自定义控件。 2.自定义控件的种类。 3.view的工作原理。</p>
 <a id="more"></a>
 <p>这篇博客的主要内容是：<br>1.什么是控件，以及自定义控件。<br>2.自定义控件的种类。<br>3.view的工作原理。</p>
-<p>#What?什么是自定义控件</p>
-<p>##1.什么是view<br>在Android的官方文档中是这样描述的：这个类表示了用户界面的基本构建模块。一个View占用了屏幕上的一个矩形区域并且负责界面绘制和事件处理。View是用来构建用户界面组件（Button，Textfields等等）的基类。ViewGroup子类是各种布局的基类，它是个包含其他View（或其他ViewGroups）和定义这些View布局参数的容器。</p>
+<h1 id="What-什么是自定义控件"><a href="#What-什么是自定义控件" class="headerlink" title="What?什么是自定义控件"></a>What?什么是自定义控件</h1><h2 id="1-什么是view"><a href="#1-什么是view" class="headerlink" title="1.什么是view"></a>1.什么是view</h2><p>在Android的官方文档中是这样描述的：这个类表示了用户界面的基本构建模块。一个View占用了屏幕上的一个矩形区域并且负责界面绘制和事件处理。View是用来构建用户界面组件（Button，Textfields等等）的基类。ViewGroup子类是各种布局的基类，它是个包含其他View（或其他ViewGroups）和定义这些View布局参数的容器。</p>
 <p>其实说白了，View是Android最基本的UI组件，表示屏幕上的一个矩形区域。</p>
-<p>##2.什么是自定义view<br>Android开发中难免用到Android标准控件库中没有的，或者不完全符合我们需求的控件，这时候就需要我们根据自己的需求来定义满足我们要求的控件，即自定义控件。</p>
-<p>#How?怎样去自定义一个控件。</p>
-<p>##1.自定义控件的种类<br>个人认为自定义view其实可以分为4种：<br>1.系统控件重新组合+动画（非必须）<br>2.自定义类继承view或者已有的控件类+动画（非必须）<br>3.自定义类继承viewgroup或者已有的容器类+动画（非必须）<br>4.自定义类继承surfaceview+动画（非必须）<br>其中第一种比较简单，这里就不过多叙述了。<br>第2,3种的步骤大概是类似的，即测量（onmeasere），布局（onlayout），绘制（ondraw）。他们的共同点是：都需要进行测量操作。不同点是：viewgroup主要是控制子view的摆放，所以必须实现onlayout。而view没有子view，所以不需要onlayout方法，但必须实现ondraw。这里还需要说明的一点是自定义viewgroup一般不需要实现onmeasure，我们可以让我们的自定义view继承自已有的viewgroup帮我们实现onmeasure。<br>第四种多为相机，播放器以及一些需要频繁刷新的view（粒子效果等等）。</p>
-<p>##2.view的工作原理<br>View定义了绘图的基本操，由三个函数完成：measure()、layout()、draw()，其内部又分别包含了onMeasure()、onLayout()、onDraw()三个子方法。具体操作如下：<br>1、measure操作<br>measure操作主要用于计算视图的大小，即视图的宽度和长度。在view中定义为final类型，要求子类不能修改。measure()函数中又会调用下面的函数：<br>（1）onMeasure()，视图大小的将在这里最终确定，也就是说measure只是对onMeasure的一个包装，子类可以覆写onMeasure()方法实现自己的计算视图大小的方式，并通过setMeasuredDimension(width, height)保存计算结果。<br>2、layout操作<br>layout操作用于设置视图在屏幕中显示的位置。在view中定义为final类型，要求子类不能修改。layout()函数中有两个基本操作：<br>（1）setFrame（l,t,r,b），l,t,r,b即子视图在父视图中的具体位置，该函数用于将这些参数保存起来；<br>（2）onLayout()，在View中这个函数什么都不会做，提供该函数主要是为viewGroup类型布局子视图用的；<br>3、draw操作<br>draw操作利用前两部得到的参数，将视图显示在屏幕上，到这里也就完成了整个的视图绘制工作。子类也不应该修改该方法，因为其内部定义了绘图的基本操作：<br>（1）绘制背景；<br>（2）如果要视图显示渐变框，这里会做一些准备工作；<br>（3）绘制视图本身，即调用onDraw()函数。在view中onDraw()是个空函数，也就是说具体的视图都要覆写该函数来实现自己的显示（比如TextView在这里实现了绘制文字的过程）。而对于ViewGroup则不需要实现该函数，因为作为容器是“没有内容“的，其包含了多个子view，而子View已经实现了自己的绘制方法，因此只需要告诉子view绘制自己就可以了，也就是下面的dispatchDraw()方法;<br>（4）绘制子视图，即dispatchDraw()函数。在view中这是个空函数，具体的视图不需要实现该方法，它是专门为容器类准备的，也就是容器类必须实现该方法；<br>（5）如果需要（应用程序调用了setVerticalFadingEdge或者setHorizontalFadingEdge），开始绘制渐变框；<br>（6）绘制滚动条；<br>ViewGroup中的扩展操作：<br>首先Viewgroup是一个抽象类。<br>1、对子视图的measure过程<br>（1）measureChildren()，内部使用一个for循环对子视图进行遍历，分别调用子视图的measure()方法；<br>（2）measureChild()，为指定的子视图measure，会被 measureChildren调用；<br>（3）measureChildWithMargins()，为指定子视图考虑了margin和padding的measure；<br>以上三个方法是ViewGroup提供的3个对子view进行测量的参考方法，设计者需要在实际中首先覆写onMeasure()，之后再对子view进行遍历measure，这时候就可以使用以上三个方法，当然也可以自定义方法进行遍历。<br>2、对子视图的layout过程<br>在ViewGroup中onLayout()被定义为abstract类型，也就是具体的容器必须实现此方法来安排子视图的布局位置，实现中主要考虑的是视图的大小及视图间的相对位置关系，如gravity、layout_gravity。<br>3、对子视图的draw过程<br>（1）dispatchDraw()，该方法用于对子视图进行遍历然后分别让子视图分别draw，方法内部会首先处理布局动画（也就是说布局动画是在这里处理的），如果有布局动画则会为每个子视图产生一个绘制时间，之后再有一个for循环对子视图进行遍历，来调用子视图的draw方法（实际为下边的drawChild()）；<br>（2）drawChild()，该方法用于具体调用子视图的draw方法，内部首先会处理视图动画（也就是说视图动画是在这里处理的），之后调用子视图的draw()。<br>从以上分析可以看出View树的绘制是一个递归的过程，从ViewGroup一直向下遍历，直到所有的子view都完成绘制。</p>
+<h2 id="2-什么是自定义view"><a href="#2-什么是自定义view" class="headerlink" title="2.什么是自定义view"></a>2.什么是自定义view</h2><p>Android开发中难免用到Android标准控件库中没有的，或者不完全符合我们需求的控件，这时候就需要我们根据自己的需求来定义满足我们要求的控件，即自定义控件。</p>
+<h1 id="How-怎样去自定义一个控件。"><a href="#How-怎样去自定义一个控件。" class="headerlink" title="How?怎样去自定义一个控件。"></a>How?怎样去自定义一个控件。</h1><h2 id="1-自定义控件的种类"><a href="#1-自定义控件的种类" class="headerlink" title="1.自定义控件的种类"></a>1.自定义控件的种类</h2><p>个人认为自定义view其实可以分为4种：<br>1.系统控件重新组合+动画（非必须）<br>2.自定义类继承view或者已有的控件类+动画（非必须）<br>3.自定义类继承viewgroup或者已有的容器类+动画（非必须）<br>4.自定义类继承surfaceview+动画（非必须）<br>其中第一种比较简单，这里就不过多叙述了。<br>第2,3种的步骤大概是类似的，即测量（onmeasere），布局（onlayout），绘制（ondraw）。他们的共同点是：都需要进行测量操作。不同点是：viewgroup主要是控制子view的摆放，所以必须实现onlayout。而view没有子view，所以不需要onlayout方法，但必须实现ondraw。这里还需要说明的一点是自定义viewgroup一般不需要实现onmeasure，我们可以让我们的自定义view继承自已有的viewgroup帮我们实现onmeasure。<br>第四种多为相机，播放器以及一些需要频繁刷新的view（粒子效果等等）。</p>
+<h2 id="2-view的工作原理"><a href="#2-view的工作原理" class="headerlink" title="2.view的工作原理"></a>2.view的工作原理</h2><p>View定义了绘图的基本操，由三个函数完成：measure()、layout()、draw()，其内部又分别包含了onMeasure()、onLayout()、onDraw()三个子方法。具体操作如下：<br>1、measure操作<br>measure操作主要用于计算视图的大小，即视图的宽度和长度。在view中定义为final类型，要求子类不能修改。measure()函数中又会调用下面的函数：<br>（1）onMeasure()，视图大小的将在这里最终确定，也就是说measure只是对onMeasure的一个包装，子类可以覆写onMeasure()方法实现自己的计算视图大小的方式，并通过setMeasuredDimension(width, height)保存计算结果。<br>2、layout操作<br>layout操作用于设置视图在屏幕中显示的位置。在view中定义为final类型，要求子类不能修改。layout()函数中有两个基本操作：<br>（1）setFrame（l,t,r,b），l,t,r,b即子视图在父视图中的具体位置，该函数用于将这些参数保存起来；<br>（2）onLayout()，在View中这个函数什么都不会做，提供该函数主要是为viewGroup类型布局子视图用的；<br>3、draw操作<br>draw操作利用前两部得到的参数，将视图显示在屏幕上，到这里也就完成了整个的视图绘制工作。子类也不应该修改该方法，因为其内部定义了绘图的基本操作：<br>（1）绘制背景；<br>（2）如果要视图显示渐变框，这里会做一些准备工作；<br>（3）绘制视图本身，即调用onDraw()函数。在view中onDraw()是个空函数，也就是说具体的视图都要覆写该函数来实现自己的显示（比如TextView在这里实现了绘制文字的过程）。而对于ViewGroup则不需要实现该函数，因为作为容器是“没有内容“的，其包含了多个子view，而子View已经实现了自己的绘制方法，因此只需要告诉子view绘制自己就可以了，也就是下面的dispatchDraw()方法;<br>（4）绘制子视图，即dispatchDraw()函数。在view中这是个空函数，具体的视图不需要实现该方法，它是专门为容器类准备的，也就是容器类必须实现该方法；<br>（5）如果需要（应用程序调用了setVerticalFadingEdge或者setHorizontalFadingEdge），开始绘制渐变框；<br>（6）绘制滚动条；<br>ViewGroup中的扩展操作：<br>首先Viewgroup是一个抽象类。<br>1、对子视图的measure过程<br>（1）measureChildren()，内部使用一个for循环对子视图进行遍历，分别调用子视图的measure()方法；<br>（2）measureChild()，为指定的子视图measure，会被 measureChildren调用；<br>（3）measureChildWithMargins()，为指定子视图考虑了margin和padding的measure；<br>以上三个方法是ViewGroup提供的3个对子view进行测量的参考方法，设计者需要在实际中首先覆写onMeasure()，之后再对子view进行遍历measure，这时候就可以使用以上三个方法，当然也可以自定义方法进行遍历。<br>2、对子视图的layout过程<br>在ViewGroup中onLayout()被定义为abstract类型，也就是具体的容器必须实现此方法来安排子视图的布局位置，实现中主要考虑的是视图的大小及视图间的相对位置关系，如gravity、layout_gravity。<br>3、对子视图的draw过程<br>（1）dispatchDraw()，该方法用于对子视图进行遍历然后分别让子视图分别draw，方法内部会首先处理布局动画（也就是说布局动画是在这里处理的），如果有布局动画则会为每个子视图产生一个绘制时间，之后再有一个for循环对子视图进行遍历，来调用子视图的draw方法（实际为下边的drawChild()）；<br>（2）drawChild()，该方法用于具体调用子视图的draw方法，内部首先会处理视图动画（也就是说视图动画是在这里处理的），之后调用子视图的draw()。<br>从以上分析可以看出View树的绘制是一个递归的过程，从ViewGroup一直向下遍历，直到所有的子view都完成绘制。</p>
 <p><strong>这篇博客主要是对view以及自定义view的概述，接下来我会结合我在项目中用到的实例来跟大家分享四种自定义view的特点及操作方式。</strong></p>
 
       
@@ -581,8 +579,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpeg"
@@ -689,6 +696,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#What-什么是自定义控件"><span class="nav-number">1.</span> <span class="nav-text">What?什么是自定义控件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-什么是view"><span class="nav-number">1.1.</span> <span class="nav-text">1.什么是view</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-什么是自定义view"><span class="nav-number">1.2.</span> <span class="nav-text">2.什么是自定义view</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#How-怎样去自定义一个控件。"><span class="nav-number">2.</span> <span class="nav-text">How?怎样去自定义一个控件。</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-自定义控件的种类"><span class="nav-number">2.1.</span> <span class="nav-text">1.自定义控件的种类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-view的工作原理"><span class="nav-number">2.2.</span> <span class="nav-text">2.view的工作原理</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

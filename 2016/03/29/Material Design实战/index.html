@@ -102,7 +102,7 @@
 <meta property="og:image" content="http://img.blog.csdn.net/20160331170922504">
 <meta property="og:image" content="http://img.blog.csdn.net/20160331175022457">
 <meta property="og:image" content="http://img.blog.csdn.net/20160331175142895">
-<meta property="og:updated_time" content="2017-04-22T08:20:25.000Z">
+<meta property="og:updated_time" content="2017-04-24T02:09:01.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Material Design实战">
 <meta name="twitter:description" content="MaterialDesign实战。">
@@ -452,15 +452,11 @@
 <p><strong>2.Toolbar的用法；</strong></p>
 <p><strong>3.RecyclerView的基本用法；</strong></p>
 <p>然后说下具体的实现思路。</p>
-<p>##Material design</p>
-<p>###什么是Material design？<br>We challenged ourselves to create a visual language for our users that synthesizes the classic principles of good design with the innovation and possibility of technology and science. This is material design. This spec is a living document that will be updated as we continue to develop the tenets and specifics of material design.</p>
+<h2 id="Material-design"><a href="#Material-design" class="headerlink" title="Material design"></a>Material design</h2><h3 id="什么是Material-design？"><a href="#什么是Material-design？" class="headerlink" title="什么是Material design？"></a>什么是Material design？</h3><p>We challenged ourselves to create a visual language for our users that synthesizes the classic principles of good design with the innovation and possibility of technology and science. This is material design. This spec is a living document that will be updated as we continue to develop the tenets and specifics of material design.</p>
 <p>从官方介绍里我们了解到，这是一门崭新的视觉设计语言。它除了遵循经典设计定则，还汲取了最新的科技，秉承了创新的设计理念。这就是材料化设计(Material Design)。</p>
-<p>###Material design的核心<br>Material design的核心思想，就是把物理世界的体验带进屏幕。去掉现实中的杂质和随机性，保留其最原始纯净的形态、空间关系、变化与过渡，配合虚拟世界的灵活特性，还原最贴近真实的体验，达到简洁与直观的效果。</p>
-<p>##创建使用Material design的应用</p>
-<p>###官方文档中的步骤<br>1.The material theme（使用materialdesign主题）<br>2.Widgets for cards and lists（使用列表和卡片组件）<br>3.Custom shadows and view clipping（定义shadows和clipping视图）<br>4.Vector drawables（矢量drawables）<br>5.Custom animations（自定义动画）</p>
-<p>###本demo的实现过程</p>
-<p>####使用materialdesign主题</p>
-<p>Material主题被定义在：</p>
+<h3 id="Material-design的核心"><a href="#Material-design的核心" class="headerlink" title="Material design的核心"></a>Material design的核心</h3><p>Material design的核心思想，就是把物理世界的体验带进屏幕。去掉现实中的杂质和随机性，保留其最原始纯净的形态、空间关系、变化与过渡，配合虚拟世界的灵活特性，还原最贴近真实的体验，达到简洁与直观的效果。</p>
+<h2 id="创建使用Material-design的应用"><a href="#创建使用Material-design的应用" class="headerlink" title="创建使用Material design的应用"></a>创建使用Material design的应用</h2><h3 id="官方文档中的步骤"><a href="#官方文档中的步骤" class="headerlink" title="官方文档中的步骤"></a>官方文档中的步骤</h3><p>1.The material theme（使用materialdesign主题）<br>2.Widgets for cards and lists（使用列表和卡片组件）<br>3.Custom shadows and view clipping（定义shadows和clipping视图）<br>4.Vector drawables（矢量drawables）<br>5.Custom animations（自定义动画）</p>
+<h3 id="本demo的实现过程"><a href="#本demo的实现过程" class="headerlink" title="本demo的实现过程"></a>本demo的实现过程</h3><h4 id="使用materialdesign主题"><a href="#使用materialdesign主题" class="headerlink" title="使用materialdesign主题"></a>使用materialdesign主题</h4><p>Material主题被定义在：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">@android:style/Theme.Material (暗色版本)</div><div class="line">@android:style/Theme.Material.Light (亮色版本)</div><div class="line">@android:style/Theme.Material.Light.DarkActionBar</div></pre></td></tr></table></figure>
 <p>为了使我们的应用可以兼容低版本，可以使用<strong>兼容主题</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Theme.AppCompat</div><div class="line">Theme.AppCompat.Light</div><div class="line">Theme.AppCompat.Light.DarkActionBar</div></pre></td></tr></table></figure>
@@ -471,7 +467,7 @@
 <p><img src="http://img.blog.csdn.net/20160331175022457" alt="这里写图片描述"></p>
 <p>工具界面如下图，可以点击特定属性选择符合自己品牌的颜色。</p>
 <p><img src="http://img.blog.csdn.net/20160331175142895" alt="这里写图片描述"></p>
-<p>####使用Toolbar<br><strong>5.0以后使用了Toolbar这个控件来替换以前的ActionBar。并且提供了supprot library用于向下兼容。使用方法与ActionBar基本类似。</strong></p>
+<h4 id="使用Toolbar"><a href="#使用Toolbar" class="headerlink" title="使用Toolbar"></a>使用Toolbar</h4><p><strong>5.0以后使用了Toolbar这个控件来替换以前的ActionBar。并且提供了supprot library用于向下兼容。使用方法与ActionBar基本类似。</strong></p>
 <p>隐藏ActionBar使用ToolBar有两种方法：</p>
 <p>1.继承主题：Theme.AppCompat.Light.NoActionBar</p>
 <p>2.在主题中使用以下属性：</p>
@@ -482,7 +478,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line">     * 初始化toolbar</div><div class="line">     */</div><div class="line">    private void initToolBar() &#123;</div><div class="line">        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);</div><div class="line">        // App Logo</div><div class="line">//        toolbar.setLogo(R.mipmap.logo);</div><div class="line">        // Title</div><div class="line">//        toolbar.setTitle(&quot;WaKaKa&quot;);</div><div class="line">        // Sub Title</div><div class="line">//        toolbar.setSubtitle(&quot;Sub title&quot;);</div><div class="line">        toolbar.setOverflowIcon(getResources().getDrawable(R.mipmap.more));</div><div class="line">        setSupportActionBar(toolbar);</div><div class="line"></div><div class="line">        //导航按钮</div><div class="line">        toolbar.setNavigationIcon(R.mipmap.menu);</div><div class="line">        toolbar.setNavigationOnClickListener(new View.OnClickListener() &#123;</div><div class="line">            @Override</div><div class="line">            public void onClick(View v) &#123;</div><div class="line">                Toast.makeText(MainActivity.this, &quot;Click navigation&quot;, Toast.LENGTH_SHORT).show();</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line"></div><div class="line">        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() &#123;</div><div class="line">            @Override</div><div class="line">            public boolean onMenuItemClick(MenuItem item) &#123;</div><div class="line">                String msg = &quot;&quot;;</div><div class="line">                switch (item.getItemId()) &#123;</div><div class="line">                    case R.id.action_delete:</div><div class="line">                        msg += &quot;Click delete&quot;;</div><div class="line">                        break;</div><div class="line">                    case R.id.action_favorite:</div><div class="line">                        msg += &quot;Click favorite&quot;;</div><div class="line">                        break;</div><div class="line">                    case R.id.action_settings:</div><div class="line">                        msg += &quot;Click settings&quot;;</div><div class="line">                        break;</div><div class="line">                &#125;</div><div class="line">                if (!msg.equals(&quot;&quot;)) &#123;</div><div class="line">                    Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();</div><div class="line">                &#125;</div><div class="line">                return true;</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
 <p><strong>要注意的是setNavigationIcon需要放在 setSupportActionBar之后才会生效。</strong></p>
 <p>这个demo中的图标大部分是从谷歌官方制作的icon中下载的。</p>
-<p>####使用RecycleView<br> RecycleView组件是一个更高级和伸缩性更强的 ListView。这个组件是一个显示大量数据的容器，通过维护有限量的View，来达到滚动时的高效。当你的数据会在运行过程中根据用户行为或网络事件动态改变时，使用RecyclerView是一个不错的选择。</p>
+<h4 id="使用RecycleView"><a href="#使用RecycleView" class="headerlink" title="使用RecycleView"></a>使用RecycleView</h4><p> RecycleView组件是一个更高级和伸缩性更强的 ListView。这个组件是一个显示大量数据的容器，通过维护有限量的View，来达到滚动时的高效。当你的数据会在运行过程中根据用户行为或网络事件动态改变时，使用RecyclerView是一个不错的选择。</p>
 <p>RecyclerView 通过以下方式简化显示流程，并操作大量数据：</p>
 <p>1.使用 Layout manager 来定位元素</p>
 <p>2.为常用操作定义默认动画，比如添加或移除元素</p>
@@ -643,8 +639,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpeg"
@@ -751,6 +756,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Material-design"><span class="nav-number">1.</span> <span class="nav-text">Material design</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是Material-design？"><span class="nav-number">1.1.</span> <span class="nav-text">什么是Material design？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Material-design的核心"><span class="nav-number">1.2.</span> <span class="nav-text">Material design的核心</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建使用Material-design的应用"><span class="nav-number">2.</span> <span class="nav-text">创建使用Material design的应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#官方文档中的步骤"><span class="nav-number">2.1.</span> <span class="nav-text">官方文档中的步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本demo的实现过程"><span class="nav-number">2.2.</span> <span class="nav-text">本demo的实现过程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用materialdesign主题"><span class="nav-number">2.2.1.</span> <span class="nav-text">使用materialdesign主题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用Toolbar"><span class="nav-number">2.2.2.</span> <span class="nav-text">使用Toolbar</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用RecycleView"><span class="nav-number">2.2.3.</span> <span class="nav-text">使用RecycleView</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

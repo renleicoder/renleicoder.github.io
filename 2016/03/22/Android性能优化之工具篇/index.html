@@ -108,7 +108,7 @@
 <meta property="og:image" content="http://img.blog.csdn.net/20160322174052054">
 <meta property="og:image" content="http://img.blog.csdn.net/20160322174214554">
 <meta property="og:image" content="http://img.blog.csdn.net/20160322174954104">
-<meta property="og:updated_time" content="2017-04-22T08:19:36.000Z">
+<meta property="og:updated_time" content="2017-04-24T01:59:59.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android性能优化之工具篇">
 <meta name="twitter:description" content="Android性能优化之工具篇。">
@@ -455,9 +455,8 @@
 <p>The Android SDK includes a variety of tools that help you develop mobile applications for the Android platform. The tools are classified into two groups: SDK tools and platform tools. SDK tools are platform independent and are required no matter which Android platform you are developing on. Platform tools are customized to support the features of the latest Android platform.</p>
 <p>以上是官方文档中关于开发工具的概述，<strong>Android SDK包含了许多工具来帮助我们开发Android App，这些工具呢大概分为两类：SDK工具和平台工具。SDK工具是独立于平台之外的，而平台工具是为了支持最新的Android开发平台而定制的。</strong></p>
 <p>今天我们来看一下SDK工具中比较实用的有关UI优化的两个开发工具，<strong>Hierarchy Viewer (hierarchyviewer)和lint</strong>。</p>
-<p>##Hierarchy Viewer (hierarchyviewer)</p>
-<p>####概述<br><strong>Hierarchy Viewer是我们的布局文件的层级结构变的可见，并且在每一个节点标注此节点的性能相关的信息。通过此工具可以详细的理解当前界面的控件布局以及某个控件的属性（name、id、height等）。同时，我们可以借助Hierarchy Viewer学习别人优秀的布局方式，也能更深入更全面更整体的把握xml布局文件。</strong></p>
-<p>####使用方法<br>1.连接设备真机或者模拟器；</p>
+<h2 id="Hierarchy-Viewer-hierarchyviewer"><a href="#Hierarchy-Viewer-hierarchyviewer" class="headerlink" title="Hierarchy Viewer (hierarchyviewer)"></a>Hierarchy Viewer (hierarchyviewer)</h2><h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p><strong>Hierarchy Viewer是我们的布局文件的层级结构变的可见，并且在每一个节点标注此节点的性能相关的信息。通过此工具可以详细的理解当前界面的控件布局以及某个控件的属性（name、id、height等）。同时，我们可以借助Hierarchy Viewer学习别人优秀的布局方式，也能更深入更全面更整体的把握xml布局文件。</strong></p>
+<h4 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h4><p>1.连接设备真机或者模拟器；</p>
 <p>2.启动你要观察的应用（真机可能无法连接，我用的小米4，连接上了，没读到内容，如下图）；</p>
 <p><img src="http://img.blog.csdn.net/20160322182907244" alt="这里写图片描述"></p>
 <p>3.Androidstudio中启动Hierarchy Viewer的方式如图所示</p>
@@ -465,7 +464,7 @@
 <p>然后点击<img src="http://img.blog.csdn.net/20160322183319917" alt="这里写图片描述">   </p>
 <p>选择Hierarchy Viewer。</p>
 <p>4.然后选中我们要查看的进程，等待加载完毕。</p>
-<p>####详细说明<br>加载完成后效果如图，这张图是<a href="http://blog.csdn.net/sdkfjksf/article/details/50888655" target="_blank" rel="external">小火箭</a>的界面的view树。</p>
+<h4 id="详细说明"><a href="#详细说明" class="headerlink" title="详细说明"></a>详细说明</h4><p>加载完成后效果如图，这张图是<a href="http://blog.csdn.net/sdkfjksf/article/details/50888655" target="_blank" rel="external">小火箭</a>的界面的view树。</p>
 <p><img src="http://img.blog.csdn.net/20160322225553738" alt=""></p>
 <p>观察单个view，选择单个view后会出现如下图所示图形。这里会看到Measure、Layout、Draw的耗时。</p>
 <p><img src="http://img.blog.csdn.net/20160322225918710" alt="这里写图片描述"></p>
@@ -473,12 +472,11 @@
 <p><img src="http://img.blog.csdn.net/20160323090402754" alt="这里写图片描述"></p>
 <p><strong>看小火箭的view层级结构图，35views表明这个framelayout下包含35个子控件了。而下方的带颜色的三个圆圈指示灯，分别说明了在测量(measure)、布局(layout)以及画视图(draw)三个阶段，这个控件所占用的时间百分比，如果是绿色的，表示该控件在该阶段比起其他的50%的控件的速度要快，为黄色的表示比起其他的50%的控件的速度要慢，为红色的则表示该控件在该阶段的处理速度是最慢的。</strong></p>
 <p><strong>要注意的是，在Hierarchy Viewer中，当修改了界面后，需要手工点Refresh按钮，才能同步在Hierarchy Viewer中显示更新过后的界面情况。</strong></p>
-<p>##lint</p>
-<p>####概述<br><strong>Android中的lint，是一个静态代码分析工具，它可以帮助我们检测我们项目中的资源文件中的潜在bug，并且提供最优的改进方案。</strong></p>
+<h2 id="lint"><a href="#lint" class="headerlink" title="lint"></a>lint</h2><h4 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h4><p><strong>Android中的lint，是一个静态代码分析工具，它可以帮助我们检测我们项目中的资源文件中的潜在bug，并且提供最优的改进方案。</strong></p>
 <p>The lint tool checks your Android project source files for potential bugs and optimization improvements for correctness, security, performance, usability, accessibility, and internationalization. You can run lint from the command-line or from Android Studio.</p>
 <p>通过看官方文档我们了解到，lint可以帮我们做检查资源文件，并且提高app的正确性，安全性，性能，实用性以及国际化等。我们可以<strong>通过命令行或者直接在Androidstudio中使用lint</strong>来扫描我们的app。</p>
-<p>####功能<br>1.布局性能<br>2.未使用到资源<br>3.不一致的数组大小<br>4.国际化问题（硬编码）<br>5.图标的问题（重复的图标，错误的大小）<br>6.可用性问题（如不指定的文本字段的输入型）<br>7.manifest文件以及gradle文件的错误</p>
-<p>####在AndroidStudio中的使用<br><img src="http://img.blog.csdn.net/20160322174052054" alt="这里写图片描述"></p>
+<h4 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h4><p>1.布局性能<br>2.未使用到资源<br>3.不一致的数组大小<br>4.国际化问题（硬编码）<br>5.图标的问题（重复的图标，错误的大小）<br>6.可用性问题（如不指定的文本字段的输入型）<br>7.manifest文件以及gradle文件的错误</p>
+<h4 id="在AndroidStudio中的使用"><a href="#在AndroidStudio中的使用" class="headerlink" title="在AndroidStudio中的使用"></a>在AndroidStudio中的使用</h4><p><img src="http://img.blog.csdn.net/20160322174052054" alt="这里写图片描述"></p>
 <p>如图所示，找到Analyze，点击Inspect Code，然后弹出一个选择范围的对话框</p>
 <p><img src="http://img.blog.csdn.net/20160322174214554" alt="这里写图片描述"></p>
 <p>这里我们使用默认的整个工程。然后看下结果：</p>
@@ -625,8 +623,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpeg"
@@ -733,6 +740,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hierarchy-Viewer-hierarchyviewer"><span class="nav-number">1.</span> <span class="nav-text">Hierarchy Viewer (hierarchyviewer)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#概述"><span class="nav-number">1.0.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用方法"><span class="nav-number">1.0.2.</span> <span class="nav-text">使用方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#详细说明"><span class="nav-number">1.0.3.</span> <span class="nav-text">详细说明</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lint"><span class="nav-number">2.</span> <span class="nav-text">lint</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#概述-1"><span class="nav-number">2.0.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#功能"><span class="nav-number">2.0.2.</span> <span class="nav-text">功能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在AndroidStudio中的使用"><span class="nav-number">2.0.3.</span> <span class="nav-text">在AndroidStudio中的使用</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

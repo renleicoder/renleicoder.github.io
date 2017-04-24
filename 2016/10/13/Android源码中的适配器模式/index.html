@@ -102,7 +102,7 @@
 <meta property="og:image" content="http://i.imgur.com/z2CTtCi.png">
 <meta property="og:image" content="http://i.imgur.com/TNagOhd.png">
 <meta property="og:image" content="http://i.imgur.com/46Q3HYJ.png">
-<meta property="og:updated_time" content="2017-04-22T08:20:05.000Z">
+<meta property="og:updated_time" content="2017-04-24T02:02:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android源码中的适配器模式">
 <meta name="twitter:description" content="Android源码中的适配器模式">
@@ -450,10 +450,8 @@
 <p><a href="http://blog.csdn.net/sdkfjksf/article/details/52700648" target="_blank" rel="external">Android中的工厂方法模式</a></p>
 <p><a href="http://blog.csdn.net/sdkfjksf/article/details/52755908" target="_blank" rel="external">Android源码中的命令模式</a></p>
 <p>前段时间写了<a href="http://blog.csdn.net/sdkfjksf/article/details/52640111" target="_blank" rel="external">当观察者模式和回调机制遇上Android源码</a>，分析了下ListView中的观察者模式，今天我们来分析下ListView部分的另一个模式，适配器模式。</p>
-<p>#定义</p>
-<p><strong>适配器模式把一个类的接口变换成客户端所期待的另一种接口，从而使原本因接口不匹配而无法在一起工作的两个类能够在一起工作。</strong></p>
-<p>#使用场景</p>
-<ul>
+<h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p><strong>适配器模式把一个类的接口变换成客户端所期待的另一种接口，从而使原本因接口不匹配而无法在一起工作的两个类能够在一起工作。</strong></p>
+<h1 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h1><ul>
 <li><p>当你想使用一个已经存在的类，而它的接口不符合你的需求；</p>
 </li>
 <li><p>你想创建一个可以复用的类，该类可以与其他不相关的类或不可预见的类协同工作；</p>
@@ -461,15 +459,11 @@
 <li><p>你想使用一些已经存在的子类，但是不可能对每一个都进行子类化以匹配它们的接口，对象适配器可以适配它的父亲接口。</p>
 </li>
 </ul>
-<p>#结构</p>
-<p>适配器模式有<strong>类的适配器模式</strong>和<strong>对象的适配器模式</strong>两种不同的形式。</p>
-<p>##类适配器</p>
-<p><img src="http://i.imgur.com/z2CTtCi.png" alt=""></p>
-<p>##对象适配器</p>
-<p><img src="http://i.imgur.com/TNagOhd.png" alt=""></p>
+<h1 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h1><p>适配器模式有<strong>类的适配器模式</strong>和<strong>对象的适配器模式</strong>两种不同的形式。</p>
+<h2 id="类适配器"><a href="#类适配器" class="headerlink" title="类适配器"></a>类适配器</h2><p><img src="http://i.imgur.com/z2CTtCi.png" alt=""></p>
+<h2 id="对象适配器"><a href="#对象适配器" class="headerlink" title="对象适配器"></a>对象适配器</h2><p><img src="http://i.imgur.com/TNagOhd.png" alt=""></p>
 <p><strong>可以看到，对象的适配器模式不是使用继承关系连接到Adaptee类，而是使用委派关系连接的。</strong></p>
-<p>##模式所涉及的角色有：</p>
-<ul>
+<h2 id="模式所涉及的角色有："><a href="#模式所涉及的角色有：" class="headerlink" title="模式所涉及的角色有："></a>模式所涉及的角色有：</h2><ul>
 <li><p><strong>目标(Target)角色</strong>：这就是所期待得到的接口。注意：由于这里讨论的是类适配器模式，因此目标不可以是类。</p>
 </li>
 <li><p><strong>源(Adapee)角色</strong>：现在需要适配的接口。</p>
@@ -477,10 +471,8 @@
 <li><p><strong>适配器(Adaper)角色</strong>：适配器类是本模式的核心。适配器把源接口转换成目标接口。显然，这一角色不可以是接口，而必须是具体类。</p>
 </li>
 </ul>
-<p>#实现</p>
-<p>这里我们通过一个实例来模拟一下适配器模式。需求是这样的：IPhone7的耳机口被取消，我们怎么保证之前的耳机还能用呢？当然是需要一个转接头了，这个转接头呢，其实就类似我们的适配器。<strong>耳机需要的接口就是我们的目标角色，手机提供的接口就是我们的源角色，转接头当然就是适配器角色了。</strong></p>
-<p>##类适配器</p>
-<p>目标角色</p>
+<h1 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h1><p>这里我们通过一个实例来模拟一下适配器模式。需求是这样的：IPhone7的耳机口被取消，我们怎么保证之前的耳机还能用呢？当然是需要一个转接头了，这个转接头呢，其实就类似我们的适配器。<strong>耳机需要的接口就是我们的目标角色，手机提供的接口就是我们的源角色，转接头当然就是适配器角色了。</strong></p>
+<h2 id="类适配器-1"><a href="#类适配器-1" class="headerlink" title="类适配器"></a>类适配器</h2><p>目标角色</p>
 <pre><code>public interface ITarget {
     //获取需要的接口
     String getRightInterface();
@@ -511,8 +503,7 @@
         return &quot;3.5mm interface&quot;;
     }
 }
-</code></pre><p>##对象适配器</p>
-<p>对象适配器的目标角色和源角色是一样的，我们就不再写了。</p>
+</code></pre><h2 id="对象适配器-1"><a href="#对象适配器-1" class="headerlink" title="对象适配器"></a>对象适配器</h2><p>对象适配器的目标角色和源角色是一样的，我们就不再写了。</p>
 <p>适配器</p>
 <pre><code>public class Adapter implements ITarget {
 
@@ -537,8 +528,7 @@
         return &quot;3.5mm interface&quot;;
     }
 }
-</code></pre><p>#Android源码中的适配器模式</p>
-<p>Android源码中的适配器模式，最典型的无非就是ListView、GridVIew、RecyclerView等等。我们来简单分析一下ListView，其他的大同小异。</p>
+</code></pre><h1 id="Android源码中的适配器模式"><a href="#Android源码中的适配器模式" class="headerlink" title="Android源码中的适配器模式"></a>Android源码中的适配器模式</h1><p>Android源码中的适配器模式，最典型的无非就是ListView、GridVIew、RecyclerView等等。我们来简单分析一下ListView，其他的大同小异。</p>
 <p>我们前边在使用场景中有这么一点：<strong>你想使用一些已经存在的子类，但是不可能对每一个都进行子类化以匹配它们的接口，对象适配器可以适配它的父亲接口。</strong></p>
 <p>这句话怎么理解呢？其实放到ListView源码中理解起来更容易一些。<strong>首先我们的Item View可以是有各种不同布局的，我们不可能对每一个布局都去进行匹配，但是我们可以去适配它们的父类，父类是什么，就是View类。</strong></p>
 <p><strong>ListView做为client，他所需要的目标接口(target interface)就是ListAdapter，包含getCount(),getItem(),getView()等几个基本的方法，为了兼容List<t>,Cursor等数据类型作为数据源，还专门定义两个适配器来适配他们：ArrayAdapter和CursorAdapter。这两个适配器，说白了，就是针对目标接口对数据源进行兼容修饰。</t></strong></p>
@@ -748,8 +738,7 @@ private View makeAndAddView(int position, int y, boolean flow, int childrenLeft,
 <p>注释说的很明确：<strong>获得一个View，并且使它显示特定位置的数据。同时这里会处理View的复用或者重新生成。</strong></p>
 <p>总结一下就是，<strong>我们在负责展示数据的集合视图（AbsListView类族）和用户提供的布局、数据之间隔了一个类，即Adapter。Adapter会返回给集合视图用户数据的数量、布局，但是它吧所有的布局都抽象成了View。这样保证了AbsListView类族的高度可定制化。</strong></p>
 <p>测试代码已上传到<a href="https://github.com/PleaseCallMeCoder/DesignPatterns" target="_blank" rel="external">github</a>。</p>
-<p>#参考链接</p>
-<p><a href="http://blog.csdn.net/bboyfeiyu/article/details/43950185" target="_blank" rel="external">http://blog.csdn.net/bboyfeiyu/article/details/43950185</a></p>
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a href="http://blog.csdn.net/bboyfeiyu/article/details/43950185" target="_blank" rel="external">http://blog.csdn.net/bboyfeiyu/article/details/43950185</a></p>
 <p><a href="http://www.codexiu.cn/android/blog/27959/" target="_blank" rel="external">http://www.codexiu.cn/android/blog/27959/</a></p>
 
       
@@ -889,8 +878,17 @@ private View makeAndAddView(int position, int y, boolean flow, int childrenLeft,
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpeg"
@@ -997,6 +995,22 @@ private View makeAndAddView(int position, int y, boolean flow, int childrenLeft,
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#定义"><span class="nav-number">1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用场景"><span class="nav-number">2.</span> <span class="nav-text">使用场景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结构"><span class="nav-number">3.</span> <span class="nav-text">结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#类适配器"><span class="nav-number">3.1.</span> <span class="nav-text">类适配器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对象适配器"><span class="nav-number">3.2.</span> <span class="nav-text">对象适配器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模式所涉及的角色有："><span class="nav-number">3.3.</span> <span class="nav-text">模式所涉及的角色有：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实现"><span class="nav-number">4.</span> <span class="nav-text">实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#类适配器-1"><span class="nav-number">4.1.</span> <span class="nav-text">类适配器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对象适配器-1"><span class="nav-number">4.2.</span> <span class="nav-text">对象适配器</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Android源码中的适配器模式"><span class="nav-number">5.</span> <span class="nav-text">Android源码中的适配器模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考链接"><span class="nav-number">6.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

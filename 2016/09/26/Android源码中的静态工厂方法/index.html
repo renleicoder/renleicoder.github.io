@@ -100,7 +100,7 @@
 <meta property="og:site_name" content="KIKO_奶糖的博客">
 <meta property="og:description" content="Android源码中的静态工厂方法">
 <meta property="og:image" content="http://i.imgur.com/iLCpogO.png">
-<meta property="og:updated_time" content="2017-04-22T08:19:51.000Z">
+<meta property="og:updated_time" content="2017-04-24T02:01:12.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android源码中的静态工厂方法">
 <meta name="twitter:description" content="Android源码中的静态工厂方法">
@@ -444,19 +444,15 @@
 <a id="more"></a>
 <p>我们知道工厂模式有三兄弟，通常我们说的工厂模式指的是工厂方法模式，它的应用频率最高。本篇博客分享的简单工厂模式是工厂方法模式的“小弟”，确切的来讲它不属于设计模式，而是一种方法。此外，工厂方法模式还有一位“大哥”——抽象工厂模式。</p>
 <p>今天我们来分享一下简单工厂模式的一些情况，以及它在Android源码中的应用。</p>
-<p>#简单工厂模式</p>
-<p>##定义</p>
-<p><strong>简单工厂模式是类的创建模式，又叫做静态工厂方法（Static Factory Method）模式。简单工厂模式是由一个工厂对象决定创建出哪一种产品类的实例。</strong></p>
-<p>##结构</p>
-<p><img src="http://i.imgur.com/iLCpogO.png" alt=""></p>
+<h1 id="简单工厂模式"><a href="#简单工厂模式" class="headerlink" title="简单工厂模式"></a>简单工厂模式</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p><strong>简单工厂模式是类的创建模式，又叫做静态工厂方法（Static Factory Method）模式。简单工厂模式是由一个工厂对象决定创建出哪一种产品类的实例。</strong></p>
+<h2 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h2><p><img src="http://i.imgur.com/iLCpogO.png" alt=""></p>
 <p>简单工厂模式所涉及到的角色：</p>
 <ul>
 <li><strong>Product（抽象产品角色）</strong>：产品的通用接口，定义产品的行为。</li>
 <li><strong>ConcreteProduct（具体产品角色）</strong>：具体产品类，实现了Product接口。</li>
 <li><strong>Creator（工厂角色）</strong>：工厂类，通过静态工厂方法factoryMethord来创建对象。</li>
 </ul>
-<p>##实现</p>
-<p>抽象产品角色</p>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>抽象产品角色</p>
 <pre><code>abstract class Product {  
     //所有产品类的公共业务方法  
     public void methodSame() {  
@@ -489,28 +485,23 @@
         return product;  
     }  
 }
-</code></pre><p>##使用场景</p>
-<p>在以下情况下可以考虑使用简单工厂模式：</p>
+</code></pre><h2 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h2><p>在以下情况下可以考虑使用简单工厂模式：</p>
 <ol>
 <li>工厂类负责创建的对象比较少，由于创建的对象较少，不会造成工厂方法中的业务逻辑太过复杂。</li>
 <li>客户端只知道传入工厂类的参数，对于如何创建对象并不关心。</li>
 </ol>
-<p>##优点</p>
-<ul>
+<h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><ul>
 <li><p>工厂类包含必要的判断逻辑，可以决定在什么时候创建哪一个产品类的实例，客户端可以免除直接创建产品对象的职责，而仅仅“消费”产品，简单工厂模式实现了对象创建和使用的分离。</p>
 </li>
 <li><p>客户端无须知道所创建的具体产品类的类名，只需要知道具体产品类所对应的参数即可，对于一些复杂的类名，通过简单工厂模式可以在一定程度减少使用者的记忆量。</p>
 </li>
 </ul>
-<p>##缺点</p>
-<ul>
+<h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h2><ul>
 <li>系统扩展困难，一旦添加新产品就不得不修改工厂逻辑，在产品类型较多时，有可能造成工厂逻辑过于复杂，不利于系统的扩展和维护。</li>
 <li>简单工厂模式由于使用了静态工厂方法，造成工厂角色无法形成基于继承的等级结构。</li>
 </ul>
-<p>##Android中简单工厂模式的应用</p>
-<p>在Android中我们了解的使用到了简单工厂方法的地方有Bitmap对象的获取、Fragment创建等。接下来我们分开看一下。</p>
-<p>###Bitmap源码分析 </p>
-<p><strong>首先来说我们是不能通过new方法来创建Bitmap对象的，因为Bitmap类的构造函数是私有的，只能是通过JNI实例化。</strong></p>
+<h2 id="Android中简单工厂模式的应用"><a href="#Android中简单工厂模式的应用" class="headerlink" title="Android中简单工厂模式的应用"></a>Android中简单工厂模式的应用</h2><p>在Android中我们了解的使用到了简单工厂方法的地方有Bitmap对象的获取、Fragment创建等。接下来我们分开看一下。</p>
+<h3 id="Bitmap源码分析"><a href="#Bitmap源码分析" class="headerlink" title="Bitmap源码分析"></a>Bitmap源码分析</h3><p><strong>首先来说我们是不能通过new方法来创建Bitmap对象的，因为Bitmap类的构造函数是私有的，只能是通过JNI实例化。</strong></p>
 <p>接下来我们随便找个入口开始看，比如：</p>
 <pre><code>Bitmap bmp = BitmapFactory.decodeFile(String pathName);
 </code></pre><p>我们把源码中的调用关系找出来，如下</p>
@@ -606,8 +597,7 @@ private static void setDensityFromOptions(Bitmap outputBitmap, Options opts) {
 </ul>
 </blockquote>
 <p>看下BitmapFactory的注释我们可以看到，这个工厂支持从不同的资源创建Bitmap对象，包括files, streams, 和byte-arrays，但是调用关系都大同小异。</p>
-<p>##Fragment创建</p>
-<p>有时候，为了简化简单工厂模式，我们可以将抽象产品类和工厂类合并，将静态工厂方法移至抽象产品类中。Fragment的创建使用简单工厂方法没有抽象产品类，所以工厂类放到了实现产品类中。</p>
+<h2 id="Fragment创建"><a href="#Fragment创建" class="headerlink" title="Fragment创建"></a>Fragment创建</h2><p>有时候，为了简化简单工厂模式，我们可以将抽象产品类和工厂类合并，将静态工厂方法移至抽象产品类中。Fragment的创建使用简单工厂方法没有抽象产品类，所以工厂类放到了实现产品类中。</p>
 <p>在AndroidStudio中输入newInstance会自动补全Fragment的简单工厂方法。</p>
 <pre><code>public static TasksFragment newInstance() {
 
@@ -763,8 +753,17 @@ private static void setDensityFromOptions(Bitmap outputBitmap, Options opts) {
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpeg"
@@ -871,6 +870,22 @@ private static void setDensityFromOptions(Bitmap outputBitmap, Options opts) {
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简单工厂模式"><span class="nav-number">1.</span> <span class="nav-text">简单工厂模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义"><span class="nav-number">1.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结构"><span class="nav-number">1.2.</span> <span class="nav-text">结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现"><span class="nav-number">1.3.</span> <span class="nav-text">实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用场景"><span class="nav-number">1.4.</span> <span class="nav-text">使用场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优点"><span class="nav-number">1.5.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缺点"><span class="nav-number">1.6.</span> <span class="nav-text">缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android中简单工厂模式的应用"><span class="nav-number">1.7.</span> <span class="nav-text">Android中简单工厂模式的应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Bitmap源码分析"><span class="nav-number">1.7.1.</span> <span class="nav-text">Bitmap源码分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fragment创建"><span class="nav-number">1.8.</span> <span class="nav-text">Fragment创建</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

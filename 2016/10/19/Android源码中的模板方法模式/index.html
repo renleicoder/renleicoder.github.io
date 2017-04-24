@@ -101,7 +101,7 @@
 <meta property="og:description" content="Android源码中的模板方法模式">
 <meta property="og:image" content="http://i.imgur.com/4P3YxUE.png">
 <meta property="og:image" content="http://img.blog.csdn.net/20161019174419222">
-<meta property="og:updated_time" content="2017-04-22T08:20:01.000Z">
+<meta property="og:updated_time" content="2017-04-24T02:02:05.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android源码中的模板方法模式">
 <meta name="twitter:description" content="Android源码中的模板方法模式">
@@ -450,10 +450,8 @@
 <p><a href="http://blog.csdn.net/sdkfjksf/article/details/52755908" target="_blank" rel="external">Android源码中的命令模式</a></p>
 <p><a href="http://blog.csdn.net/sdkfjksf/article/details/52807179" target="_blank" rel="external">Android源码中的适配器模式</a></p>
 <p><a href="http://blog.csdn.net/sdkfjksf/article/details/52816893" target="_blank" rel="external"> Android源码中的外观模式</a></p>
-<p>#定义</p>
-<p><strong>模板方法模式在一个方法中定义一个算法的骨架，而将一些步骤延迟到子类中。模板方法使得子类可以在不改变算法结构的情况下，重新定义算法的某些步骤。</strong></p>
-<p>#使用场景</p>
-<ol>
+<h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p><strong>模板方法模式在一个方法中定义一个算法的骨架，而将一些步骤延迟到子类中。模板方法使得子类可以在不改变算法结构的情况下，重新定义算法的某些步骤。</strong></p>
+<h1 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h1><ol>
 <li><p>对一些复杂的算法进行分割，将其算法中固定不变的部分设计为模板方法和父类具体方法，而一些可以改变的细节由其子类来实现。即：一次性实现一个算法的不变部分，并将可变的行为留给子类来实现。</p>
 </li>
 <li><p>各子类中公共的行为应被提取出来并集中到一个公共父类中以避免代码重复。</p>
@@ -461,8 +459,7 @@
 <li><p>需要通过子类来决定父类算法中某个步骤是否执行，实现子类对父类的反向控制。</p>
 </li>
 </ol>
-<p>#结构</p>
-<p><img src="http://i.imgur.com/4P3YxUE.png" alt=""></p>
+<h1 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h1><p><img src="http://i.imgur.com/4P3YxUE.png" alt=""></p>
 <p>模式所涉及的角色有：</p>
 <ul>
 <li><p><strong>抽象类（AbstractClass）</strong>：实现了模板方法，定义了算法的骨架。</p>
@@ -488,8 +485,7 @@
 </ul>
 </li>
 </ul>
-<p>#实现</p>
-<p>分析完理论，我们用一个饮料店出售饮料的小例子来分析一下模板方法模式。夏天我们去饮料店购买饮料，告诉服务员要<strong>一大杯奶茶，还要加冰</strong>。</p>
+<h1 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h1><p>分析完理论，我们用一个饮料店出售饮料的小例子来分析一下模板方法模式。夏天我们去饮料店购买饮料，告诉服务员要<strong>一大杯奶茶，还要加冰</strong>。</p>
 <p>那么饮料店是如何装配我们的饮料的呢？首先准备一个大杯子，然后入我们需要的饮料，如果加冰会放入一些冰块，最后盖好盖子打包给我们。</p>
 <p>仔细思考一下我们的使用场景，有没有发现很符合呢？接下来我们用代码实现一下。</p>
 <p>抽象方法，装配饮料的模板</p>
@@ -562,8 +558,7 @@ public class ConcreteDrink extends TemplateDrink {
         return super.hook();
     }
 }
-</code></pre><p>#Android源码中的模板方法模式</p>
-<p>这个模式相对来说比较简单，但是应用却非常广泛，毕竟越简单越容易应用嘛。<strong>比如在重构的时候，把相同的代码抽取到父类中，然后配合钩子函数约束其行为。</strong></p>
+</code></pre><h1 id="Android源码中的模板方法模式"><a href="#Android源码中的模板方法模式" class="headerlink" title="Android源码中的模板方法模式"></a>Android源码中的模板方法模式</h1><p>这个模式相对来说比较简单，但是应用却非常广泛，毕竟越简单越容易应用嘛。<strong>比如在重构的时候，把相同的代码抽取到父类中，然后配合钩子函数约束其行为。</strong></p>
 <p>当然在Android源码中的应用肯定也不少，<strong>比如AsyncTask的实现，调用execute后会依次执行onPreExecute、doInBackground、onPostExecute,还可以通过onProgressUpdate来更新进度，它的执行过程其实是一个框架，类似的还有Activity的生命周期回调方法的执行。</strong></p>
 <p>接下来我们看一个比较明显的，即<strong>View中的Draw()方法</strong>。</p>
 <p>我们先看下方法注释</p>
@@ -763,8 +758,17 @@ protected void dispatchDraw(Canvas canvas) {
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpeg"
@@ -871,6 +875,22 @@ protected void dispatchDraw(Canvas canvas) {
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#定义"><span class="nav-number">1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用场景"><span class="nav-number">2.</span> <span class="nav-text">使用场景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结构"><span class="nav-number">3.</span> <span class="nav-text">结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实现"><span class="nav-number">4.</span> <span class="nav-text">实现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Android源码中的模板方法模式"><span class="nav-number">5.</span> <span class="nav-text">Android源码中的模板方法模式</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

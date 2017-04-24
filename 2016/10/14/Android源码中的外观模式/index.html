@@ -100,7 +100,7 @@
 <meta property="og:site_name" content="KIKO_奶糖的博客">
 <meta property="og:description" content="Android源码中的外观模式">
 <meta property="og:image" content="http://i.imgur.com/RxIXGLJ.png">
-<meta property="og:updated_time" content="2017-04-22T08:20:11.000Z">
+<meta property="og:updated_time" content="2017-04-24T02:07:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android源码中的外观模式">
 <meta name="twitter:description" content="Android源码中的外观模式">
@@ -448,16 +448,13 @@
 <p><a href="http://blog.csdn.net/sdkfjksf/article/details/52700648" target="_blank" rel="external">Android中的工厂方法模式</a></p>
 <p><a href="http://blog.csdn.net/sdkfjksf/article/details/52755908" target="_blank" rel="external">Android源码中的命令模式</a></p>
 <p><a href="http://blog.csdn.net/sdkfjksf/article/details/52807179" target="_blank" rel="external"> Android源码中的适配器模式</a></p>
-<p>#定义</p>
-<p>外观模式(Facade Pattern)：<strong>外部与一个子系统的通信必须通过一个统一的外观对象进行，为子系统中的一组接口提供一个一致的界面，外观模式定义了一个高层接口，这个接口使得这一子系统更加容易使用。外观模式又称为门面模式，它是一种对象结构型模式。</strong></p>
-<p>#使用场景</p>
-<ol>
+<h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p>外观模式(Facade Pattern)：<strong>外部与一个子系统的通信必须通过一个统一的外观对象进行，为子系统中的一组接口提供一个一致的界面，外观模式定义了一个高层接口，这个接口使得这一子系统更加容易使用。外观模式又称为门面模式，它是一种对象结构型模式。</strong></p>
+<h1 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h1><ol>
 <li>当你要为一个复杂子系统提供一个简单接口时。</li>
 <li>客户程序与抽象类的实现部分之间存在着很大的依赖性。引入Facade将这个子系统与客户以及其他的子系统分离，可以提高子系统的独立性和可移植性。</li>
 <li>当你需要构建一个层次结构的子系统时，使用Facade模式定义子系统中每层的入口点，如果子系统之间是相互依赖的，你可以让他们仅通过Facade进行通讯，从而简化了他们之间的依赖关系。</li>
 </ol>
-<p>#结构</p>
-<p><img src="http://i.imgur.com/RxIXGLJ.png" alt=""></p>
+<h1 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h1><p><img src="http://i.imgur.com/RxIXGLJ.png" alt=""></p>
 <p>模式所涉及的角色有：</p>
 <ul>
 <li><p>Client : 客户端程序。</p>
@@ -467,8 +464,7 @@
 <li><p>SubSystem : 子系统或者子服务等等。</p>
 </li>
 </ul>
-<p>#实现</p>
-<p>编程嘛，抽象于生活高于生活，接下来我们用生活中<strong>智能家居</strong>的小例子来分析一下外观模式。智能家居为什么会流行，其中一个原因肯定是方便，我们用一个中央处理器就可以管理我们所有的智能家居产品，类似的还有现在的<strong>一站式服务</strong>。<strong>那么用户就是Client角色，中央处理器就是Facade角色，音箱、TV、空调等等就是SubSystem角色。</strong></p>
+<h1 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h1><p>编程嘛，抽象于生活高于生活，接下来我们用生活中<strong>智能家居</strong>的小例子来分析一下外观模式。智能家居为什么会流行，其中一个原因肯定是方便，我们用一个中央处理器就可以管理我们所有的智能家居产品，类似的还有现在的<strong>一站式服务</strong>。<strong>那么用户就是Client角色，中央处理器就是Facade角色，音箱、TV、空调等等就是SubSystem角色。</strong></p>
 <p>Facade角色</p>
 <pre><code>public class Facade {
 
@@ -532,16 +528,14 @@ public class AirCondition {
 }
 </code></pre><p>不知道大家有没有发现一个问题，外观模式和我们上篇说的适配器模式是不是有一些相似呢？</p>
 <p><strong>Facade与Adapter和Proxy有类似之处，但是Proxy注重在为Client-Subject提供一个访问的中间层，Adapter注重对接口的转换与调整，而Facade所面对的往往是多个类或其他程序单元，通过重新组合各类及程序单元，对外提供统一的接口/界面。</strong></p>
-<p>#Android源码中的外观模式</p>
-<p>在Android中，Context类族是比较重要的，关于这些，在<a href="http://blog.csdn.net/sdkfjksf/article/details/52624483" target="_blank" rel="external">从装饰者模式到Context类族</a>,<a href="http://blog.csdn.net/sdkfjksf/article/details/52777722" target="_blank" rel="external">Android Handler 消息机制（解惑篇）</a>中已经做过说明，这里就不再画UML图了。</p>
+<h1 id="Android源码中的外观模式"><a href="#Android源码中的外观模式" class="headerlink" title="Android源码中的外观模式"></a>Android源码中的外观模式</h1><p>在Android中，Context类族是比较重要的，关于这些，在<a href="http://blog.csdn.net/sdkfjksf/article/details/52624483" target="_blank" rel="external">从装饰者模式到Context类族</a>,<a href="http://blog.csdn.net/sdkfjksf/article/details/52777722" target="_blank" rel="external">Android Handler 消息机制（解惑篇）</a>中已经做过说明，这里就不再画UML图了。</p>
 <p>它是提供应用环境（application environment）信息的接口。通过它可以访问到应用的资源和类，以及进行一些系统级别的操作，比如加载activity、发送广播和接收intent等。这代表什么呢，<strong>Context类给我们提供了一站式服务，这里当然应用了外观模式。</strong></p>
 <p><strong>在应用启动时，首先会fork一个子进程，并且调用ActivityThread.main方法启动该进程。ActivityThread又会构建Application对象，然后和Activity、ContextImpl关联起来，然后再调用Activity的onCreate、onStart、onResume函数使Activity运行起来。</strong></p>
 <p><strong>Activity启动之后，Android给我们提供了操作系统服务的统一入口，也就是Activity本身。这些工作并不是Activity自己实现的，而是将操作委托给Activity父类ContextThemeWrapper的mBase对象，这个对象的实现类就是ContextImpl ( 也就是performLaunchActivity方法中构建的ContextImpl )。</strong></p>
 <p><strong>ContextImpl内部封装了一些系统级别的操作，有的子系统功能虽然没有实现，但是也提供了访问该子系统的接口，比如获取ActivityManager的getActivityManager方法。</strong></p>
 <p><strong>外观模式非常的简单，只是封装了子系统的操作，并且暴露接口让用户使用，避免了用户需要与多个子系统进行交互，降低了系统的耦合度、复杂度。</strong></p>
 <p>测试代码已上传到<a href="https://github.com/PleaseCallMeCoder/DesignPatterns" target="_blank" rel="external">github</a>。</p>
-<p>#参考链接</p>
-<p><a href="https://github.com/simple-android-framework/android_design_patterns_analysis/tree/master/facade/elsdnwn" target="_blank" rel="external">https://github.com/simple-android-framework/android_design_patterns_analysis/tree/master/facade/elsdnwn</a></p>
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a href="https://github.com/simple-android-framework/android_design_patterns_analysis/tree/master/facade/elsdnwn" target="_blank" rel="external">https://github.com/simple-android-framework/android_design_patterns_analysis/tree/master/facade/elsdnwn</a></p>
 
       
     </div>
@@ -680,8 +674,17 @@ public class AirCondition {
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpeg"
@@ -788,6 +791,22 @@ public class AirCondition {
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#定义"><span class="nav-number">1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用场景"><span class="nav-number">2.</span> <span class="nav-text">使用场景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结构"><span class="nav-number">3.</span> <span class="nav-text">结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实现"><span class="nav-number">4.</span> <span class="nav-text">实现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Android源码中的外观模式"><span class="nav-number">5.</span> <span class="nav-text">Android源码中的外观模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考链接"><span class="nav-number">6.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

@@ -100,7 +100,7 @@
 <meta property="og:site_name" content="KIKO_奶糖的博客">
 <meta property="og:description" content="Android加载大图。">
 <meta property="og:image" content="http://img.blog.csdn.net/20160318151945160">
-<meta property="og:updated_time" content="2017-04-22T08:18:53.000Z">
+<meta property="og:updated_time" content="2017-04-24T01:58:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android加载长图那些事">
 <meta name="twitter:description" content="Android加载大图。">
@@ -443,8 +443,8 @@
         <p>Android加载大图。</p>
 <a id="more"></a>
 <p>首先我们来创建两个角色，大神A和菜鸟B。<br>B：“A神，快来帮我看个问题，太奇怪了。为难死宝宝了0.0”<br>A：“怎么了，说来听听”<br>B：“是这样的，我的一个页面需要加载一张背景图。图的高度和屏幕高度相同，但是宽度是屏幕宽度的5倍，然后我把它放到一个HorizontalScrollView中，想通过可滑动来展示全这张图片。结果屏幕白茫茫一片，什么都不显示，也没报错，我都哭了。”<br>A：“先别急，你觉得可能是哪方面问题呢”<br>B：“<strong>我觉得可能是两方面的问题：1.图片质量太大；2.图片太长</strong>”<br>A：“那你有没有试着弄清楚到底是哪里的问题呢？”<br>B：“试了，我又试着<strong>加载了一张长宽都小于手机尺寸的5M大小的图（长图2.5M），结果可以完全显示。</strong>，然后又去找了一些关于加载长图的资料，但还是没弄明白。”<br>A：“嗯，你的思路大概是对的。是这样的，<strong>在Android中，解析图片时，当图片高度或宽度超过阀值时，会解析失败。</strong>你可以去看一下<strong>BitmapRegionDecoder</strong>，说不定会有什么发现哦。”<br>接下来，是B同学的整理。</p>
-<p>###场景<br>对于图片加载有一种这样的情况，就是单个图片非常巨大，并且还不允许压缩。比如显示：世界地图、微博长图等。首先不压缩，按照原图尺寸加载，那么屏幕肯定是不够大的，并且考虑到内存的情况，不可能一次性整图加载到内存中，所以肯定是局部加载。这就需要用到Api提供的这个类：BitmapRegionDecoder。</p>
-<p>###BitmapRegionDecoder<br>我们来看一下官方的介绍：</p>
+<h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><p>对于图片加载有一种这样的情况，就是单个图片非常巨大，并且还不允许压缩。比如显示：世界地图、微博长图等。首先不压缩，按照原图尺寸加载，那么屏幕肯定是不够大的，并且考虑到内存的情况，不可能一次性整图加载到内存中，所以肯定是局部加载。这就需要用到Api提供的这个类：BitmapRegionDecoder。</p>
+<h3 id="BitmapRegionDecoder"><a href="#BitmapRegionDecoder" class="headerlink" title="BitmapRegionDecoder"></a>BitmapRegionDecoder</h3><p>我们来看一下官方的介绍：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">BitmapRegionDecoder can be used to decode a rectangle region from an image. BitmapRegionDecoder is particularly useful when an original image is large and you only need parts of the image.</div><div class="line"></div><div class="line">To create a BitmapRegionDecoder, call newInstance(...). Given a BitmapRegionDecoder, users can call decodeRegion() repeatedly to get a decoded Bitmap of the specified region.</div></pre></td></tr></table></figure>
 <p><strong>BitmapRegionDecoder主要用于显示图片的某一块矩形区域，如果你需要显示某个图片的指定区域，或者你需要显示一张非常大的图片，那么这个类非常合适。我们可以调用newInstance(…)方法来获得一个BitmapRegionDecoder对象，然后调用decodeRegion()方法就可以获得指定位置的图片了。</strong><br>接下来看一个简单的例子</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line">package oracleen.decoder;</div><div class="line"></div><div class="line">import android.app.Activity;</div><div class="line">import android.graphics.Bitmap;</div><div class="line">import android.graphics.BitmapFactory;</div><div class="line">import android.graphics.BitmapRegionDecoder;</div><div class="line">import android.graphics.Rect;</div><div class="line">import android.os.Bundle;</div><div class="line">import android.widget.ImageView;</div><div class="line"></div><div class="line">import java.io.IOException;</div><div class="line">import java.io.InputStream;</div><div class="line"></div><div class="line">public class MainActivity extends Activity &#123;</div><div class="line"></div><div class="line">    private ImageView decoder;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</div><div class="line">        super.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.activity_main);</div><div class="line"></div><div class="line">        decoder = (ImageView) findViewById(R.id.decoder);</div><div class="line"></div><div class="line">        try &#123;</div><div class="line">            InputStream inputStreamF = getAssets().open(&quot;datu.png&quot;);</div><div class="line"></div><div class="line">            //获得图片的宽、高</div><div class="line">            BitmapFactory.Options tmpOptions = new BitmapFactory.Options();</div><div class="line">            tmpOptions.inJustDecodeBounds = true;</div><div class="line">            BitmapFactory.decodeStream(inputStreamF, null, tmpOptions);</div><div class="line">            int width = tmpOptions.outWidth;</div><div class="line">            int height = tmpOptions.outHeight;</div><div class="line"></div><div class="line">            InputStream inputStreamS = getAssets().open(&quot;datu.png&quot;);</div><div class="line">            //设置显示图片的中心区域</div><div class="line">            BitmapRegionDecoder bitmapRegionDecoder = BitmapRegionDecoder.newInstance(inputStreamS, false);</div><div class="line">            BitmapFactory.Options options = new BitmapFactory.Options();</div><div class="line">            options.inPreferredConfig = Bitmap.Config.RGB_565;</div><div class="line">            Bitmap bitmap = bitmapRegionDecoder.decodeRegion(new Rect(0, 0, width / 2, height), options);</div><div class="line">            decoder.setImageBitmap(bitmap);</div><div class="line"></div><div class="line">        &#125; catch (IOException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -453,7 +453,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Throws</div><div class="line">IOException if the image format is not supported or can not be decoded.</div></pre></td></tr></table></figure>
 <p>这个异常，这里需要重新初始化一下我们的输入流，保证它是初始的可读状态。</p>
 <p><img src="http://img.blog.csdn.net/20160318151945160" alt="这里写图片描述"></p>
-<p>###小B的总结<br>对于小B的问题有两种解决办法：<br>1.把原始的长图切成5张小图，分别设置给5个ImageView，这样每个imageview加载的图都不会超出阈值。<br>但是问题是整张图会全部加载出来，可能会出现OOM。<br>2.重写HorizontalScrollView，根据左右滑动的距离用BitmapRegionDecoder去分区域显示。<br>3.自定义view，在view内部用BitmapRegionDecoder去分区域显示。然后对外提供一个设置图片资源的方法。</p>
+<h3 id="小B的总结"><a href="#小B的总结" class="headerlink" title="小B的总结"></a>小B的总结</h3><p>对于小B的问题有两种解决办法：<br>1.把原始的长图切成5张小图，分别设置给5个ImageView，这样每个imageview加载的图都不会超出阈值。<br>但是问题是整张图会全部加载出来，可能会出现OOM。<br>2.重写HorizontalScrollView，根据左右滑动的距离用BitmapRegionDecoder去分区域显示。<br>3.自定义view，在view内部用BitmapRegionDecoder去分区域显示。然后对外提供一个设置图片资源的方法。</p>
 <p>参考链接：<br><a href="http://blog.csdn.net/lmj623565791/article/details/49300989" target="_blank" rel="external">http://blog.csdn.net/lmj623565791/article/details/49300989</a></p>
 <p><a href="http://developer.android.com/reference/android/graphics/BitmapRegionDecoder.html#newInstance%28java.io.InputStream,%20boolean%29" target="_blank" rel="external">http://developer.android.com/reference/android/graphics/BitmapRegionDecoder.html#newInstance%28java.io.InputStream,%20boolean%29</a></p>
 
@@ -594,8 +594,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpeg"
@@ -702,6 +711,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#场景"><span class="nav-number">1.</span> <span class="nav-text">场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BitmapRegionDecoder"><span class="nav-number">2.</span> <span class="nav-text">BitmapRegionDecoder</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#小B的总结"><span class="nav-number">3.</span> <span class="nav-text">小B的总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

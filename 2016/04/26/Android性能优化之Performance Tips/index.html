@@ -100,7 +100,7 @@
 <meta property="og:site_name" content="KIKO_奶糖的博客">
 <meta property="og:description" content="这篇文章主要是对官方文档中PerformanceTips（性能优化关键点）的翻译，欢迎拍砖。">
 <meta property="og:image" content="http://i.imgur.com/uWNFnJF.jpg">
-<meta property="og:updated_time" content="2017-04-22T08:19:46.000Z">
+<meta property="og:updated_time" content="2017-04-24T02:00:49.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android性能优化之Performance Tips">
 <meta name="twitter:description" content="这篇文章主要是对官方文档中PerformanceTips（性能优化关键点）的翻译，欢迎拍砖。">
@@ -447,8 +447,7 @@
 <blockquote>
 <p>原文链接：<a href="http://developer.android.com/training/articles/perf-tips.html#UseFinal" target="_blank" rel="external">http://developer.android.com/training/articles/perf-tips.html#UseFinal</a></p>
 </blockquote>
-<p>#概述</p>
-<p>这篇文档主要包含一些微小的最佳优化,当把这些组合起来的时候，可以提高App的整体性能，但它不太可能对性能造成戏剧性的影响。选择合适的算法和数据结构应该是你优先考虑的内容,但超出了本文的范围。这个文档更适合作为通用的编码技巧,通过这些技巧使我们的代码更高效。</p>
+<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>这篇文档主要包含一些微小的最佳优化,当把这些组合起来的时候，可以提高App的整体性能，但它不太可能对性能造成戏剧性的影响。选择合适的算法和数据结构应该是你优先考虑的内容,但超出了本文的范围。这个文档更适合作为通用的编码技巧,通过这些技巧使我们的代码更高效。</p>
 <p><strong>编写高效代码有两个基本规则:</strong></p>
 <ul>
 <li><p><strong>不执行不必要的操作</strong></p>
@@ -458,8 +457,7 @@
 </ul>
 <p>我们面临的最棘手的一个问题是我们的Android应用程序肯定会在多种类型的硬件上运行。不同版本的VM虚拟机运行在不同的处理器的运行速度显然是不同的。你甚至不能简单地说“设备X快/慢于设备Y大概F倍”，然后想当然的认为其在他设备上这个倍数也是成立的。但是,我们仅仅能从模拟器获得很少关于设备性能的信息，它与真机还是有很大不同的。还有,有或没有JIT（即时编译）的设备之间存在巨大差异:在有JIT的设备上完美运行的代码在没有JIT的设备上并不一定能顺畅运行。</p>
 <p>我们要尽量通过优化性能来确保我们的应用在各种各样的设备上都表现良好,确保代码在支持的不同版本上是有效的。</p>
-<p>#避免创建不必要的对象</p>
-<p>对象创建永远不会是免费的。虽然一个带有线程池的垃圾回收器（garbage collector）可以使分配临时对象的内存占用降低,但分配内存总是比不分配内存更昂贵的。</p>
+<h1 id="避免创建不必要的对象"><a href="#避免创建不必要的对象" class="headerlink" title="避免创建不必要的对象"></a>避免创建不必要的对象</h1><p>对象创建永远不会是免费的。虽然一个带有线程池的垃圾回收器（garbage collector）可以使分配临时对象的内存占用降低,但分配内存总是比不分配内存更昂贵的。</p>
 <p>当我们在我们的应用分配更多的对象时,将迫使一个周期性的垃圾回收,创建“打嗝”的用户体验，即卡顿。在Android 2.3中引入的并发垃圾收集器（GC）可以帮助我们,但不必要的工作能避免要尽量避免。</p>
 <p>因此,这样我们应该避免创建我们不需要的对象，以下是一些实例：</p>
 <ul>
@@ -472,10 +470,8 @@
 <li>如果你需要实现一个容器存储(Foo,Bar)对象的，试着记住两个平行的Foo[]和Bar[]数组通常比单一阵列的自定义(Foo,Bar)对象要好。（但是有例外,比如当你设计一个API访问其他代码的时候。在这些情况下,通常可以牺牲小部分的性能达到良好的API设计。但在自己的内部代码,我们应该试着尽可能的提高效率。）</li>
 </ul>
 <p>一般来说,避免创建临时对象。更少的对象创建意味着更少的垃圾收集,这对用户体验有直接的影响。</p>
-<p>#选择Static而不是Virtual</p>
-<p>如果你不需要访问一个对象的字段,可以使用static修饰你的方法。调用将快15%~20%。这是一种很好的做法,因为通过static你还可以知道调用的方法不能改变对象的状态。</p>
-<p>#使用static final修饰常量</p>
-<p>像这样在一个类的顶部声明常量：</p>
+<h1 id="选择Static而不是Virtual"><a href="#选择Static而不是Virtual" class="headerlink" title="选择Static而不是Virtual"></a>选择Static而不是Virtual</h1><p>如果你不需要访问一个对象的字段,可以使用static修饰你的方法。调用将快15%~20%。这是一种很好的做法,因为通过static你还可以知道调用的方法不能改变对象的状态。</p>
+<h1 id="使用static-final修饰常量"><a href="#使用static-final修饰常量" class="headerlink" title="使用static final修饰常量"></a>使用static final修饰常量</h1><p>像这样在一个类的顶部声明常量：</p>
 <pre><code>static int intVal = 42;
 static String strVal = &quot;Hello, world!&quot;;
 </code></pre><p>编译器生成一个类初始化方法,叫做&lt; clinit &gt;,当这个类第一次被使用时执行。这个函数将42存入intVal，还从class文件的常量表中提取了strVal的引用。当之后使用intVal或strVal的时候，他们会直接被查询到。</p>
@@ -486,13 +482,11 @@ static final String strVal = &quot;Hello, world!&quot;;
 <blockquote>
 <p>Notes：这个优化方法只对原始类型和String类型有效，而不是任意引用类型。不过，在必要时使用static final是个很好的习惯。</p>
 </blockquote>
-<p>#避免内部的Getters/Setters</p>
-<p>像C++等native language，通常使用getters(i = getCount())而不是直接访问变量(i = mCount)。这是编写C++的一种优秀习惯，而且通常也被其他面向对象的语言所采用，例如C#与Java，因为编译器通常会做inline访问，而且你需要限制或者调试变量，你可以在任何时候在getter/setter里面添加代码。</p>
+<h1 id="避免内部的Getters-Setters"><a href="#避免内部的Getters-Setters" class="headerlink" title="避免内部的Getters/Setters"></a>避免内部的Getters/Setters</h1><p>像C++等native language，通常使用getters(i = getCount())而不是直接访问变量(i = mCount)。这是编写C++的一种优秀习惯，而且通常也被其他面向对象的语言所采用，例如C#与Java，因为编译器通常会做inline访问，而且你需要限制或者调试变量，你可以在任何时候在getter/setter里面添加代码。</p>
 <p>然而，在Android上，这不是一个好的写法。虚函数的调用比起直接访问变量要耗费更多。在面向对象编程中，将getter和setting暴露给公用接口是合理的，但在类内部应该仅仅使用域直接访问。</p>
 <p>在没有JIT(Just In Time Compiler)时，直接访问变量的速度是调用getter的3倍。有JIT时，直接访问变量的速度是通过getter访问的7倍。</p>
 <p>请注意，如果你使用<a href="http://developer.android.com/tools/help/proguard.html" target="_blank" rel="external">ProGuard</a>，你可以获得同样的效果，因为ProGuard可以为你内联访问.</p>
-<p>#使用for-each循环</p>
-<p>增强的For循环（也被称为 for-each 循环）可以被用在实现了 Iterable 接口的 collections 以及数组上。使用collection的时候，Iterator会被分配，用于for-each调用hasNext()和next()方法。使用ArrayList时，手写的计数式for循环会快3倍（不管有没有JIT），但是对于其他collection，增强的for-each循环写法会和迭代器写法的效率一样。</p>
+<h1 id="使用for-each循环"><a href="#使用for-each循环" class="headerlink" title="使用for-each循环"></a>使用for-each循环</h1><p>增强的For循环（也被称为 for-each 循环）可以被用在实现了 Iterable 接口的 collections 以及数组上。使用collection的时候，Iterator会被分配，用于for-each调用hasNext()和next()方法。使用ArrayList时，手写的计数式for循环会快3倍（不管有没有JIT），但是对于其他collection，增强的for-each循环写法会和迭代器写法的效率一样。</p>
 <p>请比较下面三种循环的方法：</p>
 <pre><code>static class Foo {
     int mSplat;
@@ -532,8 +526,7 @@ public void two() {
 <blockquote>
 <p>Tips：你还可以参考 Josh Bloch 的 《Effective Java》这本书的第46条</p>
 </blockquote>
-<p>#使用package代替private以便私有内部类高效访问外部类成员</p>
-<p>参考下面一段代码</p>
+<h1 id="使用package代替private以便私有内部类高效访问外部类成员"><a href="#使用package代替private以便私有内部类高效访问外部类成员" class="headerlink" title="使用package代替private以便私有内部类高效访问外部类成员"></a>使用package代替private以便私有内部类高效访问外部类成员</h1><p>参考下面一段代码</p>
 <pre><code>public class Foo {
     private class Inner {
         void stuff() {
@@ -563,27 +556,22 @@ public void two() {
 }
 </code></pre><p>每当内部类需要访问外部类中的mValue成员或需要调用doStuff()函数时，它都会调用这些静态方法。这意味着，上面的代码可以归结为，通过accessor函数来访问成员变量。早些时候我们说过，通过accessor会比直接访问域要慢。所以，这是一个特定语言用法造成性能降低的例子。</p>
 <p>如果你正在性能热区（hotspot:高频率、重复执行的代码段）使用像这样的代码，你可以把内部类需要访问的域和方法声明为包级访问，而不是私有访问权限。不幸的是，这意味着在相同包中的其他类也可以直接访问这些域，所以在公开的API中你不能这样做。</p>
-<p>#避免使用浮点类型</p>
-<p>Android系统中float类型的数据存取速度是int类型的一半，尽量优先采用int类型。</p>
+<h1 id="避免使用浮点类型"><a href="#避免使用浮点类型" class="headerlink" title="避免使用浮点类型"></a>避免使用浮点类型</h1><p>Android系统中float类型的数据存取速度是int类型的一半，尽量优先采用int类型。</p>
 <p>就速度而言，现代硬件上，float 和 double 的速度是一样的。空间而言，double 是两倍float的大小。在空间不是问题的情况下，你应该使用 double 。</p>
 <p>同样，对于整型，有些处理器实现了硬件几倍的乘法，但是没有除法。这时，整型的除法和取余是在软件内部实现的，这在你使用哈希表或大量计算操作时要考虑到。</p>
-<p>#了解并使用库函数</p>
-<p>除了那些常见的让你多使用自带库函数的理由以外，记得系统函数有时可以替代第三方库，并且还有汇编级别的优化，他们通常比带有JIT的Java编译出来的代码更高效。典型的例子是：Android API 中的 <a href="http://developer.android.com/reference/java/lang/String.html#indexOf%28int%29" target="_blank" rel="external">String.indexOf()</a>，Dalvik出于内联性能考虑将其替换。同样 <a href="http://developer.android.com/reference/java/lang/System.html#arraycopy%28java.lang.Object,%20int,%20java.lang.Object,%20int,%20int%29" target="_blank" rel="external">System.arraycopy()</a>函数也被替换，这样的性能在Nexus One测试，比手写的for循环并使用JIT还快9倍。</p>
+<h1 id="了解并使用库函数"><a href="#了解并使用库函数" class="headerlink" title="了解并使用库函数"></a>了解并使用库函数</h1><p>除了那些常见的让你多使用自带库函数的理由以外，记得系统函数有时可以替代第三方库，并且还有汇编级别的优化，他们通常比带有JIT的Java编译出来的代码更高效。典型的例子是：Android API 中的 <a href="http://developer.android.com/reference/java/lang/String.html#indexOf%28int%29" target="_blank" rel="external">String.indexOf()</a>，Dalvik出于内联性能考虑将其替换。同样 <a href="http://developer.android.com/reference/java/lang/System.html#arraycopy%28java.lang.Object,%20int,%20java.lang.Object,%20int,%20int%29" target="_blank" rel="external">System.arraycopy()</a>函数也被替换，这样的性能在Nexus One测试，比手写的for循环并使用JIT还快9倍。</p>
 <blockquote>
 <p>Tips：参见 Josh Bloch 的 《Effective Java》这本书的第47条</p>
 </blockquote>
-<p>#小心使用底层方法</p>
-<p>结合<a href="http://developer.android.com/tools/sdk/ndk/index.html" target="_blank" rel="external">Android NDK</a>使用native代码开发，并不总是比Java直接开发的效率更好的。Java转native代码是有代价的，而且JIT不能在这种情况下做优化。如果你在native代码中分配资源（比如native堆上的内存，文件描述符等等），这会对收集这些资源造成巨大的困难。你同时也需要为各种架构重新编译代码（而不是依赖JIT）。你甚至对已同样架构的设备都需要编译多个版本：为G1的ARM架构编译的版本不能完全使用Nexus One上ARM架构的优势，反之亦然。</p>
+<h1 id="小心使用底层方法"><a href="#小心使用底层方法" class="headerlink" title="小心使用底层方法"></a>小心使用底层方法</h1><p>结合<a href="http://developer.android.com/tools/sdk/ndk/index.html" target="_blank" rel="external">Android NDK</a>使用native代码开发，并不总是比Java直接开发的效率更好的。Java转native代码是有代价的，而且JIT不能在这种情况下做优化。如果你在native代码中分配资源（比如native堆上的内存，文件描述符等等），这会对收集这些资源造成巨大的困难。你同时也需要为各种架构重新编译代码（而不是依赖JIT）。你甚至对已同样架构的设备都需要编译多个版本：为G1的ARM架构编译的版本不能完全使用Nexus One上ARM架构的优势，反之亦然。</p>
 <p>Native 代码是在你已经有本地代码，想把它移植到Android平台时有优势，而不是为了优化已有的Android Java代码使用。</p>
 <p>如果你要使用JNI,请学习<a href="http://developer.android.com/training/articles/perf-jni.html" target="_blank" rel="external">JNI Tips</a></p>
 <blockquote>
 <p>Tips：参见 Josh Bloch 的 《Effective Java》这本书的第54条</p>
 </blockquote>
-<p>#性能谬见</p>
-<p>在没有JIT的设备上，使用一种确切的数据类型确实要比抽象的数据类型速度要更有效率（例如，调用HashMap map要比调用Map map效率更高）。有误传效率要高一倍，实际上只是6%左右。而且，在JIT之后，他们直接并没有大多差异。</p>
+<h1 id="性能谬见"><a href="#性能谬见" class="headerlink" title="性能谬见"></a>性能谬见</h1><p>在没有JIT的设备上，使用一种确切的数据类型确实要比抽象的数据类型速度要更有效率（例如，调用HashMap map要比调用Map map效率更高）。有误传效率要高一倍，实际上只是6%左右。而且，在JIT之后，他们直接并没有大多差异。</p>
 <p>在没有JIT的设备上，读取缓存域比直接读取实际数据大概快20%。有JIT时，域读取和本地读取基本无差。所以优化并不值得除非你觉得能让你的代码更易读（这对 final, static, static final 域同样适用）。</p>
-<p>#关于测量</p>
-<p>在优化之前，你应该确定你遇到了性能问题。你应该确保你能够准确测量出现在的性能，否则你也不会知道优化是否真的有效。</p>
+<h1 id="关于测量"><a href="#关于测量" class="headerlink" title="关于测量"></a>关于测量</h1><p>在优化之前，你应该确定你遇到了性能问题。你应该确保你能够准确测量出现在的性能，否则你也不会知道优化是否真的有效。</p>
 <p>本章节中所有的技巧都需要Benchmark（基准测试）的支持。Benchmark可以在 <a href="https://code.google.com/archive/p/dalvik/source#svn%2Ftrunk%2Fbenchmarks" target="_blank" rel="external">code.google.com “dalvik” project</a> 中找到。</p>
 <p>Benchmark是基于Java版本的 <a href="https://github.com/google/caliper" target="_blank" rel="external">Caliper</a> microbenchmarking框架开发的。Microbenchmarking很难做准确，所以Caliper帮你完成这部分工作，甚至还帮你测了你没想到需要测量的部分（因为，VM帮你管理了代码优化，你很难知道这部分优化有多大效果）。我们强烈推荐使用Caliper来做你的基准微测工作。</p>
 <p>我们也可以用<a href="http://developer.android.com/tools/debugging/debugging-tracing.html" target="_blank" rel="external">Traceview</a> 来测量，但是测量的数据是没有经过JIT优化的，所以实际的效果应该是要比测量的数据稍微好些。</p>
@@ -728,8 +716,17 @@ public void two() {
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpeg"
@@ -836,6 +833,22 @@ public void two() {
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#避免创建不必要的对象"><span class="nav-number">2.</span> <span class="nav-text">避免创建不必要的对象</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#选择Static而不是Virtual"><span class="nav-number">3.</span> <span class="nav-text">选择Static而不是Virtual</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用static-final修饰常量"><span class="nav-number">4.</span> <span class="nav-text">使用static final修饰常量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#避免内部的Getters-Setters"><span class="nav-number">5.</span> <span class="nav-text">避免内部的Getters/Setters</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用for-each循环"><span class="nav-number">6.</span> <span class="nav-text">使用for-each循环</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用package代替private以便私有内部类高效访问外部类成员"><span class="nav-number">7.</span> <span class="nav-text">使用package代替private以便私有内部类高效访问外部类成员</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#避免使用浮点类型"><span class="nav-number">8.</span> <span class="nav-text">避免使用浮点类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#了解并使用库函数"><span class="nav-number">9.</span> <span class="nav-text">了解并使用库函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#小心使用底层方法"><span class="nav-number">10.</span> <span class="nav-text">小心使用底层方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#性能谬见"><span class="nav-number">11.</span> <span class="nav-text">性能谬见</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#关于测量"><span class="nav-number">12.</span> <span class="nav-text">关于测量</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

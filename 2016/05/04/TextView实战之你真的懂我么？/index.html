@@ -110,8 +110,7 @@
 <meta property="og:image" content="http://i.imgur.com/5CrEoYl.png">
 <meta property="og:image" content="http://i.imgur.com/RA5ZYDX.png">
 <meta property="og:image" content="http://i.imgur.com/pmkepiS.png">
-<meta property="og:image" content="http://img.blog.csdn.net/20160422143030784">
-<meta property="og:updated_time" content="2017-04-22T08:20:36.000Z">
+<meta property="og:updated_time" content="2017-04-24T02:10:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TextView实战之你真的懂我么？">
 <meta name="twitter:description" content="对于TextView,我想大家都已经熟的不能再熟了。但是它的用法我们真的熟么？为了避免总是一言不合就去翻官方文档，在这里我总结一下我也可能是你容易忽视的一些细节。">
@@ -455,11 +454,8 @@
 <a id="more"></a>
 <p><img src="http://i.imgur.com/j1Knx9T.jpg" alt=""></p>
 <p><strong>不要以为别人是赢在了起跑线上，他们其实生在了终点。</strong></p>
-<p>#写在前面的话</p>
-<p>对于TextView,我想大家都已经熟的不能再熟了。但是它的用法我们真的熟么？为了避免总是一言不合就去翻官方文档，在这里我总结一下我也可能是你容易忽视的一些细节.</p>
-<p>#TextView设置基础</p>
-<p>##字符串资源里变量替换</p>
-<p>Android开发中是拒绝硬编码的，我们可能会把一些字符串放在xml中当作资源使用，假设有如下情况：</p>
+<h1 id="写在前面的话"><a href="#写在前面的话" class="headerlink" title="写在前面的话"></a>写在前面的话</h1><p>对于TextView,我想大家都已经熟的不能再熟了。但是它的用法我们真的熟么？为了避免总是一言不合就去翻官方文档，在这里我总结一下我也可能是你容易忽视的一些细节.</p>
+<h1 id="TextView设置基础"><a href="#TextView设置基础" class="headerlink" title="TextView设置基础"></a>TextView设置基础</h1><h2 id="字符串资源里变量替换"><a href="#字符串资源里变量替换" class="headerlink" title="字符串资源里变量替换"></a>字符串资源里变量替换</h2><p>Android开发中是拒绝硬编码的，我们可能会把一些字符串放在xml中当作资源使用，假设有如下情况：</p>
 <pre><code>&lt;string name=&quot;welcome&quot;&gt;你好A，欢迎使用我们的App。&lt;/string&gt;
 </code></pre><p>我们在程序中需要使用这个字符串，但是A是一个变量，很常规的办法是取出这个字符串，然后用String的replace方法把A替换成用户的昵称。</p>
 <p>其实，在android中有这样一个东西，那就是 XLIFF，全称叫 XML <strong>本地化数据交换格式</strong>，英文全称 XML Localization Interchange File Format。</p>
@@ -470,8 +466,7 @@
 </code></pre><p>把字符串打印出来如下</p>
 <p><img src="http://i.imgur.com/0Aho7n7.png" alt=""></p>
 <p>这里的1代表第一个变量，多个变量的话依次递增即可。</p>
-<p>##TextView xml文件可配置的属性</p>
-<pre><code>android:autoLink    设置是否当文本为URL链接/email/电话号码/map时，文本显示为可点击的链接。可选值(none/web/email/phone/map/all)  
+<h2 id="TextView-xml文件可配置的属性"><a href="#TextView-xml文件可配置的属性" class="headerlink" title="TextView xml文件可配置的属性"></a>TextView xml文件可配置的属性</h2><pre><code>android:autoLink    设置是否当文本为URL链接/email/电话号码/map时，文本显示为可点击的链接。可选值(none/web/email/phone/map/all)  
 android:autoText    如果设置，将自动执行输入值的拼写纠正。此处无效果，在显示输入法并输入的时候起作用。  
 android:bufferType  指定getText()方式取得的文本类别。选项editable 类似于StringBuilder可追加字符，  
 也就是说getText后可调用append方法设置文本内容。spannable 则可在给定的字符区域使用样式，参见这里1、这里2。  
@@ -540,8 +535,7 @@ android:width   设置文本区域的宽度，支持度量单位：px(像素)/dp
 
 android:maxWidth    设置文本区域的最大宽度  
 android:minWidth    设置文本区域的最小宽度  
-</code></pre><p>##TextView中设置多种字体大小</p>
-<p>比如在项目中经常遇到如下UI，</p>
+</code></pre><h2 id="TextView中设置多种字体大小"><a href="#TextView中设置多种字体大小" class="headerlink" title="TextView中设置多种字体大小"></a>TextView中设置多种字体大小</h2><p>比如在项目中经常遇到如下UI，</p>
 <p><img src="http://i.imgur.com/TmmIXah.png" alt=""></p>
 <p>像这样的两种字体大小放到一个TextView中，我们应该如何处理呢？需要用到 android.text 命名空间下的一些与 <a href="http://developer.android.com/reference/android/text/Spannable.html" target="_blank" rel="external">spannable</a>相关的类和接口。如下：</p>
 <pre><code>String text = &quot;您已经连续走了5963步&quot;;
@@ -554,8 +548,7 @@ textSpan.setSpan(new AbsoluteSizeSpan(16), end - 1, end, Spannable.SPAN_INCLUSIV
 TextView textView = (TextView) findViewById(R.id.text);
 textView.setText(textSpan);
 </code></pre><p>这个经过转化过的textSpan就是我们需要的。</p>
-<p>##TextView中设置超链接</p>
-<p>这个比较简单，设置我们上边提到的android:autoLink属性，默认为none。该属性的几个常量如下：</p>
+<h2 id="TextView中设置超链接"><a href="#TextView中设置超链接" class="headerlink" title="TextView中设置超链接"></a>TextView中设置超链接</h2><p>这个比较简单，设置我们上边提到的android:autoLink属性，默认为none。该属性的几个常量如下：</p>
 <p><img src="http://i.imgur.com/2qx3b5t.png" alt=""></p>
 <p>代码中的设置方式：setAutoLinkMask(int)。</p>
 <p>参数和上边列表对应，分别为：Linkify.WEB_URLS，Linkify.EMAIL_ADDRESSES，Linkify.PHONE_NUMBERS，Linkify.MAP_ADDRESSES，Linkify.ALL</p>
@@ -596,8 +589,7 @@ private SpannableString getClickableSpan() {
 }
 </code></pre><p>运行效果如下图：</p>
 <p><img src="http://i.imgur.com/4zFQKCI.png" alt=""></p>
-<p>##插入图片</p>
-<p>Android中可以使用TextView的drawableXXX属性在文字周围插入图片。图片和文字之间的间距可以通过android:drawablePadding来设置。</p>
+<h2 id="插入图片"><a href="#插入图片" class="headerlink" title="插入图片"></a>插入图片</h2><p>Android中可以使用TextView的drawableXXX属性在文字周围插入图片。图片和文字之间的间距可以通过android:drawablePadding来设置。</p>
 <p>xml中属性为:</p>
 <pre><code>android:drawableLeft
 android:drawableTop
@@ -605,8 +597,7 @@ android:drawableRight
 android:drawableBottom
 </code></pre><p>代码中的设置方式：setCompoundDrawablesWithIntrinsicBounds(int left, int top, int right, int bottom)。</p>
 <p>left，top等需传入资源id，不需要的话传0.</p>
-<p>##阴影</p>
-<p>Android中设置阴影也比较简单，xml中可以这样设置：</p>
+<h2 id="阴影"><a href="#阴影" class="headerlink" title="阴影"></a>阴影</h2><p>Android中设置阴影也比较简单，xml中可以这样设置：</p>
 <pre><code>android:shadowColor //指定文本阴影的颜色
 android:shadowDx //设置阴影横向坐标开始位置
 android:shadowDy //设置阴影纵向坐标开始位置
@@ -619,14 +610,12 @@ android:shadowDy=&quot;5.0&quot;
 android:shadowRadius=&quot;2.5&quot;
 </code></pre><p>效果如下图：</p>
 <p><img src="http://i.imgur.com/2P3F5Ll.png" alt=""></p>
-<p>##字体加粗或者倾斜</p>
-<p>在xml布局文件中使用android:textStyle=”bold”可以将文字设置成粗体。在代码中设置的方法是：使用TextPaint的仿“粗体”设置setFakeBoldText为true。示例代码如下：</p>
+<h2 id="字体加粗或者倾斜"><a href="#字体加粗或者倾斜" class="headerlink" title="字体加粗或者倾斜"></a>字体加粗或者倾斜</h2><p>在xml布局文件中使用android:textStyle=”bold”可以将文字设置成粗体。在代码中设置的方法是：使用TextPaint的仿“粗体”设置setFakeBoldText为true。示例代码如下：</p>
 <pre><code>tv.getPaint().setFakeBoldText(true);
 </code></pre><p>textstyle可设置的属性有：</p>
 <p><img src="http://i.imgur.com/gfTStsK.png" alt=""></p>
 <p>italic为倾斜，多属性可用”|”分开。</p>
-<p>##文字过长显示省略号或者跑马灯效果</p>
-<pre><code>android:maxEms=&quot;6&quot; //限制显示的字符长度
+<h2 id="文字过长显示省略号或者跑马灯效果"><a href="#文字过长显示省略号或者跑马灯效果" class="headerlink" title="文字过长显示省略号或者跑马灯效果"></a>文字过长显示省略号或者跑马灯效果</h2><pre><code>android:maxEms=&quot;6&quot; //限制显示的字符长度
 
 android:singleLine=&quot;true&quot; //单行显示
 
@@ -647,20 +636,16 @@ android:focusableInTouchMode=&quot;true&quot;
 android:focusable=&quot;true&quot;
 </code></pre><p>效果如下：</p>
 <p><img src="http://i.imgur.com/lqd62Ox.gif" alt=""></p>
-<p>##设置行间距</p>
-<p>1、android:lineSpacingExtra<br>   设置行间距，如”3dp”。</p>
+<h2 id="设置行间距"><a href="#设置行间距" class="headerlink" title="设置行间距"></a>设置行间距</h2><p>1、android:lineSpacingExtra<br>   设置行间距，如”3dp”。</p>
 <p>2、android:lineSpacingMultiplier<br>   设置行间距的倍数，如”1.2″。</p>
-<p>##关于字体</p>
-<p>我们可以通过设置android:typeface属性来控制字体，可以设置为normal, sans, serif, monospace四种。具体如下：</p>
+<h2 id="关于字体"><a href="#关于字体" class="headerlink" title="关于字体"></a>关于字体</h2><p>我们可以通过设置android:typeface属性来控制字体，可以设置为normal, sans, serif, monospace四种。具体如下：</p>
 <p><img src="http://i.imgur.com/5CrEoYl.png" alt=""></p>
 <p>代码中可以通过setTypeface(Typeface)方法设置。但有时候我们的App可能需要使用特殊的字体，这时候怎么办呢？可以通过如下代码设置：</p>
 <pre><code>Typeface mTypeFace = Typeface.createFromAsset(getAssets(), &quot;kaiti.ttf&quot;);
 textview.setTypeface(mTypeFace);
 </code></pre><p>然后将我们的字体文件放到assets文件夹下。</p>
 <p><strong>但是需要注意的是，不要大量使用这种自定义字体，因为自定义字体会消耗更多的性能。</strong></p>
-<p>#TextView中设置Html</p>
-<p>##TextView支持的Html标签</p>
-<p>Textview只支持部分的html标签。具体如下：</p>
+<h1 id="TextView中设置Html"><a href="#TextView中设置Html" class="headerlink" title="TextView中设置Html"></a>TextView中设置Html</h1><h2 id="TextView支持的Html标签"><a href="#TextView支持的Html标签" class="headerlink" title="TextView支持的Html标签"></a>TextView支持的Html标签</h2><p>Textview只支持部分的html标签。具体如下：</p>
 <pre><code>&lt;a href=&quot;...&quot;&gt;  //定义链接内容
 &lt;b&gt; //定义粗体文字   b 是blod的缩写
 &lt;big&gt; //定义大字体的文字
@@ -687,20 +672,17 @@ textview.setTypeface(mTypeFace);
 &lt;sup&gt; //上标标签   sup 是superscript的缩写
 &lt;tt&gt; //定义monospaced字体的文字  不赞成使用.  此标签对中文没意义  tt是teletype or monospaced text style的意思
 &lt;u&gt; //定义带有下划线的文字  u是underlined text style的意思
-</code></pre><p>##显示多种颜色的字</p>
-<p>Android支持html格式的字符串，通过调用Html.fromHtml(str)方法可以转换html格式的字符串str。示例代码如下：</p>
+</code></pre><h2 id="显示多种颜色的字"><a href="#显示多种颜色的字" class="headerlink" title="显示多种颜色的字"></a>显示多种颜色的字</h2><p>Android支持html格式的字符串，通过调用Html.fromHtml(str)方法可以转换html格式的字符串str。示例代码如下：</p>
 <pre><code>TextView textth = (TextView) findViewById(R.id.textth);
 String textStr1 = &quot;&lt;font color=\&quot;#123569\&quot;&gt;如果有一天，&lt;/font&gt;&quot;;
 String textStr2 = &quot;&lt;font color=\&quot;#00ff00\&quot;&gt;我悄然离去&lt;/font&gt;&quot;;
 textth.setText(Html.fromHtml(textStr1 + textStr2));
 </code></pre><p>效果如图：</p>
 <p><img src="http://i.imgur.com/RA5ZYDX.png" alt=""></p>
-<p>##字体加粗</p>
-<p>字体加粗还可以通过设置html格式字符串来实现</p>
+<h2 id="字体加粗"><a href="#字体加粗" class="headerlink" title="字体加粗"></a>字体加粗</h2><p>字体加粗还可以通过设置html格式字符串来实现</p>
 <pre><code>String textStr1 = &quot;&lt;b&gt;sdfa&lt;/b&gt;&quot;;
 textth.setText(Html.fromHtml(textStr1));
-</code></pre><p>##插入图片</p>
-<p>插入图片还可以用html字符串来实现。不过需要用到ImageGetter类来对图片的src属性进行转换。</p>
+</code></pre><h2 id="插入图片-1"><a href="#插入图片-1" class="headerlink" title="插入图片"></a>插入图片</h2><p>插入图片还可以用html字符串来实现。不过需要用到ImageGetter类来对图片的src属性进行转换。</p>
 <p>代码如下：</p>
 <pre><code>String imgStr = &quot;&lt;b&gt;sdfa&lt;/b&gt;&lt;br&gt;&lt;img src=\&quot;&quot; + R.mipmap.ic_launcher + &quot;\&quot;/&gt;&quot;;
 Html.ImageGetter imageGetter = new Html.ImageGetter() {
@@ -717,12 +699,6 @@ Html.ImageGetter imageGetter = new Html.ImageGetter() {
 </code></pre><p>效果如下图：</p>
 <p><img src="http://i.imgur.com/pmkepiS.png" alt=""></p>
 <p>右边的sdfa是通过html来加粗的，下边的图片是通过html插入的。</p>
-<p>#结语</p>
-<p>关注博主是一种态度，评论博主是一种欣赏！！</p>
-<p>最后，欢迎大家关注我的微信公众号：CoderTopia。</p>
-<center><img style="width:150px; height:150px" src="http://img.blog.csdn.net/20160422143030784"></center>
-
-
 <p>参考链接：</p>
 <p><a href="http://developer.android.com/reference/android/widget/TextView.html" target="_blank" rel="external">http://developer.android.com/reference/android/widget/TextView.html</a></p>
 <p><a href="http://www.cnblogs.com/mxgsa/tag/TextView/" target="_blank" rel="external">http://www.cnblogs.com/mxgsa/tag/TextView/</a></p>
@@ -864,8 +840,17 @@ Html.ImageGetter imageGetter = new Html.ImageGetter() {
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpeg"
@@ -972,6 +957,22 @@ Html.ImageGetter imageGetter = new Html.ImageGetter() {
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#写在前面的话"><span class="nav-number">1.</span> <span class="nav-text">写在前面的话</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TextView设置基础"><span class="nav-number">2.</span> <span class="nav-text">TextView设置基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串资源里变量替换"><span class="nav-number">2.1.</span> <span class="nav-text">字符串资源里变量替换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TextView-xml文件可配置的属性"><span class="nav-number">2.2.</span> <span class="nav-text">TextView xml文件可配置的属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TextView中设置多种字体大小"><span class="nav-number">2.3.</span> <span class="nav-text">TextView中设置多种字体大小</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TextView中设置超链接"><span class="nav-number">2.4.</span> <span class="nav-text">TextView中设置超链接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插入图片"><span class="nav-number">2.5.</span> <span class="nav-text">插入图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#阴影"><span class="nav-number">2.6.</span> <span class="nav-text">阴影</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字体加粗或者倾斜"><span class="nav-number">2.7.</span> <span class="nav-text">字体加粗或者倾斜</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文字过长显示省略号或者跑马灯效果"><span class="nav-number">2.8.</span> <span class="nav-text">文字过长显示省略号或者跑马灯效果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置行间距"><span class="nav-number">2.9.</span> <span class="nav-text">设置行间距</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于字体"><span class="nav-number">2.10.</span> <span class="nav-text">关于字体</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TextView中设置Html"><span class="nav-number">3.</span> <span class="nav-text">TextView中设置Html</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#TextView支持的Html标签"><span class="nav-number">3.1.</span> <span class="nav-text">TextView支持的Html标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#显示多种颜色的字"><span class="nav-number">3.2.</span> <span class="nav-text">显示多种颜色的字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字体加粗"><span class="nav-number">3.3.</span> <span class="nav-text">字体加粗</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插入图片-1"><span class="nav-number">3.4.</span> <span class="nav-text">插入图片</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

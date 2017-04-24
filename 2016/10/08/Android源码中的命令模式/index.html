@@ -101,7 +101,7 @@
 <meta property="og:description" content="Android源码中的命令模式">
 <meta property="og:image" content="http://i.imgur.com/hhM591V.png">
 <meta property="og:image" content="http://i.imgur.com/huFpx6h.png">
-<meta property="og:updated_time" content="2017-04-22T08:19:56.000Z">
+<meta property="og:updated_time" content="2017-04-24T02:01:37.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android源码中的命令模式">
 <meta name="twitter:description" content="Android源码中的命令模式">
@@ -443,25 +443,20 @@
       
         <p> Android源码中的命令模式</p>
 <a id="more"></a>
-<p>#写在前面</p>
-<p><a href="http://blog.csdn.net/sdkfjksf/article/details/52624483" target="_blank" rel="external">从装饰者模式到Context类族</a></p>
+<h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p><a href="http://blog.csdn.net/sdkfjksf/article/details/52624483" target="_blank" rel="external">从装饰者模式到Context类族</a></p>
 <p><a href="http://blog.csdn.net/sdkfjksf/article/details/52640111" target="_blank" rel="external">当观察者模式和回调机制遇上Android源码</a></p>
 <p><a href="http://blog.csdn.net/sdkfjksf/article/details/52672059" target="_blank" rel="external">Android源码中的静态工厂方法</a></p>
 <p><a href="http://blog.csdn.net/sdkfjksf/article/details/52700648" target="_blank" rel="external">Android中的工厂方法模式</a></p>
 <p>前面跟大家分享了装饰者模式、观察者模式、静态工厂方法、工厂方法模式，今天跟大家分享下Android源码中的命令模式。</p>
-<p>#命令模式</p>
-<p>##定义</p>
-<p><strong>将一个请求封装成一个对象，从而使你可用不同的请求对客户进行参数化，对请求排队或记录请求日志，以及支持可撤销的操作。</strong></p>
-<p>##使用场景</p>
-<p><strong>对于大多数请求——响应模式的功能，比较适合使用命令模式。</strong></p>
+<h1 id="命令模式"><a href="#命令模式" class="headerlink" title="命令模式"></a>命令模式</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p><strong>将一个请求封装成一个对象，从而使你可用不同的请求对客户进行参数化，对请求排队或记录请求日志，以及支持可撤销的操作。</strong></p>
+<h2 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h2><p><strong>对于大多数请求——响应模式的功能，比较适合使用命令模式。</strong></p>
 <ul>
 <li>系统需要将请求调用者和请求接收者解耦，使得调用者和接收者不直接交互。</li>
 <li>系统需要在不同的时间指定请求、将请求排队（<strong>如：线程池+工作队列</strong>）和执行请求。</li>
 <li>系统需要支持命令的撤销(Undo)操作和恢复(Redo)操作（<strong>比如系统挂掉之后重启做一些恢复操作，还有数据库的事务等</strong>）。</li>
 <li>系统需要将一组操作组合在一起，即支持宏命令。</li>
 </ul>
-<p>##结构</p>
-<p><img src="http://i.imgur.com/hhM591V.png" alt=""></p>
+<h2 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h2><p><img src="http://i.imgur.com/hhM591V.png" alt=""></p>
 <p>命令模式涉及到的角色：</p>
 <ul>
 <li><strong>客户角色（Client）</strong>：Client可以创建具体的命令对象，并且设置命令对象的接收者。Tips：不能把Clinet理解为我们平常说的客户端，这里的Client是一个组装命令对象和接受者对象的角色，或者你把它理解为一个装配者。</li>
@@ -470,8 +465,7 @@
 <li><strong>具体命令角色（ConcreteCommand）</strong>：命令接口的具体实现对象，通常会持有接收者，并调用接收者的功能来完成命令要执行的操作。</li>
 <li><strong>接收者角色（Receiver）</strong>：Receiver是真正执行命令的对象。任何类都可能成为一个接收者，只要它能够实现命令要求实现的相应功能。</li>
 </ul>
-<p>##实现</p>
-<p><strong>命令模式其实就是对命令进行封装，将命令请求者和命令执行者的责任分离开来实现松耦合。</strong> 这里我们通过一个餐厅点餐的实例来剖析一下命令模式：命令接收者Cook可以做各式各样的菜，根据Waiter送过来的订单来满足顾客的需求，具体命令实现类PigCook执行做烤乳猪命令，DuckCook执行烧花鸭命令等等，Client负责组装各个部分。</p>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p><strong>命令模式其实就是对命令进行封装，将命令请求者和命令执行者的责任分离开来实现松耦合。</strong> 这里我们通过一个餐厅点餐的实例来剖析一下命令模式：命令接收者Cook可以做各式各样的菜，根据Waiter送过来的订单来满足顾客的需求，具体命令实现类PigCook执行做烤乳猪命令，DuckCook执行烧花鸭命令等等，Client负责组装各个部分。</p>
 <p>命令角色</p>
 <pre><code>public interface Command {
     public void execute();
@@ -605,8 +599,7 @@ public class DuckCook implements Command {
     }
 }
 </code></pre><p>我们知道命令模式的一个优点是<strong>支持命令的撤销(Undo)操作和恢复(Redo)操作，</strong>如果我们像上边一样调用，我们要想做撤销是不是就不那么方便了呢。同时还可以考虑下命令模式的其他几个优点。</p>
-<p>##总结</p>
-<ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
 <li><p>每一个命令都是一个操作：请求的一方发出请求，要求执行一个操作；接收的一方收到请求，并执行操作。</p>
 </li>
 <li><p>命令模式允许请求的一方和接收的一方独立开来，使得请求的一方不必知道接收请求的一方的接口，更不必知道请求是怎么被接收，以及操作是否被执行、何时被执行，以及是怎么被执行的。</p>
@@ -616,8 +609,7 @@ public class DuckCook implements Command {
 <li><p>命令模式的关键在于引入了抽象命令接口，且发送者针对抽象命令接口编程，只有实现了抽象命令接口的具体命令才能与接收者相关联。</p>
 </li>
 </ul>
-<p>#Android源码中的命令模式</p>
-<p>对于Android源码来说，<strong>Android底层逻辑对事件的转发处理就用到了命令模式</strong>。Application Framework（应用程序框架层）中<strong>PackageManagerService</strong>类（包管理部分）也用到了命令模式。PackageManagerService是Android系统的Service之一，主要功能是实现对应用包的解析、管理、卸载等操作。我们来看下具体的结构。</p>
+<h1 id="Android源码中的命令模式"><a href="#Android源码中的命令模式" class="headerlink" title="Android源码中的命令模式"></a>Android源码中的命令模式</h1><p>对于Android源码来说，<strong>Android底层逻辑对事件的转发处理就用到了命令模式</strong>。Application Framework（应用程序框架层）中<strong>PackageManagerService</strong>类（包管理部分）也用到了命令模式。PackageManagerService是Android系统的Service之一，主要功能是实现对应用包的解析、管理、卸载等操作。我们来看下具体的结构。</p>
 <p><img src="http://i.imgur.com/huFpx6h.png" alt=""></p>
 <p><strong>HandlerParams是命令接口，即我们的Command角色。</strong></p>
 <pre><code>private abstract class HandlerParams {
@@ -687,8 +679,7 @@ public class DuckCook implements Command {
 }
 </code></pre><p><strong>具体的包的安装、移动以及包大小的测量分别在3个具体子类InstallParams、MoveParams和MeasureParams中实现。</strong></p>
 <p><strong>而PackageHandler是Handler的子类，用来负责包相关消息的处理，不同的请求对应不同的命令对象，然后通过命令对象来执行具体操作。</strong></p>
-<p>#关于Receiver</p>
-<p>通过接触Android源码或者其他的一些源码，我们知道有些地方是没有命令接收者（Receiver）这个角色的，这是为什么呢？</p>
+<h1 id="关于Receiver"><a href="#关于Receiver" class="headerlink" title="关于Receiver"></a>关于Receiver</h1><p>通过接触Android源码或者其他的一些源码，我们知道有些地方是没有命令接收者（Receiver）这个角色的，这是为什么呢？</p>
 <p><strong>个人认为，有的命令接收实现非常简，可以直接用少量的代码来实现，没有必要再增加类的数量。</strong></p>
 <p>参考链接：</p>
 <p><a href="https://github.com/simple-android-framework/android_design_patterns_analysis/tree/master/command/lijunhuayc" target="_blank" rel="external">https://github.com/simple-android-framework/android_design_patterns_analysis/tree/master/command/lijunhuayc</a></p>
@@ -831,8 +822,17 @@ public class DuckCook implements Command {
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpeg"
@@ -939,6 +939,22 @@ public class DuckCook implements Command {
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#命令模式"><span class="nav-number">2.</span> <span class="nav-text">命令模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义"><span class="nav-number">2.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用场景"><span class="nav-number">2.2.</span> <span class="nav-text">使用场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结构"><span class="nav-number">2.3.</span> <span class="nav-text">结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现"><span class="nav-number">2.4.</span> <span class="nav-text">实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">2.5.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Android源码中的命令模式"><span class="nav-number">3.</span> <span class="nav-text">Android源码中的命令模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#关于Receiver"><span class="nav-number">4.</span> <span class="nav-text">关于Receiver</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
