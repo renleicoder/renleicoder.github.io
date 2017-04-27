@@ -405,6 +405,8 @@
       <category term="APP" scheme="http://yoursite.com/categories/APP/"/>
     
     
+      <category term="MaterialDesign" scheme="http://yoursite.com/tags/MaterialDesign/"/>
+    
       <category term="APP" scheme="http://yoursite.com/tags/APP/"/>
     
       <category term="MVP" scheme="http://yoursite.com/tags/MVP/"/>
@@ -412,8 +414,6 @@
       <category term="Retrofit" scheme="http://yoursite.com/tags/Retrofit/"/>
     
       <category term="RxJava" scheme="http://yoursite.com/tags/RxJava/"/>
-    
-      <category term="MaterialDesign" scheme="http://yoursite.com/tags/MaterialDesign/"/>
     
   </entry>
   
