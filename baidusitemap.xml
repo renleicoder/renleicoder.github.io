@@ -1,0 +1,934 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+
+    
+    
+  <url>
+    <loc>http://yoursite.com/2016/11/14/Android%E6%BA%90%E7%A0%81%E4%B8%AD%E7%9A%84%E7%BB%84%E5%90%88%E6%A8%A1%E5%BC%8F/</loc>
+    <lastmod>2017-04-24T09:06:16.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android源码中的组合模式</title>
+        <pubTime>2016-11-14T09:44:00.000Z</pubTime>
+        
+        <tag>设计模式</tag>
+         
+        <tag>Android源码</tag>
+         
+        <tag>Android源码中的组合模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android源码与设计模式" url="http://yoursite.com/categories/Android%E6%BA%90%E7%A0%81%E4%B8%8E%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/01/12/Java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6%E4%B8%AD%E9%9A%90%E8%97%8F%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%A5%97%E8%B7%AF/</loc>
+    <lastmod>2017-04-24T08:55:29.000Z</lastmod>
+    <data>
+        <display>
+        <title>Java集合框架中隐藏的设计套路</title>
+        <pubTime>2017-01-12T10:38:00.000Z</pubTime>
+        
+        <tag>Java集合框架源码</tag>
+         
+        <tag>数据结构和算法</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android源码与设计模式" url="http://yoursite.com/categories/Android%E6%BA%90%E7%A0%81%E4%B8%8E%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/12/15/%E7%BD%91%E7%BB%9C%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90-%E5%85%A8%E6%98%AF%E5%A5%97%E8%B7%AF/</loc>
+    <lastmod>2017-04-24T08:51:21.000Z</lastmod>
+    <data>
+        <display>
+        <title>网络框架分析-全是套路</title>
+        <pubTime>2016-12-15T10:57:00.000Z</pubTime>
+        
+        <tag>网络框架源码分析</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android源码与设计模式" url="http://yoursite.com/categories/Android%E6%BA%90%E7%A0%81%E4%B8%8E%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/04/20/Gradle%E7%9A%84%E5%8D%96%E5%AE%B6%E7%A7%80%E5%92%8C%E4%B9%B0%E5%AE%B6%E7%A7%80/</loc>
+    <lastmod>2017-04-24T08:13:36.000Z</lastmod>
+    <data>
+        <display>
+        <title>Gradle的卖家秀和买家秀</title>
+        <pubTime>2017-04-20T00:15:00.000Z</pubTime>
+        
+        <tag>gradle最佳实践</tag>
+         
+         
+           
+             
+              <breadCrumb title="gradle" url="http://yoursite.com/categories/gradle/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/11/17/%E7%94%A8%E9%94%99%E7%9A%84%E7%8A%B6%E6%80%81%E6%A8%A1%E5%BC%8F%EF%BC%9F/</loc>
+    <lastmod>2017-04-24T07:54:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>用错的状态模式？</title>
+        <pubTime>2016-11-17T10:21:00.000Z</pubTime>
+        
+        <tag>设计模式</tag>
+         
+        <tag>Android源码</tag>
+         
+        <tag>状态模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android源码与设计模式" url="http://yoursite.com/categories/Android%E6%BA%90%E7%A0%81%E4%B8%8E%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/04/12/Androd%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A7%E4%BB%B6%EF%BC%88%E4%BA%94%EF%BC%89%E6%89%93%E9%80%A0%E8%87%AA%E5%B7%B1%E7%9A%84Camera/</loc>
+    <lastmod>2017-04-24T02:14:34.000Z</lastmod>
+    <data>
+        <display>
+        <title>Androd自定义控件（五）打造自己的Camera</title>
+        <pubTime>2016-04-12T13:30:00.000Z</pubTime>
+        
+        <tag>自定义控件</tag>
+         
+        <tag>Camera</tag>
+         
+        <tag>surfaceview</tag>
+         
+        <tag>相机</tag>
+         
+         
+           
+             
+              <breadCrumb title="自定义控件" url="http://yoursite.com/categories/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A7%E4%BB%B6/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/05/04/TextView%E5%AE%9E%E6%88%98%E4%B9%8B%E4%BD%A0%E7%9C%9F%E7%9A%84%E6%87%82%E6%88%91%E4%B9%88%EF%BC%9F/</loc>
+    <lastmod>2017-04-24T02:10:29.000Z</lastmod>
+    <data>
+        <display>
+        <title>TextView实战之你真的懂我么？</title>
+        <pubTime>2016-05-04T10:40:00.000Z</pubTime>
+        
+        <tag>TextView</tag>
+         
+        <tag>原生控件属性</tag>
+         
+         
+           
+             
+              <breadCrumb title="原生控件属性" url="http://yoursite.com/categories/%E5%8E%9F%E7%94%9F%E6%8E%A7%E4%BB%B6%E5%B1%9E%E6%80%A7/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/02/29/N%E4%B8%AA%E9%9D%9E%E5%B8%B8%E6%9C%89%E7%94%A8%E7%9A%84Android%E7%A8%8B%E5%BA%8F%E7%89%87%E6%AE%B5%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/</loc>
+    <lastmod>2017-04-24T02:09:41.000Z</lastmod>
+    <data>
+        <display>
+        <title>N个非常有用的Android程序片段（持续更新）</title>
+        <pubTime>2016-02-29T14:05:00.000Z</pubTime>
+        
+        <tag>代码片段</tag>
+         
+         
+           
+             
+              <breadCrumb title="代码片段" url="http://yoursite.com/categories/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/03/29/Material%20Design%E5%AE%9E%E6%88%98/</loc>
+    <lastmod>2017-04-24T02:09:01.000Z</lastmod>
+    <data>
+        <display>
+        <title>Material Design实战</title>
+        <pubTime>2016-03-29T10:24:00.000Z</pubTime>
+        
+        <tag>MaterialDesign</tag>
+         
+        <tag>Toolbar</tag>
+         
+        <tag>RecyclerView</tag>
+         
+         
+           
+             
+              <breadCrumb title="MaterialDesign" url="http://yoursite.com/categories/MaterialDesign/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/06/01/Android%E4%B8%AD%E7%9A%84%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/</loc>
+    <lastmod>2017-04-24T02:08:34.000Z</lastmod>
+    <data>
+        <display>
+        <title>Andorid中的进程和线程</title>
+        <pubTime>2016-06-01T07:00:00.000Z</pubTime>
+        
+        <tag>Andorid中的进程和线程</tag>
+         
+        <tag>AsyncTask</tag>
+         
+         
+           
+             
+              <breadCrumb title="多线程" url="http://yoursite.com/categories/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/09/29/Android%E4%B8%AD%E7%9A%84%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/</loc>
+    <lastmod>2017-04-24T02:08:11.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android中的工厂方法模式</title>
+        <pubTime>2016-09-29T03:39:00.000Z</pubTime>
+        
+        <tag>工厂方法模式</tag>
+         
+        <tag>设计模式</tag>
+         
+        <tag>Android源码</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android源码与设计模式" url="http://yoursite.com/categories/Android%E6%BA%90%E7%A0%81%E4%B8%8E%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/10/14/Android%E6%BA%90%E7%A0%81%E4%B8%AD%E7%9A%84%E5%A4%96%E8%A7%82%E6%A8%A1%E5%BC%8F/</loc>
+    <lastmod>2017-04-24T02:07:45.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android源码中的外观模式</title>
+        <pubTime>2016-10-14T08:21:00.000Z</pubTime>
+        
+        <tag>设计模式</tag>
+         
+        <tag>Android源码</tag>
+         
+        <tag>外观模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android源码与设计模式" url="http://yoursite.com/categories/Android%E6%BA%90%E7%A0%81%E4%B8%8E%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/10/13/Android%E6%BA%90%E7%A0%81%E4%B8%AD%E7%9A%84%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/</loc>
+    <lastmod>2017-04-24T02:02:30.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android源码中的适配器模式</title>
+        <pubTime>2016-10-13T07:20:00.000Z</pubTime>
+        
+        <tag>设计模式</tag>
+         
+        <tag>Android源码</tag>
+         
+        <tag>适配器模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android源码与设计模式" url="http://yoursite.com/categories/Android%E6%BA%90%E7%A0%81%E4%B8%8E%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/10/19/Android%E6%BA%90%E7%A0%81%E4%B8%AD%E7%9A%84%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/</loc>
+    <lastmod>2017-04-24T02:02:05.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android源码中的模板方法模式</title>
+        <pubTime>2016-10-19T09:54:00.000Z</pubTime>
+        
+        <tag>设计模式</tag>
+         
+        <tag>Android源码</tag>
+         
+        <tag>模板方法模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android源码与设计模式" url="http://yoursite.com/categories/Android%E6%BA%90%E7%A0%81%E4%B8%8E%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/10/08/Android%E6%BA%90%E7%A0%81%E4%B8%AD%E7%9A%84%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F/</loc>
+    <lastmod>2017-04-24T02:01:37.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android源码中的命令模式</title>
+        <pubTime>2016-10-08T05:41:00.000Z</pubTime>
+        
+        <tag>设计模式</tag>
+         
+        <tag>Android源码</tag>
+         
+        <tag>命令模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android源码与设计模式" url="http://yoursite.com/categories/Android%E6%BA%90%E7%A0%81%E4%B8%8E%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/09/26/Android%E6%BA%90%E7%A0%81%E4%B8%AD%E7%9A%84%E9%9D%99%E6%80%81%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95/</loc>
+    <lastmod>2017-04-24T02:01:12.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android源码中的静态工厂方法</title>
+        <pubTime>2016-09-26T09:20:00.000Z</pubTime>
+        
+        <tag>设计模式</tag>
+         
+        <tag>Android源码</tag>
+         
+        <tag>静态工厂方法</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android源码与设计模式" url="http://yoursite.com/categories/Android%E6%BA%90%E7%A0%81%E4%B8%8E%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/04/26/Android%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E4%B9%8BPerformance%20Tips/</loc>
+    <lastmod>2017-04-24T02:00:49.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android性能优化之Performance Tips</title>
+        <pubTime>2016-04-26T03:01:00.000Z</pubTime>
+        
+        <tag>性能优化</tag>
+         
+        <tag>官方文档</tag>
+         
+         
+           
+             
+              <breadCrumb title="性能优化" url="http://yoursite.com/categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/03/28/Android%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E4%B9%8B%E6%B8%B2%E6%9F%93%E4%BC%98%E5%8C%96%E7%9A%848%E4%B8%AA%E7%82%B9/</loc>
+    <lastmod>2017-04-24T02:00:19.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android性能优化之渲染优化的8个点</title>
+        <pubTime>2016-03-28T10:26:00.000Z</pubTime>
+        
+        <tag>性能优化</tag>
+         
+        <tag>渲染优化</tag>
+         
+        <tag>CPU和GPU</tag>
+         
+        <tag>Overdraw</tag>
+         
+         
+           
+             
+              <breadCrumb title="性能优化" url="http://yoursite.com/categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/03/22/Android%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E4%B9%8B%E5%B7%A5%E5%85%B7%E7%AF%87/</loc>
+    <lastmod>2017-04-24T01:59:59.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android性能优化之工具篇</title>
+        <pubTime>2016-03-22T10:00:00.000Z</pubTime>
+        
+        <tag>性能优化工具</tag>
+         
+        <tag>hierarchyviewer</tag>
+         
+        <tag>lint</tag>
+         
+         
+           
+             
+              <breadCrumb title="性能优化" url="http://yoursite.com/categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/04/19/Android%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E4%B9%8B%E8%A2%AB%E5%BF%BD%E8%A7%86%E7%9A%84Memory%20Leaks/</loc>
+    <lastmod>2017-04-24T01:59:36.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android性能优化之被忽视的Memory Leaks</title>
+        <pubTime>2016-04-19T10:16:00.000Z</pubTime>
+        
+        <tag>性能优化</tag>
+         
+        <tag>内存优化</tag>
+         
+        <tag>MAT</tag>
+         
+        <tag>leakcanary</tag>
+         
+        <tag>内存泄漏</tag>
+         
+         
+           
+             
+              <breadCrumb title="性能优化" url="http://yoursite.com/categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/06/12/Android%E7%BD%91%E7%BB%9C%E6%93%8D%E4%BD%9C%E5%92%8C%E4%BC%98%E5%8C%96%E7%9B%B8%E5%85%B3/</loc>
+    <lastmod>2017-04-24T01:58:52.000Z</lastmod>
+    <data>
+        <display>
+        <title>Andorid网络操作和优化相关</title>
+        <pubTime>2016-06-12T04:43:00.000Z</pubTime>
+        
+        <tag>Andorid中的网络操作</tag>
+         
+        <tag>移动端网络优化</tag>
+         
+         
+           
+             
+              <breadCrumb title="性能优化" url="http://yoursite.com/categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/03/18/Android%E5%8A%A0%E8%BD%BD%E9%95%BF%E5%9B%BE%E9%82%A3%E4%BA%9B%E4%BA%8B/</loc>
+    <lastmod>2017-04-24T01:58:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android加载长图那些事</title>
+        <pubTime>2016-03-18T06:52:00.000Z</pubTime>
+        
+        <tag>BitmapRegionDecoder</tag>
+         
+        <tag>Bitmap</tag>
+         
+        <tag>大图加载</tag>
+         
+         
+           
+             
+              <breadCrumb title="Bitmap" url="http://yoursite.com/categories/Bitmap/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/03/03/Android%20Studio1.5%E4%B8%ADNDK%E5%BC%80%E5%8F%91/</loc>
+    <lastmod>2017-04-24T01:57:45.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android Studio1.5中NDK开发</title>
+        <pubTime>2016-03-03T08:08:00.000Z</pubTime>
+        
+        <tag>NDK</tag>
+         
+        <tag>JNI</tag>
+         
+        <tag>AndroidStudio1.5</tag>
+         
+         
+           
+             
+              <breadCrumb title="NDK" url="http://yoursite.com/categories/NDK/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/10/10/Android%20Handler%20%E6%B6%88%E6%81%AF%E6%9C%BA%E5%88%B6%EF%BC%88%E8%A7%A3%E6%83%91%E7%AF%87%EF%BC%89/</loc>
+    <lastmod>2017-04-24T01:57:20.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android Handler 消息机制（解惑篇）</title>
+        <pubTime>2016-10-10T06:49:00.000Z</pubTime>
+        
+        <tag>消息机制</tag>
+         
+        <tag>Handler机制</tag>
+         
+        <tag>ActivityThread</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android源码与设计模式" url="http://yoursite.com/categories/Android%E6%BA%90%E7%A0%81%E4%B8%8E%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/03/20/AndrodUI%E4%BC%98%E5%8C%96%E4%B9%8B%E5%B8%83%E5%B1%80%E4%BC%98%E5%8C%96/</loc>
+    <lastmod>2017-04-24T01:56:10.000Z</lastmod>
+    <data>
+        <display>
+        <title>AndrodUI优化之布局优化</title>
+        <pubTime>2016-03-20T14:26:00.000Z</pubTime>
+        
+        <tag>布局优化</tag>
+         
+        <tag>include</tag>
+         
+        <tag>merge</tag>
+         
+        <tag>viewstub</tag>
+         
+         
+           
+             
+              <breadCrumb title="性能优化" url="http://yoursite.com/categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/02/28/Androd%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A7%E4%BB%B6%EF%BC%88%E4%B8%80%EF%BC%89%E6%A6%82%E8%BF%B0/</loc>
+    <lastmod>2017-04-24T01:55:34.000Z</lastmod>
+    <data>
+        <display>
+        <title>Androd自定义控件（一）概述</title>
+        <pubTime>2016-02-28T14:35:00.000Z</pubTime>
+        
+        <tag>自定义控件</tag>
+         
+        <tag>View的工作原理</tag>
+         
+         
+           
+             
+              <breadCrumb title="自定义控件" url="http://yoursite.com/categories/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A7%E4%BB%B6/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/04/05/Androd%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A7%E4%BB%B6%EF%BC%88%E5%9B%9B%EF%BC%89%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B1%BB%E7%BB%A7%E6%89%BFviewgroup/</loc>
+    <lastmod>2017-04-24T01:23:54.000Z</lastmod>
+    <data>
+        <display>
+        <title>Androd自定义控件（四）自定义类继承viewgroup</title>
+        <pubTime>2016-04-05T06:44:00.000Z</pubTime>
+        
+        <tag>自定义控件</tag>
+         
+        <tag>官方demo</tag>
+         
+        <tag>ViewGroup</tag>
+         
+         
+           
+             
+              <breadCrumb title="自定义控件" url="http://yoursite.com/categories/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A7%E4%BB%B6/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/03/14/Androd%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A7%E4%BB%B6%EF%BC%88%E4%B8%89%EF%BC%89%E9%A3%9E%E7%BF%94%E7%9A%84%E5%B0%8F%E7%81%AB%E7%AE%AD/</loc>
+    <lastmod>2017-04-24T01:10:33.000Z</lastmod>
+    <data>
+        <display>
+        <title>Androd自定义控件（三）飞翔的小火箭</title>
+        <pubTime>2016-03-14T10:11:00.000Z</pubTime>
+        
+        <tag>自定义控件</tag>
+         
+        <tag>组合控件</tag>
+         
+        <tag>自定义动画</tag>
+         
+         
+           
+             
+              <breadCrumb title="自定义控件" url="http://yoursite.com/categories/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A7%E4%BB%B6/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/03/06/Androd%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A7%E4%BB%B6%EF%BC%88%E4%BA%8C%EF%BC%89%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B1%BB%E7%BB%A7%E6%89%BFview/</loc>
+    <lastmod>2017-04-24T01:09:36.000Z</lastmod>
+    <data>
+        <display>
+        <title>Androd自定义控件（二）自定义类继承view</title>
+        <pubTime>2016-03-06T14:54:00.000Z</pubTime>
+        
+        <tag>自定义控件</tag>
+         
+        <tag>View</tag>
+         
+        <tag>绘制</tag>
+         
+        <tag>paint</tag>
+         
+         
+           
+             
+              <breadCrumb title="自定义控件" url="http://yoursite.com/categories/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A7%E4%BB%B6/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/04/29/Andorid%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9C%86%E5%BD%A2%E6%B8%90%E5%8F%98%E8%89%B2%E8%BF%9B%E5%BA%A6%E6%9D%A1%E7%9A%84%E4%BB%8E%E5%AE%9E%E7%8E%B0%E5%88%B0%E5%BC%80%E6%BA%90/</loc>
+    <lastmod>2017-04-24T01:07:51.000Z</lastmod>
+    <data>
+        <display>
+        <title>Andorid自定义圆形渐变色进度条的从实现到开源</title>
+        <pubTime>2016-04-29T06:31:00.000Z</pubTime>
+        
+        <tag>自定义控件</tag>
+         
+        <tag>原形渐变色进度条</tag>
+         
+         
+           
+             
+              <breadCrumb title="自定义控件" url="http://yoursite.com/categories/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A7%E4%BB%B6/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/03/08/%E8%87%AA%E5%AE%9A%E4%B9%89view%E4%BD%A0%E9%9C%80%E8%A6%81%E7%9F%A5%E9%81%93%E7%9A%84/</loc>
+    <lastmod>2017-04-24T01:05:58.000Z</lastmod>
+    <data>
+        <display>
+        <title>自定义view你需要知道的</title>
+        <pubTime>2016-03-08T03:31:00.000Z</pubTime>
+        
+        <tag>自定义控件</tag>
+         
+        <tag>官方文档</tag>
+         
+        <tag>重写</tag>
+         
+         
+           
+             
+              <breadCrumb title="自定义控件" url="http://yoursite.com/categories/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A7%E4%BB%B6/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/04/09/%E8%BF%99%E4%BA%9BTips%E8%AE%A9%E4%BD%A0%E7%9A%84App%E6%9B%B4%E5%AE%B9%E6%98%93%E7%BB%B4%E6%8A%A4/</loc>
+    <lastmod>2017-04-24T01:05:11.000Z</lastmod>
+    <data>
+        <display>
+        <title>这些Tips让你的App更容易维护</title>
+        <pubTime>2016-04-09T09:34:00.000Z</pubTime>
+        
+        <tag>可扩展</tag>
+         
+        <tag>App设计模式</tag>
+         
+        <tag>架构</tag>
+         
+        <tag>可维护</tag>
+         
+         
+           
+             
+              <breadCrumb title="性能优化" url="http://yoursite.com/categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/09/02/%E7%94%B1%E9%9D%A2%E8%AF%95%E6%83%B3%E5%88%B0%E7%9A%84/</loc>
+    <lastmod>2017-04-24T00:53:06.000Z</lastmod>
+    <data>
+        <display>
+        <title>由面试想到的</title>
+        <pubTime>2016-09-02T06:54:00.000Z</pubTime>
+        
+        <tag>方法论</tag>
+         
+        <tag>面试</tag>
+         
+         
+           
+             
+              <breadCrumb title="方法论" url="http://yoursite.com/categories/%E6%96%B9%E6%B3%95%E8%AE%BA/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/03/09/%E9%82%A3%E4%BA%9B%E5%B9%B4%E5%A4%A7%E5%AE%B6%E9%83%BD%E5%9C%A8%E8%B0%88%E8%AE%BA%E7%9A%84Android%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/</loc>
+    <lastmod>2017-04-24T00:52:33.000Z</lastmod>
+    <data>
+        <display>
+        <title>那些年大家都在谈论的Android性能优化</title>
+        <pubTime>2016-03-09T14:07:00.000Z</pubTime>
+        
+        <tag>性能优化概述</tag>
+         
+        <tag>性能优化关键点</tag>
+         
+         
+           
+             
+              <breadCrumb title="性能优化" url="http://yoursite.com/categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/09/23/%E5%BD%93%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F%E5%92%8C%E5%9B%9E%E8%B0%83%E6%9C%BA%E5%88%B6%E9%81%87%E4%B8%8AAndroid%E6%BA%90%E7%A0%81/</loc>
+    <lastmod>2017-04-24T00:51:24.000Z</lastmod>
+    <data>
+        <display>
+        <title>当观察者模式和回调机制遇上Android源码</title>
+        <pubTime>2016-09-23T08:54:00.000Z</pubTime>
+        
+        <tag>设计模式</tag>
+         
+        <tag>Android源码</tag>
+         
+        <tag>观察者模式</tag>
+         
+        <tag>回调机制</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android源码与设计模式" url="http://yoursite.com/categories/Android%E6%BA%90%E7%A0%81%E4%B8%8E%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/09/22/%E4%BB%8E%E8%A3%85%E9%A5%B0%E8%80%85%E6%A8%A1%E5%BC%8F%E5%88%B0Context%E7%B1%BB%E7%B0%87/</loc>
+    <lastmod>2017-04-24T00:51:18.000Z</lastmod>
+    <data>
+        <display>
+        <title>从装饰者模式到Context类族</title>
+        <pubTime>2016-09-22T08:40:00.000Z</pubTime>
+        
+        <tag>设计模式</tag>
+         
+        <tag>Android源码</tag>
+         
+        <tag>装饰者模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android源码与设计模式" url="http://yoursite.com/categories/Android%E6%BA%90%E7%A0%81%E4%B8%8E%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/11/03/%E4%B8%8D%E5%8F%AA%E6%98%AF%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%A8%A1%E5%BC%8F/</loc>
+    <lastmod>2017-04-24T00:51:11.000Z</lastmod>
+    <data>
+        <display>
+        <title>不只是迭代器模式</title>
+        <pubTime>2016-11-03T03:41:00.000Z</pubTime>
+        
+        <tag>设计模式</tag>
+         
+        <tag>Android源码</tag>
+         
+        <tag>迭代器模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android源码与设计模式" url="http://yoursite.com/categories/Android%E6%BA%90%E7%A0%81%E4%B8%8E%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/07/12/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E5%9F%BA%E4%BA%8EMVP+Retrofit+RxJava+MaterialDesign%E7%9A%84App/</loc>
+    <lastmod>2017-04-24T00:48:07.000Z</lastmod>
+    <data>
+        <display>
+        <title>分享一个基于MVP+Retrofit+RxJava+MaterialDesign的App</title>
+        <pubTime>2016-07-12T07:59:00.000Z</pubTime>
+        
+        <tag>MaterialDesign</tag>
+         
+        <tag>APP</tag>
+         
+        <tag>MVP</tag>
+         
+        <tag>Retrofit</tag>
+         
+        <tag>RxJava</tag>
+         
+         
+           
+             
+              <breadCrumb title="APP" url="http://yoursite.com/categories/APP/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/05/17/%E6%96%B9%E6%B3%95%E8%AE%BA-%E6%88%90%E4%B8%BA%E5%A4%A7%E7%A5%9E%E8%B7%AF%E4%B8%8A%E7%9A%84%E6%8D%B7%E5%BE%84/</loc>
+    <lastmod>2017-04-24T00:47:10.000Z</lastmod>
+    <data>
+        <display>
+        <title>方法论-成为大神路上的捷径</title>
+        <pubTime>2016-05-17T01:21:00.000Z</pubTime>
+        
+        <tag>方法论</tag>
+         
+        <tag>Android</tag>
+         
+        <tag>学习方法</tag>
+         
+         
+           
+             
+              <breadCrumb title="方法论" url="http://yoursite.com/categories/%E6%96%B9%E6%B3%95%E8%AE%BA/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+    
+</urlset>
