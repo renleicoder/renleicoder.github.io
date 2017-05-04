@@ -9,7 +9,7 @@
 <head>
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
 
 
 
@@ -164,12 +164,12 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+  <div class="site-meta">
     
 
     <div class="custom-logo-site-title">
@@ -315,7 +315,7 @@
   
   
 
-  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://blog.renleicoder.com/2016/02/28/Androd自定义控件（一）概述/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -439,7 +439,6 @@
 <h1 id="How-怎样去自定义一个控件。"><a href="#How-怎样去自定义一个控件。" class="headerlink" title="How?怎样去自定义一个控件。"></a>How?怎样去自定义一个控件。</h1><h2 id="1-自定义控件的种类"><a href="#1-自定义控件的种类" class="headerlink" title="1.自定义控件的种类"></a>1.自定义控件的种类</h2><p>个人认为自定义view其实可以分为4种：<br>1.系统控件重新组合+动画（非必须）<br>2.自定义类继承view或者已有的控件类+动画（非必须）<br>3.自定义类继承viewgroup或者已有的容器类+动画（非必须）<br>4.自定义类继承surfaceview+动画（非必须）<br>其中第一种比较简单，这里就不过多叙述了。<br>第2,3种的步骤大概是类似的，即测量（onmeasere），布局（onlayout），绘制（ondraw）。他们的共同点是：都需要进行测量操作。不同点是：viewgroup主要是控制子view的摆放，所以必须实现onlayout。而view没有子view，所以不需要onlayout方法，但必须实现ondraw。这里还需要说明的一点是自定义viewgroup一般不需要实现onmeasure，我们可以让我们的自定义view继承自已有的viewgroup帮我们实现onmeasure。<br>第四种多为相机，播放器以及一些需要频繁刷新的view（粒子效果等等）。</p>
 <h2 id="2-view的工作原理"><a href="#2-view的工作原理" class="headerlink" title="2.view的工作原理"></a>2.view的工作原理</h2><p>View定义了绘图的基本操，由三个函数完成：measure()、layout()、draw()，其内部又分别包含了onMeasure()、onLayout()、onDraw()三个子方法。具体操作如下：<br>1、measure操作<br>measure操作主要用于计算视图的大小，即视图的宽度和长度。在view中定义为final类型，要求子类不能修改。measure()函数中又会调用下面的函数：<br>（1）onMeasure()，视图大小的将在这里最终确定，也就是说measure只是对onMeasure的一个包装，子类可以覆写onMeasure()方法实现自己的计算视图大小的方式，并通过setMeasuredDimension(width, height)保存计算结果。<br>2、layout操作<br>layout操作用于设置视图在屏幕中显示的位置。在view中定义为final类型，要求子类不能修改。layout()函数中有两个基本操作：<br>（1）setFrame（l,t,r,b），l,t,r,b即子视图在父视图中的具体位置，该函数用于将这些参数保存起来；<br>（2）onLayout()，在View中这个函数什么都不会做，提供该函数主要是为viewGroup类型布局子视图用的；<br>3、draw操作<br>draw操作利用前两部得到的参数，将视图显示在屏幕上，到这里也就完成了整个的视图绘制工作。子类也不应该修改该方法，因为其内部定义了绘图的基本操作：<br>（1）绘制背景；<br>（2）如果要视图显示渐变框，这里会做一些准备工作；<br>（3）绘制视图本身，即调用onDraw()函数。在view中onDraw()是个空函数，也就是说具体的视图都要覆写该函数来实现自己的显示（比如TextView在这里实现了绘制文字的过程）。而对于ViewGroup则不需要实现该函数，因为作为容器是“没有内容“的，其包含了多个子view，而子View已经实现了自己的绘制方法，因此只需要告诉子view绘制自己就可以了，也就是下面的dispatchDraw()方法;<br>（4）绘制子视图，即dispatchDraw()函数。在view中这是个空函数，具体的视图不需要实现该方法，它是专门为容器类准备的，也就是容器类必须实现该方法；<br>（5）如果需要（应用程序调用了setVerticalFadingEdge或者setHorizontalFadingEdge），开始绘制渐变框；<br>（6）绘制滚动条；<br>ViewGroup中的扩展操作：<br>首先Viewgroup是一个抽象类。<br>1、对子视图的measure过程<br>（1）measureChildren()，内部使用一个for循环对子视图进行遍历，分别调用子视图的measure()方法；<br>（2）measureChild()，为指定的子视图measure，会被 measureChildren调用；<br>（3）measureChildWithMargins()，为指定子视图考虑了margin和padding的measure；<br>以上三个方法是ViewGroup提供的3个对子view进行测量的参考方法，设计者需要在实际中首先覆写onMeasure()，之后再对子view进行遍历measure，这时候就可以使用以上三个方法，当然也可以自定义方法进行遍历。<br>2、对子视图的layout过程<br>在ViewGroup中onLayout()被定义为abstract类型，也就是具体的容器必须实现此方法来安排子视图的布局位置，实现中主要考虑的是视图的大小及视图间的相对位置关系，如gravity、layout_gravity。<br>3、对子视图的draw过程<br>（1）dispatchDraw()，该方法用于对子视图进行遍历然后分别让子视图分别draw，方法内部会首先处理布局动画（也就是说布局动画是在这里处理的），如果有布局动画则会为每个子视图产生一个绘制时间，之后再有一个for循环对子视图进行遍历，来调用子视图的draw方法（实际为下边的drawChild()）；<br>（2）drawChild()，该方法用于具体调用子视图的draw方法，内部首先会处理视图动画（也就是说视图动画是在这里处理的），之后调用子视图的draw()。<br>从以上分析可以看出View树的绘制是一个递归的过程，从ViewGroup一直向下遍历，直到所有的子view都完成绘制。</p>
 <p><strong>这篇博客主要是对view以及自定义view的概述，接下来我会结合我在项目中用到的实例来跟大家分享四种自定义view的特点及操作方式。</strong></p>
-
       
     </div>
 
@@ -447,7 +446,7 @@
       
         
 <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
-    <img id="wechat_subscriber_qcode" src="/images/wechatqcode.png" alt="任磊_Coder wechat" style="width: 200px; max-width: 100%;">
+    <img id="wechat_subscriber_qcode" src="/images/wechatqcode.png" alt="任磊_Coder wechat" style="width: 200px; max-width: 100%">
     <div>关注博主是一种态度，评论博主是一种欣赏。</div>
 </div>
 
@@ -458,12 +457,12 @@
     <div>
       
         
-  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center">
     <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
     <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
       <span>赏</span>
     </button>
-    <div id="QR" style="display: none;">
+    <div id="QR" style="display: none">
       
         <div id="wechat" style="display: inline-block">
           <img id="wechat_qr" src="/images/wechat.png" alt="任磊_Coder WeChat Pay">

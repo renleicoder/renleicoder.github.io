@@ -9,7 +9,7 @@
 <head>
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
 
 
 
@@ -164,12 +164,12 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+  <div class="site-meta">
     
 
     <div class="custom-logo-site-title">
@@ -315,7 +315,7 @@
   
   
 
-  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://blog.renleicoder.com/2016/02/29/N个非常有用的Android程序片段（持续更新）/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -454,7 +454,6 @@
 <h3 id="12-邮箱正则"><a href="#12-邮箱正则" class="headerlink" title="12.邮箱正则"></a>12.邮箱正则</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">public static final String REG_EMAIL = &quot;\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*&quot;;</div></pre></td></tr></table></figure>
 <h3 id="13-通过资源文件名获取资源id"><a href="#13-通过资源文件名获取资源id" class="headerlink" title="13.通过资源文件名获取资源id"></a>13.通过资源文件名获取资源id</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">public static int getResource(Context c, String imageName) &#123;</div><div class="line">        return c.getResources().getIdentifier(imageName, &quot;mipmap&quot;, c.getPackageName());</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="14-获取方法执行时间"><a href="#14-获取方法执行时间" class="headerlink" title="14.获取方法执行时间"></a>14.获取方法执行时间</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">long startTime=System.currentTimeMillis();</div><div class="line">//执行方法</div><div class="line">long endTime=System.currentTimeMillis();</div><div class="line">float excTime=(float)(endTime-startTime)/1000;</div><div class="line">System.out.println(&quot;执行时间：&quot;+excTime+&quot;s&quot;);</div></pre></td></tr></table></figure>
-
       
     </div>
 
@@ -462,7 +461,7 @@
       
         
 <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
-    <img id="wechat_subscriber_qcode" src="/images/wechatqcode.png" alt="任磊_Coder wechat" style="width: 200px; max-width: 100%;">
+    <img id="wechat_subscriber_qcode" src="/images/wechatqcode.png" alt="任磊_Coder wechat" style="width: 200px; max-width: 100%">
     <div>关注博主是一种态度，评论博主是一种欣赏。</div>
 </div>
 
@@ -473,12 +472,12 @@
     <div>
       
         
-  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center">
     <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
     <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
       <span>赏</span>
     </button>
-    <div id="QR" style="display: none;">
+    <div id="QR" style="display: none">
       
         <div id="wechat" style="display: inline-block">
           <img id="wechat_qr" src="/images/wechat.png" alt="任磊_Coder WeChat Pay">

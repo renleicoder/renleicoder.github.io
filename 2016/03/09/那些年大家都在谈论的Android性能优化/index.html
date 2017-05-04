@@ -9,7 +9,7 @@
 <head>
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
 
 
 
@@ -164,12 +164,12 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+  <div class="site-meta">
     
 
     <div class="custom-logo-site-title">
@@ -315,7 +315,7 @@
   
   
 
-  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://blog.renleicoder.com/2016/03/09/那些年大家都在谈论的Android性能优化/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -439,7 +439,6 @@
 <h3 id="HOW-怎样去进行性能优化？"><a href="#HOW-怎样去进行性能优化？" class="headerlink" title="HOW?怎样去进行性能优化？"></a>HOW?怎样去进行性能优化？</h3><p>明白了何为性能问题之后，就能明白性能优化实际就是优化系统的响应时间，提高TPS。优化响应时间，提高TPS。方式不外乎这三大类：</p>
 <h4 id="1-降低执行时间"><a href="#1-降低执行时间" class="headerlink" title="(1) 降低执行时间"></a>(1) 降低执行时间</h4><p>又包括几小类</p>
 <h5 id="a-利用多线程并发或分布式提高-TPS"><a href="#a-利用多线程并发或分布式提高-TPS" class="headerlink" title="a. 利用多线程并发或分布式提高 TPS"></a>a. 利用多线程并发或分布式提高 TPS</h5><h5 id="b-缓存-包括对象缓存、IO-缓存、网络缓存等"><a href="#b-缓存-包括对象缓存、IO-缓存、网络缓存等" class="headerlink" title="b. 缓存(包括对象缓存、IO 缓存、网络缓存等)"></a>b. 缓存(包括对象缓存、IO 缓存、网络缓存等)</h5><h5 id="c-数据结构和算法优化"><a href="#c-数据结构和算法优化" class="headerlink" title="c. 数据结构和算法优化"></a>c. 数据结构和算法优化</h5><h5 id="d-性能更优的底层接口调用，如-JNI-实现"><a href="#d-性能更优的底层接口调用，如-JNI-实现" class="headerlink" title="d. 性能更优的底层接口调用，如 JNI 实现"></a>d. 性能更优的底层接口调用，如 JNI 实现</h5><h5 id="e-逻辑优化"><a href="#e-逻辑优化" class="headerlink" title="e. 逻辑优化"></a>e. 逻辑优化</h5><h5 id="f-需求优化"><a href="#f-需求优化" class="headerlink" title="f. 需求优化"></a>f. 需求优化</h5><h4 id="2-同步改异步，利用多线程提高TPS"><a href="#2-同步改异步，利用多线程提高TPS" class="headerlink" title="(2) 同步改异步，利用多线程提高TPS"></a>(2) 同步改异步，利用多线程提高TPS</h4><h4 id="3-提前或延迟操作，错峰提高TPS"><a href="#3-提前或延迟操作，错峰提高TPS" class="headerlink" title="(3) 提前或延迟操作，错峰提高TPS"></a>(3) 提前或延迟操作，错峰提高TPS</h4><h3 id="WHERE-Android中的性能问题常出现在哪里？"><a href="#WHERE-Android中的性能问题常出现在哪里？" class="headerlink" title="WHERE?Android中的性能问题常出现在哪里？"></a>WHERE?Android中的性能问题常出现在哪里？</h3><h4 id="1-UI中的性能问题"><a href="#1-UI中的性能问题" class="headerlink" title="(1)UI中的性能问题"></a>(1)UI中的性能问题</h4><h5 id="a-布局"><a href="#a-布局" class="headerlink" title="a.布局"></a>a.布局</h5><h5 id="b-绘制"><a href="#b-绘制" class="headerlink" title="b.绘制"></a>b.绘制</h5><h4 id="2-内存中的性能问题"><a href="#2-内存中的性能问题" class="headerlink" title="(2)内存中的性能问题"></a>(2)内存中的性能问题</h4><h5 id="a-内存泄露"><a href="#a-内存泄露" class="headerlink" title="a.内存泄露"></a>a.内存泄露</h5><h5 id="b-响应速度"><a href="#b-响应速度" class="headerlink" title="b.响应速度"></a>b.响应速度</h5><h5 id="c-listview"><a href="#c-listview" class="headerlink" title="c.listview"></a>c.listview</h5><h5 id="d-OOM"><a href="#d-OOM" class="headerlink" title="d.OOM"></a>d.OOM</h5><h5 id="e-对象的内存占用过大以及不能重复利用"><a href="#e-对象的内存占用过大以及不能重复利用" class="headerlink" title="e.对象的内存占用过大以及不能重复利用"></a>e.对象的内存占用过大以及不能重复利用</h5><h5 id="f-bitmap加载"><a href="#f-bitmap加载" class="headerlink" title="f.bitmap加载"></a>f.bitmap加载</h5><h4 id="3-关于电量的性能问题"><a href="#3-关于电量的性能问题" class="headerlink" title="(3)关于电量的性能问题"></a>(3)关于电量的性能问题</h4><h4 id="4-关于网络的性能问题"><a href="#4-关于网络的性能问题" class="headerlink" title="(4)关于网络的性能问题"></a>(4)关于网络的性能问题</h4><h3 id="纳尼？"><a href="#纳尼？" class="headerlink" title="纳尼？"></a>纳尼？</h3><p>其实这些都是那些老生总结过的经验，虽然有些拿来主义，但是凭我现在的水平好像也总结不出花来。那要这篇博客何用？不急不急，这只是开胃菜而已。在以后的博客当中，我会就Android中经常出现性能问题，去一步一步提升我做过的项目的性能。<br><strong>其实每个人都在成为大神的路上，只不过有的人在走，而有的人在跑。不急不躁，脚踏实地，我们也可以————致不是老生的新生</strong></p>
-
       
     </div>
 
@@ -447,7 +446,7 @@
       
         
 <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
-    <img id="wechat_subscriber_qcode" src="/images/wechatqcode.png" alt="任磊_Coder wechat" style="width: 200px; max-width: 100%;">
+    <img id="wechat_subscriber_qcode" src="/images/wechatqcode.png" alt="任磊_Coder wechat" style="width: 200px; max-width: 100%">
     <div>关注博主是一种态度，评论博主是一种欣赏。</div>
 </div>
 
@@ -458,12 +457,12 @@
     <div>
       
         
-  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center">
     <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
     <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
       <span>赏</span>
     </button>
-    <div id="QR" style="display: none;">
+    <div id="QR" style="display: none">
       
         <div id="wechat" style="display: inline-block">
           <img id="wechat_qr" src="/images/wechat.png" alt="任磊_Coder WeChat Pay">
