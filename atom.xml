@@ -4,9 +4,9 @@
   <subtitle>每个人都在成为大神的路上，只不过有的人在走，而有的人在跑。</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
+  <link href="http://blog.renleicoder.com/"/>
   <updated>2017-04-24T08:13:36.000Z</updated>
-  <id>http://yoursite.com/</id>
+  <id>http://blog.renleicoder.com/</id>
   
   <author>
     <name>任磊_Coder</name>
@@ -17,8 +17,8 @@
   
   <entry>
     <title>Gradle的卖家秀和买家秀</title>
-    <link href="http://yoursite.com/2017/04/20/Gradle%E7%9A%84%E5%8D%96%E5%AE%B6%E7%A7%80%E5%92%8C%E4%B9%B0%E5%AE%B6%E7%A7%80/"/>
-    <id>http://yoursite.com/2017/04/20/Gradle的卖家秀和买家秀/</id>
+    <link href="http://blog.renleicoder.com/2017/04/20/Gradle%E7%9A%84%E5%8D%96%E5%AE%B6%E7%A7%80%E5%92%8C%E4%B9%B0%E5%AE%B6%E7%A7%80/"/>
+    <id>http://blog.renleicoder.com/2017/04/20/Gradle的卖家秀和买家秀/</id>
     <published>2017-04-20T00:15:00.000Z</published>
     <updated>2017-04-24T08:13:36.000Z</updated>
     
@@ -28,17 +28,17 @@
     
     </summary>
     
-      <category term="gradle" scheme="http://yoursite.com/categories/gradle/"/>
+      <category term="gradle" scheme="http://blog.renleicoder.com/categories/gradle/"/>
     
     
-      <category term="gradle最佳实践" scheme="http://yoursite.com/tags/gradle%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/"/>
+      <category term="gradle最佳实践" scheme="http://blog.renleicoder.com/tags/gradle%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/"/>
     
   </entry>
   
   <entry>
     <title>Java集合框架中隐藏的设计套路</title>
-    <link href="http://yoursite.com/2017/01/12/Java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6%E4%B8%AD%E9%9A%90%E8%97%8F%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%A5%97%E8%B7%AF/"/>
-    <id>http://yoursite.com/2017/01/12/Java集合框架中隐藏的设计套路/</id>
+    <link href="http://blog.renleicoder.com/2017/01/12/Java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6%E4%B8%AD%E9%9A%90%E8%97%8F%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%A5%97%E8%B7%AF/"/>
+    <id>http://blog.renleicoder.com/2017/01/12/Java集合框架中隐藏的设计套路/</id>
     <published>2017-01-12T10:38:00.000Z</published>
     <updated>2017-04-24T08:55:29.000Z</updated>
     
@@ -48,19 +48,19 @@
     
     </summary>
     
-      <category term="Android源码与设计模式" scheme="http://yoursite.com/categories/Android%E6%BA%90%E7%A0%81%E4%B8%8E%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+      <category term="Android源码与设计模式" scheme="http://blog.renleicoder.com/categories/Android%E6%BA%90%E7%A0%81%E4%B8%8E%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
     
-      <category term="Java集合框架源码" scheme="http://yoursite.com/tags/Java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6%E6%BA%90%E7%A0%81/"/>
+      <category term="Java集合框架源码" scheme="http://blog.renleicoder.com/tags/Java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6%E6%BA%90%E7%A0%81/"/>
     
-      <category term="数据结构和算法" scheme="http://yoursite.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/"/>
+      <category term="数据结构和算法" scheme="http://blog.renleicoder.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
   <entry>
     <title>网络框架分析-全是套路</title>
-    <link href="http://yoursite.com/2016/12/15/%E7%BD%91%E7%BB%9C%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90-%E5%85%A8%E6%98%AF%E5%A5%97%E8%B7%AF/"/>
-    <id>http://yoursite.com/2016/12/15/网络框架分析-全是套路/</id>
+    <link href="http://blog.renleicoder.com/2016/12/15/%E7%BD%91%E7%BB%9C%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90-%E5%85%A8%E6%98%AF%E5%A5%97%E8%B7%AF/"/>
+    <id>http://blog.renleicoder.com/2016/12/15/网络框架分析-全是套路/</id>
     <published>2016-12-15T10:57:00.000Z</published>
     <updated>2017-04-24T08:51:21.000Z</updated>
     
@@ -70,17 +70,17 @@
     
     </summary>
     
-      <category term="Android源码与设计模式" scheme="http://yoursite.com/categories/Android%E6%BA%90%E7%A0%81%E4%B8%8E%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+      <category term="Android源码与设计模式" scheme="http://blog.renleicoder.com/categories/Android%E6%BA%90%E7%A0%81%E4%B8%8E%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
     
-      <category term="网络框架源码分析" scheme="http://yoursite.com/tags/%E7%BD%91%E7%BB%9C%E6%A1%86%E6%9E%B6%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/"/>
+      <category term="网络框架源码分析" scheme="http://blog.renleicoder.com/tags/%E7%BD%91%E7%BB%9C%E6%A1%86%E6%9E%B6%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/"/>
     
   </entry>
   
   <entry>
     <title>用错的状态模式？</title>
-    <link href="http://yoursite.com/2016/11/17/%E7%94%A8%E9%94%99%E7%9A%84%E7%8A%B6%E6%80%81%E6%A8%A1%E5%BC%8F%EF%BC%9F/"/>
-    <id>http://yoursite.com/2016/11/17/用错的状态模式？/</id>
+    <link href="http://blog.renleicoder.com/2016/11/17/%E7%94%A8%E9%94%99%E7%9A%84%E7%8A%B6%E6%80%81%E6%A8%A1%E5%BC%8F%EF%BC%9F/"/>
+    <id>http://blog.renleicoder.com/2016/11/17/用错的状态模式？/</id>
     <published>2016-11-17T10:21:00.000Z</published>
     <updated>2017-04-24T07:54:27.000Z</updated>
     
@@ -90,21 +90,21 @@
     
     </summary>
     
-      <category term="Android源码与设计模式" scheme="http://yoursite.com/categories/Android%E6%BA%90%E7%A0%81%E4%B8%8E%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+      <category term="Android源码与设计模式" scheme="http://blog.renleicoder.com/categories/Android%E6%BA%90%E7%A0%81%E4%B8%8E%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
     
-      <category term="设计模式" scheme="http://yoursite.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+      <category term="设计模式" scheme="http://blog.renleicoder.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
-      <category term="Android源码" scheme="http://yoursite.com/tags/Android%E6%BA%90%E7%A0%81/"/>
+      <category term="Android源码" scheme="http://blog.renleicoder.com/tags/Android%E6%BA%90%E7%A0%81/"/>
     
-      <category term="状态模式" scheme="http://yoursite.com/tags/%E7%8A%B6%E6%80%81%E6%A8%A1%E5%BC%8F/"/>
+      <category term="状态模式" scheme="http://blog.renleicoder.com/tags/%E7%8A%B6%E6%80%81%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
   <entry>
     <title>Android源码中的组合模式</title>
-    <link href="http://yoursite.com/2016/11/14/Android%E6%BA%90%E7%A0%81%E4%B8%AD%E7%9A%84%E7%BB%84%E5%90%88%E6%A8%A1%E5%BC%8F/"/>
-    <id>http://yoursite.com/2016/11/14/Android源码中的组合模式/</id>
+    <link href="http://blog.renleicoder.com/2016/11/14/Android%E6%BA%90%E7%A0%81%E4%B8%AD%E7%9A%84%E7%BB%84%E5%90%88%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://blog.renleicoder.com/2016/11/14/Android源码中的组合模式/</id>
     <published>2016-11-14T09:44:00.000Z</published>
     <updated>2017-04-24T09:06:16.000Z</updated>
     
@@ -114,21 +114,21 @@
     
     </summary>
     
-      <category term="Android源码与设计模式" scheme="http://yoursite.com/categories/Android%E6%BA%90%E7%A0%81%E4%B8%8E%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+      <category term="Android源码与设计模式" scheme="http://blog.renleicoder.com/categories/Android%E6%BA%90%E7%A0%81%E4%B8%8E%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
     
-      <category term="设计模式" scheme="http://yoursite.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+      <category term="设计模式" scheme="http://blog.renleicoder.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
-      <category term="Android源码" scheme="http://yoursite.com/tags/Android%E6%BA%90%E7%A0%81/"/>
+      <category term="Android源码" scheme="http://blog.renleicoder.com/tags/Android%E6%BA%90%E7%A0%81/"/>
     
-      <category term="Android源码中的组合模式" scheme="http://yoursite.com/tags/Android%E6%BA%90%E7%A0%81%E4%B8%AD%E7%9A%84%E7%BB%84%E5%90%88%E6%A8%A1%E5%BC%8F/"/>
+      <category term="Android源码中的组合模式" scheme="http://blog.renleicoder.com/tags/Android%E6%BA%90%E7%A0%81%E4%B8%AD%E7%9A%84%E7%BB%84%E5%90%88%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
   <entry>
     <title>不只是迭代器模式</title>
-    <link href="http://yoursite.com/2016/11/03/%E4%B8%8D%E5%8F%AA%E6%98%AF%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%A8%A1%E5%BC%8F/"/>
-    <id>http://yoursite.com/2016/11/03/不只是迭代器模式/</id>
+    <link href="http://blog.renleicoder.com/2016/11/03/%E4%B8%8D%E5%8F%AA%E6%98%AF%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://blog.renleicoder.com/2016/11/03/不只是迭代器模式/</id>
     <published>2016-11-03T03:41:00.000Z</published>
     <updated>2017-04-24T00:51:11.000Z</updated>
     
@@ -138,21 +138,21 @@
     
     </summary>
     
-      <category term="Android源码与设计模式" scheme="http://yoursite.com/categories/Android%E6%BA%90%E7%A0%81%E4%B8%8E%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+      <category term="Android源码与设计模式" scheme="http://blog.renleicoder.com/categories/Android%E6%BA%90%E7%A0%81%E4%B8%8E%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
     
-      <category term="设计模式" scheme="http://yoursite.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+      <category term="设计模式" scheme="http://blog.renleicoder.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
-      <category term="Android源码" scheme="http://yoursite.com/tags/Android%E6%BA%90%E7%A0%81/"/>
+      <category term="Android源码" scheme="http://blog.renleicoder.com/tags/Android%E6%BA%90%E7%A0%81/"/>
     
-      <category term="迭代器模式" scheme="http://yoursite.com/tags/%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%A8%A1%E5%BC%8F/"/>
+      <category term="迭代器模式" scheme="http://blog.renleicoder.com/tags/%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
   <entry>
     <title>Android源码中的模板方法模式</title>
-    <link href="http://yoursite.com/2016/10/19/Android%E6%BA%90%E7%A0%81%E4%B8%AD%E7%9A%84%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/"/>
-    <id>http://yoursite.com/2016/10/19/Android源码中的模板方法模式/</id>
+    <link href="http://blog.renleicoder.com/2016/10/19/Android%E6%BA%90%E7%A0%81%E4%B8%AD%E7%9A%84%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://blog.renleicoder.com/2016/10/19/Android源码中的模板方法模式/</id>
     <published>2016-10-19T09:54:00.000Z</published>
     <updated>2017-04-24T02:02:05.000Z</updated>
     
@@ -162,21 +162,21 @@
     
     </summary>
     
-      <category term="Android源码与设计模式" scheme="http://yoursite.com/categories/Android%E6%BA%90%E7%A0%81%E4%B8%8E%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+      <category term="Android源码与设计模式" scheme="http://blog.renleicoder.com/categories/Android%E6%BA%90%E7%A0%81%E4%B8%8E%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
     
-      <category term="设计模式" scheme="http://yoursite.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+      <category term="设计模式" scheme="http://blog.renleicoder.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
-      <category term="Android源码" scheme="http://yoursite.com/tags/Android%E6%BA%90%E7%A0%81/"/>
+      <category term="Android源码" scheme="http://blog.renleicoder.com/tags/Android%E6%BA%90%E7%A0%81/"/>
     
-      <category term="模板方法模式" scheme="http://yoursite.com/tags/%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/"/>
+      <category term="模板方法模式" scheme="http://blog.renleicoder.com/tags/%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
   <entry>
     <title>Android源码中的外观模式</title>
-    <link href="http://yoursite.com/2016/10/14/Android%E6%BA%90%E7%A0%81%E4%B8%AD%E7%9A%84%E5%A4%96%E8%A7%82%E6%A8%A1%E5%BC%8F/"/>
-    <id>http://yoursite.com/2016/10/14/Android源码中的外观模式/</id>
+    <link href="http://blog.renleicoder.com/2016/10/14/Android%E6%BA%90%E7%A0%81%E4%B8%AD%E7%9A%84%E5%A4%96%E8%A7%82%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://blog.renleicoder.com/2016/10/14/Android源码中的外观模式/</id>
     <published>2016-10-14T08:21:00.000Z</published>
     <updated>2017-04-24T02:07:45.000Z</updated>
     
@@ -186,21 +186,21 @@
     
     </summary>
     
-      <category term="Android源码与设计模式" scheme="http://yoursite.com/categories/Android%E6%BA%90%E7%A0%81%E4%B8%8E%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+      <category term="Android源码与设计模式" scheme="http://blog.renleicoder.com/categories/Android%E6%BA%90%E7%A0%81%E4%B8%8E%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
     
-      <category term="设计模式" scheme="http://yoursite.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+      <category term="设计模式" scheme="http://blog.renleicoder.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
-      <category term="Android源码" scheme="http://yoursite.com/tags/Android%E6%BA%90%E7%A0%81/"/>
+      <category term="Android源码" scheme="http://blog.renleicoder.com/tags/Android%E6%BA%90%E7%A0%81/"/>
     
-      <category term="外观模式" scheme="http://yoursite.com/tags/%E5%A4%96%E8%A7%82%E6%A8%A1%E5%BC%8F/"/>
+      <category term="外观模式" scheme="http://blog.renleicoder.com/tags/%E5%A4%96%E8%A7%82%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
   <entry>
     <title>Android源码中的适配器模式</title>
-    <link href="http://yoursite.com/2016/10/13/Android%E6%BA%90%E7%A0%81%E4%B8%AD%E7%9A%84%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/"/>
-    <id>http://yoursite.com/2016/10/13/Android源码中的适配器模式/</id>
+    <link href="http://blog.renleicoder.com/2016/10/13/Android%E6%BA%90%E7%A0%81%E4%B8%AD%E7%9A%84%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://blog.renleicoder.com/2016/10/13/Android源码中的适配器模式/</id>
     <published>2016-10-13T07:20:00.000Z</published>
     <updated>2017-04-24T02:02:30.000Z</updated>
     
@@ -210,21 +210,21 @@
     
     </summary>
     
-      <category term="Android源码与设计模式" scheme="http://yoursite.com/categories/Android%E6%BA%90%E7%A0%81%E4%B8%8E%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+      <category term="Android源码与设计模式" scheme="http://blog.renleicoder.com/categories/Android%E6%BA%90%E7%A0%81%E4%B8%8E%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
     
-      <category term="设计模式" scheme="http://yoursite.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+      <category term="设计模式" scheme="http://blog.renleicoder.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
-      <category term="Android源码" scheme="http://yoursite.com/tags/Android%E6%BA%90%E7%A0%81/"/>
+      <category term="Android源码" scheme="http://blog.renleicoder.com/tags/Android%E6%BA%90%E7%A0%81/"/>
     
-      <category term="适配器模式" scheme="http://yoursite.com/tags/%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/"/>
+      <category term="适配器模式" scheme="http://blog.renleicoder.com/tags/%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
   <entry>
     <title>Android Handler 消息机制（解惑篇）</title>
-    <link href="http://yoursite.com/2016/10/10/Android%20Handler%20%E6%B6%88%E6%81%AF%E6%9C%BA%E5%88%B6%EF%BC%88%E8%A7%A3%E6%83%91%E7%AF%87%EF%BC%89/"/>
-    <id>http://yoursite.com/2016/10/10/Android Handler 消息机制（解惑篇）/</id>
+    <link href="http://blog.renleicoder.com/2016/10/10/Android%20Handler%20%E6%B6%88%E6%81%AF%E6%9C%BA%E5%88%B6%EF%BC%88%E8%A7%A3%E6%83%91%E7%AF%87%EF%BC%89/"/>
+    <id>http://blog.renleicoder.com/2016/10/10/Android Handler 消息机制（解惑篇）/</id>
     <published>2016-10-10T06:49:00.000Z</published>
     <updated>2017-04-24T01:57:20.000Z</updated>
     
@@ -234,21 +234,21 @@
     
     </summary>
     
-      <category term="Android源码与设计模式" scheme="http://yoursite.com/categories/Android%E6%BA%90%E7%A0%81%E4%B8%8E%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+      <category term="Android源码与设计模式" scheme="http://blog.renleicoder.com/categories/Android%E6%BA%90%E7%A0%81%E4%B8%8E%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
     
-      <category term="消息机制" scheme="http://yoursite.com/tags/%E6%B6%88%E6%81%AF%E6%9C%BA%E5%88%B6/"/>
+      <category term="消息机制" scheme="http://blog.renleicoder.com/tags/%E6%B6%88%E6%81%AF%E6%9C%BA%E5%88%B6/"/>
     
-      <category term="Handler机制" scheme="http://yoursite.com/tags/Handler%E6%9C%BA%E5%88%B6/"/>
+      <category term="Handler机制" scheme="http://blog.renleicoder.com/tags/Handler%E6%9C%BA%E5%88%B6/"/>
     
-      <category term="ActivityThread" scheme="http://yoursite.com/tags/ActivityThread/"/>
+      <category term="ActivityThread" scheme="http://blog.renleicoder.com/tags/ActivityThread/"/>
     
   </entry>
   
   <entry>
     <title>Android源码中的命令模式</title>
-    <link href="http://yoursite.com/2016/10/08/Android%E6%BA%90%E7%A0%81%E4%B8%AD%E7%9A%84%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F/"/>
-    <id>http://yoursite.com/2016/10/08/Android源码中的命令模式/</id>
+    <link href="http://blog.renleicoder.com/2016/10/08/Android%E6%BA%90%E7%A0%81%E4%B8%AD%E7%9A%84%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://blog.renleicoder.com/2016/10/08/Android源码中的命令模式/</id>
     <published>2016-10-08T05:41:00.000Z</published>
     <updated>2017-04-24T02:01:37.000Z</updated>
     
@@ -258,21 +258,21 @@
     
     </summary>
     
-      <category term="Android源码与设计模式" scheme="http://yoursite.com/categories/Android%E6%BA%90%E7%A0%81%E4%B8%8E%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+      <category term="Android源码与设计模式" scheme="http://blog.renleicoder.com/categories/Android%E6%BA%90%E7%A0%81%E4%B8%8E%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
     
-      <category term="设计模式" scheme="http://yoursite.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+      <category term="设计模式" scheme="http://blog.renleicoder.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
-      <category term="Android源码" scheme="http://yoursite.com/tags/Android%E6%BA%90%E7%A0%81/"/>
+      <category term="Android源码" scheme="http://blog.renleicoder.com/tags/Android%E6%BA%90%E7%A0%81/"/>
     
-      <category term="命令模式" scheme="http://yoursite.com/tags/%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F/"/>
+      <category term="命令模式" scheme="http://blog.renleicoder.com/tags/%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
   <entry>
     <title>Android中的工厂方法模式</title>
-    <link href="http://yoursite.com/2016/09/29/Android%E4%B8%AD%E7%9A%84%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/"/>
-    <id>http://yoursite.com/2016/09/29/Android中的工厂方法模式/</id>
+    <link href="http://blog.renleicoder.com/2016/09/29/Android%E4%B8%AD%E7%9A%84%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://blog.renleicoder.com/2016/09/29/Android中的工厂方法模式/</id>
     <published>2016-09-29T03:39:00.000Z</published>
     <updated>2017-04-24T02:08:11.000Z</updated>
     
@@ -282,21 +282,21 @@
     
     </summary>
     
-      <category term="Android源码与设计模式" scheme="http://yoursite.com/categories/Android%E6%BA%90%E7%A0%81%E4%B8%8E%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+      <category term="Android源码与设计模式" scheme="http://blog.renleicoder.com/categories/Android%E6%BA%90%E7%A0%81%E4%B8%8E%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
     
-      <category term="工厂方法模式" scheme="http://yoursite.com/tags/%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/"/>
+      <category term="工厂方法模式" scheme="http://blog.renleicoder.com/tags/%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/"/>
     
-      <category term="设计模式" scheme="http://yoursite.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+      <category term="设计模式" scheme="http://blog.renleicoder.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
-      <category term="Android源码" scheme="http://yoursite.com/tags/Android%E6%BA%90%E7%A0%81/"/>
+      <category term="Android源码" scheme="http://blog.renleicoder.com/tags/Android%E6%BA%90%E7%A0%81/"/>
     
   </entry>
   
   <entry>
     <title>Android源码中的静态工厂方法</title>
-    <link href="http://yoursite.com/2016/09/26/Android%E6%BA%90%E7%A0%81%E4%B8%AD%E7%9A%84%E9%9D%99%E6%80%81%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95/"/>
-    <id>http://yoursite.com/2016/09/26/Android源码中的静态工厂方法/</id>
+    <link href="http://blog.renleicoder.com/2016/09/26/Android%E6%BA%90%E7%A0%81%E4%B8%AD%E7%9A%84%E9%9D%99%E6%80%81%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95/"/>
+    <id>http://blog.renleicoder.com/2016/09/26/Android源码中的静态工厂方法/</id>
     <published>2016-09-26T09:20:00.000Z</published>
     <updated>2017-04-24T02:01:12.000Z</updated>
     
@@ -306,21 +306,21 @@
     
     </summary>
     
-      <category term="Android源码与设计模式" scheme="http://yoursite.com/categories/Android%E6%BA%90%E7%A0%81%E4%B8%8E%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+      <category term="Android源码与设计模式" scheme="http://blog.renleicoder.com/categories/Android%E6%BA%90%E7%A0%81%E4%B8%8E%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
     
-      <category term="设计模式" scheme="http://yoursite.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+      <category term="设计模式" scheme="http://blog.renleicoder.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
-      <category term="Android源码" scheme="http://yoursite.com/tags/Android%E6%BA%90%E7%A0%81/"/>
+      <category term="Android源码" scheme="http://blog.renleicoder.com/tags/Android%E6%BA%90%E7%A0%81/"/>
     
-      <category term="静态工厂方法" scheme="http://yoursite.com/tags/%E9%9D%99%E6%80%81%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95/"/>
+      <category term="静态工厂方法" scheme="http://blog.renleicoder.com/tags/%E9%9D%99%E6%80%81%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95/"/>
     
   </entry>
   
   <entry>
     <title>当观察者模式和回调机制遇上Android源码</title>
-    <link href="http://yoursite.com/2016/09/23/%E5%BD%93%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F%E5%92%8C%E5%9B%9E%E8%B0%83%E6%9C%BA%E5%88%B6%E9%81%87%E4%B8%8AAndroid%E6%BA%90%E7%A0%81/"/>
-    <id>http://yoursite.com/2016/09/23/当观察者模式和回调机制遇上Android源码/</id>
+    <link href="http://blog.renleicoder.com/2016/09/23/%E5%BD%93%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F%E5%92%8C%E5%9B%9E%E8%B0%83%E6%9C%BA%E5%88%B6%E9%81%87%E4%B8%8AAndroid%E6%BA%90%E7%A0%81/"/>
+    <id>http://blog.renleicoder.com/2016/09/23/当观察者模式和回调机制遇上Android源码/</id>
     <published>2016-09-23T08:54:00.000Z</published>
     <updated>2017-04-24T00:51:24.000Z</updated>
     
@@ -330,23 +330,23 @@
     
     </summary>
     
-      <category term="Android源码与设计模式" scheme="http://yoursite.com/categories/Android%E6%BA%90%E7%A0%81%E4%B8%8E%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+      <category term="Android源码与设计模式" scheme="http://blog.renleicoder.com/categories/Android%E6%BA%90%E7%A0%81%E4%B8%8E%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
     
-      <category term="设计模式" scheme="http://yoursite.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+      <category term="设计模式" scheme="http://blog.renleicoder.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
-      <category term="Android源码" scheme="http://yoursite.com/tags/Android%E6%BA%90%E7%A0%81/"/>
+      <category term="Android源码" scheme="http://blog.renleicoder.com/tags/Android%E6%BA%90%E7%A0%81/"/>
     
-      <category term="观察者模式" scheme="http://yoursite.com/tags/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/"/>
+      <category term="观察者模式" scheme="http://blog.renleicoder.com/tags/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/"/>
     
-      <category term="回调机制" scheme="http://yoursite.com/tags/%E5%9B%9E%E8%B0%83%E6%9C%BA%E5%88%B6/"/>
+      <category term="回调机制" scheme="http://blog.renleicoder.com/tags/%E5%9B%9E%E8%B0%83%E6%9C%BA%E5%88%B6/"/>
     
   </entry>
   
   <entry>
     <title>从装饰者模式到Context类族</title>
-    <link href="http://yoursite.com/2016/09/22/%E4%BB%8E%E8%A3%85%E9%A5%B0%E8%80%85%E6%A8%A1%E5%BC%8F%E5%88%B0Context%E7%B1%BB%E7%B0%87/"/>
-    <id>http://yoursite.com/2016/09/22/从装饰者模式到Context类簇/</id>
+    <link href="http://blog.renleicoder.com/2016/09/22/%E4%BB%8E%E8%A3%85%E9%A5%B0%E8%80%85%E6%A8%A1%E5%BC%8F%E5%88%B0Context%E7%B1%BB%E7%B0%87/"/>
+    <id>http://blog.renleicoder.com/2016/09/22/从装饰者模式到Context类簇/</id>
     <published>2016-09-22T08:40:00.000Z</published>
     <updated>2017-04-24T00:51:18.000Z</updated>
     
@@ -356,21 +356,21 @@
     
     </summary>
     
-      <category term="Android源码与设计模式" scheme="http://yoursite.com/categories/Android%E6%BA%90%E7%A0%81%E4%B8%8E%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+      <category term="Android源码与设计模式" scheme="http://blog.renleicoder.com/categories/Android%E6%BA%90%E7%A0%81%E4%B8%8E%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
     
-      <category term="设计模式" scheme="http://yoursite.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+      <category term="设计模式" scheme="http://blog.renleicoder.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
-      <category term="Android源码" scheme="http://yoursite.com/tags/Android%E6%BA%90%E7%A0%81/"/>
+      <category term="Android源码" scheme="http://blog.renleicoder.com/tags/Android%E6%BA%90%E7%A0%81/"/>
     
-      <category term="装饰者模式" scheme="http://yoursite.com/tags/%E8%A3%85%E9%A5%B0%E8%80%85%E6%A8%A1%E5%BC%8F/"/>
+      <category term="装饰者模式" scheme="http://blog.renleicoder.com/tags/%E8%A3%85%E9%A5%B0%E8%80%85%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
   <entry>
     <title>由面试想到的</title>
-    <link href="http://yoursite.com/2016/09/02/%E7%94%B1%E9%9D%A2%E8%AF%95%E6%83%B3%E5%88%B0%E7%9A%84/"/>
-    <id>http://yoursite.com/2016/09/02/由面试想到的/</id>
+    <link href="http://blog.renleicoder.com/2016/09/02/%E7%94%B1%E9%9D%A2%E8%AF%95%E6%83%B3%E5%88%B0%E7%9A%84/"/>
+    <id>http://blog.renleicoder.com/2016/09/02/由面试想到的/</id>
     <published>2016-09-02T06:54:00.000Z</published>
     <updated>2017-04-24T00:53:06.000Z</updated>
     
@@ -380,19 +380,19 @@
     
     </summary>
     
-      <category term="方法论" scheme="http://yoursite.com/categories/%E6%96%B9%E6%B3%95%E8%AE%BA/"/>
+      <category term="方法论" scheme="http://blog.renleicoder.com/categories/%E6%96%B9%E6%B3%95%E8%AE%BA/"/>
     
     
-      <category term="方法论" scheme="http://yoursite.com/tags/%E6%96%B9%E6%B3%95%E8%AE%BA/"/>
+      <category term="方法论" scheme="http://blog.renleicoder.com/tags/%E6%96%B9%E6%B3%95%E8%AE%BA/"/>
     
-      <category term="面试" scheme="http://yoursite.com/tags/%E9%9D%A2%E8%AF%95/"/>
+      <category term="面试" scheme="http://blog.renleicoder.com/tags/%E9%9D%A2%E8%AF%95/"/>
     
   </entry>
   
   <entry>
     <title>分享一个基于MVP+Retrofit+RxJava+MaterialDesign的App</title>
-    <link href="http://yoursite.com/2016/07/12/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E5%9F%BA%E4%BA%8EMVP+Retrofit+RxJava+MaterialDesign%E7%9A%84App/"/>
-    <id>http://yoursite.com/2016/07/12/分享一个基于MVP+Retrofit+RxJava+MaterialDesign的App/</id>
+    <link href="http://blog.renleicoder.com/2016/07/12/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E5%9F%BA%E4%BA%8EMVP+Retrofit+RxJava+MaterialDesign%E7%9A%84App/"/>
+    <id>http://blog.renleicoder.com/2016/07/12/分享一个基于MVP+Retrofit+RxJava+MaterialDesign的App/</id>
     <published>2016-07-12T07:59:00.000Z</published>
     <updated>2017-04-24T00:48:07.000Z</updated>
     
@@ -402,25 +402,25 @@
     
     </summary>
     
-      <category term="APP" scheme="http://yoursite.com/categories/APP/"/>
+      <category term="APP" scheme="http://blog.renleicoder.com/categories/APP/"/>
     
     
-      <category term="MaterialDesign" scheme="http://yoursite.com/tags/MaterialDesign/"/>
+      <category term="MaterialDesign" scheme="http://blog.renleicoder.com/tags/MaterialDesign/"/>
     
-      <category term="APP" scheme="http://yoursite.com/tags/APP/"/>
+      <category term="APP" scheme="http://blog.renleicoder.com/tags/APP/"/>
     
-      <category term="MVP" scheme="http://yoursite.com/tags/MVP/"/>
+      <category term="MVP" scheme="http://blog.renleicoder.com/tags/MVP/"/>
     
-      <category term="Retrofit" scheme="http://yoursite.com/tags/Retrofit/"/>
+      <category term="Retrofit" scheme="http://blog.renleicoder.com/tags/Retrofit/"/>
     
-      <category term="RxJava" scheme="http://yoursite.com/tags/RxJava/"/>
+      <category term="RxJava" scheme="http://blog.renleicoder.com/tags/RxJava/"/>
     
   </entry>
   
   <entry>
     <title>Andorid网络操作和优化相关</title>
-    <link href="http://yoursite.com/2016/06/12/Android%E7%BD%91%E7%BB%9C%E6%93%8D%E4%BD%9C%E5%92%8C%E4%BC%98%E5%8C%96%E7%9B%B8%E5%85%B3/"/>
-    <id>http://yoursite.com/2016/06/12/Android网络操作和优化相关/</id>
+    <link href="http://blog.renleicoder.com/2016/06/12/Android%E7%BD%91%E7%BB%9C%E6%93%8D%E4%BD%9C%E5%92%8C%E4%BC%98%E5%8C%96%E7%9B%B8%E5%85%B3/"/>
+    <id>http://blog.renleicoder.com/2016/06/12/Android网络操作和优化相关/</id>
     <published>2016-06-12T04:43:00.000Z</published>
     <updated>2017-04-24T01:58:52.000Z</updated>
     
@@ -430,19 +430,19 @@
     
     </summary>
     
-      <category term="性能优化" scheme="http://yoursite.com/categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
+      <category term="性能优化" scheme="http://blog.renleicoder.com/categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
     
     
-      <category term="Andorid中的网络操作" scheme="http://yoursite.com/tags/Andorid%E4%B8%AD%E7%9A%84%E7%BD%91%E7%BB%9C%E6%93%8D%E4%BD%9C/"/>
+      <category term="Andorid中的网络操作" scheme="http://blog.renleicoder.com/tags/Andorid%E4%B8%AD%E7%9A%84%E7%BD%91%E7%BB%9C%E6%93%8D%E4%BD%9C/"/>
     
-      <category term="移动端网络优化" scheme="http://yoursite.com/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E7%BD%91%E7%BB%9C%E4%BC%98%E5%8C%96/"/>
+      <category term="移动端网络优化" scheme="http://blog.renleicoder.com/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E7%BD%91%E7%BB%9C%E4%BC%98%E5%8C%96/"/>
     
   </entry>
   
   <entry>
     <title>Andorid中的进程和线程</title>
-    <link href="http://yoursite.com/2016/06/01/Android%E4%B8%AD%E7%9A%84%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/"/>
-    <id>http://yoursite.com/2016/06/01/Android中的进程和线程/</id>
+    <link href="http://blog.renleicoder.com/2016/06/01/Android%E4%B8%AD%E7%9A%84%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/"/>
+    <id>http://blog.renleicoder.com/2016/06/01/Android中的进程和线程/</id>
     <published>2016-06-01T07:00:00.000Z</published>
     <updated>2017-04-24T02:08:34.000Z</updated>
     
@@ -452,19 +452,19 @@
     
     </summary>
     
-      <category term="多线程" scheme="http://yoursite.com/categories/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+      <category term="多线程" scheme="http://blog.renleicoder.com/categories/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
     
     
-      <category term="Andorid中的进程和线程" scheme="http://yoursite.com/tags/Andorid%E4%B8%AD%E7%9A%84%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/"/>
+      <category term="Andorid中的进程和线程" scheme="http://blog.renleicoder.com/tags/Andorid%E4%B8%AD%E7%9A%84%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/"/>
     
-      <category term="AsyncTask" scheme="http://yoursite.com/tags/AsyncTask/"/>
+      <category term="AsyncTask" scheme="http://blog.renleicoder.com/tags/AsyncTask/"/>
     
   </entry>
   
   <entry>
     <title>方法论-成为大神路上的捷径</title>
-    <link href="http://yoursite.com/2016/05/17/%E6%96%B9%E6%B3%95%E8%AE%BA-%E6%88%90%E4%B8%BA%E5%A4%A7%E7%A5%9E%E8%B7%AF%E4%B8%8A%E7%9A%84%E6%8D%B7%E5%BE%84/"/>
-    <id>http://yoursite.com/2016/05/17/方法论-成为大神路上的捷径/</id>
+    <link href="http://blog.renleicoder.com/2016/05/17/%E6%96%B9%E6%B3%95%E8%AE%BA-%E6%88%90%E4%B8%BA%E5%A4%A7%E7%A5%9E%E8%B7%AF%E4%B8%8A%E7%9A%84%E6%8D%B7%E5%BE%84/"/>
+    <id>http://blog.renleicoder.com/2016/05/17/方法论-成为大神路上的捷径/</id>
     <published>2016-05-17T01:21:00.000Z</published>
     <updated>2017-04-24T00:47:10.000Z</updated>
     
@@ -474,14 +474,14 @@
     
     </summary>
     
-      <category term="方法论" scheme="http://yoursite.com/categories/%E6%96%B9%E6%B3%95%E8%AE%BA/"/>
+      <category term="方法论" scheme="http://blog.renleicoder.com/categories/%E6%96%B9%E6%B3%95%E8%AE%BA/"/>
     
     
-      <category term="方法论" scheme="http://yoursite.com/tags/%E6%96%B9%E6%B3%95%E8%AE%BA/"/>
+      <category term="方法论" scheme="http://blog.renleicoder.com/tags/%E6%96%B9%E6%B3%95%E8%AE%BA/"/>
     
-      <category term="Android" scheme="http://yoursite.com/tags/Android/"/>
+      <category term="Android" scheme="http://blog.renleicoder.com/tags/Android/"/>
     
-      <category term="学习方法" scheme="http://yoursite.com/tags/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
+      <category term="学习方法" scheme="http://blog.renleicoder.com/tags/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
     
   </entry>
   
