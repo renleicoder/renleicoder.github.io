@@ -7,21 +7,17 @@
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -33,18 +29,20 @@
 
 
 
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
 
   
   
-  
-  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
+
+
+
+  
+  
+  
   
 
   
@@ -57,28 +55,30 @@
 
   
 
+  
 
 
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-
-  <meta name="keywords" content="性能优化,内存优化,MAT,leakcanary,内存泄漏" />
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
 
 
-
-
-
-  <link rel="alternate" href="/atom.xml" title="KIKO_软糖的博客" type="application/atom+xml" />
+  <meta name="keywords" content="性能优化,内存优化,MAT,leakcanary,内存泄漏">
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+  <link rel="alternate" href="/atom.xml" title="KIKO_软糖的博客" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1">
 
 
 
@@ -137,7 +137,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/04/19/Android性能优化之被忽视的Memory Leaks/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/04/19/Android性能优化之被忽视的Memory Leaks/">
 
 
 
@@ -146,7 +146,7 @@
   <title>Android性能优化之被忽视的Memory Leaks | KIKO_软糖的博客</title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -181,13 +181,13 @@
   <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">KIKO_软糖的博客</span>
         <span class="logo-line-after"><i></i></span>
@@ -217,7 +217,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -227,7 +227,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -237,7 +237,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -247,7 +247,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -257,7 +257,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
             关于
           </a>
@@ -270,7 +270,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
             
             搜索
           </a>
@@ -329,16 +329,16 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/04/19/Android性能优化之被忽视的Memory Leaks/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="任磊_Coder">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.jpeg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="KIKO_软糖的博客">
     </span>
 
@@ -377,7 +377,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -388,7 +388,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/性能优化/" itemprop="url" rel="index">
                     <span itemprop="name">性能优化</span>
                   </a>
@@ -408,8 +408,7 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2016/04/19/Android性能优化之被忽视的Memory Leaks/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2016/04/19/Android性能优化之被忽视的Memory Leaks/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/04/19/Android性能优化之被忽视的Memory Leaks/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -553,7 +552,7 @@
 <li><strong>LeakCanary</strong></li>
 </ul>
 <p>下面我们分开介绍。</p>
-<h3 id="Memory-Analyzer-Tool"><a href="#Memory-Analyzer-Tool" class="headerlink" title="Memory Analyzer Tool"></a>Memory Analyzer Tool</h3><p>Memory Analysis Tools（<a href="http://www.eclipse.org/mat/downloads.php" target="_blank" rel="external">点我下载</a>）是一个专门分析Java堆数据内存引用的工具，我们可以使用它方便的定位内存泄露原因，核心任务就是找到GC ROOT位置。接下来说下使用步骤。</p>
+<h3 id="Memory-Analyzer-Tool"><a href="#Memory-Analyzer-Tool" class="headerlink" title="Memory Analyzer Tool"></a>Memory Analyzer Tool</h3><p>Memory Analysis Tools（<a href="http://www.eclipse.org/mat/downloads.php" rel="external nofollow noopener noreferrer" target="_blank">点我下载</a>）是一个专门分析Java堆数据内存引用的工具，我们可以使用它方便的定位内存泄露原因，核心任务就是找到GC ROOT位置。接下来说下使用步骤。</p>
 <h4 id="抓取内存信息"><a href="#抓取内存信息" class="headerlink" title="抓取内存信息"></a>抓取内存信息</h4><p>AndriodStudio中抓取内存信息还是很方便的，有两种方法：</p>
 <ul>
 <li><p>使用Android Device Monitor</p>
@@ -633,7 +632,7 @@ public void printActivityName() {
 </ul>
 <p>现在我们可以对着我们想查看的内容点击右键 -&gt; Path to GC Roots -&gt; exclude weak references，为什么选择exclude weak references呢？因为弱引用是不会阻止对象被垃圾回收器回收的，所以我们这里直接把它排除掉，然后一步一步分析。<br>​    </p>
 <h3 id="LeakCanary"><a href="#LeakCanary" class="headerlink" title="LeakCanary"></a>LeakCanary</h3><p>leakcanary是一个开源项目，一个内存泄露自动检测工具，是著名的GitHub开源组织Square贡献的，它的主要优势就在于自动化过早的发觉内存泄露、配置简单、抓取贴心，缺点在于还存在一些bug，不过正常使用百分之九十情况是OK的，其核心原理与MAT工具类似。</p>
-<p>因为配置十分简单，这里就不多说了，<a href="https://github.com/square/leakcanary" target="_blank" rel="external">官方文档。</a></p>
+<p>因为配置十分简单，这里就不多说了，<a href="https://github.com/square/leakcanary" rel="external nofollow noopener noreferrer" target="_blank">官方文档。</a></p>
 <p>我们看下分析结果</p>
 <p><img src="http://i.imgur.com/BE8T7JP.png" alt=""></p>
 <p>简单直白！</p>
@@ -657,7 +656,7 @@ public void printActivityName() {
 <li><p>避免代码设计模式的错误造成内存泄露；譬如循环引用，A持有B，B持有C，C持有A，这样的设计谁都得不到释放。</p>
 </li>
 </ul>
-<h1 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h1><p>真相只有一个，那就是确实是由于内存泄漏才出现我遇到的情况。程序员嘛，谁还不踩个坑，跳出来，拍拍身上的灰尘，总结一下，过两天又是一条帮帮的coder。<a href="http://download.csdn.net/detail/sdkfjksf/9496090" target="_blank" rel="external">源码</a></p>
+<h1 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h1><p>真相只有一个，那就是确实是由于内存泄漏才出现我遇到的情况。程序员嘛，谁还不踩个坑，跳出来，拍拍身上的灰尘，总结一下，过两天又是一条帮帮的coder。<a href="http://download.csdn.net/detail/sdkfjksf/9496090" rel="external nofollow noopener noreferrer" target="_blank">源码</a></p>
 
       
     </div>
@@ -666,7 +665,7 @@ public void printActivityName() {
       
         
 <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
-    <img id="wechat_subscriber_qcode" src="/images/wechatqcode.png" alt="任磊_Coder wechat" style="width: 200px; max-width: 100%;"/>
+    <img id="wechat_subscriber_qcode" src="/images/wechatqcode.png" alt="任磊_Coder wechat" style="width: 200px; max-width: 100%;">
     <div>关注博主是一种态度，评论博主是一种欣赏。</div>
 </div>
 
@@ -685,13 +684,13 @@ public void printActivityName() {
     <div id="QR" style="display: none;">
       
         <div id="wechat" style="display: inline-block">
-          <img id="wechat_qr" src="/images/wechat.png" alt="任磊_Coder WeChat Pay"/>
+          <img id="wechat_qr" src="/images/wechat.png" alt="任磊_Coder WeChat Pay">
           <p>微信打赏</p>
         </div>
       
       
         <div id="alipay" style="display: inline-block">
-          <img id="alipay_qr" src="/images/alipay.png" alt="任磊_Coder Alipay"/>
+          <img id="alipay_qr" src="/images/alipay.png" alt="任磊_Coder Alipay">
           <p>支付宝打赏</p>
         </div>
       
@@ -775,7 +774,7 @@ public void printActivityName() {
       <div id="disqus_thread">
         <noscript>
           Please enable JavaScript to view the
-          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+          <a href="https://disqus.com/?ref_noscript" rel="external nofollow noopener noreferrer" target="_blank">comments powered by Disqus.</a>
         </noscript>
       </div>
     
@@ -801,7 +800,7 @@ public void printActivityName() {
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -811,10 +810,8 @@ public void printActivityName() {
       
 
       <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/avatar.jpeg"
-               alt="任磊_Coder" />
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.jpeg" alt="任磊_Coder">
           <p class="site-author-name" itemprop="name">任磊_Coder</p>
            
               <p class="site-description motion-element" itemprop="description">每个人都在成为大神的路上，只不过有的人在走，而有的人在跑。</p>
@@ -868,7 +865,7 @@ public void printActivityName() {
           
             
               <span class="links-of-author-item">
-                <a href="https://github.com/PleaseCallMeCoder" target="_blank" title="GitHub">
+                <a href="https://github.com/PleaseCallMeCoder" target="_blank" title="GitHub" rel="external nofollow noopener noreferrer">
                   
                     <i class="fa fa-fw fa-github"></i>
                   
@@ -877,7 +874,7 @@ public void printActivityName() {
               </span>
             
               <span class="links-of-author-item">
-                <a href="http://weibo.com/2729748535/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1e" target="_blank" title="微博">
+                <a href="http://weibo.com/2729748535/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1e" target="_blank" title="微博" rel="external nofollow noopener noreferrer">
                   
                     <i class="fa fa-fw fa-weibo"></i>
                   
@@ -886,7 +883,7 @@ public void printActivityName() {
               </span>
             
               <span class="links-of-author-item">
-                <a href="http://www.jianshu.com/u/575326a8ce05" target="_blank" title="简书">
+                <a href="http://www.jianshu.com/u/575326a8ce05" target="_blank" title="简书" rel="external nofollow noopener noreferrer">
                   
                     <i class="fa fa-fw fa-globe"></i>
                   
@@ -895,7 +892,7 @@ public void printActivityName() {
               </span>
             
               <span class="links-of-author-item">
-                <a href="http://blog.csdn.net/sdkfjksf" target="_blank" title="CSDN">
+                <a href="http://blog.csdn.net/sdkfjksf" target="_blank" title="CSDN" rel="external nofollow noopener noreferrer">
                   
                     <i class="fa fa-fw fa-globe"></i>
                   
@@ -947,7 +944,7 @@ public void printActivityName() {
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy;  2015 - 
   <span itemprop="copyrightYear">2017</span>
@@ -959,12 +956,12 @@ public void printActivityName() {
 
 
 <div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io" rel="external nofollow">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="http://hexo.io" rel="external nofollow noopener noreferrer" target="_blank">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
   主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" rel="external nofollow">
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" rel="external nofollow noopener noreferrer" target="_blank">
   </a>
 </div>
 
