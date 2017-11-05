@@ -405,8 +405,6 @@
       <category term="APP" scheme="http://blog.renleicoder.com/categories/APP/"/>
     
     
-      <category term="MaterialDesign" scheme="http://blog.renleicoder.com/tags/MaterialDesign/"/>
-    
       <category term="APP" scheme="http://blog.renleicoder.com/tags/APP/"/>
     
       <category term="MVP" scheme="http://blog.renleicoder.com/tags/MVP/"/>
@@ -414,6 +412,8 @@
       <category term="Retrofit" scheme="http://blog.renleicoder.com/tags/Retrofit/"/>
     
       <category term="RxJava" scheme="http://blog.renleicoder.com/tags/RxJava/"/>
+    
+      <category term="MaterialDesign" scheme="http://blog.renleicoder.com/tags/MaterialDesign/"/>
     
   </entry>
   
