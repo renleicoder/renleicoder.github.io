@@ -1,0 +1,1076 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="思考,编程思想,语言特性">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="KIKO_软糖的博客" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1">
+
+
+
+
+
+
+<meta name="description" content="关于“第二”编程语言的思考。">
+<meta name="keywords" content="思维">
+<meta property="og:type" content="article">
+<meta property="og:title" content="我的“第二”编程语言">
+<meta property="og:url" content="http://blog.renleicoder.com/2017/12/24/我的“第二”编程语言/index.html">
+<meta property="og:site_name" content="KIKO_软糖的博客">
+<meta property="og:description" content="关于“第二”编程语言的思考。">
+<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/a2b4a837ly1fmry98fiqoj21i8102n71.jpg">
+<meta property="og:updated_time" content="2017-12-24T13:55:11.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="我的“第二”编程语言">
+<meta name="twitter:description" content="关于“第二”编程语言的思考。">
+<meta name="twitter:image" content="http://wx4.sinaimg.cn/mw690/a2b4a837ly1fmry98fiqoj21i8102n71.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'X6XZYA04JV',
+      apiKey: 'abdb5abda2ee8a5e60a5682dea929ef0',
+      indexName: 'renleicoder',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.renleicoder.com/2017/12/24/我的“第二”编程语言/">
+
+
+
+
+
+  <title>我的“第二”编程语言 | KIKO_软糖的博客</title>
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f298a9ae5a2d1230596870c757ed632b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <a href="https://github.com/PleaseCallMeCoder" rel="external nofollow noopener noreferrer" target="_blank"><img style="position: absolute; top: 0; right: 0; border: 0" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">KIKO_软糖的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">每个人都在成为大神的路上，只不过有的人在走，而有的人在跑。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://blog.renleicoder.com/2017/12/24/我的“第二”编程语言/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="任磊_Coder">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KIKO_软糖的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                我的“第二”编程语言
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-24T20:00:00+08:00">
+                2017-12-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/所思所想/" itemprop="url" rel="index">
+                    <span itemprop="name">所思所想</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/12/24/我的“第二”编程语言/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/12/24/我的“第二”编程语言/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/12/24/我的“第二”编程语言/" class="leancloud_visitors" data-flag-title="我的“第二”编程语言">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="http://wx4.sinaimg.cn/mw690/a2b4a837ly1fmry98fiqoj21i8102n71.jpg" alt=""></p>
+<p>关于“第二”编程语言的思考。</p>
+<a id="more"></a>
+<p><strong>我们是程序员，但我们不必只是某一门语言的程序员。</strong></p>
+<h1 id="编程语言"><a href="#编程语言" class="headerlink" title="编程语言"></a>编程语言</h1><p>今天跟大家聊聊编程语言这个东西，“第二”只是个泛指，想必多数开发者也都掌握了不止一门编程语言。</p>
+<p>我真正开始编程是在大四实习的时候，开发主要用的是Java，Web方向。但那会公司比较小，既要学着写后端又要学着写前端，所以JavaScript用的也算熟悉。但在那会的我看来，这两者并没有太大差别。也没有太多关于面向对象、函数式这些编程范式的概念。后来我开始做Android，对Java和面向对象编程的理解日益加深。</p>
+<p>后来我接触到了爬虫，从正则表达式到jsoup，再后来我开始用Python来写。对于Python，用的越久，我对它越是喜欢。Python的代码总是看起来很像<strong>伪代码</strong>，可以用很少的代码实现我们想要的东西，爬虫、数据分析、网站、脚本，都可以用Python轻易实现。</p>
+<p>随着学习的深入，我开始思考我学过的编程语言们。它们有的大开大合，有的简洁明快，有的深沉厚重。它们有解释型和编译型之分，也有无类型、强类型、弱类型、动态类型和静态类型的区分。编程范式也各有不同，命令式、函数式、面向对象等等。但它们也有相同的部分。<strong>所以，用合适的编程语言去做它适合的事情。</strong></p>
+<h1 id="我的小确幸"><a href="#我的小确幸" class="headerlink" title="我的小确幸"></a>我的小确幸</h1><p>我庆幸自己遇到我熟悉的那些编程语言们，他们带给了我很多。</p>
+<p>先说我的老朋友，Java。Java是我最先用熟的编程语言，也因为对Android的喜欢，Java是我使用时间最长的编程语言。我更多的是用它来写一些好玩的App，好玩的动画效果，当然也靠它吃饭。</p>
+<p>然后是JavaScript，靠着它我做了一些小东西，比如我的<a href="http://candy.renleicoder.com/" rel="external nofollow noopener noreferrer" target="_blank">主页</a>，我的<a href="http://blog.renleicoder.com/">blog</a>，我的瞎编名人名言<a href="http://candy.renleicoder.com/motto/motto" rel="external nofollow noopener noreferrer" target="_blank">motto</a>。靠着它我做了一些工作之外的，我喜欢的东西。</p>
+<p>最后说说Python。用Python写的最多的是爬虫，比如我比较喜欢看小说，我用Python爬了N多本某网站的5星小说。在工作中也有一些特殊的场景需要用到爬虫的小知识，如果想偷懒的话。然后我维护blog的脚本也是用Python写的。偶尔我也会用Python做一些简单的数据处理和分析。Python在工作上和工作之外都帮了我很多。</p>
+<h1 id="和编程语言做朋友"><a href="#和编程语言做朋友" class="headerlink" title="和编程语言做朋友"></a>和编程语言做朋友</h1><p>我不是某种语言的死忠粉，比如不会高呼“PHP是世界上最好的语言”，对我有用的我都可以去学。学的编程语言越多，越能快速的学会其他任意一门新的编程语言。</p>
+<p>之前同事推荐过一本书叫《代码之髓》，这本书从编程语言的衍生发展以及主流编程语言之间的对比等角度梳理了编程语言的“特性”，这些特性通常是所有编程语言必须的，不管是编译型还是解释型，也不管它是动态类型还是静态类型。王垠也在<a href="http://www.yinwang.org/blog-cn/2017/07/06/master-pl" rel="external nofollow noopener noreferrer" target="_blank">如何掌握所有的程序语言</a>中讨论过这个问题。</p>
+<p>通常在我们学习一门新的编程语言的时候，更多的应该去关注这些“语言特性”：</p>
+<ul>
+<li>变量以及运算</li>
+<li>流程控制</li>
+<li>函数</li>
+<li>作用域</li>
+<li>类型</li>
+<li>容器和字符串</li>
+<li>错误处理</li>
+<li>并发</li>
+<li>垃圾回收</li>
+<li>编程范式</li>
+</ul>
+<p>我们应该关注编程语言对这些特性的实现，然后对比我们已经学过的其他语言。</p>
+<p>拿Java和Python的面向对象来讲，首先我们要关注这两门语言各自对面向对象的定义以及各自的规则。然后可以对比一下它们的不同。比如如果我们要实现一个可以显示内容的窗口，同时希望这个窗口具有可滚动的特性。在Java中，我们一般会定义一个窗口类，然后定义一个具有滚动特性的接口来实现。但在Python中我们可以完全可以定义一个窗口类和一个滚动类，使用<strong>多重继承</strong>来实现。</p>
+<p>那么为什么会存在这种差异呢？Java为什么不支持多继承呢？其实这仅仅是不同语言针对多继承中<strong>菱形继承</strong>所造成冲突的不同解决方案而已。至于菱形继承相关问题不是本篇重点，大家自行搜索即可，这里只是举个例子。</p>
+<p><strong>如果我们能用一种语言的基本特性写出来很棒的代码，那么换一种语言同样可以。</strong></p>
+<h1 id="如何选择“第二”编程语言"><a href="#如何选择“第二”编程语言" class="headerlink" title="如何选择“第二”编程语言"></a>如何选择“第二”编程语言</h1><p>最后说说如何选择“第二”编程语言的问题。这里我有几点建议：</p>
+<ul>
+<li><p>选择一门和“第一”编程语言<strong>编程思想不同甚至是相反</strong>的语言。</p>
+<p>比如如果已经学了一门静态类型语言，不妨选一门动态类型语言学一下，方便在对比中学习，体会不同编程思想的魅力。</p>
+</li>
+<li><p>选一门能拓展自己能力范围的“第二”编程语言。</p>
+<p>比如A是一名Android开发，那么A可以选择学一下IOS开发和前端开发，拓展一下自己的能力圈。</p>
+</li>
+<li><p>选一门自己感兴趣的“第二”编程语言。</p>
+<p>第一门语言用来“吃饭”，第二门当然可以选择一门自己感兴趣的。比如如果A是一个前端工程师，A对机器学习感兴趣，不妨学习一下Python和机器学习相关的算法。</p>
+</li>
+</ul>
+<p>当然，<strong>其实计算机编程一多半的功力不在语言上体现，而是解决问题的思路，也就是如何去运用程序语言解决问题的能力</strong>。这方面的能力也不仅仅是看看数据结构和算法能培养起来的，必须多写多练多学习开源，持之以恒才行。</p>
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="http://wx4.sinaimg.cn/mw690/a2b4a837ly1ffdr0v6qe2j2076076jru.jpg" alt="任磊_Coder wechat" style="width: 200px; max-width: 100%">
+    <div>关注博主是一种态度，评论博主是一种欣赏。</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat.png" alt="任磊_Coder WeChat Pay">
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.png" alt="任磊_Coder Alipay">
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/思维/" rel="tag"># 思维</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/05/关于Coding的一些思考/" rel="prev" title="关于Coding的一些思考">
+                关于Coding的一些思考 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript" rel="external nofollow noopener noreferrer" target="_blank">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.jpeg" alt="任磊_Coder">
+          <p class="site-author-name" itemprop="name">任磊_Coder</p>
+           
+              <p class="site-description motion-element" itemprop="description">每个人都在成为大神的路上，只不过有的人在走，而有的人在跑。</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">42</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">83</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://candy.renleicoder.com" target="_blank" title="Candy" rel="external nofollow noopener noreferrer">
+                  
+                  Candy
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/PleaseCallMeCoder" target="_blank" title="GitHub" rel="external nofollow noopener noreferrer">
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/2729748535/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1e" target="_blank" title="微博" rel="external nofollow noopener noreferrer">
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/u/575326a8ce05" target="_blank" title="简书" rel="external nofollow noopener noreferrer">
+                  
+                  简书
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://blog.csdn.net/sdkfjksf?viewmode=list" target="_blank" title="CSDN" rel="external nofollow noopener noreferrer">
+                  
+                  CSDN
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://liuxuchao.top/" target="_blank" rel="external nofollow noopener noreferrer">一个胖子</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://shixinzhang.top/" target="_blank" rel="external nofollow noopener noreferrer">低调帅气的人</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#编程语言"><span class="nav-number">1.</span> <span class="nav-text">编程语言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#我的小确幸"><span class="nav-number">2.</span> <span class="nav-text">我的小确幸</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#和编程语言做朋友"><span class="nav-number">3.</span> <span class="nav-text">和编程语言做朋友</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何选择“第二”编程语言"><span class="nav-number">4.</span> <span class="nav-text">如何选择“第二”编程语言</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">任磊_Coder</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io" rel="external nofollow noopener noreferrer" target="_blank">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" rel="external nofollow noopener noreferrer" target="_blank">
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://renleicoder.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://blog.renleicoder.com/2017/12/24/我的“第二”编程语言/';
+          this.page.identifier = '2017/12/24/我的“第二”编程语言/';
+          this.page.title = '我的“第二”编程语言';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://renleicoder.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.1"></script>
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("WRMNDFdhvgzhvChWrX6qyTJI-gzGzoHsz", "xM8HS64Yu434V4EvE8j9wLsf");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
